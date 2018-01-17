@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3996cba998bf7b64da58b96f3c4fa29f, type: 3}
+  m_Name: 1x1turnR3
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1449114676636926, guid: 7f316bcefea61f140ab0b13fb40d2c2c, type: 2}
+  dimensions: {x: 1, y: 1}
+  doorLocations:
+  - {x: 0, y: 1}
+  - {x: 1, y: 2}

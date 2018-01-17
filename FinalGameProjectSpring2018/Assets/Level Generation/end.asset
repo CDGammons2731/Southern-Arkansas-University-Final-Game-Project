@@ -9,9 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3996cba998bf7b64da58b96f3c4fa29f, type: 3}
-  m_Name: EndRoomTemplate
+  m_Name: end
   m_EditorClassIdentifier: 
   prefab: {fileID: 1024164286686720, guid: 18a2f1359d069ee40a28626bc9ec37dd, type: 2}
   dimensions: {x: 1, y: 1}
-  doorLocationsAndDirections:
-  - {x: 1, y: 1, z: 2}
+  doorLocations:
+  - {x: 0, y: 1}
+  - {x: 2, y: 1}
+  - {x: 1, y: 0}
+  - {x: 1, y: 2}

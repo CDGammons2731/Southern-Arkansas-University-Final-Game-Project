@@ -6,5 +6,5 @@ using UnityEngine;
 public class LevelGenPrefab : ScriptableObject {
 	public GameObject prefab;
 	public Vector2 dimensions;
-	public Vector3[] doorLocationsAndDirections;
+	public Vector2[] doorLocations;
 }

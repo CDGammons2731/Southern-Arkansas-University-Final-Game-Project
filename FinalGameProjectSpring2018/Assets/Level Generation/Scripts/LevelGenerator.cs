@@ -36,6 +36,7 @@ public class LevelGenerator : MonoBehaviour {
 			do { r1Assigned = AssignRandomRoom(1, r1Q); } while (!r1Assigned);
 			bool r2Assigned = false;
 			do { r2Assigned = AssignRandomRoom(2, r2Q); } while (!r2Assigned);
+			end.occupied = true;
 			for (int i = 0; i < gX; i++) {
 				for (int j = 0; j < gY; j++) {
 					grid[i,j].weight = Random.Range(0,50);
@@ -44,17 +45,13 @@ public class LevelGenerator : MonoBehaviour {
 			start.weight = 0;
 			path = FindPath();
 			List<Arrangement> roomsToPlace = new List<Arrangement>(0);
-			while (path.Count > 0) {
-				Debug.Log(path.Count);
+			for (int i = 0; i < path.Count; i++) {
 				if (roomsToPlace.Count == 0) {
 					roomsToPlace.Add(PlaceRoom(path[0], null, true));
-				} else {
-					roomsToPlace.Add(PlaceRoom(path[0], roomsToPlace[roomsToPlace.Count-1].pathExitNode, true));
 				}
-				if (path.Count ==1) {
-					path.Remove(end);
-				}
+				roomsToPlace.Add(PlaceRoom(path[1], path[0], true));
 			}
+			//roomsToPlace.Add(PlaceRoom(end, null, false));
 			InstantiateRooms(roomsToPlace);
 		} else {
 			Debug.LogWarning("Grid size not large enough for start and end rooms to be put on the grid! Aborting level generation");
@@ -62,61 +59,42 @@ public class LevelGenerator : MonoBehaviour {
 	}
 
 	Arrangement PlaceRoom(Node source, Node prev, bool isPathed) {
+		if (prev!= null) {
+			Debug.Log(source.Location()+"|"+prev.Location());
+		} else {
+			Debug.Log(source.Location());
+		}
 		List<Arrangement> potential = new List<Arrangement>();
 		/*/
 		/// Step 1: Get all the initial arrangements that can be in that spot, assuming nothing's there and we don't have to connect to anything else
 		/*/
 		foreach (LevelGenPrefab pref in categories[source.roomType].components) {
-			if (prev == null) { // We aren't working off of a previous node - place any room here
+			if (prev==null) {
 				for (int i = 0; i < pref.dimensions.x; i++) {
 					for (int j = 0; j < pref.dimensions.y; j++) {
-						for (int k = 0; k < 3; k++) {
-							Arrangement room = new Arrangement();
-							room.offset = new Vector2(i,j);
-							room.original = pref;
-							room.sourceNode = source;
-							room.rotations = k;
-							room.direction = 2+(k*2);
-							potential.Add(room);
-						}
+						Arrangement arr = new Arrangement();
+						arr.offset = new Vector2(i,j);
+						arr.sourceNode = source;
+						arr.original = pref;
+						potential.Add(arr);
 					}
 				}
-			} else { // We are working off a previous node, so we need to have this room connect to it
-				int dir;
-				if (source.Location()-prev.Location() == Vector2.left) {
-					dir = 4;
-				} else if (source.Location()-prev.Location() == Vector2.right) {
-					dir = 6;
-				} else if (source.Location()-prev.Location() == Vector2.up) {
-					dir = 8;
-				} else if (source.Location()-prev.Location() == Vector2.down) {
-					dir = 2;
-				} else {
-					dir = 0;
-					Debug.LogWarning("The Source and Previous nodes aren't able to give a direction");
-					Debug.LogWarning("Source: "+source.Location()+ " | Previous: "+prev.Location());
-				}
-				foreach (Vector3 door in pref.doorLocationsAndDirections) {
-					Vector3 tempDoor = door;
-					int rots = 0;
-					for (int r = 0; r < 3; r++) {
-						if ((int)tempDoor.z != dir) {
-							rots++;
-							if (rots%2==1) {
-								tempDoor = RotateCW(tempDoor, new Vector2(pref.dimensions.y, pref.dimensions.x));
-							} else {
-								tempDoor = RotateCW(tempDoor, pref.dimensions);
+			} else {
+				for (int i = 0; i < pref.dimensions.x; i++) {
+					for (int j = 0; j < pref.dimensions.y; j++) {
+						foreach (Vector2 door in pref.doorLocations) {
+							//Debug.Log(door+"|"+source.Location()+"|"+prev.Location()+"|"+new Vector2(i,j));
+							if (door == prev.Location()-new Vector2(i,j)-source.Location()+Vector2.one) {
+								//Debug.Log("Valid door found: " + door+"|"+new Vector2(i,j)+"|"+prev.Location()+"|"+(source.Location()+Vector2.one));
+								Arrangement arr = new Arrangement();
+								arr.offset = new Vector2(i,j);
+								arr.sourceNode = source;
+								arr.doorEntry = door;
+								arr.original = pref;
+								potential.Add(arr);
 							}
 						}
 					}
-					Vector2 offs = new Vector2(1,1)-(Vector2)tempDoor;
-					Arrangement room = new Arrangement();
-					room.offset = offs;
-					room.original = pref;
-					room.sourceNode = source;
-					room.rotations = rots;
-					room.direction = dir;
-					potential.Add(room);
 				}
 			}
 		}
@@ -126,25 +104,16 @@ public class LevelGenerator : MonoBehaviour {
 		/*/
 		if (isPathed) {
 			foreach (Arrangement pot in potential) {
-				foreach (Vector3 door in pot.original.doorLocationsAndDirections) {
-					Vector3 tmpDoor = door;
-					for (int r = 0; r < pot.rotations; r++) {
-						if (r%2==1) {
-							tmpDoor = RotateCW(tmpDoor, new Vector2(pot.original.dimensions.y, pot.original.dimensions.x));
-						} else {
-							tmpDoor = RotateCW(tmpDoor, pot.original.dimensions);
-						}
-					}
-					tmpDoor += new Vector3(pot.offset.x, pot.offset.y, 0);
-					if (tmpDoor.z == pot.direction) continue;
-					for (int i = path.IndexOf(pot.sourceNode); i < path.Count; i++) {
-						if ((Vector2)tmpDoor == pot.sourceNode.Location()-path[i].Location()+new Vector2(1,1)) {
+				for (int i = path.IndexOf(pot.sourceNode)+1; i < path.Count; i++) {
+					foreach (Vector2 door in pot.original.doorLocations) {
+						if (path[i].Location()-pot.sourceNode.Location()+Vector2.one == door) {
+							Debug.Log("Room: " +pot.original.name+ " | Door location: "+door+" | path[i] location: " +path[i].Location()+ " | sourceNode location: " + pot.sourceNode.Location() + " | " +Vector2.one);
 							pot.pathExitNode = path[i];
 						}
 					}
 				}
 				if (pot.pathExitNode == null) {
-					pot.markForRemoval = true;
+					pot.markForRemoval=true;
 				}
 			}
 		}
@@ -158,17 +127,12 @@ public class LevelGenerator : MonoBehaviour {
 		/// Step 3: Check every arrangement for collisions with other rooms or any path nodes farther along than where we are, remove the arrangements if there are any
 		/*/
 		foreach (Arrangement pot in potential) {
-			Vector2 dims = pot.original.dimensions;
-			if (pot.rotations%2 == 1) { 
-				dims = new Vector2(dims.y, dims.x);
-			}
-			for (int i = 0; i < dims.x; i++) {
-				for (int j = 0; j < dims.y; j++) {
-					if (grid[(int)pot.sourceNode.x+(int)pot.offset.x, (int)pot.sourceNode.y+(int)pot.offset.y].occupied 
-					|| 
-					(path.Contains(grid[(int)pot.sourceNode.x+(int)pot.offset.x, (int)pot.sourceNode.y+(int)pot.offset.y]) 
-					&& path.IndexOf(grid[(int)pot.sourceNode.x+(int)pot.offset.x, (int)pot.sourceNode.y+(int)pot.offset.y]) > path.IndexOf(pot.pathExitNode))) {
-						pot.markForRemoval = true;
+			for (int i = (int)(pot.sourceNode.x); i < (int)(pot.sourceNode.x+pot.original.dimensions.x); i++) {
+				for (int j = (int)(pot.sourceNode.y); j < (int)(pot.sourceNode.y+pot.original.dimensions.y); j++) {
+					if (i < gX && j < gY) {
+						if (grid[i,j].occupied || (isPathed && path.Contains(grid[i,j]) && path.IndexOf(grid[i,j]) > path.IndexOf(pot.pathExitNode))) {
+							pot.markForRemoval=true;
+						}
 					}
 				}
 			}
@@ -179,49 +143,19 @@ public class LevelGenerator : MonoBehaviour {
 				i--;
 			}
 		}
-		Arrangement final = potential[Random.Range(0, potential.Count-1)];
 		/*/
 		/// Step 4: Clean up eaten path, mark occupied grid spots as occupied
 		/*/
-		if (isPathed) {
-			while (path[0] != final.pathExitNode) {
-				path.Remove(path[0]);
-			}
-			path.Remove(path[0]);
-		}
-		Vector2 dimF = final.original.dimensions;
-		if (final.rotations%2 == 1) { 
-			dimF = new Vector2(dimF.y, dimF.x);
-		}
-		for (int i = 0; i < dimF.x; i++) {
-			for (int j = 0; j < dimF.y; j++) {
-				grid[(int)final.sourceNode.x+(int)final.offset.x, (int)final.sourceNode.y+(int)final.offset.y].occupied = true;
+		Arrangement use = potential[Random.Range(0,potential.Count-1)];
+		path.RemoveRange(0, path.IndexOf(use.pathExitNode)-1);
+		for (int i = (int)(use.sourceNode.x); i < (int)(use.sourceNode.x+use.original.dimensions.x); i++) {
+			for (int j = (int)(use.sourceNode.y); j < (int)(use.sourceNode.y+use.original.dimensions.y); j++) {
+				if (i < gX && j < gY) {
+					grid[i,j].occupied=true;
+				}
 			}
 		}
-		return final;
-	}
-
-	Vector3 RotateCW(Vector3 orig, Vector2 dim) {
-		float x;
-		float y;
-		float z;
-		switch ((int)orig.z) {
-			default: //case 2
-				z = 4;
-				break;
-			case 4:
-				z = 8;
-				break;
-			case 8:
-				z = 6;
-				break;
-			case 6:
-				z = 2;
-				break;
-		}
-		x = orig.y;
-		y = dim.y + 1 - orig.x;
-		return new Vector3(x,y,z);
+		return use;
 	}
 
 	// Use A* pathfinding algorithm to generate a path from start to end, so that we always have a way to the exit
@@ -334,19 +268,9 @@ public class LevelGenerator : MonoBehaviour {
 	void InstantiateRooms(List<Arrangement> roomsToCreate) {
 		foreach (Arrangement room in roomsToCreate) {
 			GameObject init = Instantiate(room.original.prefab);
-			float x;
-			float y;
-			if (room.rotations%2==1) {
-				x = (room.sourceNode.x*4)+(room.original.dimensions.y*4/2);
-				y = (room.sourceNode.y*4)+(room.original.dimensions.x*4/2);
-			} else {
-				x = (room.sourceNode.x*4)+(room.original.dimensions.x*4/2);
-				y = (room.sourceNode.y*4)+(room.original.dimensions.y*4/2);
-			}
-			init.transform.position = new Vector3(x, 0, y);
-			for (int i = 0; i < room.rotations; i++) {
-
-			}
+			float x = room.original.dimensions.x/2;
+			float y = room.original.dimensions.y/2;
+			init.transform.position = new Vector3(x+room.sourceNode.x, 0, y+room.sourceNode.y)*4;
 		}
 	}
 

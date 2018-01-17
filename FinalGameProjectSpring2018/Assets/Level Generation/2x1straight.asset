@@ -9,9 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3996cba998bf7b64da58b96f3c4fa29f, type: 3}
-  m_Name: StartRoomTemplate
+  m_Name: 2x1straight
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1118655212612754, guid: 5666b1957c7c6d3459cbfab33f6f4256, type: 2}
-  dimensions: {x: 1, y: 1}
-  doorLocationsAndDirections:
-  - {x: 1, y: 1, z: 2}
+  prefab: {fileID: 1929117190277266, guid: 796dac6a3616c4c4f88174f7bd418568, type: 2}
+  dimensions: {x: 1, y: 2}
+  doorLocations:
+  - {x: 1, y: 0}
+  - {x: 1, y: 3}

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3996cba998bf7b64da58b96f3c4fa29f, type: 3}
-  m_Name: RoomTemplateT
+  m_Name: 2x1straightR1
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1928001776777880, guid: 735256a4908c5e94a90a353dab8e5c4c, type: 2}
-  dimensions: {x: 1, y: 1}
-  doorLocationsAndDirections:
-  - {x: 1, y: 1, z: 6}
-  - {x: 1, y: 1, z: 2}
+  prefab: {fileID: 1236239254522928, guid: 21fbc92977672db4e8f467bedb642ab2, type: 2}
+  dimensions: {x: 2, y: 1}
+  doorLocations:
+  - {x: 0, y: 1}
+  - {x: 3, y: 1}
