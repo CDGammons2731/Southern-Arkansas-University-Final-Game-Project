@@ -11,6 +11,9 @@ public class LevelGenerator : MonoBehaviour {
 	Node start;
 	Node end;
 	List<Node> path = new List<Node>(0);
+	List<Arrangement> roomsToPlace;
+
+	public GameObject gridVisual;
 
 	public Material pathMat;
 
@@ -44,12 +47,20 @@ public class LevelGenerator : MonoBehaviour {
 			}
 			start.weight = 0;
 			path = FindPath();
-			List<Arrangement> roomsToPlace = new List<Arrangement>(0);
-			for (int i = 0; i < path.Count; i++) {
-				if (roomsToPlace.Count == 0) {
-					roomsToPlace.Add(PlaceRoom(path[0], null, true));
+			InstantiateRooms ();
+			roomsToPlace = new List<Arrangement>(0);
+			List<Node> pathOrig = new List<Node>(0);
+			foreach (Node n in path) {
+				pathOrig.Add(n);
+			}
+			for (int i = 0; i < pathOrig.Count-2; i++) {
+				Debug.Log (pathOrig.Count);
+				if (path.Contains (pathOrig [i])) {
+					if (roomsToPlace.Count == 0) {
+						roomsToPlace.Add (PlaceRoom (path [0], null, true));
+					}
+					roomsToPlace.Add (PlaceRoom (path [1], path [0], true));
 				}
-				roomsToPlace.Add(PlaceRoom(path[1], path[0], true));
 			}
 			//roomsToPlace.Add(PlaceRoom(end, null, false));
 			InstantiateRooms(roomsToPlace);
@@ -59,19 +70,21 @@ public class LevelGenerator : MonoBehaviour {
 	}
 
 	Arrangement PlaceRoom(Node source, Node prev, bool isPathed) {
+		Debug.Log (path.Count);
 		if (prev!= null) {
-			Debug.Log(source.Location()+"|"+prev.Location());
+			Debug.Log("Checking for rooms that can connect to coordinate " + prev.Location());
 		} else {
-			Debug.Log(source.Location());
+			Debug.Log("Getting all valid rooms");
 		}
 		List<Arrangement> potential = new List<Arrangement>();
 		/*/
 		/// Step 1: Get all the initial arrangements that can be in that spot, assuming nothing's there and we don't have to connect to anything else
 		/*/
+
 		foreach (LevelGenPrefab pref in categories[source.roomType].components) {
 			if (prev==null) {
-				for (int i = 0; i < pref.dimensions.x; i++) {
-					for (int j = 0; j < pref.dimensions.y; j++) {
+				for (int i = 0; i < pref.dimensions.x+1; i++) {
+					for (int j = 0; j < pref.dimensions.y+1; j++) {
 						Arrangement arr = new Arrangement();
 						arr.offset = new Vector2(i,j);
 						arr.sourceNode = source;
@@ -85,9 +98,9 @@ public class LevelGenerator : MonoBehaviour {
 						foreach (Vector2 door in pref.doorLocations) {
 							//Debug.Log(door+"|"+source.Location()+"|"+prev.Location()+"|"+new Vector2(i,j));
 							if (door == prev.Location()-new Vector2(i,j)-source.Location()+Vector2.one) {
-								//Debug.Log("Valid door found: " + door+"|"+new Vector2(i,j)+"|"+prev.Location()+"|"+(source.Location()+Vector2.one));
 								Arrangement arr = new Arrangement();
 								arr.offset = new Vector2(i,j);
+								Debug.Log ("Room Number: " + roomsToPlace.Count + " | Room: " + pref.name + " | Door location: " + door + " | offset: " + arr.offset + " | Target: " + (prev.Location () - new Vector2 (i, j) - source.Location () + Vector2.one));
 								arr.sourceNode = source;
 								arr.doorEntry = door;
 								arr.original = pref;
@@ -102,12 +115,14 @@ public class LevelGenerator : MonoBehaviour {
 		/// Step 2: Check every door for every arrangement, see which door leads the furthest along the path, if there aren't any, we don't use that arrangement
 		/// This is purely for rooms that are on generated paths
 		/*/
+
 		if (isPathed) {
+			Debug.Log ("Checking for connections to path for Room " + roomsToPlace.Count);
 			foreach (Arrangement pot in potential) {
 				for (int i = path.IndexOf(pot.sourceNode)+1; i < path.Count; i++) {
 					foreach (Vector2 door in pot.original.doorLocations) {
 						if (path[i].Location()-pot.sourceNode.Location()+Vector2.one == door) {
-							Debug.Log("Room: " +pot.original.name+ " | Door location: "+door+" | path[i] location: " +path[i].Location()+ " | sourceNode location: " + pot.sourceNode.Location() + " | " +Vector2.one);
+							Debug.Log("Room Number: "+roomsToPlace.Count+" | Room: " +pot.original.name+ " | Door location: "+door+" | path[i] location: " +path[i].Location()+ " | sourceNode location: " + pot.sourceNode.Location() + " | " +Vector2.one);
 							pot.pathExitNode = path[i];
 						}
 					}
@@ -245,21 +260,8 @@ public class LevelGenerator : MonoBehaviour {
 	void InstantiateRooms() {
 		foreach (Node n in path) {
 			GameObject room;
-			switch (n.roomType) {
-			default: 
-				room = Instantiate(categories[0].components[Random.Range(0,categories[0].components.Length-1)].prefab);
-				room.transform.position = new Vector3(n.x*4, 0, n.y*4);
-				room.transform.Find("Cube").GetComponent<MeshRenderer>().material = pathMat;
-				break;
-			case 1: 
-				room = Instantiate(categories[1].components[Random.Range(0,categories[1].components.Length-1)].prefab);
-				room.transform.position = new Vector3(n.x*4, 0, n.y*4);
-				break;
-			case 2: 
-				room = Instantiate(categories[2].components[Random.Range(0,categories[2].components.Length-1)].prefab);
-				room.transform.position = new Vector3(n.x*4, 0, n.y*4);
-				break;
-			}
+			room = Instantiate(gridVisual);
+			room.transform.position = new Vector3(2,0,2)+new Vector3 (n.x, 0, n.y) * 4;
 			room.name = n.x + "|" + n.y;
 		}
 	}
@@ -271,6 +273,7 @@ public class LevelGenerator : MonoBehaviour {
 			float x = room.original.dimensions.x/2;
 			float y = room.original.dimensions.y/2;
 			init.transform.position = new Vector3(x+room.sourceNode.x, 0, y+room.sourceNode.y)*4;
+			init.name = "Room " + roomsToCreate.IndexOf (room) + " " + room.original.name;
 		}
 	}
 
