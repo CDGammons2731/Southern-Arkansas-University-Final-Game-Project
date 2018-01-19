@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
     public bool isJumping = false;
 	// Use this for initialization
 	void Start () {

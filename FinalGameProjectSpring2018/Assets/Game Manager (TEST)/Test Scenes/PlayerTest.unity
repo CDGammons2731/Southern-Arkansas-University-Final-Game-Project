@@ -612,7 +612,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1241602785}
+      - m_Target: {fileID: 1017864944}
         m_MethodName: HealthUp
         m_Mode: 1
         m_Arguments:
@@ -734,7 +734,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1241602785}
+      - m_Target: {fileID: 1017864944}
         m_MethodName: ScoreUp
         m_Mode: 1
         m_Arguments:
@@ -964,6 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerObj: {fileID: 0}
+  PlayerCam: {fileID: 0}
   run: {fileID: 0}
   jump: {fileID: 0}
   speak: {fileID: 0}
@@ -972,7 +973,61 @@ MonoBehaviour:
   playerHealth: 100
   playerArmor: 50
   score: 0
-  SG: {fileID: 929895768}
+  name: Player
+  pickup: 0
+  pickupType: 0
+--- !u!1 &1017864943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1017864945}
+  - component: {fileID: 1017864944}
+  m_Layer: 0
+  m_Name: GAMEMANAGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1017864944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1017864943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d352b4beb71e5e74cb73ac90914c5eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 2114174906}
+  PlayerObj: {fileID: 1177001100638610, guid: 68f88e4b16ad42243b0a73b7dc2db149, type: 2}
+  PlayerCam: {fileID: 0}
+  run: {fileID: 0}
+  jump: {fileID: 0}
+  speak: {fileID: 0}
+  hurt: {fileID: 0}
+  death: {fileID: 0}
+  playerHealth: 100
+  playerArmor: 0
+  score: 0
+  name: Player
+--- !u!4 &1017864945
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1017864943}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037220306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1180,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1241602785}
+      - m_Target: {fileID: 1017864944}
         m_MethodName: ArmorUp
         m_Mode: 1
         m_Arguments:
@@ -1182,7 +1237,6 @@ GameObject:
   - component: {fileID: 1241602783}
   - component: {fileID: 1241602782}
   - component: {fileID: 1241602781}
-  - component: {fileID: 1241602785}
   m_Layer: 5
   m_Name: Hud(Test)
   m_TagString: Untagged
@@ -1272,20 +1326,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1241602785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1241602780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d352b4beb71e5e74cb73ac90914c5eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  P: {fileID: 929895769}
-  stats: {fileID: 2114174906}
-  SG: {fileID: 929895768}
 --- !u!1 &1322385522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,7 +1706,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 929895768}
+      - m_Target: {fileID: 1017864944}
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:
@@ -1788,7 +1828,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 929895768}
+      - m_Target: {fileID: 1017864944}
         m_MethodName: Load
         m_Mode: 1
         m_Arguments:
