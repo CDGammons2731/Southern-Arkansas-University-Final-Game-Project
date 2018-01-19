@@ -3,11 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    private Rigidbody rb;
     public bool isJumping = false;
+    public GameManager GM;
+
 	// Use this for initialization
 	void Start () {
-		
+        rb = GetComponent<Rigidbody>();
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Health"))
+        {
+            GM.playerHealth += 50;
+            other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.CompareTag("Armor"))
+        {
+            GM.playerArmor+= 25;
+            other.gameObject.SetActive(false);
+        }
+
+        /*if (other.gameObject.CompareTag("Score"))
+        {
+            GM.score+= 300;
+            other.gameObject.SetActive(false);
+        }*/
+    }
+
+ 
 
     // Update is called once per frame
     void Update()

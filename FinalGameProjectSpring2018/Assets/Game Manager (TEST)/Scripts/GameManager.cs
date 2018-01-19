@@ -8,7 +8,7 @@ using System;
 
 [Serializable]
 public class GameManager : MonoBehaviour {
-	public Text stats;
+    public Text stats;
     public static GameManager GAME;
     public GameObject PlayerObj;
     public Camera PlayerCam;
@@ -20,7 +20,20 @@ public class GameManager : MonoBehaviour {
     public int score = 0;
     public new string name = "Player"; //Default Name
     bool pickup = false;
-    
+
+    // Gameplay (TEST)
+    public int enemyCount;
+    public int[] enemyhealth = { 30, 50, 80, 100, 120, 150, 200, 250, 300 }; //Different health amounts of your enemy
+
+    private float timer; //Game Timer
+
+    private bool escaped; //If the player escapes, next level or win's game, show stats and score
+
+    struct Robot {
+        public int health;
+        public int pointValue;//if needed
+ 
+    }
 
 
 
@@ -39,6 +52,17 @@ public class GameManager : MonoBehaviour {
         //Display Stats
     }
 
+
+
+    //----------------------------------------GAME SAVING-------------------------------------------
+
+    [Serializable]
+    class PlayerData
+    {
+        public int health, armor, score;
+        public string name;
+    }
+
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -51,13 +75,7 @@ public class GameManager : MonoBehaviour {
         bf.Serialize(file, pd);
         file.Close();
         Debug.Log("Save successful h/a/s: " + playerHealth + " " + playerArmor + " " + score);
-    }
-
-    [Serializable]
-    class PlayerData
-    {
-        public int health, armor, score;
-        public string name;
+        
     }
 
     public void Load()
@@ -75,7 +93,7 @@ public class GameManager : MonoBehaviour {
 
             Debug.Log("Load Successful h/a/s: " + playerHealth + " " + playerArmor + " " + score);
 
-            //name = playerInfo.name;
+            
 
         }
         else
@@ -83,8 +101,12 @@ public class GameManager : MonoBehaviour {
             Debug.Log("No saved file found");
         }
     }
+    //--------------------------------------------------------------------------------------------------------
 
-	// @TESTING -----------------------------------------
+
+
+
+	// @TESTING 
 	public void HealthUp(){
         playerHealth += 100;
 	}
@@ -98,9 +120,27 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+
+
+
+    private void RespawnPlayer() {
+        //Respawn player at a position and orientation if they restart
+        //reset score and health
+    
+    }
+
+    //If the player escapes....
+    private void Successs() {
+        //Do some game winning thing here
+    }
+
+
+
  void Update()
     {
+        
         stats.text = "Health " + playerHealth + " Armor: " + playerArmor + " Score: " + score;
+        if (playerHealth > 100) playerHealth = 100;
     }
 
 }
