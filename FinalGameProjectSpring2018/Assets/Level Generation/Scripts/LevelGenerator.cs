@@ -54,12 +54,16 @@ public class LevelGenerator : MonoBehaviour {
 				pathOrig.Add(n);
 			}
 			for (int i = 0; i < pathOrig.Count-2; i++) {
-				Debug.Log (pathOrig.Count);
+				//Debug.Log (pathOrig.Count);
 				if (path.Contains (pathOrig [i])) {
 					if (roomsToPlace.Count == 0) {
-						roomsToPlace.Add (PlaceRoom (path [0], null, true));
+						roomsToPlace.Add (PlaceRoom (path [0], Arrangement.pathFailure, true));
 					}
-					roomsToPlace.Add (PlaceRoom (path [1], path [0], true));
+					if (path.Count > 3) {
+						roomsToPlace.Add (PlaceRoom (path [1], roomsToPlace[roomsToPlace.Count-1].pathExitPt, true));
+					} else {
+						roomsToPlace.Add (PlaceRoom (path [1], roomsToPlace[roomsToPlace.Count-1].pathExitPt, false));
+					}
 				}
 			}
 			//roomsToPlace.Add(PlaceRoom(end, null, false));
@@ -69,10 +73,10 @@ public class LevelGenerator : MonoBehaviour {
 		}
 	}
 
-	Arrangement PlaceRoom(Node source, Node prev, bool isPathed) {
+	Arrangement PlaceRoom(Node source, Vector2 prev, bool isPathed) {
 		Debug.Log (path.Count);
-		if (prev!= null) {
-			Debug.Log("Checking for rooms that can connect to coordinate " + prev.Location());
+		if (prev!=Arrangement.pathFailure) {
+			Debug.Log("Checking for rooms that can connect to coordinate " + prev);
 		} else {
 			Debug.Log("Getting all valid rooms");
 		}
@@ -82,7 +86,7 @@ public class LevelGenerator : MonoBehaviour {
 		/*/
 
 		foreach (LevelGenPrefab pref in categories[source.roomType].components) {
-			if (prev==null) {
+			if (prev==Arrangement.pathFailure) {
 				for (int i = 0; i < pref.dimensions.x+1; i++) {
 					for (int j = 0; j < pref.dimensions.y+1; j++) {
 						Arrangement arr = new Arrangement();
@@ -96,11 +100,18 @@ public class LevelGenerator : MonoBehaviour {
 				for (int i = 0; i < pref.dimensions.x; i++) {
 					for (int j = 0; j < pref.dimensions.y; j++) {
 						foreach (Vector2 door in pref.doorLocations) {
+							
 							//Debug.Log(door+"|"+source.Location()+"|"+prev.Location()+"|"+new Vector2(i,j));
-							if (door == prev.Location()-new Vector2(i,j)-source.Location()+Vector2.one) {
+							if (door == prev-new Vector2(i,j)-source.Location()) {
+								Debug.Log (	"Room Number: " + roomsToPlace.Count + 
+										" | Room: " + pref.name + 
+										" | Door location: " + (door+source.Location ()) + 
+										" | offset: " + new Vector2(i,j) + 
+										" | Door raw: " + door +
+										" | Target: " + (prev - new Vector2 (i, j) - source.Location ()));
 								Arrangement arr = new Arrangement();
 								arr.offset = new Vector2(i,j);
-								Debug.Log ("Room Number: " + roomsToPlace.Count + " | Room: " + pref.name + " | Door location: " + door + " | offset: " + arr.offset + " | Target: " + (prev.Location () - new Vector2 (i, j) - source.Location () + Vector2.one));
+
 								arr.sourceNode = source;
 								arr.doorEntry = door;
 								arr.original = pref;
@@ -115,19 +126,36 @@ public class LevelGenerator : MonoBehaviour {
 		/// Step 2: Check every door for every arrangement, see which door leads the furthest along the path, if there aren't any, we don't use that arrangement
 		/// This is purely for rooms that are on generated paths
 		/*/
-
+		Debug.Log(potential.Count);
 		if (isPathed) {
 			Debug.Log ("Checking for connections to path for Room " + roomsToPlace.Count);
 			foreach (Arrangement pot in potential) {
-				for (int i = path.IndexOf(pot.sourceNode)+1; i < path.Count; i++) {
+				for (int i = path.IndexOf(pot.sourceNode)+1; i < path.Count-1; i++) {
 					foreach (Vector2 door in pot.original.doorLocations) {
+						
 						if (path[i].Location()-pot.sourceNode.Location()+Vector2.one == door) {
-							Debug.Log("Room Number: "+roomsToPlace.Count+" | Room: " +pot.original.name+ " | Door location: "+door+" | path[i] location: " +path[i].Location()+ " | sourceNode location: " + pot.sourceNode.Location() + " | " +Vector2.one);
+							Debug.Log(	"Room Number: "+roomsToPlace.Count+
+										" | Room: " +pot.original.name+ 
+										" | Door location: "+door+
+										" | path[i] location: " +path[i].Location()+ 
+										" | sourceNode location: " + pot.sourceNode.Location() + 
+										" | " +Vector2.one);
+							pot.pathExitPt = pot.sourceNode.Location()+door;
+							//Door will never be on a corner
+							if (door.x > pot.original.dimensions.x) { //Door is on the right
+								pot.pathExitPt+=new Vector2(-1,0);
+							} else if (door.x < pot.original.dimensions.x) { //Door is on the left
+								pot.pathExitPt+=new Vector2(1,0);
+							} else if (door.y > pot.original.dimensions.y) { //Door is up
+								pot.pathExitPt+=new Vector2(0,-1);
+							} else if (door.y < pot.original.dimensions.y) { //Door is down
+								pot.pathExitPt+=new Vector2(0,1);
+							}
 							pot.pathExitNode = path[i];
 						}
 					}
 				}
-				if (pot.pathExitNode == null) {
+				if (pot.pathExitPt == Arrangement.pathFailure) {
 					pot.markForRemoval=true;
 				}
 			}
@@ -138,6 +166,7 @@ public class LevelGenerator : MonoBehaviour {
 				i--;
 			}
 		}
+		Debug.Log(potential.Count);
 		/*/
 		/// Step 3: Check every arrangement for collisions with other rooms or any path nodes farther along than where we are, remove the arrangements if there are any
 		/*/
@@ -162,7 +191,10 @@ public class LevelGenerator : MonoBehaviour {
 		/// Step 4: Clean up eaten path, mark occupied grid spots as occupied
 		/*/
 		Arrangement use = potential[Random.Range(0,potential.Count-1)];
-		path.RemoveRange(0, path.IndexOf(use.pathExitNode)-1);
+		if (isPathed) {
+			Debug.Log("Room Number: "+roomsToPlace.Count+" | Exit node location: " +use.pathExitNode.Location());
+			path.RemoveRange(0, path.IndexOf(use.pathExitNode)-1);
+		}
 		for (int i = (int)(use.sourceNode.x); i < (int)(use.sourceNode.x+use.original.dimensions.x); i++) {
 			for (int j = (int)(use.sourceNode.y); j < (int)(use.sourceNode.y+use.original.dimensions.y); j++) {
 				if (i < gX && j < gY) {
@@ -262,7 +294,7 @@ public class LevelGenerator : MonoBehaviour {
 			GameObject room;
 			room = Instantiate(gridVisual);
 			room.transform.position = new Vector3(2,0,2)+new Vector3 (n.x, 0, n.y) * 4;
-			room.name = n.x + "|" + n.y;
+			room.name = "x: "+ n.x + " | y: " + n.y + " | node: "+path.IndexOf(n);
 		}
 	}
 
