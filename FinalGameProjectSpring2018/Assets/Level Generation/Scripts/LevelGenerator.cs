@@ -87,8 +87,8 @@ public class LevelGenerator : MonoBehaviour {
 
 		foreach (LevelGenPrefab pref in categories[source.roomType].components) {
 			if (prev==Arrangement.pathFailure) {
-				for (int i = 0; i < pref.dimensions.x+1; i++) {
-					for (int j = 0; j < pref.dimensions.y+1; j++) {
+				for (int i = 0; i < pref.dimensions.x; i++) {
+					for (int j = 0; j < pref.dimensions.y; j++) {
 						Arrangement arr = new Arrangement();
 						arr.offset = new Vector2(i,j);
 						arr.sourceNode = source;
@@ -101,14 +101,13 @@ public class LevelGenerator : MonoBehaviour {
 					for (int j = 0; j < pref.dimensions.y; j++) {
 						foreach (Vector2 door in pref.doorLocations) {
 							
-							//Debug.Log(door+"|"+source.Location()+"|"+prev.Location()+"|"+new Vector2(i,j));
-							if (door == prev-new Vector2(i,j)-source.Location()) {
+							if (prev == source.Location()-new Vector2(i,j)+door-Vector2.one) {
 								Debug.Log (	"Room Number: " + roomsToPlace.Count + 
 										" | Room: " + pref.name + 
-										" | Door location: " + (door+source.Location ()) + 
+										" | location: " + (source.Location ()) + 
 										" | offset: " + new Vector2(i,j) + 
 										" | Door raw: " + door +
-										" | Target: " + (prev - new Vector2 (i, j) - source.Location ()));
+										" | Target: " + (prev));
 								Arrangement arr = new Arrangement();
 								arr.offset = new Vector2(i,j);
 
@@ -133,22 +132,22 @@ public class LevelGenerator : MonoBehaviour {
 				for (int i = path.IndexOf(pot.sourceNode)+1; i < path.Count-1; i++) {
 					foreach (Vector2 door in pot.original.doorLocations) {
 						
-						if (path[i].Location()-pot.sourceNode.Location()+Vector2.one == door) {
+						if (path[i].Location() == pot.sourceNode.Location()-Vector2.one-pot.offset+door) {
 							Debug.Log(	"Room Number: "+roomsToPlace.Count+
 										" | Room: " +pot.original.name+ 
 										" | Door location: "+door+
 										" | path[i] location: " +path[i].Location()+ 
 										" | sourceNode location: " + pot.sourceNode.Location() + 
 										" | " +Vector2.one);
-							pot.pathExitPt = pot.sourceNode.Location()+door;
+							pot.pathExitPt = path[i].Location();
 							//Door will never be on a corner
 							if (door.x > pot.original.dimensions.x) { //Door is on the right
 								pot.pathExitPt+=new Vector2(-1,0);
-							} else if (door.x < pot.original.dimensions.x) { //Door is on the left
+							} else if (door.x < 1) { //Door is on the left
 								pot.pathExitPt+=new Vector2(1,0);
 							} else if (door.y > pot.original.dimensions.y) { //Door is up
 								pot.pathExitPt+=new Vector2(0,-1);
-							} else if (door.y < pot.original.dimensions.y) { //Door is down
+							} else if (door.y < 1) { //Door is down
 								pot.pathExitPt+=new Vector2(0,1);
 							}
 							pot.pathExitNode = path[i];
@@ -171,10 +170,10 @@ public class LevelGenerator : MonoBehaviour {
 		/// Step 3: Check every arrangement for collisions with other rooms or any path nodes farther along than where we are, remove the arrangements if there are any
 		/*/
 		foreach (Arrangement pot in potential) {
-			for (int i = (int)(pot.sourceNode.x); i < (int)(pot.sourceNode.x+pot.original.dimensions.x); i++) {
-				for (int j = (int)(pot.sourceNode.y); j < (int)(pot.sourceNode.y+pot.original.dimensions.y); j++) {
-					if (i < gX && j < gY) {
-						if (grid[i,j].occupied || (isPathed && path.Contains(grid[i,j]) && path.IndexOf(grid[i,j]) > path.IndexOf(pot.pathExitNode))) {
+			for (int i = (int)(pot.sourceNode.x-pot.offset.x); i < (int)(pot.sourceNode.x-pot.offset.x+pot.original.dimensions.x); i++) {
+				for (int j = (int)(pot.sourceNode.y-pot.offset.y); j < (int)(pot.sourceNode.y-pot.offset.y+pot.original.dimensions.y); j++) {
+					if (i < gX && j < gY && i >= 0 && j >= 0) {
+						if ((isPathed && path.Contains(grid[i,j]) && path.IndexOf(grid[i,j]) > path.IndexOf(pot.pathExitNode))) {
 							pot.markForRemoval=true;
 						}
 					}
@@ -304,7 +303,7 @@ public class LevelGenerator : MonoBehaviour {
 			GameObject init = Instantiate(room.original.prefab);
 			float x = room.original.dimensions.x/2;
 			float y = room.original.dimensions.y/2;
-			init.transform.position = new Vector3(x+room.sourceNode.x, 0, y+room.sourceNode.y)*4;
+			init.transform.position = new Vector3(x+room.sourceNode.x-room.offset.x, 0, y+room.sourceNode.y-room.offset.y)*4;
 			init.name = "Room " + roomsToCreate.IndexOf (room) + " " + room.original.name;
 		}
 	}
