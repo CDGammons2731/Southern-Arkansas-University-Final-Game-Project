@@ -51,9 +51,7 @@ public class GameManager : MonoBehaviour {
         }
         //Display Stats
     }
-
-
-
+		
     //----------------------------------------GAME SAVING-------------------------------------------
 
     [Serializable]
@@ -92,8 +90,7 @@ public class GameManager : MonoBehaviour {
             playerArmor = pd.armor;
 
             Debug.Log("Load Successful h/a/s: " + playerHealth + " " + playerArmor + " " + score);
-
-            
+ 
 
         }
         else
@@ -138,9 +135,11 @@ public class GameManager : MonoBehaviour {
 
  void Update()
     {
-        
         stats.text = "Health " + playerHealth + " Armor: " + playerArmor + " Score: " + score;
-        if (playerHealth > 100) playerHealth = 100;
+
+		if (playerHealth > 100) {
+			playerHealth = 100;
+		}
     }
 
 }
