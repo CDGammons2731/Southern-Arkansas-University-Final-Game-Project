@@ -8,13 +8,21 @@ using System;
 
 [Serializable]
 public class GameManager : MonoBehaviour {
+    [Header("Game Attatchments")]
     public Text stats;
     public static GameManager GAME;
     public GameObject PlayerObj;
     public Camera PlayerCam;
-    public AudioClip run, jump, speak, hurt, death;
 
-    //Stats / Info
+    [Header("Game Sounds")]
+    public AudioClip ThemeMusic;
+    public AudioClip ActionMusic;
+    public AudioClip VictoryMusic;
+    public AudioClip DeathMusic;
+    public AudioClip CreditMusic;
+
+    
+    [Header("Player Info")]
     public int playerHealth = 100;
     public int playerArmor = 0;
     public int score = 0;
@@ -22,11 +30,11 @@ public class GameManager : MonoBehaviour {
     bool pickup = false;
 
     // Gameplay (TEST)
+    [Header("Enemy Info")]
     public int enemyCount;
     public int[] enemyhealth = { 30, 50, 80, 100, 120, 150, 200, 250, 300 }; //Different health amounts of your enemy
 
     private float timer; //Game Timer
-
     private bool escaped; //If the player escapes, next level or win's game, show stats and score
 
     struct Robot {
@@ -98,6 +106,9 @@ public class GameManager : MonoBehaviour {
             Debug.Log("No saved file found");
         }
     }
+
+    //Create ResetData() method / DeleteSavedFile()
+
     //--------------------------------------------------------------------------------------------------------
 
 
@@ -116,7 +127,6 @@ public class GameManager : MonoBehaviour {
 	public void NameChange(){
 
 	}
-
 
 
 
