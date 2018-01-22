@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Utility; //Testing HeadBob
 
 
 public class Player : MonoBehaviour {
     private Rigidbody rb;
     public GameManager GM;
     public Camera PlayerCam;
+
+	//Testing HeadBob
+	public CurveControlledBob motionBob = new CurveControlledBob();
+	public LerpControlledBob jumpAndLandingBob = new LerpControlledBob();
 
     [Header("Sound FX")]
     public AudioClip walk;
@@ -35,7 +40,12 @@ public class Player : MonoBehaviour {
     float rotationY = 0F;
     Quaternion originalRotation;
 
-    // Use this for initialization
+	//Testing HeadBob
+	private Vector3 m_OriginalCameraPosition;
+	public float StrideInterval;
+	[Range(0f, 1f)] public float RunningStrideLengthen;
+
+    
     void Start () {
         rb = GetComponent<Rigidbody>();
 		fallmultiplayer = 2.5f;
@@ -44,6 +54,10 @@ public class Player : MonoBehaviour {
         if (rb)
             rb.freezeRotation = true;
         originalRotation = transform.localRotation;
+
+		//Testing HeadBob
+		motionBob.Setup(PlayerCam, StrideInterval);
+		m_OriginalCameraPosition = PlayerCam.transform.localPosition;
     }
 
     void OnTriggerEnter(Collider other)
@@ -84,6 +98,9 @@ public class Player : MonoBehaviour {
 		var x = Input.GetAxis ("Horizontal") * Time.deltaTime * 150.0f;
 		var z = Input.GetAxis ("Vertical") * Time.deltaTime * 3.0f;
 
+		//HeadBob Test
+		Vector3 newCameraPosition;
+
 		transform.Rotate (0, x, 0);
 		transform.Translate (0, 0, z);
         //Later change this to work with methods
@@ -97,6 +114,22 @@ public class Player : MonoBehaviour {
         }
         if (gameObject.GetComponent<Rigidbody>().velocity.y >= -.1 && gameObject.GetComponent<Rigidbody>().velocity.y <= .1) isJumping = false;
 
+		//HeadBob Test-----------------------------------------------------------------------------------------------------------------
+		if (rb.velocity.magnitude > 0 && isJumping == false) {
+			PlayerCam.transform.localPosition = motionBob.DoHeadBob(rb.velocity.magnitude*(!isJumping ? RunningStrideLengthen : 1f));
+			newCameraPosition = PlayerCam.transform.localPosition;
+			newCameraPosition.y = PlayerCam.transform.localPosition.y - jumpAndLandingBob.Offset();
+		}
+		else
+		{
+			newCameraPosition = PlayerCam.transform.localPosition;
+			newCameraPosition.y = m_OriginalCameraPosition.y - jumpAndLandingBob.Offset();
+		}
+		PlayerCam.transform.localPosition = newCameraPosition;
+
+		//End test----------------------------------------------------------------------------------------------------------------------
+
+		// Looking
         if (axes == RotationAxes.MouseXAndY)
         {
             // Read the mouse input axis
