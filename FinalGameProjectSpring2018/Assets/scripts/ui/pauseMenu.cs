@@ -30,9 +30,15 @@ public class pauseMenu : MonoBehaviour
     {
 
     }
+    public void Resume(){
+        pm.SetActive(false);
+        isEnabled = false;
+        Time.timeScale = 1;
+    }
     public void Quit()
     {
         SceneManager.LoadScene("startMenu", LoadSceneMode.Single);//loads start menu
     }
+
 }
 
