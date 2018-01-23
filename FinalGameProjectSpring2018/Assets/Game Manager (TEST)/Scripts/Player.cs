@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Utility; //Testing HeadBob
-
+using GAMEMANAGER;
 
 public class Player : MonoBehaviour {
     private Rigidbody rb;

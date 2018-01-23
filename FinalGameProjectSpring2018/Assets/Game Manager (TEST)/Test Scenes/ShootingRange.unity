@@ -929,7 +929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1133, y: -66}
+  m_AnchoredPosition: {x: 800, y: -66}
   m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &970292309
@@ -1870,6 +1870,46 @@ Prefab:
       propertyPath: GM
       value: 
       objectReference: {fileID: 1380795767}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.data[3].time
+      value: 1.5083313
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.data[3].value
+      value: -0.33906555
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.data[1].value
+      value: 0.33781052
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.data[1].time
+      value: 0.4999944
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.VerticalBobRange
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.HorizontalBobRange
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.VerticaltoHorizontalRatio
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f88e4b16ad42243b0a73b7dc2db149, type: 2}
   m_IsPrefabParent: 0
