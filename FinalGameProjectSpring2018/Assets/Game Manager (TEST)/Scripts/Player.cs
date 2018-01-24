@@ -54,13 +54,14 @@ public class Player : MonoBehaviour {
 		fallmultiplayer = 2.5f;
 		jumpforce = 55f;
 
+		motionBob.Setup(PlayerCam, StrideInterval);
+		m_OriginalCameraPosition = PlayerCam.transform.localPosition;
+
         if (rb)
             rb.freezeRotation = true;
         originalRotation = transform.localRotation;
 
-		//Testing HeadBob
-		motionBob.Setup(PlayerCam, StrideInterval);
-		m_OriginalCameraPosition = PlayerCam.transform.localPosition;
+	
     }
 
     void OnTriggerEnter(Collider other)
@@ -127,9 +128,11 @@ public class Player : MonoBehaviour {
 
 		//HeadBob Test-----------------------------------------------------------------------------------------------------------------
 		if (rb.velocity.magnitude > 0 && isJumping == false) {
+			//motionBob.DoHeadBob(rb.velocity.magnitude*(!isJumping ? RunningStrideLengthen : 1f));
 			PlayerCam.transform.localPosition = motionBob.DoHeadBob(rb.velocity.magnitude*(!isJumping ? RunningStrideLengthen : 1f));
 			newCameraPosition = PlayerCam.transform.localPosition;
 			newCameraPosition.y = PlayerCam.transform.localPosition.y - jumpAndLandingBob.Offset();
+
 		}
 		else
 		{
