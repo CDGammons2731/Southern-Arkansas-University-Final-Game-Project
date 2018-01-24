@@ -30,6 +30,7 @@ namespace GAMEMANAGER
     {
         [Header("Game Attatchments")]
         public Text stats;
+		public InputField NewSaveName;
         public static GameManager GAME;
         public GameObject PlayerObj;
         public Camera PlayerCam;
@@ -48,7 +49,7 @@ namespace GAMEMANAGER
         public int score = 0;
         public new string defaultName = "Player"; //Default Name
         public new string defualtSaved = "/PlayerInfo.dat"; //Defualt Saved Data
-        public new string playerSaved; //To set the new player's data. Data saved will simply be the players name + "Info.dat"
+        public new string playerSaved; //To set the new player's data. Data saved will simply be the players name + "_Info.dat"
         bool pickup = false;
 
         // Gameplay (TEST)
@@ -83,7 +84,9 @@ namespace GAMEMANAGER
                 Destroy(gameObject);
             }
             //Display Stats
+
         }
+			
 
         //----------------------------------------GAME SAVING-------------------------------------------
 
@@ -161,19 +164,22 @@ namespace GAMEMANAGER
         }
         public void NameChange()
         {
-
+			NewSaveName.enabled = true;
+			NewSaveName.textComponent.enabled = true;
+			string newName;
+			newName=NewSaveName.text;
+			NewGame (newName);
         }
 
         public void NewGame(string NewPlayer) {
-
-            NewPlayer = playerSaved;
+			
             if (NewPlayer == null)
             {
                 NewPlayer = defaultName;
             }
 
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/"+NewPlayer+"Info.dat");
+            FileStream file = File.Create(Application.persistentDataPath + "/"+NewPlayer+"_Info.dat");
             PlayerData pd = new PlayerData();
             pd.health = playerHealth;
             pd.armor = playerArmor;
@@ -182,6 +188,10 @@ namespace GAMEMANAGER
           
             bf.Serialize(file, pd);
             file.Close();
+			NewSaveName.enabled = false;
+			NewSaveName.textComponent.enabled = false;
+			NewSaveName.image.enabled = false;
+
         }
 
         private void RespawnPlayer()
