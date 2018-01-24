@@ -24,8 +24,11 @@ public class Player : MonoBehaviour {
 
     [Space (20)]
 	public float fallmultiplayer = 2.5f;
-	public float jumpforce = 55f;
+	public float jumpforce = 60f;
     public bool isJumping = false;
+    public float leftStrafe = -0.07f;
+    public float rightStrafe = 0.07f;
+
 
     //Mouse look
     public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
@@ -97,10 +100,18 @@ public class Player : MonoBehaviour {
         //Modify to play walking sounds, possibly use movement methods instead of update
 		var x = Input.GetAxis ("Horizontal") * Time.deltaTime * 150.0f;
 		var z = Input.GetAxis ("Vertical") * Time.deltaTime * 3.0f;
+        if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A)) {
+            rb.transform.Translate(leftStrafe, 0, 0);
+        }
 
-		//HeadBob Test
-		Vector3 newCameraPosition;
+        if (Input.GetKey(KeyCode.RightArrow) ||Input.GetKey(KeyCode.D)) {
+            rb.transform.Translate(rightStrafe, 0, 0);
+        }
 
+
+        //HeadBob Test
+        Vector3 newCameraPosition;
+      
 		transform.Rotate (0, x, 0);
 		transform.Translate (0, 0, z);
         //Later change this to work with methods

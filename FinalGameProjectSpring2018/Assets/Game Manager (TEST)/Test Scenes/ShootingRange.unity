@@ -446,6 +446,48 @@ Transform:
   m_PrefabParentObject: {fileID: 4235760888606844, guid: 13ae43b8a2515a3488a6f563617e258a,
     type: 2}
   m_PrefabInternal: {fileID: 1718040023}
+--- !u!1001 &254945867
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4736816985954658, guid: 4def1db1076328c4683991696b3dda13, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736816985954658, guid: 4def1db1076328c4683991696b3dda13, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736816985954658, guid: 4def1db1076328c4683991696b3dda13, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736816985954658, guid: 4def1db1076328c4683991696b3dda13, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736816985954658, guid: 4def1db1076328c4683991696b3dda13, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736816985954658, guid: 4def1db1076328c4683991696b3dda13, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736816985954658, guid: 4def1db1076328c4683991696b3dda13, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736816985954658, guid: 4def1db1076328c4683991696b3dda13, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4def1db1076328c4683991696b3dda13, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &265900058 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4737359316244190, guid: 45cdd677439036a4fa31671ed8b5182e,
@@ -1189,7 +1231,9 @@ MonoBehaviour:
   playerHealth: 100
   playerArmor: 0
   score: 0
-  name: Player
+  defaultName: Player
+  defualtSaved: /PlayerInfo.dat
+  playerSaved: 
   enemyCount: 0
   enemyhealth: 1e0000003200000050000000640000007800000096000000c8000000fa0000002c010000
 --- !u!4 &1380795768
@@ -1216,7 +1260,7 @@ GameObject:
   - component: {fileID: 1433458549}
   - component: {fileID: 1433458548}
   m_Layer: 0
-  m_Name: New Text
+  m_Name: GunText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1833,6 +1877,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4047078386628674, guid: 68f88e4b16ad42243b0a73b7dc2db149, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1873,7 +1922,7 @@ Prefab:
     - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
         type: 2}
       propertyPath: motionBob.Bobcurve.m_Curve.Array.data[3].time
-      value: 1.5083313
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
         type: 2}
@@ -1883,32 +1932,77 @@ Prefab:
     - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
         type: 2}
       propertyPath: motionBob.Bobcurve.m_Curve.Array.data[3].value
-      value: -0.33906555
+      value: -0.12542725
       objectReference: {fileID: 0}
     - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
         type: 2}
       propertyPath: motionBob.Bobcurve.m_Curve.Array.data[1].value
-      value: 0.33781052
+      value: 0.16854095
       objectReference: {fileID: 0}
     - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
         type: 2}
       propertyPath: motionBob.Bobcurve.m_Curve.Array.data[1].time
-      value: 0.4999944
+      value: 0.41666615
       objectReference: {fileID: 0}
     - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
         type: 2}
       propertyPath: motionBob.VerticalBobRange
-      value: 0.25
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
         type: 2}
       propertyPath: motionBob.HorizontalBobRange
-      value: 0.25
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
         type: 2}
       propertyPath: motionBob.VerticaltoHorizontalRatio
-      value: 0.1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: RunningStrideLengthen
+      value: 0.398
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.data[2].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: motionBob.Bobcurve.m_Curve.Array.data[4].time
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: jumpAndLandingBob.BobDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114845503912480, guid: 68f88e4b16ad42243b0a73b7dc2db149,
+        type: 2}
+      propertyPath: jumpforce
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f88e4b16ad42243b0a73b7dc2db149, type: 2}
