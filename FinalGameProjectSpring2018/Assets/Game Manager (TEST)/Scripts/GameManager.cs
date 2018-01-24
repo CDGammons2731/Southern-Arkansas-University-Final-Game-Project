@@ -65,7 +65,6 @@ namespace GAMEMANAGER
             public int health;
             public int pointValue;//if needed
             //Make type
-            //Allocate level
 
         }
 
@@ -84,7 +83,9 @@ namespace GAMEMANAGER
                 Destroy(gameObject);
             }
             //Display Stats
-
+			NewSaveName.enabled = false;
+			NewSaveName.textComponent.enabled = false;
+			NewSaveName.image.enabled = false;
         }
 			
 
@@ -117,14 +118,17 @@ namespace GAMEMANAGER
             file.Close();
             Debug.Log("Save successful h/a/s: " + playerHealth + " " + playerArmor + " " + score);
 
+			//playerSaved = NewPlayer;
+
         }
 
-        public void Load() //Just load at Continue Game
+		public void Load() //Just load at Continue Game (Load on Saved Game Selection)
         {
-            if (File.Exists(Application.persistentDataPath + "/PlayerInfo.dat"))
+			
+            if (File.Exists(Application.persistentDataPath + "/Player_Info.dat"))
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = File.Open(Application.persistentDataPath + "/PlayerInfo.dat", FileMode.Open);
+                FileStream file = File.Open(Application.persistentDataPath + "/Player_Info.dat", FileMode.Open);
                 PlayerData pd = (PlayerData)bf.Deserialize(file);
                 file.Close();
 
@@ -164,8 +168,11 @@ namespace GAMEMANAGER
         }
         public void NameChange()
         {
+			
 			NewSaveName.enabled = true;
 			NewSaveName.textComponent.enabled = true;
+			NewSaveName.image.enabled = true;
+
 			string newName;
 			newName=NewSaveName.text;
 			NewGame (newName);
@@ -188,9 +195,7 @@ namespace GAMEMANAGER
           
             bf.Serialize(file, pd);
             file.Close();
-			NewSaveName.enabled = false;
-			NewSaveName.textComponent.enabled = false;
-			NewSaveName.image.enabled = false;
+			playerSaved = NewPlayer;
 
         }
 
