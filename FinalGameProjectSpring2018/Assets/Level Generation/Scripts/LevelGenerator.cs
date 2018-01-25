@@ -6,16 +6,16 @@ public class LevelGenerator : MonoBehaviour {
 
 	public int gX = 24, gY = 24;
 	public int minDistance = 5;
+	public int borderDistance = 5;
 
 	public Node[,] grid;
 	Node start;
 	Node end;
 	List<Node> path = new List<Node>(0);
 	List<Arrangement> roomsToPlace;
+	List<DoorInfo> doors = new List<DoorInfo>(0);
 
 	public GameObject gridVisual;
-
-	public Material pathMat;
 
 	public LevelGenCategory[] categories;
 	/*
@@ -176,6 +176,8 @@ public class LevelGenerator : MonoBehaviour {
 						if ((isPathed && path.Contains(grid[i,j]) && path.IndexOf(grid[i,j]) > path.IndexOf(pot.pathExitNode))) {
 							pot.markForRemoval=true;
 						}
+					} else {
+						pot.markForRemoval=true;
 					}
 				}
 			}
@@ -187,7 +189,7 @@ public class LevelGenerator : MonoBehaviour {
 			}
 		}
 		/*/
-		/// Step 4: Clean up eaten path, mark occupied grid spots as occupied
+		/// Step 4: Clean up eaten path, mark occupied grid spots as occupied, get door information
 		/*/
 		Arrangement use = potential[Random.Range(0,potential.Count-1)];
 		if (isPathed) {
@@ -200,6 +202,9 @@ public class LevelGenerator : MonoBehaviour {
 					grid[i,j].occupied=true;
 				}
 			}
+		}
+		foreach (Vector2 door in use.original.doorLocations) {
+			doors.Add(new DoorInfo(door));
 		}
 		return use;
 	}
@@ -315,34 +320,34 @@ public class LevelGenerator : MonoBehaviour {
 		switch (quad) {
 		case 1:
 			if (minDistance < gX) {
-				rX = Random.Range((gX+minDistance)/2, gX);
+				rX = Random.Range((gX+minDistance)/2, gX-borderDistance);
 			} else {rX = Random.Range(gX/2, gX);}
 			if (minDistance < gY) {
-				rY = Random.Range((gY+minDistance)/2, gY);
+				rY = Random.Range((gY+minDistance)/2, gY-borderDistance);
 			} else {rY = Random.Range(gY/2, gY);}
 		break;
 		case 2:
 			if (minDistance < gX) {
-				rX = Random.Range(0, (gX-minDistance)/2);
+				rX = Random.Range(0+borderDistance, (gX-minDistance)/2);
 			} else {rX = Random.Range(0, gX/2);}
 			if (minDistance < gY) {
-				rY = Random.Range((gY+minDistance)/2, gY);
+				rY = Random.Range((gY+minDistance)/2, gY-borderDistance);
 			} else {rY = Random.Range(gY/2, gY);}
 		break;
 		case 3:
 			if (minDistance < gX) {
-				rX = Random.Range(0, (gX-minDistance)/2);
+				rX = Random.Range(0+borderDistance, (gX-minDistance)/2);
 			} else {rX = Random.Range(0, gX/2);}
 			if (minDistance < gY) {
-				rY = Random.Range(0, (gY-minDistance)/2);
+				rY = Random.Range(0+borderDistance, (gY-minDistance)/2);
 			} else {rY = Random.Range(0, gY/2);}
 		break;
 		case 4:
 			if (minDistance < gX) {
-				rX = Random.Range((gX+minDistance)/2, gX);
+				rX = Random.Range((gX+minDistance)/2, gX-borderDistance);
 			} else {rX = Random.Range(gX/2, gX);}
 			if (minDistance < gY) {
-				rY = Random.Range(0, (gY-minDistance)/2);
+				rY = Random.Range(0+borderDistance, (gY-minDistance)/2);
 			} else {rY = Random.Range(0, gY/2);}
 		break;
 		default:

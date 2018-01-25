@@ -55,7 +55,6 @@ GameObject:
   - component: {fileID: 33994092765949906}
   - component: {fileID: 65865093839510066}
   - component: {fileID: 23315876160412624}
-  - component: {fileID: 114881541169348274}
   m_Layer: 0
   m_Name: Door 1 (2)
   m_TagString: Untagged
@@ -74,7 +73,6 @@ GameObject:
   - component: {fileID: 33583670163644090}
   - component: {fileID: 65238267222463778}
   - component: {fileID: 23688269088950962}
-  - component: {fileID: 114403364154343088}
   m_Layer: 0
   m_Name: Door 1 (1)
   m_TagString: Untagged
@@ -93,7 +91,6 @@ GameObject:
   - component: {fileID: 33735282374395188}
   - component: {fileID: 65652410035398516}
   - component: {fileID: 23939656074272376}
-  - component: {fileID: 114762701399874652}
   m_Layer: 0
   m_Name: Door 1
   m_TagString: Untagged
@@ -112,7 +109,6 @@ GameObject:
   - component: {fileID: 33286418572428080}
   - component: {fileID: 65072904762943376}
   - component: {fileID: 23826146805875020}
-  - component: {fileID: 114198681407019270}
   m_Layer: 0
   m_Name: Door 1 (3)
   m_TagString: Untagged
@@ -458,51 +454,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114198681407019270
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1927299921214820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4259a2c87832bf143818392967548748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  open: 1
---- !u!114 &114403364154343088
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1755353239553412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4259a2c87832bf143818392967548748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  open: 1
---- !u!114 &114762701399874652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1853033113499126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4259a2c87832bf143818392967548748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  open: 1
---- !u!114 &114881541169348274
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1699300385273496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4259a2c87832bf143818392967548748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  open: 1
