@@ -13,7 +13,7 @@ public class LevelGenerator : MonoBehaviour {
 	Node end;
 	List<Node> path = new List<Node>(0);
 	List<Arrangement> roomsToPlace;
-	List<DoorInfo> doors = new List<DoorInfo>(0);
+	List<DoorInfo> openDoors = new List<DoorInfo>(0);
 
 	public GameObject gridVisual;
 
@@ -74,12 +74,6 @@ public class LevelGenerator : MonoBehaviour {
 	}
 
 	Arrangement PlaceRoom(Node source, Vector2 prev, bool isPathed) {
-		Debug.Log (path.Count);
-		if (prev!=Arrangement.pathFailure) {
-			Debug.Log("Checking for rooms that can connect to coordinate " + prev);
-		} else {
-			Debug.Log("Getting all valid rooms");
-		}
 		List<Arrangement> potential = new List<Arrangement>();
 		/*/
 		/// Step 1: Get all the initial arrangements that can be in that spot, assuming nothing's there and we don't have to connect to anything else
@@ -99,15 +93,8 @@ public class LevelGenerator : MonoBehaviour {
 			} else {
 				for (int i = 0; i < pref.dimensions.x; i++) {
 					for (int j = 0; j < pref.dimensions.y; j++) {
-						foreach (Vector2 door in pref.doorLocations) {
-							
+						foreach (Vector2 door in pref.doorLocations) {							
 							if (prev == source.Location()-new Vector2(i,j)+door-Vector2.one) {
-								Debug.Log (	"Room Number: " + roomsToPlace.Count + 
-										" | Room: " + pref.name + 
-										" | location: " + (source.Location ()) + 
-										" | offset: " + new Vector2(i,j) + 
-										" | Door raw: " + door +
-										" | Target: " + (prev));
 								Arrangement arr = new Arrangement();
 								arr.offset = new Vector2(i,j);
 
@@ -125,20 +112,11 @@ public class LevelGenerator : MonoBehaviour {
 		/// Step 2: Check every door for every arrangement, see which door leads the furthest along the path, if there aren't any, we don't use that arrangement
 		/// This is purely for rooms that are on generated paths
 		/*/
-		Debug.Log(potential.Count);
 		if (isPathed) {
-			Debug.Log ("Checking for connections to path for Room " + roomsToPlace.Count);
 			foreach (Arrangement pot in potential) {
 				for (int i = path.IndexOf(pot.sourceNode)+1; i < path.Count-1; i++) {
-					foreach (Vector2 door in pot.original.doorLocations) {
-						
+					foreach (Vector2 door in pot.original.doorLocations) {						
 						if (path[i].Location() == pot.sourceNode.Location()-Vector2.one-pot.offset+door) {
-							Debug.Log(	"Room Number: "+roomsToPlace.Count+
-										" | Room: " +pot.original.name+ 
-										" | Door location: "+door+
-										" | path[i] location: " +path[i].Location()+ 
-										" | sourceNode location: " + pot.sourceNode.Location() + 
-										" | " +Vector2.one);
 							pot.pathExitPt = path[i].Location();
 							//Door will never be on a corner
 							if (door.x > pot.original.dimensions.x) { //Door is on the right
@@ -165,7 +143,6 @@ public class LevelGenerator : MonoBehaviour {
 				i--;
 			}
 		}
-		Debug.Log(potential.Count);
 		/*/
 		/// Step 3: Check every arrangement for collisions with other rooms or any path nodes farther along than where we are, remove the arrangements if there are any
 		/*/
@@ -193,7 +170,6 @@ public class LevelGenerator : MonoBehaviour {
 		/*/
 		Arrangement use = potential[Random.Range(0,potential.Count-1)];
 		if (isPathed) {
-			Debug.Log("Room Number: "+roomsToPlace.Count+" | Exit node location: " +use.pathExitNode.Location());
 			path.RemoveRange(0, path.IndexOf(use.pathExitNode)-1);
 		}
 		for (int i = (int)(use.sourceNode.x); i < (int)(use.sourceNode.x+use.original.dimensions.x); i++) {
@@ -202,9 +178,6 @@ public class LevelGenerator : MonoBehaviour {
 					grid[i,j].occupied=true;
 				}
 			}
-		}
-		foreach (Vector2 door in use.original.doorLocations) {
-			doors.Add(new DoorInfo(door));
 		}
 		return use;
 	}
@@ -310,6 +283,32 @@ public class LevelGenerator : MonoBehaviour {
 			float y = room.original.dimensions.y/2;
 			init.transform.position = new Vector3(x+room.sourceNode.x-room.offset.x, 0, y+room.sourceNode.y-room.offset.y)*4;
 			init.name = "Room " + roomsToCreate.IndexOf (room) + " " + room.original.name;
+			for (int i = 0; i < init.transform.childCount; i++) {
+				GameObject ourDoor = init.transform.GetChild(i).gameObject;
+				for (int j = 0; j < room.original.doorLocations.Length; j++) {
+					if (ourDoor.name == room.original.doorObjs[j].name) {
+						DoorInfo doorInf = ourDoor.AddComponent<DoorInfo>();
+						Vector2 d = room.original.doorLocations [j];
+						doorInf.loc = room.sourceNode.Location () - room.offset - Vector2.one + d;
+						//Door will never be on a corner
+						if (d.x > room.original.dimensions.x) { //Door is on the right
+							doorInf.face = Vector2.right;
+						} else if (d.x < 1) { //Door is on the left
+							doorInf.face = Vector2.left;
+						} else if (d.y > room.original.dimensions.y) { //Door is up
+							doorInf.face = Vector2.up;
+						} else if (d.y < 1) { //Door is down
+							doorInf.face = Vector2.down;
+						}
+						foreach (DoorInfo other in openDoors) {
+							bool con = doorInf.PairDoors(other);
+						}
+						if (doorInf.pair == null) {
+							openDoors.Add(doorInf);
+						}
+					}
+				}
+			}
 		}
 	}
 

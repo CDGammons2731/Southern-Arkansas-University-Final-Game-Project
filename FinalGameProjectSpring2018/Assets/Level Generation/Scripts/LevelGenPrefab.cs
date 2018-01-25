@@ -7,4 +7,5 @@ public class LevelGenPrefab : ScriptableObject {
 	public GameObject prefab;
 	public Vector2 dimensions;
 	public Vector2[] doorLocations;
+	public GameObject[] doorObjs;
 }
