@@ -30,7 +30,7 @@ namespace GAMEMANAGER
     {
         [Header("Game Attatchments")]
         public Text stats;
-		public InputField NewSaveName;
+		public InputField NewSaveName; //Use this to allow the user to type their Player Name
         public static GameManager GAME;
         public GameObject PlayerObj;
         public Camera PlayerCam;
@@ -191,7 +191,7 @@ namespace GAMEMANAGER
             pd.health = playerHealth;
             pd.armor = playerArmor;
             pd.score = score;
-
+            //pd.name=name
           
             bf.Serialize(file, pd);
             file.Close();
