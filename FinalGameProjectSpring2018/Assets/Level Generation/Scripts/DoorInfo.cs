@@ -18,7 +18,7 @@ public class DoorInfo : MonoBehaviour {
 	}
 
 	public bool PairDoors(DoorInfo other) {
-		if (this.pair == null && other.pair == null && Vector2.Distance(this.loc, other.loc) == 1 && this.face + other.face == Vector2.zero && ((other.loc-this.loc).normalized.x == (this.face - other.face).normalized.x || (other.loc-this.loc).normalized.y == (this.face - other.face).normalized.y)) {
+		if (this.pair == null && other.pair == null && Vector2.Distance(this.loc, other.loc) == 1 && Vector2.Distance(this.loc+other.face, other.loc+this.face) == 1 && this.face + other.face == Vector2.zero && ((other.loc-this.loc).normalized.x == (this.face - other.face).normalized.x || (other.loc-this.loc).normalized.y == (this.face - other.face).normalized.y)) {
 			this.pair = other;
 			other.pair = this;
 			other.gameObject.GetComponent<MeshRenderer> ().material = connectMat;
