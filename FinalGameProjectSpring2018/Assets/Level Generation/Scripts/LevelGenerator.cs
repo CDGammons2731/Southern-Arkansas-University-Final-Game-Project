@@ -41,7 +41,7 @@ public class LevelGenerator : MonoBehaviour {
 			do { r1Assigned = AssignRandomRoom(1, r1Q); } while (!r1Assigned);
 			bool r2Assigned = false;
 			do { r2Assigned = AssignRandomRoom(2, r2Q); } while (!r2Assigned);
-			end.occupied = true;
+			end.occupied = false;
 			for (int i = 0; i < gX; i++) {
 				for (int j = 0; j < gY; j++) {
 					grid[i,j].weight = Random.Range(0,50);
@@ -55,20 +55,16 @@ public class LevelGenerator : MonoBehaviour {
 			foreach (Node n in path) {
 				pathOrig.Add(n);
 			}
-			for (int i = 0; i < pathOrig.Count-2; i++) {
+			for (int i = 0; i < pathOrig.Count-1; i++) {
 				//Debug.Log (pathOrig.Count);
 				if (path.Contains (pathOrig [i])) {
 					if (roomsToPlace.Count == 0) {
 						roomsToPlace.Add (PlaceRoom (path [0], Arrangement.pathFailure, true));
 					}
-					if (path.Count > 3) {
-						roomsToPlace.Add (PlaceRoom (path [1], roomsToPlace[roomsToPlace.Count-1].pathExitPt, true));
-					} else {
-						roomsToPlace.Add (PlaceRoom (path [1], roomsToPlace[roomsToPlace.Count-1].pathExitPt, false));
-					}
+					roomsToPlace.Add (PlaceRoom (path [0], roomsToPlace[roomsToPlace.Count-1].pathExitPt, true));
 				}
 			}
-			//roomsToPlace.Add(PlaceRoom(end, null, false));
+			roomsToPlace.Add(PlaceRoom(end, roomsToPlace[roomsToPlace.Count-1].pathExitPt, false));
 			InstantiateRooms(roomsToPlace);
 		} else {
 			Debug.LogWarning("Grid size not large enough for start and end rooms to be put on the grid! Aborting level generation");
@@ -95,7 +91,12 @@ public class LevelGenerator : MonoBehaviour {
 			} else {
 				for (int i = 0; i < pref.dimensions.x; i++) {
 					for (int j = 0; j < pref.dimensions.y; j++) {
-						foreach (Vector2 door in pref.doorLocations) {							
+						foreach (Vector2 door in pref.doorLocations) {
+							Debug.Log (	" | Room: " + roomsToPlace.Count +
+								" | Room Type: " +pref.name +
+								" | Previous node: " +prev+
+								" | Door location: " + (source.Location()-new Vector2(i,j)+door-Vector2.one) +
+								"");
 							if (prev == source.Location()-new Vector2(i,j)+door-Vector2.one) {
 								Arrangement arr = new Arrangement();
 								arr.offset = new Vector2(i,j);
@@ -109,14 +110,22 @@ public class LevelGenerator : MonoBehaviour {
 				}
 			}
 		}
+		if (potential.Count == 0) {
+			Debug.Log ("Failure at Step 1 for Room "+roomsToPlace.Count);
+		}
 		/*/
 		/// Step 2: Check every door for every arrangement, see which door leads the furthest along the path, if there aren't any, we don't use that arrangement
 		/// This is purely for rooms that are on generated paths
 		/*/
 		if (isPathed) {
 			foreach (Arrangement pot in potential) {
-				for (int i = path.IndexOf(pot.sourceNode)+1; i < path.Count-1; i++) {
-					foreach (Vector2 door in pot.original.doorLocations) {						
+				for (int i = path.IndexOf(pot.sourceNode); i < path.Count; i++) {
+					foreach (Vector2 door in pot.original.doorLocations) {	
+						Debug.Log (	" | Room: " + roomsToPlace.Count +
+									" | Room name: " +pot.original.name +
+									" | Path[i] location: " + path [i].Location () +
+									" | Door location: " + (pot.sourceNode.Location () - Vector2.one - pot.offset + door) +
+									"");
 						if (path[i].Location() == pot.sourceNode.Location()-Vector2.one-pot.offset+door) {
 							pot.pathExitPt = path[i].Location();
 							//Door will never be on a corner
@@ -144,6 +153,9 @@ public class LevelGenerator : MonoBehaviour {
 				i--;
 			}
 		}
+		if (potential.Count == 0) {
+			Debug.Log ("Failure at Step 2 for Room "+roomsToPlace.Count);
+		}
 		/*/
 		/// Step 3: Check every arrangement for collisions with other rooms or any path nodes farther along than where we are, remove the arrangements if there are any
 		/*/
@@ -166,15 +178,21 @@ public class LevelGenerator : MonoBehaviour {
 				i--;
 			}
 		}
+		if (potential.Count == 0) {
+			Debug.Log ("Failure at Step 3 for Room "+roomsToPlace.Count);
+		}
 		/*/
 		/// Step 4: Clean up eaten path, mark occupied grid spots as occupied, get door information
 		/*/
+		if (potential.Count == 0) {
+			InstantiateRooms(roomsToPlace);
+		}
 		Arrangement use = potential[Random.Range(0,potential.Count-1)];
 		if (isPathed) {
-			path.RemoveRange(0, path.IndexOf(use.pathExitNode)-1);
+			path.RemoveRange(0, path.IndexOf(use.pathExitNode));
 		}
-		for (int i = (int)(use.sourceNode.x); i < (int)(use.sourceNode.x+use.original.dimensions.x); i++) {
-			for (int j = (int)(use.sourceNode.y); j < (int)(use.sourceNode.y+use.original.dimensions.y); j++) {
+		for (int i = (int)(use.sourceNode.x-use.offset.x); i < (int)(use.sourceNode.x-use.offset.x+use.original.dimensions.x); i++) {
+			for (int j = (int)(use.sourceNode.y-use.offset.y); j < (int)(use.sourceNode.y-use.offset.y+use.original.dimensions.y); j++) {
 				if (i < gX && j < gY) {
 					grid[i,j].occupied=true;
 				}

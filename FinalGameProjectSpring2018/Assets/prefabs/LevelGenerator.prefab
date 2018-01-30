@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1246343119164798}
+  m_IsPrefabParent: 1
+--- !u!1 &1246343119164798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4656038948250638}
+  - component: {fileID: 114502811181698714}
+  m_Layer: 0
+  m_Name: LevelGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4656038948250638
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1246343119164798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114502811181698714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1246343119164798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59990a569ffa83940b1059d65e16ce01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gX: 24
+  gY: 24
+  minDistance: 5
+  borderDistance: 5
+  connectedDoor: {fileID: 2100000, guid: a904b564431b19d4d92725539bf840cd, type: 2}
+  requiredDoor: {fileID: 2100000, guid: 67219996e64c3964b9ae3e14671f3dc4, type: 2}
+  gridVisual: {fileID: 1886767545003004, guid: d9d0407938cdc424d847a3a48ff5a81c, type: 2}
+  categories:
+  - {fileID: 11400000, guid: dce71dfddb57f9b4a9c0b754e4a1137a, type: 2}
+  - {fileID: 11400000, guid: 5bae87daa1e47d94e9c1ab56c94d95bb, type: 2}
+  - {fileID: 11400000, guid: f3e9c2cc2daf69343b74b17e0eb8f596, type: 2}
