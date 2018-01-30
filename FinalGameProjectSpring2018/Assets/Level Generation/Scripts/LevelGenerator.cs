@@ -14,6 +14,8 @@ public class LevelGenerator : MonoBehaviour {
 	List<Node> path = new List<Node>(0);
 	List<Arrangement> roomsToPlace;
 	List<DoorInfo> openDoors = new List<DoorInfo>(0);
+	public Material connectedDoor;
+	public Material requiredDoor;
 
 	public GameObject gridVisual;
 
@@ -97,7 +99,6 @@ public class LevelGenerator : MonoBehaviour {
 							if (prev == source.Location()-new Vector2(i,j)+door-Vector2.one) {
 								Arrangement arr = new Arrangement();
 								arr.offset = new Vector2(i,j);
-
 								arr.sourceNode = source;
 								arr.doorEntry = door;
 								arr.original = pref;
@@ -301,13 +302,28 @@ public class LevelGenerator : MonoBehaviour {
 							doorInf.face = Vector2.down;
 						}
 						foreach (DoorInfo other in openDoors) {
-							bool con = doorInf.PairDoors(other);
+							Material mat;
+							if (doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.doorEntry || doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.pathExitPt) {
+								mat = requiredDoor;
+							} else {
+								mat = connectedDoor;
+							}
+							bool con = doorInf.PairDoors(other, mat);
+							if (con) {
+								other.MarkForRemoval = true;
+							}
 						}
 						if (doorInf.pair == null) {
 							openDoors.Add(doorInf);
 						}
 					}
 				}
+			}
+		}
+		for (int i = 0; i < openDoors.Count; i++) {
+			if (openDoors [i].MarkForRemoval) {
+				openDoors.Remove (openDoors [i]);
+				i--;
 			}
 		}
 	}
