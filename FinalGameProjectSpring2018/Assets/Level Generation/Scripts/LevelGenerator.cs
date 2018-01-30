@@ -41,7 +41,7 @@ public class LevelGenerator : MonoBehaviour {
 			do { r1Assigned = AssignRandomRoom(1, r1Q); } while (!r1Assigned);
 			bool r2Assigned = false;
 			do { r2Assigned = AssignRandomRoom(2, r2Q); } while (!r2Assigned);
-			end.occupied = true;
+			end.occupied = false;
 			for (int i = 0; i < gX; i++) {
 				for (int j = 0; j < gY; j++) {
 					grid[i,j].weight = Random.Range(0,50);
@@ -55,33 +55,49 @@ public class LevelGenerator : MonoBehaviour {
 			foreach (Node n in path) {
 				pathOrig.Add(n);
 			}
+			Arrangement last;
 			for (int i = 0; i < pathOrig.Count-2; i++) {
 				//Debug.Log (pathOrig.Count);
 				if (path.Contains (pathOrig [i])) {
 					if (roomsToPlace.Count == 0) {
-						roomsToPlace.Add (PlaceRoom (path [0], Arrangement.pathFailure, true));
+						roomsToPlace.Add (PlaceRoom (path [0], Arrangement.pathFailure, true, 1));
 					}
 					if (path.Count > 3) {
-						roomsToPlace.Add (PlaceRoom (path [1], roomsToPlace[roomsToPlace.Count-1].pathExitPt, true));
+						roomsToPlace.Add (PlaceRoom (path [1], roomsToPlace[roomsToPlace.Count-1].pathExitPt, true, 0));
 					} else {
-						roomsToPlace.Add (PlaceRoom (path [1], roomsToPlace[roomsToPlace.Count-1].pathExitPt, false));
+						roomsToPlace.Add (PlaceRoom (path [1], roomsToPlace [roomsToPlace.Count - 1].pathExitPt, false, 0));
 					}
 				}
 			}
-			//roomsToPlace.Add(PlaceRoom(end, null, false));
+			last = roomsToPlace [roomsToPlace.Count - 1];
 			InstantiateRooms(roomsToPlace);
+			roomsToPlace.Clear ();
+			bool endRoom = false;
+			foreach (DoorInfo door in openDoors) {
+				if (!endRoom) {
+					for (int j = 0; j < last.original.doorLocations.Length; j++) {
+						Vector2 d = last.original.doorLocations [j];
+						if (door.loc == last.sourceNode.Location () - last.offset - Vector2.one + d) {
+							roomsToPlace.Add (PlaceRoom (grid [(int)door.loc.x, (int)door.loc.y], last.pathExitPt, false, 2));
+							endRoom = true;
+							break;
+						}
+					}
+				}
+			}
+			InstantiateRooms (roomsToPlace);
 		} else {
 			Debug.LogWarning("Grid size not large enough for start and end rooms to be put on the grid! Aborting level generation");
 		}
 	}
 
-	Arrangement PlaceRoom(Node source, Vector2 prev, bool isPathed) {
+	Arrangement PlaceRoom(Node source, Vector2 prev, bool isPathed, int category) {
 		List<Arrangement> potential = new List<Arrangement>();
 		/*/
 		/// Step 1: Get all the initial arrangements that can be in that spot, assuming nothing's there and we don't have to connect to anything else
 		/*/
 
-		foreach (LevelGenPrefab pref in categories[source.roomType].components) {
+		foreach (LevelGenPrefab pref in categories[category].components) {
 			if (prev==Arrangement.pathFailure) {
 				for (int i = 0; i < pref.dimensions.x; i++) {
 					for (int j = 0; j < pref.dimensions.y; j++) {
@@ -153,6 +169,9 @@ public class LevelGenerator : MonoBehaviour {
 					if (i < gX && j < gY && i >= 0 && j >= 0) {
 						if ((isPathed && path.Contains(grid[i,j]) && path.IndexOf(grid[i,j]) > path.IndexOf(pot.pathExitNode))) {
 							pot.markForRemoval=true;
+						}
+						if (grid [i, j].occupied) {
+							pot.markForRemoval = true;
 						}
 					} else {
 						pot.markForRemoval=true;
