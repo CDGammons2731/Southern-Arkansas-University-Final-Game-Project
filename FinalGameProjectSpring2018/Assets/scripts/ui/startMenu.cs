@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class startMenu : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class startMenu : MonoBehaviour {
     public GameObject fillInText;
     public GameObject enter;
     public GameObject start;
+    public GameObject name;
+    public int clicked = 0;
 
   
 
@@ -41,10 +44,26 @@ public class startMenu : MonoBehaviour {
 
     }
     public  void newGame(){
-        fillInText.SetActive(true);
-        enter.SetActive(true);
+        if (clicked == 0)
+        {
+            fillInText.SetActive(true);
+            enter.SetActive(true);
+            clicked++;
+        }
+        else{
+            SceneManager.LoadScene("main", LoadSceneMode.Single);
+            //load scene level
+        }
 
         
+    }
+
+    public void Enter(){
+        newGame1.GetComponentInChildren<Text>().text = name.GetComponent<Text>().text;
+        if(clicked==1){
+            fillInText.SetActive(false);
+            enter.SetActive(false);
+        }
     }
 }
 
