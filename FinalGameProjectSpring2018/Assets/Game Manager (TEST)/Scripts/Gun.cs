@@ -8,6 +8,7 @@ public class Gun : MonoBehaviour {
     public GameObject weapon;
     public GameObject bullet;
     public Transform bulletSpawn;
+    
 
     //Weapon Types
     public const string shotgun = "shotgun";
@@ -30,14 +31,22 @@ public class Gun : MonoBehaviour {
     public int ammo;
     public int ammoClip;
     public int ammoMax;
-	public int currentAmmo;
     public int damage; //per pullet
     public int rangeMult =2; //multiply damage for closer range? 
+    public int bulletSpeed = 20;
 
-    // Use this for initialization
-    void Start () {
+   
+    public float fireRate;
+    public float nextFire;
+        private LineRenderer lineOfSight;
+
+        // Use this for initialization
+        void Start () {
 		CurrentWeapon = gameObject.tag;
-		bulletSpawn = gameObject.GetComponentInChildren<Transform> ();
+            //bulletSpawn = gameObject.GetComponentInChildren<Transform> ();
+
+            lineOfSight = GetComponent<LineRenderer>();
+
 	}
 
     public void FireWeapon(string type)
@@ -46,16 +55,16 @@ public class Gun : MonoBehaviour {
         switch (type)
         {
 		case shotgun:
-			ammo = 8;
-			ammoClip = 8;
-			ammoMax = 48;
-			damage = 35;
-			currentAmmo = 24;
-                //Set pos and rot in each prefab
-			//testing
-			if(Input.GetMouseButton(1)){
-				Shotgun (ammo,ammoClip,currentAmmo);
-				if (ammo <=0) {
+                    fireRate = 0.5f;
+                    ammoClip = 8;
+                    ammoMax = 48;
+                    damage = 35;
+                //Create shot spread
+                    if (Input.GetMouseButton(0)&&Time.time> nextFire && ammo!=0){
+                    nextFire = Time.time + fireRate;
+				    Shotgun (ammo,ammoClip);
+                        ammo -= 1;
+                        if (ammo <=0) {
 					reload (type);
 				}
 			}
@@ -100,16 +109,17 @@ public class Gun : MonoBehaviour {
     }
 
     //Gun type methods for fireing and ammo amounts 
-	void Railgun(int ammo, int clip, int available) { }
-	void Rifle(int ammo, int clip, int available) { }
-	void Revolver(int ammo, int clip, int available) { }
+	void Railgun(int ammo, int clip) { }
+	void Rifle(int ammo, int clip) { }
+	void Revolver(int ammo, int clip) { }
 
-	void Shotgun(int ammo, int clip, int available) {
-        //Make the shot spread
-		if(available>0){
-        var shot = (GameObject)Instantiate (bullet, bulletSpawn.position,bulletSpawn.rotation);
-				bullet.GetComponent<Rigidbody> ().velocity = bullet.transform.up * 6;
-		available -= ammo;
+	void Shotgun(int ammo, int clip) {
+            //Make the shot spread
+            if (ammo > 0) { 
+                var shot = (GameObject)Instantiate (bullet, bulletSpawn.position,bulletSpawn.rotation);
+                shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
+                
+               
         //play sound
         if (SHOTGUN[0] != null) {
           //play sound
@@ -121,7 +131,7 @@ public class Gun : MonoBehaviour {
     }
 	}
 
-	void TommyGun(int ammo, int clip, int available) { }
+	void TommyGun(int ammo, int clip) { }
 
     void reload(string type)
     {
@@ -144,10 +154,9 @@ public class Gun : MonoBehaviour {
         }
     }
 
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
+        // Update is called once per frame
+        void Update () {
+            if (ammo > ammoMax) ammo = ammoMax;
+        }
 }
 }

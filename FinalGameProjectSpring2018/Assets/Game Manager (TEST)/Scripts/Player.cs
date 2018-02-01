@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.Utility; //Testing HeadBob
+using UnityStandardAssets.Characters.FirstPerson;
 using GAMEMANAGER;
 using GUN;
 
@@ -22,11 +22,13 @@ public class Player : MonoBehaviour
     private int armor;
     private int score;
     private string name;
-
+     
 	public Vector3 gunOffset;
+    public GameObject holdingPosition;
 	public Gun gun;
 
 	bool hasWeapon;
+    public string currentGun;
 
     void Start()
     {
@@ -36,8 +38,8 @@ public class Player : MonoBehaviour
         score = 0;
         name = "Player";
 
-		gunOffset= new Vector3(rb.transform.position.x-.2f,rb.transform.position.y-.5f,rb.transform.position.z);
-
+		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f);
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -54,11 +56,11 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
-        /*if (other.gameObject.CompareTag("Score"))
+        if (other.gameObject.CompareTag("Ammo"))
         {
-            GM.score+= 300;
+            gun.ammo +=30;
             other.gameObject.SetActive(false);
-        }*/
+        }
 
         if (other.gameObject.CompareTag("Damage"))
         {
@@ -71,6 +73,9 @@ public class Player : MonoBehaviour
 			GameObject weapon = other.gameObject;
 			PickUpWeapon (weapon);
 			hasWeapon = true;
+            currentGun = weapon.tag;
+            gun = other.GetComponent<Gun>();
+            
 
 		}
     }
@@ -95,11 +100,11 @@ public class Player : MonoBehaviour
         if (health > 100) health = 100;
 
 		if(hasWeapon==true){
-			g = GameObject.FindGameObjectWithTag ("shotgun");
-			gun.FireWeapon ("shotgun");
-			g.transform.position = rb.transform.position+gunOffset;
+			g = GameObject.FindGameObjectWithTag (currentGun);
+            g.transform.parent = rb.GetComponentInChildren<Camera>().transform;
+			gun.FireWeapon (currentGun);
 
-		}
+        }
         //if player health <=30 play heart beat
 
     }

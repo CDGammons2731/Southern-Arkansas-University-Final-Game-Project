@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23852982054340212}
   - component: {fileID: 114875286290472788}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: shotgun
   m_TagString: shotgun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,8 +51,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1650688832995802}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2, y: -0.3, z: 0.5}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 4400502765165280}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 1650688832995802}
   bullet: {fileID: 1025971916029544, guid: 04f808e235767cd4994bcf5003c07387, type: 2}
-  bulletSpawn: {fileID: 0}
+  bulletSpawn: {fileID: 4400502765165280}
   CurrentWeapon: 
   SHOTGUN:
   - {fileID: 0}
@@ -159,6 +159,8 @@ MonoBehaviour:
   ammo: 0
   ammoClip: 0
   ammoMax: 0
-  currentAmmo: 0
   damage: 0
   rangeMult: 2
+  bulletSpeed: 20
+  fireRate: 0
+  nextFire: 0
