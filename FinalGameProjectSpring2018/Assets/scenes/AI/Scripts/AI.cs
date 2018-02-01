@@ -7,14 +7,21 @@ public class AI : MonoBehaviour
 {
 
 	public Transform destination;
+	public Transform DatDerBadGoober;
+
 
 	private NavMeshAgent agent;
 
 	void Update () 
 	{
-		agent = gameObject.GetComponent<NavMeshAgent>();
+		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
+		Debug.Log ("Distance to AI: " + dist);
 
-		agent.SetDestination(destination.position);
+		if (dist <= 5) {
+			agent = gameObject.GetComponent<NavMeshAgent> ();
+
+			agent.SetDestination (destination.position);
+		}
 	}
 
 }
