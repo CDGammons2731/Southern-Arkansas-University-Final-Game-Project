@@ -71,33 +71,78 @@ public class Gun : MonoBehaviour {
 
                 break;
             case revolver:
-                ammo = 7;
+                fireRate = 0.35f;
                 ammoClip = 7;
                 ammoMax = 35;
                 damage = 20;
 
-                break;
+                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
+                    {
+                        nextFire = Time.time + fireRate;
+                        Revolver(ammo, ammoClip);
+                        ammo -= 1;
+                        if (ammo <= 0)
+                        {
+                            reload(type);
+                        }
+                    }
+
+                    break;
             case rifle:
-                ammo = 30;
+                fireRate = 0.1f;
                 ammoClip = 30;
                 ammoMax = 210;
                 damage = 8;
 
-                break;
+                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
+                    {
+                        nextFire = Time.time + fireRate;
+                        Rifle(ammo, ammoClip);
+                        ammo -= 1;
+                        if (ammo <= 0)
+                        {
+                            reload(type);
+                        }
+                    }
+
+                    break;
             case tommygun:
-                ammo = 50;
+                fireRate = 0.18f;
                 ammoClip = 50;
                 ammoMax = 300;
                 damage = 6;
 
-                break;
+                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
+                    {
+                        nextFire = Time.time + fireRate;
+                        TommyGun(ammo, ammoClip);
+                        ammo -= 1;
+                        if (ammo <= 0)
+                        {
+                            reload(type);
+                        }
+                    }
+
+                    break;
             case railgun:
-                ammo = 4;
+                fireRate = 1.2f;
                 ammoClip = 4;
                 ammoMax = 24;
                 damage = 50;
-                break;
+
+                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
+                    {
+                        nextFire = Time.time + fireRate;
+                        Railgun(ammo, ammoClip);
+                        ammo -= 1;
+                        if (ammo <= 0)
+                        {
+                            reload(type);
+                        }
+                    }
+                    break;
             default:
+                fireRate = 0.5f;
                 ammo = 0;
                 ammoClip = 0;
                 ammoMax = 0;
@@ -109,9 +154,63 @@ public class Gun : MonoBehaviour {
     }
 
     //Gun type methods for fireing and ammo amounts 
-	void Railgun(int ammo, int clip) { }
-	void Rifle(int ammo, int clip) { }
-	void Revolver(int ammo, int clip) { }
+	void Railgun(int ammo, int clip) {
+            if (ammo > 0)
+            {
+                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
+
+
+                //play sound
+                if (RAILGUN[0] != null)
+                {
+                    //play sound
+
+                }
+
+                // Destroy the bullet after 2 seconds
+                Destroy(shot, 2.0f);
+            }
+        }
+
+        void Rifle(int ammo, int clip) {
+            if (ammo > 0)
+            {
+                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
+
+
+                //play sound
+                if (RIFLE[0] != null)
+                {
+                    //play sound
+
+                }
+
+                // Destroy the bullet after 2 seconds
+                Destroy(shot, 2.0f);
+            
+        }
+    }
+	void Revolver(int ammo, int clip) {
+            if (ammo > 0)
+            {
+                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
+
+
+                //play sound
+                if (REVOLVER[0] != null)
+                {
+                    //play sound
+
+                }
+
+                // Destroy the bullet after 2 seconds
+                Destroy(shot, 2.0f);
+            
+        }
+    }
 
 	void Shotgun(int ammo, int clip) {
             //Make the shot spread
