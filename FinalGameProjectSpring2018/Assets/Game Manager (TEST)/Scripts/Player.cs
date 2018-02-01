@@ -101,7 +101,8 @@ public class Player : MonoBehaviour
 
 		if(hasWeapon==true){
 			g = GameObject.FindGameObjectWithTag (currentGun);
-            g.transform.parent = holdingPosition.transform;
+			g.transform.position = holdingPosition.transform.position;
+			g.transform.rotation = holdingPosition.transform.rotation;
 			gun.FireWeapon (currentGun);
 
         }
