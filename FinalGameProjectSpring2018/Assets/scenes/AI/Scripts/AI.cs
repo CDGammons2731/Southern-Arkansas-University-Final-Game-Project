@@ -8,14 +8,17 @@ public class AI : MonoBehaviour
 
 	public Transform destination;
 	public Transform DatDerBadGoober;
-
-
 	private NavMeshAgent agent;
+
+	void Start(){
+		destination = GameObject.Find ("FPSController").transform;
+		DatDerBadGoober = GameObject.Find ("FPSController").transform;
+	}
 
 	void Update () 
 	{
 		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
-		Debug.Log ("Distance to AI: " + dist);
+		//Debug.Log ("Distance to AI: " + dist);
 
 		if (dist <= 5) {
 			agent = gameObject.GetComponent<NavMeshAgent> ();

@@ -4,15 +4,22 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class AISpawner : MonoBehaviour {
-	//public GameObject AItoSpawn;
-	//public Transform LocationtoSpawn;
+	public GameObject AIToSpawn;
+	private int EnemiesNumber = 0;
+	public int EnemiesMaxNumber = 5;
 	public float range = 10.0f;
+	public bool SpawnActivateRandomizer = false;
+	private float SpawnActivator = 0.0f;
+	public float NumberToActivate = 5.0f;
+	public float MaxRange = 10.0f;
 
 	// Use this for initialization
 	void Start () {
-		//Vector3 RandomPosition = Random.insideUnitSphere * 15f;
-		//NavMeshHit hit;
-		//LocationtoSpawn = NavMesh.SamplePosition (AItoSpawn.position, out hit, 20f, NavMesh.AllAreas);
+		SpawnActivator = Random.Range (0.0f, MaxRange);
+		Debug.Log (SpawnActivator);
+		if (SpawnActivator > NumberToActivate) {
+			SpawnActivateRandomizer = true;
+		}
 	}
 
 	bool RandomPoint(Vector3 Center, float range, out Vector3 result){
@@ -30,9 +37,15 @@ public class AISpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 point;
-		if(RandomPoint(transform.position, range, out point)){
-			Debug.DrawRay (point, Vector3.up, Color.blue, 1.0f);
+		if (SpawnActivateRandomizer == true) {
+			Vector3 point;
+			if (RandomPoint (transform.position, range, out point)) {
+				//Debug.DrawRay (point, Vector3.up, Color.blue, 1.0f);
+				if (EnemiesNumber <= EnemiesMaxNumber) {
+					Instantiate (AIToSpawn, point, Quaternion.identity);
+					EnemiesNumber++;
+				}
+			}
 		}
 	}
 }
