@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour {
 	public int gX = 24, gY = 24;
 	public int minDistance = 5;
 	public int borderDistance = 5;
+	public float gridScale = 4f;
 
 	public Node[,] grid;
 	Node start;
@@ -18,6 +19,7 @@ public class LevelGenerator : MonoBehaviour {
 	public Material requiredDoor;
 
 	public GameObject gridVisual;
+	public GameObject navRemover;
 
 	public LevelGenCategory[] categories;
 	/*
@@ -66,8 +68,37 @@ public class LevelGenerator : MonoBehaviour {
 			}
 			roomsToPlace.Add(PlaceRoom(end, roomsToPlace[roomsToPlace.Count-1].pathExitPt, false));
 			InstantiateRooms(roomsToPlace);
+			RemoveExcessNavmesh();
 		} else {
 			Debug.LogWarning("Grid size not large enough for start and end rooms to be put on the grid! Aborting level generation");
+		}
+	}
+
+	void RemoveExcessNavmesh() {
+		for (int i = 0; i < gX; i++) {
+			bool start = false;
+			Vector2 stNode = Vector2.zero;
+			Vector2 enNode = Vector2.zero;
+			for (int j = 0; j < gY; j++) {
+				if (grid[i,j].occupied == false && !start) {
+					stNode = new Vector2 (i,j);
+					start = true;
+				}
+				if ((grid[i,j].occupied == true) && start) {
+					enNode = new Vector2 (i,j);
+					start = false;
+					GameObject cut = Instantiate(navRemover);
+					cut.transform.position = new Vector3(gridScale/2,0,0)+new Vector3 (i, 0, (stNode.y + enNode.y)/2) * gridScale;
+					cut.transform.localScale = new Vector3(1, 1, (enNode.y-stNode.y))*gridScale;
+				}
+				if (j == gY-1 && start) {
+					enNode = new Vector2 (i,j);
+					start = false;
+					GameObject cut = Instantiate(navRemover);
+					cut.transform.position = new Vector3(gridScale/2,0,0)+new Vector3 (i, 0, (1+(stNode.y + enNode.y))/2) * gridScale;
+					cut.transform.localScale = new Vector3(1, 1, 1+(enNode.y-stNode.y))*gridScale;
+				}
+			}
 		}
 	}
 
@@ -92,11 +123,11 @@ public class LevelGenerator : MonoBehaviour {
 				for (int i = 0; i < pref.dimensions.x; i++) {
 					for (int j = 0; j < pref.dimensions.y; j++) {
 						foreach (Vector2 door in pref.doorLocations) {
-							Debug.Log (	" | Room: " + roomsToPlace.Count +
+							/*Debug.Log (	" | Room: " + roomsToPlace.Count +
 								" | Room Type: " +pref.name +
 								" | Previous node: " +prev+
 								" | Door location: " + (source.Location()-new Vector2(i,j)+door-Vector2.one) +
-								"");
+								"");*/
 							if (prev == source.Location()-new Vector2(i,j)+door-Vector2.one) {
 								Arrangement arr = new Arrangement();
 								arr.offset = new Vector2(i,j);
@@ -121,11 +152,11 @@ public class LevelGenerator : MonoBehaviour {
 			foreach (Arrangement pot in potential) {
 				for (int i = path.IndexOf(pot.sourceNode); i < path.Count; i++) {
 					foreach (Vector2 door in pot.original.doorLocations) {	
-						Debug.Log (	" | Room: " + roomsToPlace.Count +
+						/*Debug.Log (	" | Room: " + roomsToPlace.Count +
 									" | Room name: " +pot.original.name +
 									" | Path[i] location: " + path [i].Location () +
 									" | Door location: " + (pot.sourceNode.Location () - Vector2.one - pot.offset + door) +
-									"");
+									"");*/
 						if (path[i].Location() == pot.sourceNode.Location()-Vector2.one-pot.offset+door) {
 							pot.pathExitPt = path[i].Location();
 							//Door will never be on a corner
@@ -289,7 +320,7 @@ public class LevelGenerator : MonoBehaviour {
 		foreach (Node n in path) {
 			GameObject room;
 			room = Instantiate(gridVisual);
-			room.transform.position = new Vector3(2,0,2)+new Vector3 (n.x, 0, n.y) * 4;
+			room.transform.position = new Vector3(gridScale/2,0,gridScale/2)+new Vector3 (n.x, 0, n.y) * gridScale;
 			room.name = "x: "+ n.x + " | y: " + n.y + " | node: "+path.IndexOf(n);
 		}
 	}
@@ -300,7 +331,7 @@ public class LevelGenerator : MonoBehaviour {
 			GameObject init = Instantiate(room.original.prefab);
 			float x = room.original.dimensions.x/2;
 			float y = room.original.dimensions.y/2;
-			init.transform.position = new Vector3(x+room.sourceNode.x-room.offset.x, 0, y+room.sourceNode.y-room.offset.y)*4;
+			init.transform.position = new Vector3(x+room.sourceNode.x-room.offset.x, 0, y+room.sourceNode.y-room.offset.y)*gridScale;
 			init.name = "Room " + roomsToCreate.IndexOf (room) + " " + room.original.name;
 			for (int i = 0; i < init.transform.childCount; i++) {
 				GameObject ourDoor = init.transform.GetChild(i).gameObject;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: cc1c35a91b66d3c4c8ee9c7091853ccd, type: 2}
 --- !u!1001 &73085112
 Prefab:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4656038948250638, guid: 67359fceef6e0cd419fdb6cdfe9d105f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 10.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4656038948250638, guid: 67359fceef6e0cd419fdb6cdfe9d105f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -369,26 +369,6 @@ Prefab:
     - target: {fileID: 4656038948250638, guid: 67359fceef6e0cd419fdb6cdfe9d105f, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114502811181698714, guid: 67359fceef6e0cd419fdb6cdfe9d105f,
-        type: 2}
-      propertyPath: gX
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 114502811181698714, guid: 67359fceef6e0cd419fdb6cdfe9d105f,
-        type: 2}
-      propertyPath: gY
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 114502811181698714, guid: 67359fceef6e0cd419fdb6cdfe9d105f,
-        type: 2}
-      propertyPath: minDistance
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114502811181698714, guid: 67359fceef6e0cd419fdb6cdfe9d105f,
-        type: 2}
-      propertyPath: borderDistance
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67359fceef6e0cd419fdb6cdfe9d105f, type: 2}
