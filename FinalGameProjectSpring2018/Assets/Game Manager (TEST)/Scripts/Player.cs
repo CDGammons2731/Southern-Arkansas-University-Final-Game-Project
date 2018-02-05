@@ -107,13 +107,12 @@ public class Player : MonoBehaviour
         if (weaponInRange == true)
         {
             GM.pickupText.text = "Press F to pick up " + currentGun;
-            if (Input.GetKey(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 weaponInRange = false;
                 PickUpWeapon(weapon);
                 //gun = other.GetComponent<Gun>();
                 hasWeapon = true;
-                
 
             }
         }
