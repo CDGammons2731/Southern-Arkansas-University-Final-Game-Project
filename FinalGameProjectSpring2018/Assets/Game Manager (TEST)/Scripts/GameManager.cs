@@ -35,6 +35,7 @@ namespace GAMEMANAGER
         public static GameManager GAME;
         public GameObject PlayerObj;
         public Camera PlayerCam;
+    
 
         [Header("Game Sounds")]
         public AudioClip ThemeMusic;
@@ -63,7 +64,7 @@ namespace GAMEMANAGER
 
         //Testing GUN
         public Gun yourGun;
-        public Text gunText, gunStat;
+        public Text gunText, gunStat, pickupText;
 
         struct Robot
         {

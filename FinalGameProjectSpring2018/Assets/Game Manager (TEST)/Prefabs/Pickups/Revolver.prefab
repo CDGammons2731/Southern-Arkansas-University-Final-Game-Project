@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4298779706952526}
   m_Layer: 0
   m_Name: RevolverBS
-  m_TagString: Untagged
+  m_TagString: gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,10 +35,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4066793477838724}
   - component: {fileID: 33287463936529922}
-  - component: {fileID: 65686521572556398}
   - component: {fileID: 23524528700238242}
   - component: {fileID: 114776729533680950}
   - component: {fileID: 82922722396856052}
+  - component: {fileID: 135897184361552426}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: revolver
@@ -114,18 +114,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1856958345590830}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65686521572556398
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1856958345590830}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82922722396856052
 AudioSource:
   m_ObjectHideFlags: 1
@@ -247,3 +235,15 @@ MonoBehaviour:
   fireRate: 0
   nextFire: 0
   shotCount: 0
+--- !u!135 &135897184361552426
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856958345590830}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}

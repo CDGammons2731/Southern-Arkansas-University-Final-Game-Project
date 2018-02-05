@@ -25,9 +25,10 @@ public class Player : MonoBehaviour
      
 	public Vector3 gunOffset;
     public GameObject holdingPosition;
+    public GameObject weapon;
 	public Gun gun;
-  
 
+    public bool weaponInRange;
 	bool hasWeapon;
     public string currentGun;
 
@@ -39,7 +40,9 @@ public class Player : MonoBehaviour
         score = 0;
         name = "Player";
 
+        weaponInRange = false;
 		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f);
+        
         
     }
 
@@ -69,22 +72,23 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
-		if (other.gameObject.CompareTag("shotgun") ||other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") ||other.gameObject.CompareTag("tommygun") || other.gameObject.CompareTag("railgun"))
+        if (other.gameObject.CompareTag("shotgun") ||other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") ||other.gameObject.CompareTag("tommygun") || other.gameObject.CompareTag("railgun"))
 		{
-			GameObject weapon = other.gameObject;
-			PickUpWeapon (weapon);
-			hasWeapon = true;
-            currentGun = weapon.tag;
             gun = other.GetComponent<Gun>();
+            weapon = other.gameObject;
+            weaponInRange = true;
             GM.yourGun = other.GetComponent<Gun>();
-            
+            currentGun = weapon.tag;
 
-		}
+        }   
     }
 
-    void Shoot() { }
+    void OnTriggerExit(Collider other) {
+        weaponInRange = false;
+    }
 
-	void PickUpWeapon(GameObject weapon) { 
+
+    void PickUpWeapon(GameObject weapon) { 
 		//Play animation for weapon pick up
 		if(Input.GetMouseButton(1)){
 			gun.FireWeapon (weapon.tag);
@@ -100,6 +104,22 @@ public class Player : MonoBehaviour
         //GM.score= score;
 
         if (health > 100) health = 100;
+        if (weaponInRange == true)
+        {
+            GM.pickupText.text = "Press F to pick up " + currentGun;
+            if (Input.GetKey(KeyCode.F))
+            {
+                weaponInRange = false;
+                PickUpWeapon(weapon);
+                //gun = other.GetComponent<Gun>();
+                hasWeapon = true;
+                
+
+            }
+        }
+        else {
+            GM.pickupText.text = "";
+        }
 
 		if(hasWeapon==true){
 			g = GameObject.FindGameObjectWithTag (currentGun);

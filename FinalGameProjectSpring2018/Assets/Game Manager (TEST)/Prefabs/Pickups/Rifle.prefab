@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4123244682352500}
   m_Layer: 0
   m_Name: RifleBS
-  m_TagString: Untagged
+  m_TagString: gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   bulletSpeed: 30
   fireRate: 0
   nextFire: 0
+  shotCount: 0
 --- !u!135 &135645492140327442
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -163,5 +164,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}

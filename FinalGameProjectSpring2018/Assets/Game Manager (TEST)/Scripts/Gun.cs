@@ -53,6 +53,7 @@ public class Gun : MonoBehaviour {
             lineOfSight = GetComponent<LineRenderer>();
             shotCount = 0;
 
+
 	}
 
     public void FireWeapon(string type)

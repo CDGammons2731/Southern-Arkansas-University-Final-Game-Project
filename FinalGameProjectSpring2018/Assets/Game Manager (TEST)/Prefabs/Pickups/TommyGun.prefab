@@ -127,6 +127,7 @@ MonoBehaviour:
   weapon: {fileID: 1320818771104428}
   bullet: {fileID: 1025971916029544, guid: 04f808e235767cd4994bcf5003c07387, type: 2}
   bulletSpawn: {fileID: 4140651478581458}
+  Information: {fileID: 0}
   CurrentWeapon: 
   SHOTGUN:
   - {fileID: 0}
@@ -153,6 +154,7 @@ MonoBehaviour:
   bulletSpeed: 30
   fireRate: 0
   nextFire: 0
+  shotCount: 0
 --- !u!136 &136748818821350596
 CapsuleCollider:
   m_ObjectHideFlags: 1
