@@ -138,7 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74317d86e76297c47ab23c374ec97214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AIToSpawn: {fileID: 1506439689358042, guid: 5381ac131daa2384393def7702afed22, type: 2}
+  EnemiesMaxNumber: 5
   range: 10
+  SpawnActivateRandomizer: 0
+  NumberToActivate: 3
+  MaxRange: 8
 --- !u!23 &1003245856
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -394,6 +399,14 @@ Prefab:
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_IsWalking
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_Name
+      value: player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
