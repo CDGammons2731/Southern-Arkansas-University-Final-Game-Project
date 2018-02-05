@@ -73,7 +73,7 @@ public class Gun : MonoBehaviour {
         switch (type)
         {
 		case shotgun:
-                    fireRate = 0.5f;
+                    fireRate = 0.75f;
                     ammoClip = 8;
                     ammoMax = 48;
                     damage = 35;
