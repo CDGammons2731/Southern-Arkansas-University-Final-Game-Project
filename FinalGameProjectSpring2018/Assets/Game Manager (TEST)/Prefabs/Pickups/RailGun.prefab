@@ -148,11 +148,14 @@ MonoBehaviour:
   ammo: 0
   ammoClip: 0
   ammoMax: 0
+  currentAmmo: 0
   damage: 0
   rangeMult: 2
-  bulletSpeed: 30
+  bulletSpeed: 100
   fireRate: 0
   nextFire: 0
+  spreadAgle: 0
+  pelletCount: 0
   shotCount: 0
 --- !u!135 &135559110872868532
 SphereCollider:

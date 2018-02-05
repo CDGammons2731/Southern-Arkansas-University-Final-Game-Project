@@ -43,6 +43,13 @@ public class Gun : MonoBehaviour {
     public float fireRate;
     public float nextFire;
 
+	//For shotgun
+	
+	public float spreadAgle;
+	public int pelletCount;
+	List<Quaternion> pellets; //For the shotgun
+	
+
         public int shotCount; //keep track of bullets shot, implement for reloading and for UI purposes
         private LineRenderer lineOfSight;
 
@@ -54,7 +61,10 @@ public class Gun : MonoBehaviour {
             lineOfSight = GetComponent<LineRenderer>();
             shotCount = 0;
 
-
+			pellets = new List<Quaternion> (pelletCount);
+			for (int i = 0; i < pelletCount; i++) {
+				pellets.Add (Quaternion.Euler (Vector3.zero));
+			}
 	}
 
     public void FireWeapon(string type)
@@ -228,19 +238,22 @@ public class Gun : MonoBehaviour {
 
 	void Shotgun(int ammo, int clip) {
             //Make the shot spread
+			int i=0;
             if (ammo > 0) { 
-                var shot = (GameObject)Instantiate (bullet, bulletSpawn.position,bulletSpawn.rotation);
-                shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
-                
-               
+				foreach (Quaternion quat in pellets) {
+					var shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
+					pellets [i] = Random.rotation;
+					shot.transform.rotation = Quaternion.RotateTowards (shot.transform.rotation, pellets [i], spreadAgle);
+					shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
+					i++;
+					Destroy(shot, 2.0f);
+				}
         //play sound
-        if (SHOTGUN[0] != null) {
-          //play sound
+				if (SHOTGUN [0] != null) {
+					//play sound
 
-        }
+				}
 
-        // Destroy the bullet after 2 seconds
-				Destroy(shot, 2.0f);
     }
 	}
 
