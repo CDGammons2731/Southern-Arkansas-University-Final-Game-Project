@@ -36,6 +36,7 @@ public class Gun : MonoBehaviour {
     public int ammo;
     public int ammoClip;
     public int ammoMax;
+	public int currentAmmo; //testing
     public int damage; //per pullet
     public int rangeMult =2; //multiply damage for closer range? 
     public int bulletSpeed = 30;

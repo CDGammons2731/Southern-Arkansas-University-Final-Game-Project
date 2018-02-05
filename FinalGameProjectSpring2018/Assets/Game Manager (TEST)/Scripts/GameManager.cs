@@ -230,8 +230,9 @@ namespace GAMEMANAGER
         {
            
             gunText.text = yourGun.CurrentWeapon;
-            gunStat.text = (yourGun.ammoClip - yourGun.shotCount) + "/" + yourGun.ammoClip + " " + "Ammo: " + yourGun.ammo;
-
+			if (yourGun.ammoClip != 0) {
+				gunStat.text = (yourGun.ammo % yourGun.ammoClip) + "/" + yourGun.ammoClip + " " + "Ammo: " + yourGun.ammo;
+			}
             stats.text = "Health " + playerHealth + " Armor: " + playerArmor + " Score: " + score;
 
             if (playerHealth > 100)
