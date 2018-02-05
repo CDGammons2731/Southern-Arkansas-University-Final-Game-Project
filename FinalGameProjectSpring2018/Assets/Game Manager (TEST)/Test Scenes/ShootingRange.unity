@@ -181,7 +181,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Move: WASD/ \nArrow Keys\nJump = Space\n[Temp] Shoot=Mouse L\n[Temp] Pickup
-    Item = F"
+    Item = F\nDrop Weapon = B"
 --- !u!222 &34536735
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -273,17 +273,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 23
       objectReference: {fileID: 0}
-    - target: {fileID: 114944075464921212, guid: ce22a5da57168364d80b5df8f3f4c88a,
-        type: 2}
-      propertyPath: Information
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618925978982098, guid: ce22a5da57168364d80b5df8f3f4c88a, type: 2}
-      propertyPath: m_TagString
-      value: gun
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 136748818821350596, guid: ce22a5da57168364d80b5df8f3f4c88a, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce22a5da57168364d80b5df8f3f4c88a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &116915844
@@ -684,23 +674,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aeb299ebcd666c34db97d55bacbeccfa, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &378387519 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1320818771104428, guid: ce22a5da57168364d80b5df8f3f4c88a,
-    type: 2}
-  m_PrefabInternal: {fileID: 84851168}
---- !u!135 &378387522
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 378387519}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.3
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &425123856
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,11 +743,6 @@ Prefab:
     - target: {fileID: 4066793477838724, guid: 1496dd521e6bde645802b16dd4fa0fce, type: 2}
       propertyPath: m_RootOrder
       value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 135897184361552426, guid: 1496dd521e6bde645802b16dd4fa0fce,
-        type: 2}
-      propertyPath: m_Radius
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1496dd521e6bde645802b16dd4fa0fce, type: 2}

@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 	public Gun gun;
 
     public bool weaponInRange;
-	bool hasWeapon;
+	public bool hasWeapon;
     public string currentGun;
 
     void Start()
@@ -85,12 +85,14 @@ public class Player : MonoBehaviour
 
     void OnTriggerExit(Collider other) {
         weaponInRange = false;
+        
     }
 
 
-    void PickUpWeapon(GameObject weapon) { 
-		//Play animation for weapon pick up
-		if(Input.GetMouseButton(1)){
+    void PickUpWeapon(GameObject weapon) {
+        //Play animation for weapon pick up
+        hasWeapon = true;
+        if (Input.GetMouseButton(1)){
 			gun.FireWeapon (weapon.tag);
 		}
 
@@ -109,15 +111,16 @@ public class Player : MonoBehaviour
             GM.pickupText.text = "Press F to pick up " + currentGun;
             if (Input.GetKeyDown(KeyCode.F))
             {
+               
                 weaponInRange = false;
                 PickUpWeapon(weapon);
-                //gun = other.GetComponent<Gun>();
-                hasWeapon = true;
+               
 
             }
         }
         else {
             GM.pickupText.text = "";
+
         }
 
 		if(hasWeapon==true){
@@ -126,6 +129,10 @@ public class Player : MonoBehaviour
 			g.transform.rotation = holdingPosition.transform.rotation;
 			gun.FireWeapon (currentGun);
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.B)) {
+            hasWeapon = false;
         }
         //if player health <=30 play heart beat
 
