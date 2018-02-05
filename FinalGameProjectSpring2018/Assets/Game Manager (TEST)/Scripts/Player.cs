@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 	public Vector3 gunOffset;
     public GameObject holdingPosition;
 	public Gun gun;
+  
 
 	bool hasWeapon;
     public string currentGun;
@@ -46,13 +47,13 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Health"))
         {
-            GM.playerHealth += 50;
+            GM.HealthUp();
             other.gameObject.SetActive(false);
         }
 
         if (other.gameObject.CompareTag("Armor"))
         {
-            GM.playerArmor += 25;
+            GM.ArmorUp();
             other.gameObject.SetActive(false);
         }
 
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Damage"))
         {
-            GM.playerHealth -= 25;
+            GM.HealthDown();
             other.gameObject.SetActive(false);
         }
 
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
 			hasWeapon = true;
             currentGun = weapon.tag;
             gun = other.GetComponent<Gun>();
+            GM.yourGun = other.GetComponent<Gun>();
             
 
 		}
@@ -93,9 +95,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        GM.playerHealth = health;
-        GM.playerArmor = armor;
-        GM.score= score;
+        //GM.playerHealth = health;
+       // GM.playerArmor = armor;
+        //GM.score= score;
 
         if (health > 100) health = 100;
 
