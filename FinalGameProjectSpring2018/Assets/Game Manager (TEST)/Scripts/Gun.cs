@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour {
     
 
     //Weapon Types
+    [Header("Weapon Types")]
     public const string shotgun = "shotgun";
     public const string revolver = "revolver";
     public const string rifle = "rifle";
@@ -18,7 +19,8 @@ public class Gun : MonoBehaviour {
     public const string railgun = "railgun";
 
 	public new string CurrentWeapon; //The tag attatched to the gameobjct;
-
+    
+    [Header("Gun Sounds")]
     //Audio clips:  0-fire, 1-reload, 2-any extra audio
     public AudioClip[] SHOTGUN = new AudioClip[2];
     public AudioClip[] REVOLVER = new AudioClip[2];
@@ -26,27 +28,43 @@ public class Gun : MonoBehaviour {
     public AudioClip[] TOMMYGUN = new AudioClip[2];
     public AudioClip[] RAILGUN = new AudioClip[2];
 
+    public AudioSource GunSound;
+
     public bool equipped;
 
+    [Header("Gun Info")]
     public int ammo;
     public int ammoClip;
     public int ammoMax;
+	public int currentAmmo; //testing
     public int damage; //per pullet
     public int rangeMult =2; //multiply damage for closer range? 
-    public int bulletSpeed = 20;
-
-   
+    public int bulletSpeed = 30;
     public float fireRate;
     public float nextFire;
+
+	//For shotgun
+	
+	public float spreadAgle;
+	public int pelletCount;
+	List<Quaternion> pellets; //For the shotgun
+	
+
+        public int shotCount; //keep track of bullets shot, implement for reloading and for UI purposes
         private LineRenderer lineOfSight;
 
         // Use this for initialization
         void Start () {
 		CurrentWeapon = gameObject.tag;
             //bulletSpawn = gameObject.GetComponentInChildren<Transform> ();
-
+            GunSound = GetComponentInParent<AudioSource>();
             lineOfSight = GetComponent<LineRenderer>();
+            shotCount = 0;
 
+			pellets = new List<Quaternion> (pelletCount);
+			for (int i = 0; i < pelletCount; i++) {
+				pellets.Add (Quaternion.Euler (Vector3.zero));
+			}
 	}
 
     public void FireWeapon(string type)
@@ -55,7 +73,7 @@ public class Gun : MonoBehaviour {
         switch (type)
         {
 		case shotgun:
-                    fireRate = 0.5f;
+                    fireRate = 0.75f;
                     ammoClip = 8;
                     ammoMax = 48;
                     damage = 35;
@@ -64,7 +82,8 @@ public class Gun : MonoBehaviour {
                     nextFire = Time.time + fireRate;
 				    Shotgun (ammo,ammoClip);
                         ammo -= 1;
-                        if (ammo <=0) {
+                        shotCount++;
+                        if (shotCount>=ammoClip) { //or if player presses reload button...
 					reload (type);
 				}
 			}
@@ -81,7 +100,8 @@ public class Gun : MonoBehaviour {
                         nextFire = Time.time + fireRate;
                         Revolver(ammo, ammoClip);
                         ammo -= 1;
-                        if (ammo <= 0)
+                        shotCount++;
+                        if (shotCount >=ammoClip)
                         {
                             reload(type);
                         }
@@ -99,7 +119,8 @@ public class Gun : MonoBehaviour {
                         nextFire = Time.time + fireRate;
                         Rifle(ammo, ammoClip);
                         ammo -= 1;
-                        if (ammo <= 0)
+                        shotCount++;
+                        if (shotCount >= ammoClip)
                         {
                             reload(type);
                         }
@@ -117,7 +138,8 @@ public class Gun : MonoBehaviour {
                         nextFire = Time.time + fireRate;
                         TommyGun(ammo, ammoClip);
                         ammo -= 1;
-                        if (ammo <= 0)
+                        shotCount++;
+                        if (shotCount >= ammoClip)
                         {
                             reload(type);
                         }
@@ -135,7 +157,8 @@ public class Gun : MonoBehaviour {
                         nextFire = Time.time + fireRate;
                         Railgun(ammo, ammoClip);
                         ammo -= 1;
-                        if (ammo <= 0)
+                        shotCount++;
+                        if (shotCount >= ammoClip)
                         {
                             reload(type);
                         }
@@ -196,13 +219,14 @@ public class Gun : MonoBehaviour {
             if (ammo > 0)
             {
                 var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-                shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
-
+                shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;     
 
                 //play sound
                 if (REVOLVER[0] != null)
                 {
-                    //play sound
+               
+                  GunSound.PlayOneShot(REVOLVER[0], 0.85f);
+                  
 
                 }
 
@@ -214,42 +238,75 @@ public class Gun : MonoBehaviour {
 
 	void Shotgun(int ammo, int clip) {
             //Make the shot spread
+			int i=0;
             if (ammo > 0) { 
-                var shot = (GameObject)Instantiate (bullet, bulletSpawn.position,bulletSpawn.rotation);
-                shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
-                
-               
+				foreach (Quaternion quat in pellets) {
+					var shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
+					pellets [i] = Random.rotation;
+					shot.transform.rotation = Quaternion.RotateTowards (shot.transform.rotation, pellets [i], spreadAgle);
+					shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
+					i++;
+					Destroy(shot, 2.0f);
+				}
         //play sound
-        if (SHOTGUN[0] != null) {
-          //play sound
+				if (SHOTGUN [0] != null) {
+					//play sound
 
-        }
+				}
 
-        // Destroy the bullet after 2 seconds
-				Destroy(shot, 2.0f);
     }
 	}
 
-	void TommyGun(int ammo, int clip) { }
+	void TommyGun(int ammo, int clip) {
+            if (ammo > 0)
+            {
+                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
+
+
+                //play sound
+                if (TOMMYGUN[0] != null)
+                {
+                    //play sound
+
+                }
+
+                // Destroy the bullet after 2 seconds
+                Destroy(shot, 2.0f);
+            }
+
+        }
 
     void reload(string type)
     {
         //play animation and reset ammo to full or += ammount picked up
         switch (type) {
             case shotgun:
-				//play reload animation and sound
+                    //play reload animation and sound
+                    //Add bullets from total ammo into clip
+                      shotCount = 0;
 				
                 break;
             case revolver:
-                break;
+                    //play reload animation and sound
+                    shotCount = 0;
+                    break;
             case rifle:
-                break;
+                    //play reload animation and sound
+                    shotCount = 0;
+                    break;
             case tommygun:
-                break;
+                    //play reload animation and sound
+                    shotCount = 0;
+                    break;
             case railgun:
-                break;
+                    //play reload animation and sound
+                    shotCount = 0;
+                    break;
             default:
-                break;
+                    //play reload animation and sound
+                    shotCount = 0;
+                    break;
         }
     }
 

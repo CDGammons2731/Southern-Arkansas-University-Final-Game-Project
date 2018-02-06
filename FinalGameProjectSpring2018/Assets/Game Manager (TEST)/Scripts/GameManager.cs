@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.UI;
 using System.IO;
 using System;
+using GUN;
 
 namespace GAMEMANAGER 
 {
@@ -34,6 +35,7 @@ namespace GAMEMANAGER
         public static GameManager GAME;
         public GameObject PlayerObj;
         public Camera PlayerCam;
+    
 
         [Header("Game Sounds")]
         public AudioClip ThemeMusic;
@@ -60,10 +62,15 @@ namespace GAMEMANAGER
         private float timer; //Game Timer
         private bool escaped; //If the player escapes, next level or win's game, show stats and score
 
+        //Testing GUN
+        public Gun yourGun;
+        public Text gunText, gunStat, pickupText;
+
         struct Robot
         {
             public int health;
             public int pointValue;//if needed
+            
             //Make type
 
         }
@@ -83,9 +90,9 @@ namespace GAMEMANAGER
                 Destroy(gameObject);
             }
             //Display Stats
-			NewSaveName.enabled = false;
-			NewSaveName.textComponent.enabled = false;
-			NewSaveName.image.enabled = false;
+			//NewSaveName.enabled = false;
+			//NewSaveName.textComponent.enabled = false;
+			//NewSaveName.image.enabled = false;
         }
 			
 
@@ -156,7 +163,12 @@ namespace GAMEMANAGER
         // @TESTING 
         public void HealthUp()
         {
-            playerHealth += 100;
+            playerHealth += 20;
+        }
+
+        public void HealthDown()
+        {
+            playerHealth -= 20;
         }
         public void ArmorUp()
         {
@@ -216,12 +228,18 @@ namespace GAMEMANAGER
 
         void Update()
         {
+           
+            gunText.text = yourGun.CurrentWeapon;
+			if (yourGun.ammoClip != 0) {
+				gunStat.text = (yourGun.ammo % yourGun.ammoClip) + "/" + yourGun.ammoClip + " " + "Ammo: " + yourGun.ammo;
+			}
             stats.text = "Health " + playerHealth + " Armor: " + playerArmor + " Score: " + score;
 
             if (playerHealth > 100)
             {
                 playerHealth = 100;
             }
+
         }
 
     }

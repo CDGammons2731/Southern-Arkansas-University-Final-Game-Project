@@ -25,9 +25,11 @@ public class Player : MonoBehaviour
      
 	public Vector3 gunOffset;
     public GameObject holdingPosition;
+    public GameObject weapon;
 	public Gun gun;
 
-	bool hasWeapon;
+    public bool weaponInRange;
+	public bool hasWeapon;
     public string currentGun;
 
     void Start()
@@ -38,7 +40,9 @@ public class Player : MonoBehaviour
         score = 0;
         name = "Player";
 
+        weaponInRange = false;
 		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f);
+        
         
     }
 
@@ -46,13 +50,13 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Health"))
         {
-            GM.playerHealth += 50;
+            GM.HealthUp();
             other.gameObject.SetActive(false);
         }
 
         if (other.gameObject.CompareTag("Armor"))
         {
-            GM.playerArmor += 25;
+            GM.ArmorUp();
             other.gameObject.SetActive(false);
         }
 
@@ -64,27 +68,31 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Damage"))
         {
-            GM.playerHealth -= 25;
+            GM.HealthDown();
             other.gameObject.SetActive(false);
         }
 
-		if (other.gameObject.CompareTag("shotgun") ||other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") ||other.gameObject.CompareTag("tommygun") || other.gameObject.CompareTag("railgun"))
+        if (other.gameObject.CompareTag("shotgun") ||other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") ||other.gameObject.CompareTag("tommygun") || other.gameObject.CompareTag("railgun"))
 		{
-			GameObject weapon = other.gameObject;
-			PickUpWeapon (weapon);
-			hasWeapon = true;
-            currentGun = weapon.tag;
             gun = other.GetComponent<Gun>();
-            
+            weapon = other.gameObject;
+            weaponInRange = true;
+            GM.yourGun = other.GetComponent<Gun>();
+            currentGun = weapon.tag;
 
-		}
+        }   
     }
 
-    void Shoot() { }
+    void OnTriggerExit(Collider other) {
+        weaponInRange = false;
+        
+    }
 
-	void PickUpWeapon(GameObject weapon) { 
-		//Play animation for weapon pick up
-		if(Input.GetMouseButton(1)){
+
+    void PickUpWeapon(GameObject weapon) {
+        //Play animation for weapon pick up
+        hasWeapon = true;
+        if (Input.GetMouseButton(1)){
 			gun.FireWeapon (weapon.tag);
 		}
 
@@ -93,11 +101,27 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        GM.playerHealth = health;
-        GM.playerArmor = armor;
-        GM.score= score;
+        //GM.playerHealth = health;
+       // GM.playerArmor = armor;
+        //GM.score= score;
 
         if (health > 100) health = 100;
+        if (weaponInRange == true)
+        {
+            GM.pickupText.text = "Press F to pick up " + currentGun;
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+               
+                weaponInRange = false;
+                PickUpWeapon(weapon);
+               
+
+            }
+        }
+        else {
+            GM.pickupText.text = "";
+
+        }
 
 		if(hasWeapon==true){
 			g = GameObject.FindGameObjectWithTag (currentGun);
@@ -105,6 +129,10 @@ public class Player : MonoBehaviour
 			g.transform.rotation = holdingPosition.transform.rotation;
 			gun.FireWeapon (currentGun);
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.B)) {
+            hasWeapon = false;
         }
         //if player health <=30 play heart beat
 
