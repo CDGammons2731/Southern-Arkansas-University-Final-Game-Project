@@ -48,6 +48,7 @@ public class startMenu : MonoBehaviour {
         {
             fillInText.SetActive(true);
             enter.SetActive(true);
+            newGame1.SetActive(false);
             clicked++;
         }
         else{
@@ -63,6 +64,7 @@ public class startMenu : MonoBehaviour {
         if(clicked==1){
             fillInText.SetActive(false);
             enter.SetActive(false);
+            newGame1.SetActive(true);
         }
     }
 }
