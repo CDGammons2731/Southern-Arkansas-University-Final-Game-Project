@@ -10,14 +10,8 @@ public class GunTransitions : MonoBehaviour {
     public Camera playerCam; //for referenced scopping
     public float scopeFOV = 15f; //field of view to be zoomed in
     private float normalFOV; //original fov
-
-    
+  
 	private bool Scoped=false;
-	// Use this for initialization
-	void Start () {
-       
-
-	}
 
 	void Update () {
         if (Input.GetMouseButtonDown(1))

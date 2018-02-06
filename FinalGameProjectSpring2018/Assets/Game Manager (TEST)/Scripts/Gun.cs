@@ -5,9 +5,10 @@ using UnityEngine;
 namespace GUN{
 public class Gun : MonoBehaviour {
 	//Making all publics so I can mess with them in the editor
+    //Get your weapon, bullet, and where it spawns
     public GameObject weapon;
     public GameObject bullet;
-    public Transform bulletSpawn;
+    public Transform bulletSpawn; 
     
 
     //Weapon Types
@@ -28,51 +29,54 @@ public class Gun : MonoBehaviour {
     public AudioClip[] TOMMYGUN = new AudioClip[2];
     public AudioClip[] RAILGUN = new AudioClip[2];
 
+    //The source that the audio clips can be played by
     public AudioSource GunSound;
 
-    public bool equipped;
+    //Check to see if weapon is equpiied
+    public bool equipped; 
 
+    //All your firearm needs...
     [Header("Gun Info")]
     public int ammo;
     public int ammoClip;
     public int ammoMax;
-	public int currentAmmo; //testing
-    public int damage; //per pullet
-    public int rangeMult =2; //multiply damage for closer range? 
+	public int currentAmmo; //keep track of current ammo
+    public int damage; //per bullet @TODO: assign damage later
+    public int rangeMult =2; //multiply damage for closer range? TBA
     public int bulletSpeed = 30;
     public float fireRate;
     public float nextFire;
+    public int shotCount; //keep track of bullets shot, implement for reloading and for UI purposes
 
-	//For shotgun
-	
-	public float spreadAgle;
+        //For shotgun
+    public float spreadAgle;
 	public int pelletCount;
-	List<Quaternion> pellets; //For the shotgun
+	List<Quaternion> pellets; //For the shotgun, make a list of quaternions which will be spawn positions for pellets
 	
-
-        public int shotCount; //keep track of bullets shot, implement for reloading and for UI purposes
-        private LineRenderer lineOfSight;
+    private LineRenderer lineOfSight; //@TODO: testing, raycasts 
 
         // Use this for initialization
         void Start () {
 		CurrentWeapon = gameObject.tag;
             //bulletSpawn = gameObject.GetComponentInChildren<Transform> ();
-            GunSound = GetComponentInParent<AudioSource>();
+            GunSound = GetComponentInParent<AudioSource>(); //Assign audiosource at start
             lineOfSight = GetComponent<LineRenderer>();
             shotCount = 0;
 
-			pellets = new List<Quaternion> (pelletCount);
+			pellets = new List<Quaternion> (pelletCount); //Assign your new list of pellets and loop through the number of pellets to spawn
 			for (int i = 0; i < pelletCount; i++) {
 				pellets.Add (Quaternion.Euler (Vector3.zero));
 			}
 	}
 
+    //Choose weapon to fire from switch statements from it's selected string (the weapon's tag)
     public void FireWeapon(string type)
     {
 		type = CurrentWeapon;
         switch (type)
         {
 		case shotgun:
+                    //Set all your values for the specified weapon
                     fireRate = 0.75f;
                     ammoClip = 8;
                     ammoMax = 48;
@@ -80,14 +84,14 @@ public class Gun : MonoBehaviour {
                 //Create shot spread
                     if (Input.GetMouseButton(0)&&Time.time> nextFire && ammo!=0){
                     nextFire = Time.time + fireRate;
-				    Shotgun (ammo,ammoClip);
+				    Shotgun (ammo,ammoClip);//Call the method for the selected gun
                         ammo -= 1;
                         shotCount++;
                         if (shotCount>=ammoClip) { //or if player presses reload button...
 					reload (type);
 				}
 			}
-
+                    //lather, rinse, repeat for all weapons
                 break;
             case revolver:
                 fireRate = 0.35f;
@@ -239,11 +243,12 @@ public class Gun : MonoBehaviour {
 	void Shotgun(int ammo, int clip) {
             //Make the shot spread
 			int i=0;
+            //Do shotgun stuff for this section
             if (ammo > 0) { 
 				foreach (Quaternion quat in pellets) {
 					var shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
 					pellets [i] = Random.rotation;
-					shot.transform.rotation = Quaternion.RotateTowards (shot.transform.rotation, pellets [i], spreadAgle);
+					shot.transform.rotation = Quaternion.RotateTowards (shot.transform.rotation, pellets [i], spreadAgle); //Make sure the pellet prefab itself is set to the pellet Layer in the inspector
 					shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
 					i++;
 					Destroy(shot, 2.0f);
