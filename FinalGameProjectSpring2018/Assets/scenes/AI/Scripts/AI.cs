@@ -11,9 +11,11 @@ public class AI : MonoBehaviour
 	private NavMeshAgent agent;
 
 	void Start(){
-		destination = GameObject.Find ("player").transform;
-		DatDerBadGoober = GameObject.Find ("player").transform;
-	}
+        destination = GameObject.FindGameObjectWithTag("player").transform;
+        //destination = GameObject.Find("player").transform;
+        DatDerBadGoober = GameObject.FindGameObjectWithTag("player").transform;
+        //DatDerBadGoober = GameObject.Find ("player").transform;
+    }
 
 	void Update () 
 	{

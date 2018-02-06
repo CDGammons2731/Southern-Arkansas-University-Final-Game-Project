@@ -224,7 +224,6 @@ public class Gun : MonoBehaviour {
             {
                 var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;     
-
                 //play sound
                 if (REVOLVER[0] != null)
                 {
