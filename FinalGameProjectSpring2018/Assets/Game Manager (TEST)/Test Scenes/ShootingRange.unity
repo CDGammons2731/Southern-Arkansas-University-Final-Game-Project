@@ -113,11 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!20 &17690220 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20645446048721150, guid: 347ded99c84e3894e9e5a925253b11a3,
-    type: 2}
-  m_PrefabInternal: {fileID: 973648105}
 --- !u!1001 &59640782
 Prefab:
   m_ObjectHideFlags: 0
@@ -617,7 +612,7 @@ GameObject:
   - component: {fileID: 365301458}
   - component: {fileID: 365301457}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1305,35 +1300,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114286417814682362, guid: 347ded99c84e3894e9e5a925253b11a3,
-        type: 2}
-      propertyPath: GM
-      value: 
-      objectReference: {fileID: 1380795767}
     - target: {fileID: 114300360381955242, guid: 347ded99c84e3894e9e5a925253b11a3,
         type: 2}
       propertyPath: scopeOverlay
       value: 
       objectReference: {fileID: 572278472}
-    - target: {fileID: 20645446048721150, guid: 347ded99c84e3894e9e5a925253b11a3,
-        type: 2}
-      propertyPath: m_CullingMask.m_Bits
-      value: 4294965247
-      objectReference: {fileID: 0}
     - target: {fileID: 114300360381955242, guid: 347ded99c84e3894e9e5a925253b11a3,
         type: 2}
       propertyPath: crossHair
       value: 
       objectReference: {fileID: 491880152}
-    - target: {fileID: 114300360381955242, guid: 347ded99c84e3894e9e5a925253b11a3,
+    - target: {fileID: 114286417814682362, guid: 347ded99c84e3894e9e5a925253b11a3,
         type: 2}
-      propertyPath: playerCam
+      propertyPath: GM
       value: 
-      objectReference: {fileID: 17690220}
-    - target: {fileID: 1893987726926354, guid: 347ded99c84e3894e9e5a925253b11a3, type: 2}
-      propertyPath: m_TagString
-      value: player
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1380795767}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 347ded99c84e3894e9e5a925253b11a3, type: 2}
   m_IsPrefabParent: 0

@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 114286417814682362}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,7 +198,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294966271
+    m_Bits: 4294965247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -448,6 +448,9 @@ MonoBehaviour:
   animator: {fileID: 95808435508029410}
   scopeOverlay: {fileID: 0}
   weaponCamera: {fileID: 1436845341026296}
+  crossHair: {fileID: 0}
+  playerCam: {fileID: 20645446048721150}
+  scopeFOV: 15
 --- !u!114 &114576951292994028
 MonoBehaviour:
   m_ObjectHideFlags: 1

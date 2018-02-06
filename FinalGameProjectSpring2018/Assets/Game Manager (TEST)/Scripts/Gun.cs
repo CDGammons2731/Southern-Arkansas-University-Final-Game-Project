@@ -203,7 +203,7 @@ public class Gun : MonoBehaviour {
         void Rifle(int ammo, int clip) {
             if (ammo > 0)
             {
-                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);  
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 
 
@@ -247,7 +247,8 @@ public class Gun : MonoBehaviour {
             if (ammo > 0) { 
 				foreach (Quaternion quat in pellets) {
 					var shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
-					pellets [i] = Random.rotation;
+                    shot.tag = "projectile";
+                    pellets [i] = Random.rotation;
 					shot.transform.rotation = Quaternion.RotateTowards (shot.transform.rotation, pellets [i], spreadAgle); //Make sure the pellet prefab itself is set to the pellet Layer in the inspector
 					shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
 					i++;
@@ -266,6 +267,7 @@ public class Gun : MonoBehaviour {
             if (ammo > 0)
             {
                 var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                shot.tag = "projectile";
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 
 
