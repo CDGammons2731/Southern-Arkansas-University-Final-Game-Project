@@ -12,6 +12,7 @@ public class GunTransitions : MonoBehaviour {
     private float normalFOV; //original fov
   
 	private bool Scoped=false;
+	public bool Reloading = false;
 
 	void Update () {
         if (Input.GetMouseButtonDown(1))
@@ -28,6 +29,18 @@ public class GunTransitions : MonoBehaviour {
             
         }
 
+		if (Input.GetKeyDown(KeyCode.R)) {
+			Reloading = !Reloading;
+			animator.SetBool ("reloading", Reloading);
+			StartCoroutine (ReloadWait ());
+		}
+
+
+	}
+	IEnumerator ReloadWait(){
+		yield return new WaitForSeconds (1.2f);
+		Reloading = false;
+		animator.SetBool ("reloading", Reloading);
 	}
 
     IEnumerator OnScoped() {

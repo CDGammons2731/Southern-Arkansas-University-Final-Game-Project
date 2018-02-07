@@ -56,6 +56,7 @@ public class Gun : MonoBehaviour {
 	List<Quaternion> pellets; //For the shotgun, make a list of quaternions which will be spawn positions for pellets
 	
     private LineRenderer lineOfSight; //@TODO: testing, raycasts 
+	
 
         // Use this for initialization
         void Start () {
@@ -64,6 +65,7 @@ public class Gun : MonoBehaviour {
             GunSound = GetComponentInParent<AudioSource>(); //Assign audiosource at start
             lineOfSight = GetComponent<LineRenderer>();
             shotCount = 0;
+
 
 			pellets = new List<Quaternion> (pelletCount); //Assign your new list of pellets and loop through the number of pellets to spawn
 			for (int i = 0; i < pelletCount; i++) {
@@ -93,7 +95,7 @@ public class Gun : MonoBehaviour {
                         ammo -= 1;
                         shotCount++;
                         currentAmmo -= 1;
-                        if (shotCount>=ammoClip) { //or if player presses reload button...
+					if (currentAmmo<=0) { 
 					reload (type);
 				}
 			}
@@ -113,7 +115,7 @@ public class Gun : MonoBehaviour {
                         ammo -= 1;
                         shotCount++;
                         currentAmmo -= 1;
-                        if (shotCount >=ammoClip)
+					if (currentAmmo<=0)
                         {
                             reload(type);
                         }
@@ -134,7 +136,7 @@ public class Gun : MonoBehaviour {
                         ammo -= 1;
                         shotCount++;
                         currentAmmo -= 1;
-                        if (shotCount >= ammoClip)
+					if (currentAmmo<=0)
                         {
                             reload(type);
                         }
@@ -154,7 +156,7 @@ public class Gun : MonoBehaviour {
                         ammo -= 1;
                         shotCount++;
                         currentAmmo -= 1;
-                        if (shotCount >= ammoClip)
+					if (currentAmmo<=0)
                         {
                             reload(type);
                         }
@@ -174,7 +176,7 @@ public class Gun : MonoBehaviour {
                         ammo -= 1;
                         shotCount++;
                         currentAmmo -= 1;
-                        if (shotCount >= ammoClip)
+					if (currentAmmo<=0)
                         {
                             reload(type);
                         }
@@ -300,25 +302,73 @@ public class Gun : MonoBehaviour {
     {
         //play animation and reset ammo to full or += ammount picked up
         switch (type) {
-            case shotgun:
+			case shotgun:
                     //play reload animation and sound
                     //Add bullets from total ammo into clip
-                      shotCount = 0;
-				
+				if (currentAmmo < ammoClip && ammo > ammoClip) {
+					if (SHOTGUN [1] != null) {
+						GunSound.PlayOneShot (SHOTGUN [1], 0.85f);
+					}
+					StartCoroutine (ReloadWaiting ());
+					ammo -= (ammoClip - currentAmmo);
+					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
+
+				}
+					
                 break;
-            case revolver:
+			case revolver:
                     //play reload animation and sound
-                    shotCount = 0;
+				if (currentAmmo < ammoClip && ammo > ammoClip) {
+					if (REVOLVER [1] != null) {
+						GunSound.PlayOneShot (REVOLVER [1], 0.85f);
+					}
+					StartCoroutine (ReloadWaiting ());
+					ammo -= (ammoClip - currentAmmo);
+					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
+
+				}
+				if (currentAmmo < ammoClip && ammo < ammoClip) {
+					if (REVOLVER [1] != null) {
+						GunSound.PlayOneShot (REVOLVER [1], 0.85f);
+					}
+					StartCoroutine (ReloadWaiting ());
+					currentAmmo = ammo;
+				}
                     break;
             case rifle:
                     //play reload animation and sound
-                    shotCount = 0;
+				if (currentAmmo < ammoClip && ammo > ammoClip) {
+					if (RIFLE [1] != null) {
+						GunSound.PlayOneShot (RIFLE [1], 0.85f);
+					}
+					StartCoroutine (ReloadWaiting ());
+					ammo -= (ammoClip - currentAmmo);
+					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
+
+				}
                     break;
             case tommygun:
                     //play reload animation and sound
-                    shotCount = 0;
+				if (currentAmmo < ammoClip && ammo > ammoClip) {
+					if (TOMMYGUN [1] != null) {
+						GunSound.PlayOneShot (TOMMYGUN [1], 0.85f);
+					}
+					StartCoroutine (ReloadWaiting ());
+					ammo -= (ammoClip - currentAmmo);
+					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
+
+				}
                     break;
             case railgun:
+				if (currentAmmo < ammoClip && ammo > ammoClip) {
+					if (RAILGUN [1] != null) {
+						GunSound.PlayOneShot (RAILGUN [1], 0.85f);
+					}
+					StartCoroutine (ReloadWaiting ());
+					ammo -= (ammoClip - currentAmmo);
+					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
+
+				}
                     //play reload animation and sound
                     shotCount = 0;
                     break;
@@ -329,7 +379,10 @@ public class Gun : MonoBehaviour {
         }
     }
 
-        
+		IEnumerator ReloadWaiting(){
+			shotCount = 0;
+			yield return new WaitForSeconds (3.0f);
+		}    
         // Update is called once per frame
         void Update () {
         
@@ -344,9 +397,16 @@ public class Gun : MonoBehaviour {
                     currentAmmo = ammo;
                 }
 
-            if (currentAmmo == 0 || currentAmmo==ammoClip) {
-                AmmoUpdate = ammo;
+			if (currentAmmo == 0 || currentAmmo==ammoClip) {
+				AmmoUpdate = ammo;
             }
+			if (ammo<=ammoClip) {
+				AmmoUpdate = ammo;
+			}
+
+			if (Input.GetKeyDown (KeyCode.R)) {
+				reload (weapon.tag);
+			}
  
         }
 }

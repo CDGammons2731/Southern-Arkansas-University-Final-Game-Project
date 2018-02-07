@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
 	public bool hasWeapon;
     public string currentGun;
 
+	GunTransitions gunTran;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,9 +43,8 @@ public class Player : MonoBehaviour
         name = "Player";
 
         weaponInRange = false;
-		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f);
-        
-        
+		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f); //Delete this later
+		gunTran= GetComponentInChildren<GunTransitions>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -93,6 +94,7 @@ public class Player : MonoBehaviour
     void PickUpWeapon(GameObject weapon) {
         //Play animation for weapon pick up
         hasWeapon = true;
+		weaponInRange = false;
         if (Input.GetMouseButton(1)){
 			gun.FireWeapon (weapon.tag);
 		}
@@ -112,11 +114,8 @@ public class Player : MonoBehaviour
             GM.pickupText.text = "Press F to pick up " + currentGun;
             if (Input.GetKeyDown(KeyCode.F))
             {
-               
-                weaponInRange = false;
                 PickUpWeapon(weapon);
                
-
             }
         }
         else {
@@ -135,6 +134,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B)) {
             hasWeapon = false;
         }
+
         //if player health <=30 play heart beat
 
     }

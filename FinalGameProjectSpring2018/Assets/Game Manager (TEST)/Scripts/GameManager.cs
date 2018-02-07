@@ -227,8 +227,9 @@ namespace GAMEMANAGER
 
         void Update()
         {
-           
-            gunText.text = yourGun.CurrentWeapon;
+			if (yourGun.CurrentWeapon != null&& gunText!=null) {
+				gunText.text = yourGun.CurrentWeapon;
+			}
 			if (yourGun.ammoClip != 0) {
 				gunStat.text = (yourGun.currentAmmo) + "/" + yourGun.AmmoUpdate;
 			}
