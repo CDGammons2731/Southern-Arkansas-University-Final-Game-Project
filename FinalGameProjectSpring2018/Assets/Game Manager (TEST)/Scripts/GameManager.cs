@@ -225,13 +225,12 @@ namespace GAMEMANAGER
         }
 
 
-
         void Update()
         {
            
             gunText.text = yourGun.CurrentWeapon;
 			if (yourGun.ammoClip != 0) {
-				gunStat.text = (yourGun.ammo % yourGun.ammoClip) + "/" + yourGun.ammoClip + " " + "Ammo: " + yourGun.ammo;
+				gunStat.text = (yourGun.currentAmmo) + "/" + yourGun.AmmoUpdate;
 			}
             stats.text = "Health " + playerHealth + " Armor: " + playerArmor + " Score: " + score;
 

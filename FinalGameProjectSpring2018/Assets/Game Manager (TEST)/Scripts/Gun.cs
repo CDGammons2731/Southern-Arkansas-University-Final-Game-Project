@@ -33,7 +33,8 @@ public class Gun : MonoBehaviour {
     public AudioSource GunSound;
 
     //Check to see if weapon is equpiied
-    public bool equipped; 
+    public bool equipped;
+    public bool canShoot;
 
     //All your firearm needs...
     [Header("Gun Info")]
@@ -47,6 +48,7 @@ public class Gun : MonoBehaviour {
     public float fireRate;
     public float nextFire;
     public int shotCount; //keep track of bullets shot, implement for reloading and for UI purposes
+    public int AmmoUpdate; //For fixed ammo updates
 
         //For shotgun
     public float spreadAgle;
@@ -67,6 +69,8 @@ public class Gun : MonoBehaviour {
 			for (int i = 0; i < pelletCount; i++) {
 				pellets.Add (Quaternion.Euler (Vector3.zero));
 			}
+
+          
 	}
 
     //Choose weapon to fire from switch statements from it's selected string (the weapon's tag)
@@ -81,12 +85,14 @@ public class Gun : MonoBehaviour {
                     ammoClip = 8;
                     ammoMax = 48;
                     damage = 35;
+
                 //Create shot spread
                     if (Input.GetMouseButton(0)&&Time.time> nextFire && ammo!=0){
                     nextFire = Time.time + fireRate;
 				    Shotgun (ammo,ammoClip);//Call the method for the selected gun
                         ammo -= 1;
                         shotCount++;
+                        currentAmmo -= 1;
                         if (shotCount>=ammoClip) { //or if player presses reload button...
 					reload (type);
 				}
@@ -99,12 +105,14 @@ public class Gun : MonoBehaviour {
                 ammoMax = 35;
                 damage = 20;
 
+
                     if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
                     {
                         nextFire = Time.time + fireRate;
                         Revolver(ammo, ammoClip);
                         ammo -= 1;
                         shotCount++;
+                        currentAmmo -= 1;
                         if (shotCount >=ammoClip)
                         {
                             reload(type);
@@ -118,12 +126,14 @@ public class Gun : MonoBehaviour {
                 ammoMax = 210;
                 damage = 8;
 
+
                     if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
                     {
                         nextFire = Time.time + fireRate;
                         Rifle(ammo, ammoClip);
                         ammo -= 1;
                         shotCount++;
+                        currentAmmo -= 1;
                         if (shotCount >= ammoClip)
                         {
                             reload(type);
@@ -143,6 +153,7 @@ public class Gun : MonoBehaviour {
                         TommyGun(ammo, ammoClip);
                         ammo -= 1;
                         shotCount++;
+                        currentAmmo -= 1;
                         if (shotCount >= ammoClip)
                         {
                             reload(type);
@@ -162,6 +173,7 @@ public class Gun : MonoBehaviour {
                         Railgun(ammo, ammoClip);
                         ammo -= 1;
                         shotCount++;
+                        currentAmmo -= 1;
                         if (shotCount >= ammoClip)
                         {
                             reload(type);
@@ -178,7 +190,10 @@ public class Gun : MonoBehaviour {
                 break;
         }
 
+
     }
+    
+    
 
     //Gun type methods for fireing and ammo amounts 
 	void Railgun(int ammo, int clip) {
@@ -191,7 +206,7 @@ public class Gun : MonoBehaviour {
                 //play sound
                 if (RAILGUN[0] != null)
                 {
-                    //play sound
+                    GunSound.PlayOneShot(RAILGUN[0], 0.85f);
 
                 }
 
@@ -210,7 +225,7 @@ public class Gun : MonoBehaviour {
                 //play sound
                 if (RIFLE[0] != null)
                 {
-                    //play sound
+                    GunSound.PlayOneShot(RIFLE[0], 0.85f);
 
                 }
 
@@ -246,7 +261,6 @@ public class Gun : MonoBehaviour {
             if (ammo > 0) { 
 				foreach (Quaternion quat in pellets) {
 					var shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
-                    shot.tag = "projectile";
                     pellets [i] = Random.rotation;
 					shot.transform.rotation = Quaternion.RotateTowards (shot.transform.rotation, pellets [i], spreadAgle); //Make sure the pellet prefab itself is set to the pellet Layer in the inspector
 					shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
@@ -255,9 +269,9 @@ public class Gun : MonoBehaviour {
 				}
         //play sound
 				if (SHOTGUN [0] != null) {
-					//play sound
+                    GunSound.PlayOneShot(SHOTGUN[0], 0.85f);
 
-				}
+                }
 
     }
 	}
@@ -266,14 +280,13 @@ public class Gun : MonoBehaviour {
             if (ammo > 0)
             {
                 var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-                shot.tag = "projectile";
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 
 
                 //play sound
                 if (TOMMYGUN[0] != null)
                 {
-                    //play sound
+                    GunSound.PlayOneShot(TOMMYGUN[0], 0.85f);
 
                 }
 
@@ -316,9 +329,25 @@ public class Gun : MonoBehaviour {
         }
     }
 
+        
         // Update is called once per frame
         void Update () {
+        
             if (ammo > ammoMax) ammo = ammoMax;
+
+                if (currentAmmo <= 0 && ammo > ammoClip)
+                {
+                    currentAmmo = ammoClip;
+                }
+                if (currentAmmo <= 0 && ammo < ammoClip)
+                {
+                    currentAmmo = ammo;
+                }
+
+            if (currentAmmo == 0 || currentAmmo==ammoClip) {
+                AmmoUpdate = ammo;
+            }
+ 
         }
 }
 }

@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ammo"))
         {
-            gun.ammo +=30;
+            gun.ammo +=50;
             other.gameObject.SetActive(false);
         }
 
@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
             weaponInRange = true;
             GM.yourGun = other.GetComponent<Gun>();
             currentGun = weapon.tag;
+            gun.currentAmmo = gun.ammoClip;
 
         }   
     }

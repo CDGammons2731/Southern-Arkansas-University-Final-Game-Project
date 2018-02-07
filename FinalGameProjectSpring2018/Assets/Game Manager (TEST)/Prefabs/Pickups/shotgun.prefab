@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23852982054340212}
   - component: {fileID: 114875286290472788}
   - component: {fileID: 135149186918403636}
+  - component: {fileID: 82123582751655556}
   m_Layer: 0
   m_Name: shotgun
   m_TagString: shotgun
@@ -113,6 +114,86 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1650688832995802}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &82123582751655556
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1650688832995802}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114875286290472788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,8 +210,8 @@ MonoBehaviour:
   bulletSpawn: {fileID: 4400502765165280}
   CurrentWeapon: 
   SHOTGUN:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 2a7d5d2a3612eaf4fb24a06103c80767, type: 3}
+  - {fileID: 8300000, guid: d7029588f06989c42bb739bda99e1f54, type: 3}
   REVOLVER:
   - {fileID: 0}
   - {fileID: 0}
@@ -154,9 +235,9 @@ MonoBehaviour:
   bulletSpeed: 50
   fireRate: 0
   nextFire: 0
+  shotCount: 0
   spreadAgle: 10
   pelletCount: 5
-  shotCount: 0
 --- !u!135 &135149186918403636
 SphereCollider:
   m_ObjectHideFlags: 1
