@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GAMEMANAGER;
 
 public class hud : MonoBehaviour {
     public GameObject hubScreen;
     float timeLeft = 10.0f;
     bool timerIsActive = true;
-    public float health = 15.0f;
-    public float maxHealth = 30.0f;
+
+   GameManager hlth;
+    float health=100.0f;
+    float maxHealth = 100.0f;
     public GameObject needle;
     public float smooth = 2.0f;
 
@@ -36,7 +39,7 @@ public class hud : MonoBehaviour {
 	}
 
     void loseHealth(){
-        float rotationZ = 90.0f * (health / maxHealth)-90.0f;
+        float rotationZ = 270.0f * (hlth.playerHealth / maxHealth)-270.0f;
         Quaternion target = Quaternion.Euler(0,0,rotationZ);
         needle.transform.rotation = Quaternion.Slerp(needle.transform.rotation, target, smooth * Time.deltaTime);
 
