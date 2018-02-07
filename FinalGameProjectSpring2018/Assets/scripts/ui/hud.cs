@@ -10,11 +10,12 @@ public class hud : MonoBehaviour {
     float timeLeft = 10.0f;
     bool timerIsActive = true;
 
+    //Ammo Display
     Gun ammoAmt;
     public Text ammoDisplay;
 
+    //Player health bar
     GameManager hlth;
-    float health=100.0f;
     float maxHealth = 100.0f;
     public GameObject needle;
     public float smooth = 2.0f;

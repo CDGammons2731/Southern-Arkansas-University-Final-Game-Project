@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using GAMEMANAGER;
 
 public class pauseMenu : MonoBehaviour
 {
+    GameManager sa;
     public GameObject pm;
     private bool isEnabled = false;
     void Update()
@@ -28,7 +30,7 @@ public class pauseMenu : MonoBehaviour
     }
     public void SaveButton()
     {
-
+        sa.Save();
     }
     public void Resume(){
         pm.SetActive(false);
