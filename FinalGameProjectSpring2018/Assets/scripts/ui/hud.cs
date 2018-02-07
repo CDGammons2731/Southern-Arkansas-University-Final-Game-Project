@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using GAMEMANAGER;
+using GUN;
 
 public class hud : MonoBehaviour {
     public GameObject hubScreen;
     float timeLeft = 10.0f;
     bool timerIsActive = true;
 
-   GameManager hlth;
+    Gun ammoAmt;
+    public Text ammoDisplay;
+
+    GameManager hlth;
     float health=100.0f;
     float maxHealth = 100.0f;
     public GameObject needle;
@@ -36,6 +41,7 @@ public class hud : MonoBehaviour {
             }
         }*/
         loseHealth();
+        ammoDisplay.text=(ammoAmt.ammo % ammoAmt.ammoClip) +"/"+ ammoAmt.ammo;
 	}
 
     void loseHealth(){

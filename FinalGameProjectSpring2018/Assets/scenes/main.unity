@@ -441,6 +441,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1660620452273124, guid: 109d5b2a8c4314756b3c4576a314bcb7,
     type: 2}
   m_PrefabInternal: {fileID: 73085112}
+--- !u!114 &1303126161 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114523337078336394, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
+    type: 2}
+  m_PrefabInternal: {fileID: 746636714}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1501923505
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hubScreen: {fileID: 1907946867}
+  ammoDisplay: {fileID: 1303126161}
   needle: {fileID: 1562705104}
   smooth: 2
 --- !u!82 &1501923513
