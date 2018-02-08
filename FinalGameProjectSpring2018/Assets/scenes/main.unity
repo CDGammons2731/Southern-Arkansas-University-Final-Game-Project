@@ -224,6 +224,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1699731084}
   m_Script: {fileID: 11500000, guid: 955db66fa91084bb7af28254233e3883, type: 3}
+--- !u!114 &560876051 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114244620854000116, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
+    type: 2}
+  m_PrefabInternal: {fileID: 746636714}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &582102080 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1660620452273124, guid: 109d5b2a8c4314756b3c4576a314bcb7,
@@ -487,16 +493,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114029387329043874, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
-        type: 2}
-      propertyPath: pm
-      value: 
-      objectReference: {fileID: 582102080}
     - target: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
         type: 2}
       propertyPath: hubScreen
       value: 
       objectReference: {fileID: 854943826}
+    - target: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
+        type: 2}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 560876051}
     - target: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
         type: 2}
       propertyPath: ammoDisplay
@@ -507,6 +513,11 @@ Prefab:
       propertyPath: needle
       value: 
       objectReference: {fileID: 1562705104}
+    - target: {fileID: 114029387329043874, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
+        type: 2}
+      propertyPath: pm
+      value: 
+      objectReference: {fileID: 582102080}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c2486427e10b1a4ea374bf2d217bd1b, type: 2}
   m_IsPrefabParent: 0
