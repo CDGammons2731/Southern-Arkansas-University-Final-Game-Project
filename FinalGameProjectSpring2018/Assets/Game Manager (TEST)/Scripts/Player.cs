@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
         weaponInRange = false;
 		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f); //Delete this later
 		gunTran= GetComponentInChildren<GunTransitions>();
+        GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -104,24 +105,22 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //GM.playerHealth = health;
-       // GM.playerArmor = armor;
-        //GM.score= score;
+       
 
         if (health > 100) health = 100;
         if (weaponInRange == true)
         {
-            GM.pickupText.text = "Press F to pick up " + currentGun;
             if (Input.GetKeyDown(KeyCode.F))
             {
                 PickUpWeapon(weapon);
-               
-            }
-        }
-        else {
-            GM.pickupText.text = "";
 
+            }
+
+            if (GM.pickupText != null) { }
+            GM.pickupText.text = "Press F to pick up " + currentGun;
+       
         }
+       
 
 		if(hasWeapon==true){
 			g = GameObject.FindGameObjectWithTag (currentGun);

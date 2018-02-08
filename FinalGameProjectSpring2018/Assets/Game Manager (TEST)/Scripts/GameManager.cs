@@ -89,6 +89,7 @@ namespace GAMEMANAGER
             {
                 Destroy(gameObject);
             }
+
             //Display Stats
 			//NewSaveName.enabled = false;
 			//NewSaveName.textComponent.enabled = false;
@@ -227,9 +228,9 @@ namespace GAMEMANAGER
 
         void Update()
         {
-			if (yourGun.CurrentWeapon != null&& gunText!=null) {
-				gunText.text = yourGun.CurrentWeapon;
-			}
+			//if (yourGun.CurrentWeapon != null&& gunText!=null) {
+				//gunText.text = yourGun.CurrentWeapon;
+			//}
 			if (yourGun.ammoClip != 0) {
 				gunStat.text = (yourGun.currentAmmo) + "/" + yourGun.AmmoUpdate;
 			}
@@ -239,6 +240,7 @@ namespace GAMEMANAGER
             {
                 playerHealth = 100;
             }
+           
 
         }
 
