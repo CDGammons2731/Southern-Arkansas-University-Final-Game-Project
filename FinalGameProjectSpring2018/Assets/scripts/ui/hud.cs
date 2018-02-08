@@ -7,8 +7,9 @@ using GUN;
 
 public class hud : MonoBehaviour {
     public GameObject hubScreen;
-    float timeLeft = 10.0f;
-    bool timerIsActive = true;
+
+    public Text timer;
+    float countDown=30f;
 
     //Ammo Display
     Gun ammoAmt;
@@ -29,20 +30,12 @@ public class hud : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        /*if (timerIsActive)
-        {
-            timeLeft -= Time.deltaTime;
-            Debug.Log(+timeLeft);
-            if (timeLeft < 0)
-            {
-                timeLeft = 0;
-                timerIsActive = false;
-                hubScreen.SetActive(false);
+        countDown-=Time.deltaTime;
+        int count=(int)countDown%60;
+        timer.text=count.ToString();
 
-            }
-        }*/
         loseHealth();
-        ammoDisplay.text=(ammoAmt.ammo % ammoAmt.ammoClip) +"/"+ ammoAmt.ammo;
+        ammoDisplay.text=(ammoAmt.currentAmmo) +"/"+ ammoAmt.AmmoUpdate;
 	}
 
     void loseHealth(){
