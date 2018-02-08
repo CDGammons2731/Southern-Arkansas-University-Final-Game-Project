@@ -30,7 +30,9 @@ public class Player : MonoBehaviour
 
     public bool weaponInRange;
 	public bool hasWeapon;
+    public bool isWeapon;
     public string currentGun;
+
 
 	GunTransitions gunTran;
 
@@ -76,13 +78,9 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("shotgun") ||other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") ||other.gameObject.CompareTag("tommygun") || other.gameObject.CompareTag("railgun"))
 		{
-            gun = other.GetComponent<Gun>();
             weapon = other.gameObject;
             weaponInRange = true;
-            GM.yourGun = other.GetComponent<Gun>();
-            currentGun = weapon.tag;
-            gun.currentAmmo = gun.ammoClip;
-
+        
         }   
     }
 
@@ -112,6 +110,10 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
+                currentGun = weapon.tag;
+                gun = weapon.GetComponent<Gun>();
+                gun.currentAmmo = gun.ammoClip;
+                GM.yourGun = weapon.GetComponent<Gun>();
                 PickUpWeapon(weapon);
 
             }
