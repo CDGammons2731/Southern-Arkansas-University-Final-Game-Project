@@ -42,7 +42,7 @@ public class hud : MonoBehaviour {
             }
         }*/
         loseHealth();
-        ammoDisplay.text=(ammoAmt.ammo % ammoAmt.ammoClip) +"/"+ ammoAmt.ammo;
+        ammoDisplay.text=(ammoAmt.currentAmmo) +"/"+ ammoAmt.AmmoUpdate;
 	}
 
     void loseHealth(){
