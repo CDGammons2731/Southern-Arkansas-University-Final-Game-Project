@@ -10,6 +10,12 @@ public class pauseMenu : MonoBehaviour
     GameManager sa;
     public GameObject pm;
     private bool isEnabled = false;
+
+    private void Start()
+    {
+     
+    }
+
     void Update()
     {
         // Enable pause menu

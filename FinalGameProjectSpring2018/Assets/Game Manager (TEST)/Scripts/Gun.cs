@@ -310,7 +310,6 @@ public class Gun : MonoBehaviour {
 						GunSound.PlayOneShot (SHOTGUN [1], 0.85f);
 					}
 					StartCoroutine (ReloadWaiting ());
-					ammo -= (ammoClip - currentAmmo);
 					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
 
 				}
@@ -323,17 +322,10 @@ public class Gun : MonoBehaviour {
 						GunSound.PlayOneShot (REVOLVER [1], 0.85f);
 					}
 					StartCoroutine (ReloadWaiting ());
-					ammo -= (ammoClip - currentAmmo);
 					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
 
 				}
-				if (currentAmmo < ammoClip && ammo < ammoClip) {
-					if (REVOLVER [1] != null) {
-						GunSound.PlayOneShot (REVOLVER [1], 0.85f);
-					}
-					StartCoroutine (ReloadWaiting ());
-					currentAmmo = ammo;
-				}
+				
                     break;
             case rifle:
                     //play reload animation and sound
@@ -342,7 +334,6 @@ public class Gun : MonoBehaviour {
 						GunSound.PlayOneShot (RIFLE [1], 0.85f);
 					}
 					StartCoroutine (ReloadWaiting ());
-					ammo -= (ammoClip - currentAmmo);
 					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
 
 				}
@@ -354,7 +345,6 @@ public class Gun : MonoBehaviour {
 						GunSound.PlayOneShot (TOMMYGUN [1], 0.85f);
 					}
 					StartCoroutine (ReloadWaiting ());
-					ammo -= (ammoClip - currentAmmo);
 					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
 
 				}
@@ -365,7 +355,6 @@ public class Gun : MonoBehaviour {
 						GunSound.PlayOneShot (RAILGUN [1], 0.85f);
 					}
 					StartCoroutine (ReloadWaiting ());
-					ammo -= (ammoClip - currentAmmo);
 					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
 
 				}
@@ -380,8 +369,8 @@ public class Gun : MonoBehaviour {
     }
 
 		IEnumerator ReloadWaiting(){
-			shotCount = 0;
 			yield return new WaitForSeconds (3.0f);
+            shotCount = 0;
 		}    
         // Update is called once per frame
         void Update () {
@@ -391,18 +380,21 @@ public class Gun : MonoBehaviour {
                 if (currentAmmo <= 0 && ammo > ammoClip)
                 {
                     currentAmmo = ammoClip;
+                    AmmoUpdate = ammo;
                 }
                 if (currentAmmo <= 0 && ammo < ammoClip)
                 {
                     currentAmmo = ammo;
                 }
 
+            if (ammo < ammoClip) {
+                AmmoUpdate = ammoClip;
+            }
+
 			if (currentAmmo == 0 || currentAmmo==ammoClip) {
 				AmmoUpdate = ammo;
             }
-			if (ammo<=ammoClip) {
-				AmmoUpdate = ammo;
-			}
+			
 
 			if (Input.GetKeyDown (KeyCode.R)) {
 				reload (weapon.tag);
