@@ -41,7 +41,7 @@ public class AISpawner : MonoBehaviour {
 			Vector3 point;
 			if (RandomPoint (transform.position, range, out point)) {
 				//Debug.DrawRay (point, Vector3.up, Color.blue, 1.0f);
-				if (EnemiesNumber <= EnemiesMaxNumber) {
+				if (EnemiesNumber < EnemiesMaxNumber) {
 					Instantiate (AIToSpawn, point, Quaternion.identity);
 					EnemiesNumber++;
 				}
