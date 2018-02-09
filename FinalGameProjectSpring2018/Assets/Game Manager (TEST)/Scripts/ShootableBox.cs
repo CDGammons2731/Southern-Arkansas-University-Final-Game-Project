@@ -5,18 +5,10 @@ using GUN;
 
 public class ShootableBox : MonoBehaviour {
     //This is just a test
-    public GameObject bullet;
-
-    public int health = 50;
-    
+    public int health;
 	void Start () {
-      
+        health = 10;
 	}
-
-    private void OnCollisionEnter(Collision collision)
-    {
-      //  bullet = collision.gameObject;
-    }
 
     void Update () {
         if (health <= 0) {
