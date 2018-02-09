@@ -8,6 +8,15 @@ using GAMEMANAGER;
 
 public class pauseMenu : MonoBehaviour
 {
+    public GameObject resumeBt;
+    public GameObject optionBt;
+    public GameObject evidenceBt;
+    public GameObject quitBt;
+    public GameObject soundSlider;
+    public GameObject soundText;
+
+    bool back=false;
+
     GameManager sa;
     public GameObject pm;
     private bool isEnabled = false;
@@ -38,7 +47,6 @@ public class pauseMenu : MonoBehaviour
     }
     public void SaveButton()
     {
-      
         sa.Save();
     }
     public void Resume(){
@@ -46,6 +54,23 @@ public class pauseMenu : MonoBehaviour
         pm.SetActive(false);
         isEnabled = false;
         Time.timeScale = 1;
+    }
+    public void Option(){
+        if(!back){
+            resumeBt.SetActive(false);
+            evidenceBt.SetActive(false);
+            quitBt.SetActive(false);
+            soundSlider.SetActive(true);
+            soundText.SetActive(true);
+            back=true;
+        }
+        else{
+            resumeBt.SetActive(true);
+            evidenceBt.SetActive(true);
+            quitBt.SetActive(true);
+            soundSlider.SetActive(false);
+            soundText.SetActive(false);
+        }        
     }
     public void Quit()
     {
