@@ -12,4 +12,5 @@ public class Arrangement {
 	public Node pathExitNode;
 	public Vector2 doorEntry;
 	public bool markForRemoval = false;
+	public bool needsReqDoor = true;
 }
