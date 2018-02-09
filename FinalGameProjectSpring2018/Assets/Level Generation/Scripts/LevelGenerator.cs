@@ -373,7 +373,8 @@ public class LevelGenerator : MonoBehaviour {
 						}
 						foreach (DoorInfo other in openDoors) {
 							Material mat;
-							if (doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.doorEntry || doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.pathExitPt) {
+							if (doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.doorEntry || doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.pathExitPt && room.needsReqDoor) {
+								room.needsReqDoor = false;
 								mat = requiredDoor;
 							} else {
 								mat = connectedDoor;
