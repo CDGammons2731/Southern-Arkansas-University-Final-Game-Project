@@ -73,7 +73,7 @@ public class LevelGenerator : MonoBehaviour {
 			for (int i = 0; i < sideRooms; i++) {
 				if (openDoors.Count > 0) {
 					DoorInfo door = openDoors [Random.Range (0, openDoors.Count)];
-					Arrangement r = PlaceRoom (grid [(int)(door.loc.x+door.face.x), (int)(door.loc.y+door.face.y)], door.loc - door.face, false);
+					Arrangement r = PlaceRoom (grid [(int)(door.loc.x), (int)(door.loc.y)], door.loc - door.face, false);
 					if (r != null) {
 						roomsToPlace.Add (r);
 						InstantiateRooms (roomsToPlace);
