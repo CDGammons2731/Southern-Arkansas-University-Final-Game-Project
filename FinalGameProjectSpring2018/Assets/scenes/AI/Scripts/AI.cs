@@ -8,11 +8,8 @@ public class AI : MonoBehaviour
 
 	public Transform destination;
 	public Transform DatDerBadGoober;
-	public GameObject bullet;
-	public GameObject pellet;
 	private NavMeshAgent agent;
-	public float Health = 100.0f;
-	//public int bonusDamage = 2;
+
 
 	void Start(){
 
@@ -24,37 +21,24 @@ public class AI : MonoBehaviour
         //destination = GameObject.Find("player").transform;
         DatDerBadGoober = GameObject.FindGameObjectWithTag("player").transform;
         //DatDerBadGoober = GameObject.Find ("player").transform;
-		//bullet = GameObject.FindGameObjectWithTag("bullet");
-		//pellet = GameObject.FindGameObjectWithTag("pellet");
+
     }
 
 	void Update () 
 	{
+
 		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
 		//Debug.Log ("Distance to AI: " + dist);
 
-		if (dist <= 5) {
+		if (dist <= 8) {
 			agent = gameObject.GetComponent<NavMeshAgent> ();
-			agent.SetDestination (destination.position);
+			if (dist > 5) {
+				agent.SetDestination (destination.position);
+			} else {
+				agent.SetDestination (transform.position);
+			}
 		}
 	}
-
-	/*void OnCollisionEnter(Collision Col){
-		if (bullet) {
-			if (Health >= 0) {
-				Health -= 11.273846f;
-			} else {
-				Health = 0;
-			}
-		}
-		if (pellet) {
-			if (Health >= 0) {
-				Health -= 11.273846f;
-			} else {
-				Health = 0;
-			}
-		}
-	}*/
 
 
 }
