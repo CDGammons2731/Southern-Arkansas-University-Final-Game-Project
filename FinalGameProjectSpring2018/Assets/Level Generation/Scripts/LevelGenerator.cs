@@ -8,6 +8,7 @@ public class LevelGenerator : MonoBehaviour {
 	public int minDistance = 5;
 	public int borderDistance = 5;
 	public float gridScale = 4f;
+	public int sideRooms = 100;
 
 	public Node[,] grid;
 	Node start;
@@ -68,6 +69,21 @@ public class LevelGenerator : MonoBehaviour {
 			}
 			roomsToPlace.Add(PlaceRoom(end, roomsToPlace[roomsToPlace.Count-1].pathExitPt, false));
 			InstantiateRooms(roomsToPlace);
+			roomsToPlace.Clear ();
+			for (int i = 0; i < sideRooms; i++) {
+				if (openDoors.Count > 0) {
+					DoorInfo door = openDoors [Random.Range (0, openDoors.Count)];
+					Arrangement r = PlaceRoom (grid [(int)(door.loc.x+door.face.x), (int)(door.loc.y+door.face.y)], door.loc - door.face, false);
+					if (r != null) {
+						roomsToPlace.Add (r);
+						InstantiateRooms (roomsToPlace);
+						roomsToPlace.Clear ();
+					} else {
+						openDoors.Remove (door);
+					}
+				} else
+					break;
+			}
 			RemoveExcessNavmesh();
 		} else {
 			Debug.LogWarning("Grid size not large enough for start and end rooms to be put on the grid! Aborting level generation");
@@ -193,8 +209,12 @@ public class LevelGenerator : MonoBehaviour {
 		foreach (Arrangement pot in potential) {
 			for (int i = (int)(pot.sourceNode.x-pot.offset.x); i < (int)(pot.sourceNode.x-pot.offset.x+pot.original.dimensions.x); i++) {
 				for (int j = (int)(pot.sourceNode.y-pot.offset.y); j < (int)(pot.sourceNode.y-pot.offset.y+pot.original.dimensions.y); j++) {
+					//Debug.Log ("Room " + pot.original.name + " | Point: (" + i + "," + j + ")");
 					if (i < gX && j < gY && i >= 0 && j >= 0) {
 						if ((isPathed && path.Contains(grid[i,j]) && path.IndexOf(grid[i,j]) > path.IndexOf(pot.pathExitNode))) {
+							pot.markForRemoval=true;
+						}
+						if (grid[i,j].occupied == true) {
 							pot.markForRemoval=true;
 						}
 					} else {
@@ -217,8 +237,9 @@ public class LevelGenerator : MonoBehaviour {
 		/*/
 		if (potential.Count == 0) {
 			InstantiateRooms(roomsToPlace);
+			return null;
 		}
-		Arrangement use = potential[Random.Range(0,potential.Count-1)];
+		Arrangement use = potential[Random.Range(0,potential.Count)];
 		if (isPathed) {
 			path.RemoveRange(0, path.IndexOf(use.pathExitNode));
 		}
