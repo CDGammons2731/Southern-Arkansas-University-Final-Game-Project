@@ -29,7 +29,10 @@ public class hud : MonoBehaviour {
         timer.text=count.ToString();
 
         loseHealth();
-        ammoDisplay.text=(ammoAmt.currentAmmo) +"/"+ ammoAmt.AmmoUpdate;
+        if (ammoAmt.ammoClip != 0) {
+			ammoDisplay.text= (ammoAmt.currentAmmo) + "/" + ammoAmt.AmmoUpdate;
+		}
+        
 	}
 
     void loseHealth(){
