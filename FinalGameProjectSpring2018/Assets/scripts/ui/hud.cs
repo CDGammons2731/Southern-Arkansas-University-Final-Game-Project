@@ -21,12 +21,6 @@ public class hud : MonoBehaviour {
     public GameObject needle;
     public float smooth = 2.0f;
 
-
-	// Use this for initialization
-	void Start () {
-        
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
