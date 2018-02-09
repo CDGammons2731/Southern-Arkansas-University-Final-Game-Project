@@ -16,7 +16,7 @@ public class AISpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		SpawnActivator = Random.Range (0.0f, MaxRange);
-		Debug.Log (SpawnActivator);
+		//Debug.Log (SpawnActivator);
 		if (SpawnActivator > NumberToActivate) {
 			SpawnActivateRandomizer = true;
 		}
