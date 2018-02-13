@@ -80,6 +80,7 @@ public class LevelGenerator : MonoBehaviour {
 						roomsToPlace.Clear ();
 					} else {
 						openDoors.Remove (door);
+						i--;
 					}
 				} else
 					break;

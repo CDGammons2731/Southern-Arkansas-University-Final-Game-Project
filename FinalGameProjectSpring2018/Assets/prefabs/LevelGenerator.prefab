@@ -52,8 +52,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1115706225110842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 150, y: 0, z: 150}
-  m_LocalScale: {x: 300, y: 1, z: 300}
+  m_LocalPosition: {x: 750, y: 0, z: 750}
+  m_LocalScale: {x: 1500, y: 1, z: 1500}
   m_Children: []
   m_Father: {fileID: 4656038948250638}
   m_RootOrder: 0
@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246343119164798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4258944211017304}
@@ -78,7 +78,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1115706225110842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -138,7 +138,8 @@ MonoBehaviour:
   gY: 75
   minDistance: 15
   borderDistance: 10
-  gridScale: 4
+  gridScale: 20
+  sideRooms: 100
   connectedDoor: {fileID: 2100000, guid: a904b564431b19d4d92725539bf840cd, type: 2}
   requiredDoor: {fileID: 2100000, guid: 67219996e64c3964b9ae3e14671f3dc4, type: 2}
   gridVisual: {fileID: 1886767545003004, guid: d9d0407938cdc424d847a3a48ff5a81c, type: 2}
