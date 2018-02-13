@@ -15,7 +15,7 @@ public class AIDamage : MonoBehaviour {
 		Debug.Log (Health);
 	}
 
-	void OnTriggerEnter(Collider other){
+	void OnCollisionEnter(Collision collision){
 			if (Health >= 0) {
 				Health -= 10;
 			} else {
