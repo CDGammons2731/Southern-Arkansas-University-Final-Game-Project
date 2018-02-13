@@ -16,16 +16,13 @@ public class pauseMenu : MonoBehaviour
     public GameObject soundText;
 
     bool back=false;
+    bool isPaused=false;
+    
 
     GameManager sa;
     public GameObject pm;
     private bool isEnabled = false;
 
-
-    private void Start()
-    {
-     
-    }
 
     void Update()
     {
@@ -34,6 +31,8 @@ public class pauseMenu : MonoBehaviour
         {
             pm.SetActive(true);
             Reset();
+            back=false;
+            isPaused=true;
             isEnabled = true;
             Time.timeScale = 0;
            
@@ -44,6 +43,12 @@ public class pauseMenu : MonoBehaviour
             pm.SetActive(false);
             isEnabled = false;
             Time.timeScale = 1;
+        }
+        if(isPaused){
+            Cursor.lockCursor=true;
+        }
+        else{
+            Cursor.visible=false;
         }
     }
     public void SaveButton()
@@ -57,6 +62,7 @@ public class pauseMenu : MonoBehaviour
         Time.timeScale = 1;
     }
     public void Option(){
+        
         if(!back){
             resumeBt.SetActive(false);
             evidenceBt.SetActive(false);
@@ -87,6 +93,7 @@ public class pauseMenu : MonoBehaviour
         soundSlider.SetActive(false);
         soundText.SetActive(false);
     }
+    
 
 }
 
