@@ -33,6 +33,7 @@ public class pauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !isEnabled)
         {
             pm.SetActive(true);
+            Reset();
             isEnabled = true;
             Time.timeScale = 0;
            
@@ -78,7 +79,14 @@ public class pauseMenu : MonoBehaviour
         SceneManager.LoadScene("startMenu", LoadSceneMode.Single);//loads start menu
         
     }
-    
+    public void Reset(){
+        resumeBt.SetActive(true);
+        optionBt.SetActive(true);
+        evidenceBt.SetActive(true);
+        quitBt.SetActive(true);
+        soundSlider.SetActive(false);
+        soundText.SetActive(false);
+    }
 
 }
 
