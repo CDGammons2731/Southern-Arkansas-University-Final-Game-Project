@@ -12,7 +12,7 @@ public class AIDamage : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (Health);
+		//Debug.Log (Health);
 	}
 
 	void OnCollisionEnter(Collision collision){
