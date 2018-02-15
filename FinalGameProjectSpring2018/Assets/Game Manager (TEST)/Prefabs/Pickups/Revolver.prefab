@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 135834409274202924}
   - component: {fileID: 54462977544117522}
   - component: {fileID: 82751254917129402}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Revolver
   m_TagString: revolver
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ MonoBehaviour:
   weapon: {fileID: 1544126815664578}
   bullet: {fileID: 1025971916029544, guid: 04f808e235767cd4994bcf5003c07387, type: 2}
   bulletSpawn: {fileID: 4361848699426286}
-  CurrentWeapon: 
+  CurrentWeapon: revolver
   SHOTGUN:
   - {fileID: 0}
   - {fileID: 0}
@@ -834,18 +834,20 @@ MonoBehaviour:
   RAILGUN:
   - {fileID: 0}
   - {fileID: 0}
-  GunSound: {fileID: 0}
+  GunSound: {fileID: 82751254917129402}
   equipped: 0
+  canShoot: 0
   ammo: 0
-  ammoClip: 0
-  ammoMax: 0
+  ammoClip: 7
+  ammoMax: 35
   currentAmmo: 0
-  damage: 0
+  damage: 20
   rangeMult: 2
   bulletSpeed: 30
-  fireRate: 0
+  fireRate: 0.35
   nextFire: 0
   shotCount: 0
+  AmmoUpdate: 0
   spreadAgle: 0
   pelletCount: 0
 --- !u!135 &135834409274202924

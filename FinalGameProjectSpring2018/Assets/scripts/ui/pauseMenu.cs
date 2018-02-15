@@ -16,7 +16,7 @@ public class pauseMenu : MonoBehaviour
     public GameObject soundText;
 
     bool back=false;
-    bool isPaused=false;
+  
     
 
     GameManager sa;
@@ -32,7 +32,6 @@ public class pauseMenu : MonoBehaviour
             pm.SetActive(true);
             Reset();
             back=false;
-            isPaused=true;
             isEnabled = true;
             Time.timeScale = 0;
            
@@ -44,12 +43,7 @@ public class pauseMenu : MonoBehaviour
             isEnabled = false;
             Time.timeScale = 1;
         }
-        if(isPaused){
-            Cursor.lockCursor=true;
-        }
-        else{
-            Cursor.visible=false;
-        }
+        
     }
     public void SaveButton()
     {
