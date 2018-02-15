@@ -5,26 +5,25 @@ using GUN;
 
 public class AIDamage : MonoBehaviour {
 
-	//private Gun gun;
-	public float Health = 100.0f;
-	//public int bonusDamage = 2;
+	private Gun gun;
+	public int Health = 100;
+	public int bonusDamage = 2;
 
-
-	// Update is called once per frame
-	void Update () {
-		//Debug.Log (Health);
+	void Update(){
+		
 	}
 
 	void OnCollisionEnter(Collision collision){
-		if (collision.transform.gameObject.name == "bullet") {
+		if (collision.transform.gameObject.tag == "bullet") {
 			if (Health >= 0) {
-				Health -= 10;
+				Debug.Log ("Health: " + Health);
+				Health -= gun.damage;
 			} else {
 				Health = 0;
 			}
-		} else if (collision.transform.gameObject.name == "pellet") {
+		} else if (collision.transform.gameObject.tag == "pellet") {
 			if (Health >= 0) {
-				Health -= 10;
+				Health -= gun.damage;
 			} else {
 				Health = 0;
 			}

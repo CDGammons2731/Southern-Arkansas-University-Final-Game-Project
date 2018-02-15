@@ -4,20 +4,20 @@
 
 		_ac("alpha cutoff for textures", Range(.0,1)) = 0
 		_acm("alpha cutoff for map", Range(.0,1)) = 0
-		_t1("texture in black", 2D) = "white" {}
-	_tint1("Tint1", Color) = (1.0, 1, 1, 0)
+		_t1("Artists Texture", 2D) = "white" {}
+	_tint1("Artists Texture", Color) = (1.0, 1, 1, 0)
 
 		_t2("texture in red", 2D) = "white" {}
-	_tint2("Tint2", Color) = (1.0, 1, 1, 0)
-		_rc("amplify red", Range(1,80)) = 0.0
+	_tint2("Crosshatch Texture", Color) = (1.0, 1, 1, 0)
+		_rc("Opacity", Range(1,80)) = 0.0
 
 		_t3("texture in blue", 2D) = "white" {}
-	_tint3("Tint3", Color) = (1.0,1,1,0)
-		_rb("amplify blue", Range(1,80)) = 0.0
+	_tint3("Artists Texture", Color) = (1.0,1,1,0)
+		_rb("Opacity", Range(1,80)) = 0.0
 
 		_t5("texture in green", 2D) = "white" {}
-	_tint5("Tint4", Color) = (1.0,1,1,0)
-		_rg("amplify green", Range(1,80)) = 0.0
+	_tint5("Crosshatch Texture", Color) = (1.0,1,1,0)
+		_rg("Opacity", Range(1,80)) = 0.0
 
 		_t4("texture map", 2D) = "white" {}
 
@@ -117,7 +117,6 @@
 						}
 						pix.a += tex2D(_t5, IN.uv_t5).a*f;
 					}
-
 
 				}
 			}
