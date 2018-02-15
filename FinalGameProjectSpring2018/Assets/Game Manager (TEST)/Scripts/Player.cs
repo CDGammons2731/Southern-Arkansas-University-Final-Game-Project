@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public AudioClip Healed;
     public AudioClip HeartBeat;
     public AudioClip Ticking;
+    public AudioSource audioSource;
 
     private int health;
     private int armor;
@@ -38,11 +39,13 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+     
         rb = GetComponent<Rigidbody>();
         health = 0;
         armor = 0;
         score = 0;
         name = "Player";
+
 
         weaponInRange = false;
 		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f); //Delete this later

@@ -228,6 +228,7 @@ namespace GAMEMANAGER
 
         void Update()
         {
+          
 			if (yourGun.CurrentWeapon != null&& gunText!=null) {
 				gunText.text = yourGun.CurrentWeapon;
 			}
