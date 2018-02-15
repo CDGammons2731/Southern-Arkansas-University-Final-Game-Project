@@ -10,6 +10,8 @@ public class LevelGenerator : MonoBehaviour {
 	public float gridScale = 4f;
 	public int sideRooms = 100;
 
+	public bool debugging = false;
+
 	public Node[,] grid;
 	Node start;
 	Node end;
@@ -159,7 +161,7 @@ public class LevelGenerator : MonoBehaviour {
 			}
 		}
 		if (potential.Count == 0) {
-			Debug.Log ("Failure at Step 1 for Room "+roomsToPlace.Count);
+			if (debugging) Debug.Log ("Failure at Step 1 for Room "+roomsToPlace.Count);
 		}
 		/*/
 		/// Step 2: Check every door for every arrangement, see which door leads the furthest along the path, if there aren't any, we don't use that arrangement
@@ -202,7 +204,7 @@ public class LevelGenerator : MonoBehaviour {
 			}
 		}
 		if (potential.Count == 0) {
-			Debug.Log ("Failure at Step 2 for Room "+roomsToPlace.Count);
+			if (debugging)Debug.Log ("Failure at Step 2 for Room "+roomsToPlace.Count);
 		}
 		/*/
 		/// Step 3: Check every arrangement for collisions with other rooms or any path nodes farther along than where we are, remove the arrangements if there are any
@@ -231,7 +233,7 @@ public class LevelGenerator : MonoBehaviour {
 			}
 		}
 		if (potential.Count == 0) {
-			Debug.Log ("Failure at Step 3 for Room "+roomsToPlace.Count);
+			if (debugging)Debug.Log ("Failure at Step 3 for Room "+roomsToPlace.Count);
 		}
 		/*/
 		/// Step 4: Clean up eaten path, mark occupied grid spots as occupied, get door information

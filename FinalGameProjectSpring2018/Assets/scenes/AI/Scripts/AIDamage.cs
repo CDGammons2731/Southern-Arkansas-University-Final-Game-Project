@@ -12,14 +12,22 @@ public class AIDamage : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (Health);
+		//Debug.Log (Health);
 	}
 
 	void OnCollisionEnter(Collision collision){
+		if (collision.transform.gameObject.name == "bullet") {
 			if (Health >= 0) {
 				Health -= 10;
 			} else {
 				Health = 0;
 			}
+		} else if (collision.transform.gameObject.name == "pellet") {
+			if (Health >= 0) {
+				Health -= 10;
+			} else {
+				Health = 0;
+			}
+		}
 		}
 }
