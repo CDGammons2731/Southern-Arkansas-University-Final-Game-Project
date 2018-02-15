@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
             }
 
             if (GM.pickupText != null) { }
-            GM.pickupText.text = "Press F to pick up " + currentGun;
+
        
         }
        

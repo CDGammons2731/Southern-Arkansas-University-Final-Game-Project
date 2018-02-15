@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114875286290472788}
   - component: {fileID: 135149186918403636}
   - component: {fileID: 82123582751655556}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: shotgun
   m_TagString: shotgun
   m_Icon: {fileID: 0}
@@ -226,6 +226,7 @@ MonoBehaviour:
   - {fileID: 0}
   GunSound: {fileID: 0}
   equipped: 0
+  canShoot: 0
   ammo: 0
   ammoClip: 0
   ammoMax: 0
@@ -236,6 +237,7 @@ MonoBehaviour:
   fireRate: 0
   nextFire: 0
   shotCount: 0
+  AmmoUpdate: 0
   spreadAgle: 10
   pelletCount: 5
 --- !u!135 &135149186918403636

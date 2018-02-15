@@ -220,7 +220,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4835515791347960}
-  - component: {fileID: 20575736728241258}
   m_Layer: 0
   m_Name: left1
   m_TagString: Untagged
@@ -293,7 +292,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4167499577289108}
-  - component: {fileID: 20368248149995970}
   m_Layer: 0
   m_Name: back1
   m_TagString: Untagged
@@ -359,7 +357,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4247422092867946}
-  - component: {fileID: 20572133745319308}
   m_Layer: 0
   m_Name: bottom1
   m_TagString: Untagged
@@ -442,7 +439,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118655212612754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.498522, y: 16.085587, z: -27.690426}
+  m_LocalPosition: {x: 4990.0576, y: 12.687537, z: -6.71601}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4646359534728930}
@@ -823,114 +820,6 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!20 &20368248149995970
-Camera:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1805037969794788}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 600000
-  field of view: 37.84922
-  orthographic: 1
-  orthographic size: 347.2832
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!20 &20572133745319308
-Camera:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1876724659400102}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 600000
-  field of view: 37.84922
-  orthographic: 1
-  orthographic size: 345.54413
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!20 &20575736728241258
-Camera:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1739734697740554}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 600000
-  field of view: 37.84922
-  orthographic: 1
-  orthographic size: 343.05017
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
@@ -1923,6 +1812,7 @@ MonoBehaviour:
   Healed: {fileID: 0}
   HeartBeat: {fileID: 0}
   Ticking: {fileID: 0}
+  audioSource: {fileID: 0}
   gunOffset: {x: 0, y: 0, z: 0}
   holdingPosition: {fileID: 1807043407959670}
   weapon: {fileID: 1933943747524044}
