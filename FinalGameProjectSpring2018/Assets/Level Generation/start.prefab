@@ -606,7 +606,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118655212612754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4942.8667, y: 59.977043, z: -79.965614}
+  m_LocalPosition: {x: 412.92636, y: 14.84807, z: 1285.2007}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4646359534728930}
@@ -2405,9 +2405,9 @@ MonoBehaviour:
   m_WalkSpeed: 12
   m_RunSpeed: 15
   m_RunstepLenghten: 0.93
-  m_JumpSpeed: 20
+  m_JumpSpeed: 15
   m_StickToGroundForce: 10
-  m_GravityMultiplier: 2
+  m_GravityMultiplier: 3.5
   m_MouseLook:
     XSensitivity: 3
     YSensitivity: 2
@@ -2510,7 +2510,6 @@ MonoBehaviour:
   Healed: {fileID: 0}
   HeartBeat: {fileID: 0}
   Ticking: {fileID: 0}
-  audioSource: {fileID: 0}
   gunOffset: {x: 0, y: 0, z: 0}
   holdingPosition: {fileID: 1807043407959670}
   weapon: {fileID: 0}
