@@ -79,6 +79,7 @@ public class Gun : MonoBehaviour {
     public void FireWeapon(string type)
     {
 		type = CurrentWeapon;
+        bulletSpeed = 200;
         switch (type)
         {
 		case shotgun:
