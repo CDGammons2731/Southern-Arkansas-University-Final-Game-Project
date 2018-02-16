@@ -346,7 +346,6 @@ MonoBehaviour:
   Healed: {fileID: 0}
   HeartBeat: {fileID: 0}
   Ticking: {fileID: 0}
-  audioSource: {fileID: 0}
   gunOffset: {x: 0, y: 0, z: 0}
   holdingPosition: {fileID: 1828311899285564}
   weapon: {fileID: 0}
@@ -387,7 +386,7 @@ MonoBehaviour:
   m_IsWalking: 0
   m_WalkSpeed: 6
   m_RunSpeed: 10
-  m_RunstepLenghten: 0.7
+  m_RunstepLenghten: 0.675
   m_JumpSpeed: 10
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
@@ -467,7 +466,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     VerticaltoHorizontalRatio: 2
   m_JumpBob:
-    BobDuration: 0.2
+    BobDuration: 0.9
     BobAmount: 0.1
   m_StepInterval: 5
   m_FootstepSounds:

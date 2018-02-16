@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     public AudioClip Healed;
     public AudioClip HeartBeat;
     public AudioClip Ticking;
-    public AudioSource audioSource;
 
     private int health;
     private int armor;
@@ -51,6 +50,8 @@ public class Player : MonoBehaviour
 		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f); //Delete this later
 		gunTran= GetComponentInChildren<GunTransitions>();
         GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
+     
+      
     }
 
     void OnTriggerEnter(Collider other)

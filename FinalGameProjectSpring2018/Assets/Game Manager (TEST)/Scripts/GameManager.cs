@@ -43,6 +43,7 @@ namespace GAMEMANAGER
         public AudioClip VictoryMusic;
         public AudioClip DeathMusic;
         public AudioClip CreditMusic;
+        public AudioSource audiosource;
 
 
         [Header("Player Info")]
@@ -89,11 +90,9 @@ namespace GAMEMANAGER
             {
                 Destroy(gameObject);
             }
-
-            //Display Stats
-			//NewSaveName.enabled = false;
-			//NewSaveName.textComponent.enabled = false;
-			//NewSaveName.image.enabled = false;
+            audiosource = GetComponent<AudioSource>();
+            audiosource.PlayOneShot(ThemeMusic, 0.5f);
+       
         }
 			
 
