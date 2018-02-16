@@ -44,7 +44,7 @@ public class Gun : MonoBehaviour {
 	public int currentAmmo; //keep track of current ammo
     public int damage; //per bullet @TODO: assign damage later
     public int rangeMult =2; //multiply damage for closer range? TBA
-    public int bulletSpeed = 30;
+    public int bulletSpeed = 200;
     public float fireRate;
     public float nextFire;
     public int shotCount; //keep track of bullets shot, implement for reloading and for UI purposes
