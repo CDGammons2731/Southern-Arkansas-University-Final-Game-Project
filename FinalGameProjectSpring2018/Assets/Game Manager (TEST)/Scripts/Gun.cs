@@ -36,6 +36,7 @@ public class Gun : MonoBehaviour {
     public bool equipped;
     public bool canShoot;
 
+
     //All your firearm needs...
     [Header("Gun Info")]
     public int ammo;
@@ -80,6 +81,7 @@ public class Gun : MonoBehaviour {
     {
 		type = CurrentWeapon;
         bulletSpeed = 200;
+        
         switch (type)
         {
 		case shotgun:
@@ -184,6 +186,7 @@ public class Gun : MonoBehaviour {
                     }
                     break;
             default:
+
                 fireRate = 0.5f;
                 ammo = 0;
                 ammoClip = 0;
@@ -206,6 +209,7 @@ public class Gun : MonoBehaviour {
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 
 
+
                 //play sound
                 if (RAILGUN[0] != null)
                 {
@@ -216,12 +220,13 @@ public class Gun : MonoBehaviour {
                 // Destroy the bullet after 2 seconds
                 Destroy(shot, 2.0f);
             }
+
         }
 
         void Rifle(int ammo, int clip) {
             if (ammo > 0)
             {
-                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);  
+                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 
 
@@ -234,8 +239,9 @@ public class Gun : MonoBehaviour {
 
                 // Destroy the bullet after 2 seconds
                 Destroy(shot, 2.0f);
-            
-        }
+
+            }
+         
     }
 	void Revolver(int ammo, int clip) {
             if (ammo > 0)
