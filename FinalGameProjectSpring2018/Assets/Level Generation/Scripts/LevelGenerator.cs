@@ -24,6 +24,8 @@ public class LevelGenerator : MonoBehaviour {
 	public GameObject gridVisual;
 	public GameObject navRemover;
 
+	public GameObject unlockedDoor;
+
 	public LevelGenCategory[] categories;
 	/*
 	// 0  - Normal Room
@@ -88,6 +90,15 @@ public class LevelGenerator : MonoBehaviour {
 					break;
 			}
 			RemoveExcessNavmesh();
+			DoorInfo[] dGrp = FindObjectsOfType<DoorInfo>();
+			for (int i = dGrp.Length -1; i >= 0; i--) {
+				if (!dGrp[i].MarkForRemoval) {
+					dGrp[i].PlaceDoorObject(unlockedDoor);
+				}
+				if (dGrp[i].MarkForRemoval) {
+					Destroy(dGrp[i].gameObject);
+				}
+			}
 		} else {
 			Debug.LogWarning("Grid size not large enough for start and end rooms to be put on the grid! Aborting level generation");
 		}

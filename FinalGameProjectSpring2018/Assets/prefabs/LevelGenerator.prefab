@@ -140,11 +140,14 @@ MonoBehaviour:
   borderDistance: 10
   gridScale: 20
   sideRooms: 100
+  debugging: 0
   connectedDoor: {fileID: 2100000, guid: a904b564431b19d4d92725539bf840cd, type: 2}
   requiredDoor: {fileID: 2100000, guid: 67219996e64c3964b9ae3e14671f3dc4, type: 2}
   gridVisual: {fileID: 1886767545003004, guid: d9d0407938cdc424d847a3a48ff5a81c, type: 2}
   navRemover: {fileID: 1773123860463978, guid: aa7c71b930392d34b91449ab1e7af694, type: 2}
+  unlockedDoor: {fileID: 1466096836412968, guid: 0b10e0f53f37a4f4a87175dcc6414efc,
+    type: 2}
   categories:
   - {fileID: 11400000, guid: dce71dfddb57f9b4a9c0b754e4a1137a, type: 2}
-  - {fileID: 11400000, guid: 5bae87daa1e47d94e9c1ab56c94d95bb, type: 2}
+  - {fileID: 11400000, guid: adb29e1db877006459d1a5840be2384a, type: 2}
   - {fileID: 11400000, guid: f3e9c2cc2daf69343b74b17e0eb8f596, type: 2}

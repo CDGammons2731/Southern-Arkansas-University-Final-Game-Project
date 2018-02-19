@@ -26,4 +26,14 @@ public class DoorInfo : MonoBehaviour {
 			return true;
 		} else return false;
 	}
+
+	public void PlaceDoorObject(GameObject d) {
+		if (pair != null) {
+			GameObject _d = Instantiate(d);
+			_d.transform.position = (gameObject.transform.position + pair.gameObject.transform.position)/2f;
+			_d.transform.LookAt(transform);
+			MarkForRemoval = true;
+			pair.MarkForRemoval = true;
+		}
+	}
 }
