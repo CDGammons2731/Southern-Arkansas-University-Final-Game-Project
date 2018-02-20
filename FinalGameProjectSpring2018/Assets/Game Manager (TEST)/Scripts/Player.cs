@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
 		{
             weapon = other.gameObject;
             weaponInRange = true;
+            GM.pickupText.text = ("Press F to pickup " + weapon.tag);
         
         }   
     }
@@ -133,7 +134,7 @@ public class Player : MonoBehaviour
 			g.transform.position = holdingPosition.transform.position;
 			g.transform.rotation = holdingPosition.transform.rotation;
 			gun.FireWeapon (currentGun);
-
+            GM.pickupText.text = "";
         }
 
         if (Input.GetKeyDown(KeyCode.B)) {

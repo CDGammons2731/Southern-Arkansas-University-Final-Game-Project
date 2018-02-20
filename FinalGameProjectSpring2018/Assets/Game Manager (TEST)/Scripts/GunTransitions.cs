@@ -47,9 +47,9 @@ public class GunTransitions : MonoBehaviour {
 
         if ((Input.GetMouseButton(0) && gameObject.GetComponentInParent<Camera>().gameObject.GetComponentInParent<Player>().currentGun == "rifle" )|| (Input.GetMouseButton(0)&& gameObject.GetComponentInParent<Camera>().gameObject.GetComponentInParent<Player>().currentGun == "tommygun"))
         {
-            isRifle = !isRifle;
-            animator.SetBool("isRifle", isRifle);
-            StartCoroutine(Rifle_RecoilTime());
+           // isRifle = !isRifle;
+           // animator.SetBool("isRifle", isRifle);
+           // StartCoroutine(Rifle_RecoilTime());
 
         }
 
