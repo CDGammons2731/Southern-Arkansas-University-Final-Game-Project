@@ -77,14 +77,18 @@ public class LevelGenerator : MonoBehaviour {
 			for (int i = 0; i < sideRooms; i++) {
 				if (openDoors.Count > 0) {
 					DoorInfo door = openDoors [Random.Range (0, openDoors.Count)];
-					Arrangement r = PlaceRoom (grid [(int)(door.loc.x), (int)(door.loc.y)], door.loc - door.face, false);
-					if (r != null) {
-						roomsToPlace.Add (r);
-						InstantiateRooms (roomsToPlace);
-						roomsToPlace.Clear ();
-					} else {
-						openDoors.Remove (door);
-						i--;
+					if (((int)door.loc.x >= 0 && (int)door.loc.x < gX) && ((int)door.loc.y >= 0 && (int)door.loc.y < gY)) {
+						Debug.Log (gX + " " + door.loc.x);
+						Debug.Log (gY + " " + door.loc.y);
+						Arrangement r = PlaceRoom (grid [(int)(door.loc.x), (int)(door.loc.y)], door.loc - door.face, false);
+						if (r != null) {
+							roomsToPlace.Add (r);
+							InstantiateRooms (roomsToPlace);
+							roomsToPlace.Clear ();
+						} else {
+							openDoors.Remove (door);
+							i--;
+						}
 					}
 				} else
 					break;
