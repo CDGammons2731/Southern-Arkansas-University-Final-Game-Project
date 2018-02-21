@@ -19,6 +19,8 @@ public class startMenu : MonoBehaviour {
     public GameObject name;
     public GameObject name2;
     public GameObject name3;
+    public GameObject credits;
+    public GameObject exit;
     
 
     
@@ -38,6 +40,8 @@ public class startMenu : MonoBehaviour {
         newGame2.SetActive(true);
         newGame3.SetActive(true);
         start.SetActive(false);
+        credits.SetActive(false);
+        exit.SetActive(false);
 
 
 
@@ -50,6 +54,9 @@ public class startMenu : MonoBehaviour {
     {
         //credits.SetActive(true);
 
+    }
+    public void ExitButton(){
+        Application.Quit();
     }
     public  void newGameBt1(){
        
