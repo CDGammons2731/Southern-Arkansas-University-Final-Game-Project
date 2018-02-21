@@ -394,6 +394,12 @@ public class Gun : MonoBehaviour {
                     currentAmmo = ammo;
                 }
 
+            if (currentAmmo ==0 && ammo ==0)
+            {
+                currentAmmo = 0;
+                AmmoUpdate = ammoClip;
+            }
+
             if (ammo < ammoClip) {
                 AmmoUpdate = ammoClip;
             }

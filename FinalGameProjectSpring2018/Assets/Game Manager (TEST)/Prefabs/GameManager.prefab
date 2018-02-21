@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1493710648539564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4940.426, y: 80.79533, z: -97.14734}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -141,6 +141,7 @@ MonoBehaviour:
   VictoryMusic: {fileID: 0}
   DeathMusic: {fileID: 0}
   CreditMusic: {fileID: 0}
+  audiosource: {fileID: 0}
   playerHealth: 100
   playerArmor: 0
   score: 0

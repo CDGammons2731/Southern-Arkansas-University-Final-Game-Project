@@ -606,7 +606,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118655212612754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 298.2458, y: 10.644066, z: 589.4553}
+  m_LocalPosition: {x: 630.08856, y: 1645.9894, z: -1469.0323}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4646359534728930}
@@ -2402,8 +2402,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsWalking: 0
-  m_WalkSpeed: 12
-  m_RunSpeed: 15
+  m_WalkSpeed: 14
+  m_RunSpeed: 20
   m_RunstepLenghten: 0.16
   m_JumpSpeed: 15
   m_StickToGroundForce: 10
@@ -2445,7 +2445,7 @@ MonoBehaviour:
   m_UseHeadBob: 1
   m_HeadBob:
     HorizontalBobRange: 0.05
-    VerticalBobRange: 0.1
+    VerticalBobRange: 0.055
     Bobcurve:
       serializedVersion: 2
       m_Curve:
@@ -2582,6 +2582,9 @@ MonoBehaviour:
   playerCam: {fileID: 20321025575416036}
   scopeFOV: 15
   Reloading: 0
+  isRifle: 0
+  isShotgun: 0
+  isShooting: 0
 --- !u!114 &114721167978635310
 MonoBehaviour:
   m_ObjectHideFlags: 1

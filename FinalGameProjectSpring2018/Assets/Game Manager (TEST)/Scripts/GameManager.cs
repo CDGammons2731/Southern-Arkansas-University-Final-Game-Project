@@ -92,6 +92,8 @@ namespace GAMEMANAGER
             }
             audiosource = GetComponent<AudioSource>();
             audiosource.PlayOneShot(ThemeMusic, 0.5f);
+            
+            
        
         }
 			
@@ -240,8 +242,7 @@ namespace GAMEMANAGER
             {
                 playerHealth = 100;
             }
-           
-
+            
         }
 
     }
