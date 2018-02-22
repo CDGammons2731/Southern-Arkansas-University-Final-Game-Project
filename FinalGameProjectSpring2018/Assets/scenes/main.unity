@@ -406,6 +406,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114977377409071744, guid: c3eaaf7a25b516347b1170682fa01a2b,
         type: 2}
+      propertyPath: gunText
+      value: 
+      objectReference: {fileID: 1755968631}
+    - target: {fileID: 114977377409071744, guid: c3eaaf7a25b516347b1170682fa01a2b,
+        type: 2}
       propertyPath: gunStat
       value: 
       objectReference: {fileID: 2010671456}
@@ -414,11 +419,6 @@ Prefab:
       propertyPath: pickupText
       value: 
       objectReference: {fileID: 606502032}
-    - target: {fileID: 114977377409071744, guid: c3eaaf7a25b516347b1170682fa01a2b,
-        type: 2}
-      propertyPath: gunText
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3eaaf7a25b516347b1170682fa01a2b, type: 2}
   m_IsPrefabParent: 0
@@ -675,6 +675,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1092821629244374, guid: 109d5b2a8c4314756b3c4576a314bcb7,
     type: 2}
   m_PrefabInternal: {fileID: 73085112}
+--- !u!114 &1755968631 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114820225149115410, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
+    type: 2}
+  m_PrefabInternal: {fileID: 222339533}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &2004008690
 GameObject:
   m_ObjectHideFlags: 0
