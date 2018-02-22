@@ -77,6 +77,7 @@ public class pauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene("startMenu", LoadSceneMode.Single);//loads start menu
         Time.timeScale = 1;
+   
     }
     public void Reset(){
         resumeBt.SetActive(true);
