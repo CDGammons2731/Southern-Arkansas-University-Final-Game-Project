@@ -3,39 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using GUN;
 
-public class AIDamage : MonoBehaviour {
+public class AIDAMAG : MonoBehaviour {
 
 	public int Health = 100;
-	public int damage = 0;
-	public 
+	public int Samage = 0;
+	public GameObject player;
 
 
-	void start(){
-
+	void Awake(){
+		player = GameObject.FindGameObjectWithTag ("player");
 	}
 
 
 	void Update(){
-
-		damage = GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
-		Debug.Log ("Damage: " + damage);
-
+		if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null) {
+			Samage = player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			//Debug.Log ("Damage: " + Samage);
+		}
 	}
 
 	void OnCollisionEnter(Collision collision){
 		if (collision.transform.gameObject.tag == "bullet") {
 			if (Health >= 0) {
-				Health -= damage;
+				Health -= Samage;
 				Debug.Log ("Health: " + Health);
 			} else {
 				Health = 0;
 			}
 		} else if (collision.transform.gameObject.tag == "pellet") {
 			if (Health >= 0) {
-				Health -= damage;
+				Health -= Samage;
 			} else {
 				Health = 0;
 			}
 		}
-		}
+	}
 }
