@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3996cba998bf7b64da58b96f3c4fa29f, type: 3}
+  m_Name: Weaponlab1R0
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1268852623140968, guid: 0187b763ae793394eb8bdbc384af8c22, type: 2}
+  dimensions: {x: 3, y: 3}
+  doorLocations:
+  - {x: 2, y: 4}
+  - {x: 2, y: 0}
+  - {x: 4, y: 2}
+  - {x: 3, y: 4}
+  - {x: 4, y: 3}
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 0, y: 2}
+  doorObjs:
+  - {fileID: 1451693759918046, guid: 0187b763ae793394eb8bdbc384af8c22, type: 2}
+  - {fileID: 1245483349789044, guid: 0187b763ae793394eb8bdbc384af8c22, type: 2}
+  - {fileID: 1670895728976320, guid: 0187b763ae793394eb8bdbc384af8c22, type: 2}
+  - {fileID: 1339138036671952, guid: 0187b763ae793394eb8bdbc384af8c22, type: 2}
+  - {fileID: 1176284004746476, guid: 0187b763ae793394eb8bdbc384af8c22, type: 2}
+  - {fileID: 1689205540417112, guid: 0187b763ae793394eb8bdbc384af8c22, type: 2}
+  - {fileID: 1427519618839990, guid: 0187b763ae793394eb8bdbc384af8c22, type: 2}
+  - {fileID: 1175718902413000, guid: 0187b763ae793394eb8bdbc384af8c22, type: 2}

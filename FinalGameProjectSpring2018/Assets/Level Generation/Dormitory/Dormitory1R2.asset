@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3996cba998bf7b64da58b96f3c4fa29f, type: 3}
+  m_Name: Dormitory1R2
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1603554040943506, guid: faa23bec2774f90438e572c0642f9101, type: 2}
+  dimensions: {x: 5, y: 3}
+  doorLocations:
+  - {x: 6, y: 1}
+  - {x: 5, y: 0}
+  - {x: 4, y: 0}
+  - {x: 3, y: 0}
+  - {x: 2, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 3, y: 4}
+  doorObjs:
+  - {fileID: 1983242702604332, guid: faa23bec2774f90438e572c0642f9101, type: 2}
+  - {fileID: 1818481460237648, guid: faa23bec2774f90438e572c0642f9101, type: 2}
+  - {fileID: 1699453182667536, guid: faa23bec2774f90438e572c0642f9101, type: 2}
+  - {fileID: 1367483853189258, guid: faa23bec2774f90438e572c0642f9101, type: 2}
+  - {fileID: 1291479798275216, guid: faa23bec2774f90438e572c0642f9101, type: 2}
+  - {fileID: 1675035453154518, guid: faa23bec2774f90438e572c0642f9101, type: 2}
+  - {fileID: 1043260433654308, guid: faa23bec2774f90438e572c0642f9101, type: 2}
+  - {fileID: 1896925217576024, guid: faa23bec2774f90438e572c0642f9101, type: 2}
