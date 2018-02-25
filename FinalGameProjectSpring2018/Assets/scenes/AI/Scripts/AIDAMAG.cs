@@ -5,7 +5,7 @@ using GUN;
 
 public class AIDAMAG : MonoBehaviour {
 
-	public int Health = 100;
+	public int Health = 30;
 	public int Samage = 0;
 	public GameObject player;
 
@@ -26,8 +26,9 @@ public class AIDAMAG : MonoBehaviour {
 		if (collision.transform.gameObject.tag == "bullet") {
 			if (Health >= 0) {
 				Health -= Samage;
-				Debug.Log ("Health: " + Health);
+				//Debug.Log ("Health: " + Health);
 			} else {
+				gameObject.SetActive (false);
 				Health = 0;
 			}
 		} else if (collision.transform.gameObject.tag == "pellet") {
@@ -35,6 +36,7 @@ public class AIDAMAG : MonoBehaviour {
 				Health -= Samage;
 			} else {
 				Health = 0;
+				gameObject.SetActive (false);
 			}
 		}
 	}

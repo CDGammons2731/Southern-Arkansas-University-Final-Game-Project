@@ -839,6 +839,7 @@ MonoBehaviour:
   SpawnActivateRandomizer: 0
   NumberToActivate: 5
   MaxRange: 10
+  Respawn: 1
 --- !u!4 &535753290 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4476532122140894, guid: 76b911a4e9684474da02dc15a33b06fb,
@@ -1198,6 +1199,16 @@ Prefab:
       propertyPath: crossHair
       value: 
       objectReference: {fileID: 491880152}
+    - target: {fileID: 114576951292994028, guid: 347ded99c84e3894e9e5a925253b11a3,
+        type: 2}
+      propertyPath: m_JumpSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114576951292994028, guid: 347ded99c84e3894e9e5a925253b11a3,
+        type: 2}
+      propertyPath: m_LandSound
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 347ded99c84e3894e9e5a925253b11a3, type: 2}
   m_IsPrefabParent: 0
