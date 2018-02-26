@@ -28,6 +28,7 @@ public class Gun : MonoBehaviour {
     public AudioClip[] RIFLE = new AudioClip[2];
     public AudioClip[] TOMMYGUN = new AudioClip[2];
     public AudioClip[] RAILGUN = new AudioClip[2];
+    public AudioClip Empty;
 
     //The source that the audio clips can be played by
     public AudioSource GunSound;
@@ -57,12 +58,14 @@ public class Gun : MonoBehaviour {
 	List<Quaternion> pellets; //For the shotgun, make a list of quaternions which will be spawn positions for pellets
 	
     private LineRenderer lineOfSight; //@TODO: testing, raycasts 
-	
+    RaycastHit Ray_Hit; //@Testing---
+    public Camera Player_Cam; //More @Testing
+    Vector3 rayOrigin;
+
 
         // Use this for initialization
         void Start () {
-		CurrentWeapon = gameObject.tag;
-            //bulletSpawn = gameObject.GetComponentInChildren<Transform> ();
+		    CurrentWeapon = gameObject.tag;
             GunSound = GetComponentInParent<AudioSource>(); //Assign audiosource at start
             lineOfSight = GetComponent<LineRenderer>();
             shotCount = 0;
@@ -73,8 +76,9 @@ public class Gun : MonoBehaviour {
 				pellets.Add (Quaternion.Euler (Vector3.zero));
 			}
 
-          
-	}
+           canShoot = true; //Just to start off able at all times
+           Player_Cam=GetComponentInParent<Camera>(); //@Testing---
+        }
 
     //Choose weapon to fire from switch statements from it's selected string (the weapon's tag)
     public void FireWeapon(string type)
@@ -92,7 +96,7 @@ public class Gun : MonoBehaviour {
                     damage = 35;
 
                 //Create shot spread
-                    if (Input.GetMouseButton(0)&&Time.time> nextFire && ammo!=0){
+                    if (Input.GetMouseButton(0)&&Time.time> nextFire && ammo!=0 && canShoot==true){
                     nextFire = Time.time + fireRate;
 				    Shotgun (ammo,ammoClip);//Call the method for the selected gun
                         ammo -= 1;
@@ -101,17 +105,18 @@ public class Gun : MonoBehaviour {
 					if (currentAmmo<=0) { 
 					reload (type);
 				}
-			}
+
+                    }
                     //lather, rinse, repeat for all weapons
                 break;
             case revolver:
                 fireRate = 0.35f;
                 ammoClip = 7;
-                ammoMax = 35;
+                ammoMax = 56;
                 damage = 20;
 
 
-                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
+                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
                     {
                         nextFire = Time.time + fireRate;
                         Revolver(ammo, ammoClip);
@@ -132,7 +137,7 @@ public class Gun : MonoBehaviour {
                 damage = 8;
 
 
-                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
+                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
                     {
                         nextFire = Time.time + fireRate;
                         Rifle(ammo, ammoClip);
@@ -152,7 +157,7 @@ public class Gun : MonoBehaviour {
                 ammoMax = 300;
                 damage = 6;
 
-                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
+                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
                     {
                         nextFire = Time.time + fireRate;
                         TommyGun(ammo, ammoClip);
@@ -172,7 +177,7 @@ public class Gun : MonoBehaviour {
                 ammoMax = 24;
                 damage = 50;
 
-                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0)
+                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
                     {
                         nextFire = Time.time + fireRate;
                         Railgun(ammo, ammoClip);
@@ -192,10 +197,10 @@ public class Gun : MonoBehaviour {
                 ammoClip = 0;
                 ammoMax = 0;
                 damage = 5;
-
+                
                 break;
         }
-
+        
 
     }
     
@@ -221,6 +226,12 @@ public class Gun : MonoBehaviour {
                 Destroy(shot, 2.0f);
             }
 
+            else {
+                if (Empty != null) {
+                    GunSound.PlayOneShot(Empty, 0.85f);
+                }
+            }
+
         }
 
         void Rifle(int ammo, int clip) {
@@ -241,8 +252,15 @@ public class Gun : MonoBehaviour {
                 Destroy(shot, 2.0f);
 
             }
-         
-    }
+            else
+            {
+                if (Empty != null)
+                {
+                    GunSound.PlayOneShot(Empty, 0.85f);
+                }
+            }
+
+        }
 	void Revolver(int ammo, int clip) {
             if (ammo > 0)
             {
@@ -261,29 +279,39 @@ public class Gun : MonoBehaviour {
                 Destroy(shot, 2.0f);
             
         }
-    }
+            else
+            {
+                if (Empty != null)
+                {
+                    GunSound.PlayOneShot(Empty, 0.85f);
+                }
+            }
+        }
 
 	void Shotgun(int ammo, int clip) {
             //Make the shot spread
 			int i=0;
             //Do shotgun stuff for this section
-            if (ammo > 0) { 
-				foreach (Quaternion quat in pellets) {
-					var shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
-                    pellets [i] = Random.rotation;
-					shot.transform.rotation = Quaternion.RotateTowards (shot.transform.rotation, pellets [i], spreadAgle); //Make sure the pellet prefab itself is set to the pellet Layer in the inspector
-					shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
-					i++;
-					Destroy(shot, 2.0f);
-				}
-        //play sound
-				if (SHOTGUN [0] != null) {
+            if (ammo > 0)
+            {
+                foreach (Quaternion quat in pellets)
+                {
+                    var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                    pellets[i] = Random.rotation;
+                    shot.transform.rotation = Quaternion.RotateTowards(shot.transform.rotation, pellets[i], spreadAgle); //Make sure the pellet prefab itself is set to the pellet Layer in the inspector
+                    shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
+                    i++;
+                    Destroy(shot, 2.0f);
+                }
+                //play sound
+                if (SHOTGUN[0] != null)
+                {
                     GunSound.PlayOneShot(SHOTGUN[0], 0.85f);
 
                 }
-
-    }
-	}
+            }
+    
+        }
 
 	void TommyGun(int ammo, int clip) {
             if (ammo > 0)
@@ -301,6 +329,13 @@ public class Gun : MonoBehaviour {
 
                 // Destroy the bullet after 2 seconds
                 Destroy(shot, 2.0f);
+            }
+            else
+            {
+                if (Empty != null)
+                {
+                    GunSound.PlayOneShot(Empty, 0.85f);
+                }
             }
 
         }
@@ -373,15 +408,18 @@ public class Gun : MonoBehaviour {
                     shotCount = 0;
                     break;
         }
+            //canShoot = true;
     }
 
 		IEnumerator ReloadWaiting(){
-			yield return new WaitForSeconds (3.0f);
+            canShoot = false;
+			yield return new WaitForSeconds (2.00f);
             shotCount = 0;
+            canShoot = true;
 		}    
         // Update is called once per frame
         void Update () {
-        
+
             if (ammo > ammoMax) ammo = ammoMax;
 
                 if (currentAmmo <= 0 && ammo > ammoClip)
@@ -407,12 +445,16 @@ public class Gun : MonoBehaviour {
 			if (currentAmmo == 0 || currentAmmo==ammoClip) {
 				AmmoUpdate = ammo;
             }
-			
 
-			if (Input.GetKeyDown (KeyCode.R)) {
-				reload (weapon.tag);
+
+            if (Input.GetKeyDown(KeyCode.R) && equipped == true) {
+                reload (weapon.tag);
+               
 			}
- 
+
+            //More RayCast Testing
+           
+            
         }
 }
 }

@@ -82,8 +82,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_cursorIsLocked = true;
             }
-            if (SceneManager.GetSceneAt(0).isLoaded) {
+            if (SceneManager.GetActiveScene().buildIndex == 0) {
                 m_cursorIsLocked = false;
+                
+       
             }
 
             if (m_cursorIsLocked)

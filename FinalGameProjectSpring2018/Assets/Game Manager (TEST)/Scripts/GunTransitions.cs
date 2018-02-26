@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GUN;
 
 public class GunTransitions : MonoBehaviour {
 	public Animator animator;
@@ -16,6 +17,8 @@ public class GunTransitions : MonoBehaviour {
     public bool isRifle = false;
     public bool isShotgun= false;
     public bool isShooting = false;
+
+    bool isRel;
 
 	void Update () {
         if (Input.GetMouseButtonDown(1))
@@ -52,9 +55,7 @@ public class GunTransitions : MonoBehaviour {
            // StartCoroutine(Rifle_RecoilTime());
 
         }
-
-
-
+        
 
     }
     IEnumerator Rifle_RecoilTime()
