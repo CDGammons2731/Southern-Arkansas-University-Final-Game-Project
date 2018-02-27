@@ -71,6 +71,7 @@ public class pauseMenu : MonoBehaviour
             quitBt.SetActive(true);
             soundSlider.SetActive(false);
             soundText.SetActive(false);
+            back = false;
         }        
     }
     public void Quit()
