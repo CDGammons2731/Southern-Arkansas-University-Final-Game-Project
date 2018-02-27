@@ -87,7 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d19b045e9d47d084bb63a40320315816, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   RIFLE:
   - {fileID: 0}
   - {fileID: 0}
-  TOMMYGUN:
+  RAYGUN:
   - {fileID: 0}
   - {fileID: 0}
   RAILGUN:
@@ -235,12 +235,14 @@ MonoBehaviour:
   damage: 0
   rangeMult: 2
   bulletSpeed: 50
+  reloadRate: 0
   fireRate: 0
   nextFire: 0
   shotCount: 0
   AmmoUpdate: 0
   spreadAgle: 10
   pelletCount: 5
+  Player_Cam: {fileID: 0}
 --- !u!135 &135149186918403636
 SphereCollider:
   m_ObjectHideFlags: 1

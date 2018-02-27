@@ -5,6 +5,7 @@ using GUN;
 
 public class GunTransitions : MonoBehaviour {
 	public Animator animator;
+    public Animation Generic_Recoil;
     public GameObject scopeOverlay;
     public GameObject weaponCamera;
     public GameObject crossHair;
@@ -17,10 +18,17 @@ public class GunTransitions : MonoBehaviour {
     public bool isRifle = false;
     public bool isShotgun= false;
     public bool isShooting = false;
+    public bool isRevolver = false;
+
+    public float reloadTime;
 
     bool isRel;
 
-	void Update () {
+   
+
+    void Update () {
+        reloadTime = GetComponentInParent<Player>().weapon.GetComponent<Gun>().reloadRate;
+
         if (Input.GetMouseButtonDown(1))
    
         {
@@ -37,6 +45,9 @@ public class GunTransitions : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.R)) {
 			Reloading = !Reloading;
+            if (Generic_Recoil != null) {
+                Generic_Recoil["Reload_Generic"].speed = reloadTime;
+            }
 			animator.SetBool ("reloading", Reloading);
 			StartCoroutine (ReloadWait ());
 		}
@@ -57,10 +68,11 @@ public class GunTransitions : MonoBehaviour {
         }
         
 
+
     }
     IEnumerator Rifle_RecoilTime()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(.3f);
         isRifle = false;
         animator.SetBool("isRifle", isRifle);
     }
@@ -73,7 +85,7 @@ public class GunTransitions : MonoBehaviour {
     }
 
     IEnumerator ReloadWait(){
-		yield return new WaitForSeconds (1.2f);
+		yield return new WaitForSeconds (reloadTime);
 		Reloading = false;
 		animator.SetBool ("reloading", Reloading);
 	}
