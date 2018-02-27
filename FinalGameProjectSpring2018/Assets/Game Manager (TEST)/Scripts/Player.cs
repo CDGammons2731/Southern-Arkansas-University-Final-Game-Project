@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public AudioClip Healed;
     public AudioClip HeartBeat;
     public AudioClip Ticking;
+    public AudioSource PlayerSound;
 
     private int health;
     private int armor;
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         score = 0;
         name = "Player";
 
+        PlayerSound=GetComponent<AudioSource>();
 
         weaponInRange = false;
 		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f); //Delete this later
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour
         //Play animation for weapon pick up
         hasWeapon = true;
 		weaponInRange = false;
+        gun.equipped = true;
         if (Input.GetMouseButton(1)){
 			gun.FireWeapon (weapon.tag);
 		}
@@ -139,6 +142,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B)) {
             hasWeapon = false;
+            gun.equipped = false;
+        }
+
+        if (GM.playerHealth <= 30) {
+            PlayerSound.clip = HeartBeat;
+            PlayerSound.Play();
         }
 
         //if player health <=30 play heart beat

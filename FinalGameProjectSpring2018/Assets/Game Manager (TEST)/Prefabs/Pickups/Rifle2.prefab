@@ -52,13 +52,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1872613738850524}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.010689911, z: 0, w: 0.9999429}
   m_LocalPosition: {x: -0.014996529, y: -0.18000007, z: 0.5350001}
   m_LocalScale: {x: 5, y: 5, z: 1.25}
   m_Children: []
   m_Father: {fileID: 4983057738235142}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1.225, z: 0}
 --- !u!4 &4983057738235142
 Transform:
   m_ObjectHideFlags: 1
@@ -224,6 +224,7 @@ MonoBehaviour:
   RAILGUN:
   - {fileID: 0}
   - {fileID: 0}
+  Empty: {fileID: 8300000, guid: e2bf2a5df6c49f74b8dfd1ea6eac9cb3, type: 3}
   GunSound: {fileID: 0}
   equipped: 0
   canShoot: 0
@@ -240,6 +241,7 @@ MonoBehaviour:
   AmmoUpdate: 0
   spreadAgle: 0
   pelletCount: 0
+  Player_Cam: {fileID: 0}
 --- !u!135 &135953190945995418
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -88,6 +88,7 @@ public class startMenu : MonoBehaviour {
         fillInText.SetActive(false);
         enter.SetActive(false);
         newGame1.SetActive(true);
+        Time.timeScale = 1;
         SceneManager.LoadScene("main", LoadSceneMode.Single);
         
     }
@@ -97,6 +98,7 @@ public class startMenu : MonoBehaviour {
         fillInText1.SetActive(false);
         enter1.SetActive(false);
         newGame2.SetActive(true);
+        Time.timeScale = 1;
         SceneManager.LoadScene("main", LoadSceneMode.Single);
     }
     public void EnterBt3(){
@@ -105,6 +107,7 @@ public class startMenu : MonoBehaviour {
         fillInText2.SetActive(false);
         enter2.SetActive(false);
         newGame3.SetActive(true);
+        Time.timeScale = 1;
         SceneManager.LoadScene("main", LoadSceneMode.Single);
     }
 }
