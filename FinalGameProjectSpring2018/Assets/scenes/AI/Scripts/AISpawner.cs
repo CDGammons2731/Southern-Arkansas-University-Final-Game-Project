@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class AISpawner : MonoBehaviour {
 	public GameObject AIToSpawn;
 	private int EnemiesNumber = 0;
-	public int EnemiesMaxNumber = 5;
+	public int EnemiesMaxNumber = 2;
 	public float range = 10.0f;
 	public bool SpawnActivateRandomizer = false;
 	private float SpawnActivator = 0.0f;
 	public float NumberToActivate = 5.0f;
 	public float MaxRange = 10.0f;
+	public float Respawn = 0f;
+	public float TimeToRespawn = 30f;
 
 	// Use this for initialization
 	void Start () {
 		SpawnActivator = Random.Range (0.0f, MaxRange);
-		//Debug.Log (SpawnActivator);
 		if (SpawnActivator > NumberToActivate) {
 			SpawnActivateRandomizer = true;
 		}
@@ -38,14 +40,21 @@ public class AISpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (SpawnActivateRandomizer == true) {
-			Vector3 point;
-			if (RandomPoint (transform.position, range, out point)) {
-				//Debug.DrawRay (point, Vector3.up, Color.blue, 1.0f);
-				if (EnemiesNumber < EnemiesMaxNumber) {
-					Instantiate (AIToSpawn, point, Quaternion.identity);
-					EnemiesNumber++;
+			if (Respawn <= 0f) {
+				Vector3 point;
+				if (EnemiesNumber <= EnemiesMaxNumber) {
+					if (RandomPoint (transform.position, range, out point)) {
+						Instantiate (AIToSpawn, point, Quaternion.identity);
+						EnemiesNumber++;
+						Respawn = TimeToRespawn;
+					}
+				} else {
+					Respawn = TimeToRespawn;
 				}
 			}
+
+			Respawn = Respawn - Time.deltaTime;
+			Debug.Log (Respawn);
 		}
 	}
 }

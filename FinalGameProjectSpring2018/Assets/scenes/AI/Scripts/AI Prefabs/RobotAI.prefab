@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 195069504302474546}
   - component: {fileID: 54267980428375100}
   - component: {fileID: 65695795965965294}
-  - component: {fileID: 114912656197180338}
+  - component: {fileID: 114331805241732170}
   m_Layer: 0
   m_Name: RobotAI
   m_TagString: Untagged
@@ -265,7 +265,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1506439689358042}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.067189, y: -0.01, z: -2.111709}
+  m_LocalPosition: {x: -4.522293, y: -1.1191954e-17, z: 3.0242448}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4184499838515618}
@@ -872,7 +872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
   DatDerBadGoober: {fileID: 0}
---- !u!114 &114912656197180338
+--- !u!114 &114331805241732170
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -880,10 +880,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1506439689358042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e848fe2f9a0c1da409d5e3dd04a5867b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c1b1efca065cb543bc7bc51b69b87c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
+  Samage: 0
+  player: {fileID: 0}
 --- !u!195 &195069504302474546
 NavMeshAgent:
   m_ObjectHideFlags: 1

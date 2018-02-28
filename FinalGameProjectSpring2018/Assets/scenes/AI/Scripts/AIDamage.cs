@@ -5,25 +5,34 @@ using GUN;
 
 public class AIDamage : MonoBehaviour {
 
-	private Gun gun;
 	public int Health = 100;
-	public int bonusDamage = 2;
+	public int damage = 0;
+	public 
+
+
+	void start(){
+
+	}
+
 
 	void Update(){
-		
+
+		damage = GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+		Debug.Log ("Damage: " + damage);
+
 	}
 
 	void OnCollisionEnter(Collision collision){
 		if (collision.transform.gameObject.tag == "bullet") {
 			if (Health >= 0) {
+				Health -= damage;
 				Debug.Log ("Health: " + Health);
-				Health -= gun.damage;
 			} else {
 				Health = 0;
 			}
 		} else if (collision.transform.gameObject.tag == "pellet") {
 			if (Health >= 0) {
-				Health -= gun.damage;
+				Health -= damage;
 			} else {
 				Health = 0;
 			}
