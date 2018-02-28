@@ -21,6 +21,7 @@ public class GunTransitions : MonoBehaviour {
     public bool isRevolver = false;
 
     public float reloadTime;
+    public float duration; //to tweak how long the generic animation plays (Temporary: Need to have one day of work devoted to getting all animations and setting up all States)
 
     bool isRel;
 

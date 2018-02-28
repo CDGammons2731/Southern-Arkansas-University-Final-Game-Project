@@ -192,7 +192,7 @@ Reload Speed: 2 seconds
 
                     break;
             case raygun:
-                fireRate = 0.18f;
+                fireRate = 1.0f;
                 ammoClip = 12;
                 ammoMax = 36;
                 damage = 6;
@@ -213,7 +213,7 @@ Reload Speed: 2 seconds
 
                     break;
             case railgun:
-                fireRate = 1.2f;
+                fireRate = 1.25f;
                 ammoClip = 8;
                 ammoMax = 32;
                 damage = 12;

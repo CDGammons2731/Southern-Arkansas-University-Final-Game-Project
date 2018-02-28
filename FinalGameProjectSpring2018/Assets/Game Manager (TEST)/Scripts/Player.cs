@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
-        if (other.gameObject.CompareTag("shotgun") ||other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") ||other.gameObject.CompareTag("tommygun") || other.gameObject.CompareTag("railgun"))
+        if (other.gameObject.CompareTag("shotgun") ||other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") ||other.gameObject.CompareTag("raygun") || other.gameObject.CompareTag("railgun"))
 		{
             weapon = other.gameObject;
             weaponInRange = true;

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23735954232654714}
   - component: {fileID: 114930977732183456}
   - component: {fileID: 82192582377796602}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Rifle2
   m_TagString: rifle
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ MonoBehaviour:
   RIFLE:
   - {fileID: 8300000, guid: 24ac5f4bc57183b43881d55539cefebe, type: 3}
   - {fileID: 8300000, guid: 7a6a41f80a2cc164d9768ebb60903812, type: 3}
-  TOMMYGUN:
+  RAYGUN:
   - {fileID: 0}
   - {fileID: 0}
   RAILGUN:
@@ -235,6 +235,7 @@ MonoBehaviour:
   damage: 0
   rangeMult: 2
   bulletSpeed: 50
+  reloadRate: 0
   fireRate: 0
   nextFire: 0
   shotCount: 0
