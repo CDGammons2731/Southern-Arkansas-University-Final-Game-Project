@@ -18,7 +18,7 @@ public class AIDamage : MonoBehaviour {
 	void Update(){
 
 		damage = GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
-		Debug.Log ("Damage: " + damage);
+		//Debug.Log ("Damage: " + damage);
 
 	}
 
@@ -26,15 +26,17 @@ public class AIDamage : MonoBehaviour {
 		if (collision.transform.gameObject.tag == "bullet") {
 			if (Health >= 0) {
 				Health -= damage;
-				Debug.Log ("Health: " + Health);
+				//Debug.Log ("Health: " + Health);
 			} else {
 				Health = 0;
+				gameObject.SetActive (false);
 			}
 		} else if (collision.transform.gameObject.tag == "pellet") {
 			if (Health >= 0) {
 				Health -= damage;
 			} else {
 				Health = 0;
+				gameObject.SetActive (false);
 			}
 		}
 		}
