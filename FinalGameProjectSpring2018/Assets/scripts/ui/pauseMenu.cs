@@ -10,7 +10,6 @@ public class pauseMenu : MonoBehaviour
 {
     public GameObject resumeBt;
     public GameObject optionBt;
-    public GameObject evidenceBt;
     public GameObject quitBt;
     public GameObject soundSlider;
     public GameObject soundText;
@@ -59,7 +58,6 @@ public class pauseMenu : MonoBehaviour
         
         if(!back){
             resumeBt.SetActive(false);
-            evidenceBt.SetActive(false);
             quitBt.SetActive(false);
             soundSlider.SetActive(true);
             soundText.SetActive(true);
@@ -67,7 +65,6 @@ public class pauseMenu : MonoBehaviour
         }
         else{
             resumeBt.SetActive(true);
-            evidenceBt.SetActive(true);
             quitBt.SetActive(true);
             soundSlider.SetActive(false);
             soundText.SetActive(false);
@@ -84,7 +81,6 @@ public class pauseMenu : MonoBehaviour
     public void Reset(){
         resumeBt.SetActive(true);
         optionBt.SetActive(true);
-        //evidenceBt.SetActive(true); //Aaron: Uncomment this when you have assigned a button to this or else you cannot leave the game when you pause
         quitBt.SetActive(true);
         soundSlider.SetActive(false);
         soundText.SetActive(false);

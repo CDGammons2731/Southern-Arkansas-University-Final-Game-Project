@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class AISpawner : MonoBehaviour {
+public class AISpawner : AIDAMAG {
 	public GameObject AIToSpawn;
-	private int EnemiesNumber = 0;
+	public int EnemiesNumber = 0;
 	public int EnemiesMaxNumber = 2;
 	public float range = 10.0f;
 	public bool SpawnActivateRandomizer = false;
@@ -14,11 +14,13 @@ public class AISpawner : MonoBehaviour {
 	public float NumberToActivate = 5.0f;
 	public float MaxRange = 10.0f;
 	public float Respawn = 0f;
-	public float TimeToRespawn = 30f;
+	public float TimeToRespawn = 300f;
 
 	// Use this for initialization
 	void Start () {
-		SpawnActivator = Random.Range (0.0f, MaxRange);
+		//SpawnActivator = Random.Range (0.0f, MaxRange);
+		SpawnActivator = 6;
+		Debug.Log (SpawnActivator);
 		if (SpawnActivator > NumberToActivate) {
 			SpawnActivateRandomizer = true;
 		}
@@ -39,6 +41,9 @@ public class AISpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		EnemiesNumber = EnemiesNumber - EnemyNumber;
+
+
 		if (SpawnActivateRandomizer == true) {
 			if (Respawn <= 0f) {
 				Vector3 point;
