@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114938929657905450}
   - component: {fileID: 135559110872868532}
   - component: {fileID: 82395193790117806}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: RailGun
   m_TagString: railgun
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c1eb1d5d42669d1408df1845623e4b10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,11 +218,11 @@ MonoBehaviour:
   RIFLE:
   - {fileID: 0}
   - {fileID: 0}
-  TOMMYGUN:
+  RAYGUN:
   - {fileID: 0}
   - {fileID: 0}
   RAILGUN:
-  - {fileID: 8300000, guid: 0e480f20128b57b41a5d08aef688432e, type: 3}
+  - {fileID: 8300000, guid: 21393714eaa07474a85900773fb6b934, type: 3}
   - {fileID: 8300000, guid: 8aaf48cc06cc2134faee3ab72786078a, type: 3}
   Empty: {fileID: 8300000, guid: e2bf2a5df6c49f74b8dfd1ea6eac9cb3, type: 3}
   GunSound: {fileID: 0}
@@ -235,6 +235,7 @@ MonoBehaviour:
   damage: 0
   rangeMult: 2
   bulletSpeed: 50
+  reloadRate: 0
   fireRate: 0
   nextFire: 0
   shotCount: 0

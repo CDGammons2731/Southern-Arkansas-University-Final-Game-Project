@@ -25,8 +25,8 @@ GameObject:
   - component: {fileID: 135470259329241066}
   - component: {fileID: 82951939571706874}
   m_Layer: 0
-  m_Name: TommyGun
-  m_TagString: tommygun
+  m_Name: RayGun
+  m_TagString: raygun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,8 +66,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1320818771104428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.68, y: 0.5, z: -2.36}
-  m_LocalScale: {x: 0.2, y: 0.1, z: 0.8}
+  m_LocalPosition: {x: 786.28986, y: 502.49, z: -729.58966}
+  m_LocalScale: {x: 0.4, y: 0.2, z: 1.6}
   m_Children:
   - {fileID: 4140651478581458}
   m_Father: {fileID: 0}
@@ -87,7 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 72013d70f2f8b6b46aa46cba61efe0eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,9 +218,9 @@ MonoBehaviour:
   RIFLE:
   - {fileID: 0}
   - {fileID: 0}
-  TOMMYGUN:
-  - {fileID: 0}
-  - {fileID: 0}
+  RAYGUN:
+  - {fileID: 8300000, guid: 0e480f20128b57b41a5d08aef688432e, type: 3}
+  - {fileID: 8300000, guid: 8aaf48cc06cc2134faee3ab72786078a, type: 3}
   RAILGUN:
   - {fileID: 0}
   - {fileID: 0}
@@ -235,6 +235,7 @@ MonoBehaviour:
   damage: 0
   rangeMult: 2
   bulletSpeed: 50
+  reloadRate: 0
   fireRate: 0
   nextFire: 0
   shotCount: 0
