@@ -76,14 +76,15 @@ public class pauseMenu : MonoBehaviour
     }
     public void Quit()
     {
-        SceneManager.LoadScene("startMenu", LoadSceneMode.Single);//loads start menu
-       // Time.timeScale = 1; //Aaron Linnear: The cursor would be invisible if you quit and went to the main menu so I commented it out.
+        //SceneManager.LoadScene("startMenu", LoadSceneMode.Single);//loads start menu
+        SceneManager.LoadScene(0);
+       // Time.timeScale = 1; //Aaron: The cursor would be invisible if you quit and went to the main menu so I commented it out.
    
     }
     public void Reset(){
         resumeBt.SetActive(true);
         optionBt.SetActive(true);
-        evidenceBt.SetActive(true);
+        //evidenceBt.SetActive(true); //Aaron: Uncomment this when you have assigned a button to this or else you cannot leave the game when you pause
         quitBt.SetActive(true);
         soundSlider.SetActive(false);
         soundText.SetActive(false);

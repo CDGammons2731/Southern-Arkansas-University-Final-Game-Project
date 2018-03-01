@@ -21,7 +21,7 @@ public class startMenu : MonoBehaviour {
     public GameObject name3;
     public GameObject credits;
     public GameObject exit;
-    
+    public GameObject back;
 
     
 
@@ -39,6 +39,7 @@ public class startMenu : MonoBehaviour {
         newGame1.SetActive(true);
         newGame2.SetActive(true);
         newGame3.SetActive(true);
+        back.SetActive(true);
         start.SetActive(false);
         credits.SetActive(false);
         exit.SetActive(false);
@@ -107,8 +108,17 @@ public class startMenu : MonoBehaviour {
         fillInText2.SetActive(false);
         enter2.SetActive(false);
         newGame3.SetActive(true);
-        Time.timeScale = 1;
+        Time.timeScale = 1; 
         SceneManager.LoadScene("main", LoadSceneMode.Single);
+    }
+    public void BackBt(){
+        newGame1.SetActive(false);
+        newGame2.SetActive(false);
+        newGame3.SetActive(false);
+        back.SetActive(false);
+        start.SetActive(true);
+        credits.SetActive(true);
+        exit.SetActive(true);
     }
 }
 
