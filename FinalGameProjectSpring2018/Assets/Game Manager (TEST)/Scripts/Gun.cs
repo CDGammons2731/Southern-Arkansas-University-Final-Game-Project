@@ -131,7 +131,7 @@ Reload Speed: 2 seconds
                     fireRate = 0.75f;
                     ammoClip = 6;
                     ammoMax = 48;
-                    damage = 15;
+                    damage = 2; //or 1.5
                     reloadRate = 4;
 
                 //Create shot spread
