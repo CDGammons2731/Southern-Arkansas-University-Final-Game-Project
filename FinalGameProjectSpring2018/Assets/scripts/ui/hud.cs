@@ -9,7 +9,7 @@ public class hud : MonoBehaviour {
     public GameObject hubScreen;
 
     public Text timer;
-    float countDown=30f;
+    float countDown=300f;
 
     //Ammo Display
     Gun ammoAmt;
@@ -25,8 +25,9 @@ public class hud : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         countDown-=Time.deltaTime;
-        int count=(int)countDown%60;
-        timer.text=count.ToString();
+        int sec=(int)countDown%60;
+        int min = (int)countDown / 60;
+        timer.text=min.ToString()+ ":"+sec.ToString();
 
         loseHealth();
         if (ammoAmt.ammoClip != 0) {

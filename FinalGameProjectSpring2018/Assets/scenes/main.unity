@@ -544,6 +544,27 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1222547318175596, guid: e2d5cef86f21b444ab5f5dc84ad8096a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114244620854000116, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
+        type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429012010626250, guid: e2d5cef86f21b444ab5f5dc84ad8096a, type: 2}
+      propertyPath: m_TagString
+      value: AmmoText
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864513253224772, guid: e2d5cef86f21b444ab5f5dc84ad8096a, type: 2}
+      propertyPath: m_TagString
+      value: gunText
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365461381807714, guid: e2d5cef86f21b444ab5f5dc84ad8096a, type: 2}
+      propertyPath: m_TagString
+      value: pickupText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2d5cef86f21b444ab5f5dc84ad8096a, type: 2}
   m_IsPrefabParent: 0
