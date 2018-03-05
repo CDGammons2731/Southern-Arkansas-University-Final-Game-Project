@@ -58,7 +58,7 @@ public class LevelGenerator : MonoBehaviour {
 			}
 			start.weight = 0;
 			path = FindPath();
-			InstantiateRooms ();
+			//InstantiateRooms ();
 			roomsToPlace = new List<Arrangement>(0);
 			List<Node> pathOrig = new List<Node>(0);
 			foreach (Node n in path) {
@@ -99,7 +99,7 @@ public class LevelGenerator : MonoBehaviour {
 					dGrp[i].pair.transform.parent.GetComponent<RoomInfo>().AddToNeighborList(dGrp[i].transform.parent.gameObject);
 					dGrp[i].transform.parent.GetComponent<RoomInfo>().AddToNeighborList(dGrp[i].pair.transform.parent.gameObject);
 					if (!dGrp[i].MarkForRemoval) {
-						dGrp[i].PlaceDoorObject(unlockedDoor);
+						dGrp[i].PlaceDoorObject(unlockedDoor, gridScale);
 					}
 					if (dGrp[i].MarkForRemoval) {
 						Destroy(dGrp[i].gameObject);
