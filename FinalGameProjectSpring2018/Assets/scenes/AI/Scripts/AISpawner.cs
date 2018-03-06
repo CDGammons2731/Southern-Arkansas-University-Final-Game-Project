@@ -59,7 +59,7 @@ public class AISpawner : AIDAMAG {
 			}
 
 			Respawn = Respawn - Time.deltaTime;
-			Debug.Log (Respawn);
+			//Debug.Log (Respawn);
 		}
 	}
 }

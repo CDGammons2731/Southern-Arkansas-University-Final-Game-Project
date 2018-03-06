@@ -16,13 +16,14 @@ public class AIDAMAG : MonoBehaviour {
 	void Awake(){
 		player = GameObject.FindGameObjectWithTag ("player");
 		Respawn = TimeToRespawn;
+		Samage = 0;
 	}
 
 
 	void Update(){
-		if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null) {
+		if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null && Input.GetKeyDown(KeyCode.F)) {
 			Samage = player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
-			//Debug.Log ("Damage: " + Samage);
+			Debug.Log ("Damage: " + Samage);
 		}
 
 		Respawn = Respawn - Time.deltaTime;

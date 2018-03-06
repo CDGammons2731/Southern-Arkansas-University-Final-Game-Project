@@ -21,6 +21,8 @@ public class LevelGenerator : MonoBehaviour {
 	public Material connectedDoor;
 	public Material requiredDoor;
 
+	List<GameObject> rooms = new List<GameObject>(0);
+
 	public GameObject gridVisual;
 	public GameObject navRemover;
 
@@ -56,14 +58,13 @@ public class LevelGenerator : MonoBehaviour {
 			}
 			start.weight = 0;
 			path = FindPath();
-			InstantiateRooms ();
+			//InstantiateRooms ();
 			roomsToPlace = new List<Arrangement>(0);
 			List<Node> pathOrig = new List<Node>(0);
 			foreach (Node n in path) {
 				pathOrig.Add(n);
 			}
 			for (int i = 0; i < pathOrig.Count-1; i++) {
-				//Debug.Log (pathOrig.Count);
 				if (path.Contains (pathOrig [i])) {
 					if (roomsToPlace.Count == 0) {
 						roomsToPlace.Add (PlaceRoom (path [0], Arrangement.pathFailure, true));
@@ -94,11 +95,15 @@ public class LevelGenerator : MonoBehaviour {
 			RemoveExcessNavmesh();
 			DoorInfo[] dGrp = FindObjectsOfType<DoorInfo>();
 			for (int i = dGrp.Length -1; i >= 0; i--) {
-				if (!dGrp[i].MarkForRemoval) {
-					dGrp[i].PlaceDoorObject(unlockedDoor);
-				}
-				if (dGrp[i].MarkForRemoval) {
-					Destroy(dGrp[i].gameObject);
+				if (dGrp[i].pair != null) {
+					dGrp[i].pair.transform.parent.GetComponent<RoomInfo>().AddToNeighborList(dGrp[i].transform.parent.gameObject);
+					dGrp[i].transform.parent.GetComponent<RoomInfo>().AddToNeighborList(dGrp[i].pair.transform.parent.gameObject);
+					if (!dGrp[i].MarkForRemoval) {
+						dGrp[i].PlaceDoorObject(unlockedDoor, gridScale);
+					}
+					if (dGrp[i].MarkForRemoval) {
+						Destroy(dGrp[i].gameObject);
+					}
 				}
 			}
 		} else {
@@ -155,11 +160,6 @@ public class LevelGenerator : MonoBehaviour {
 				for (int i = 0; i < pref.dimensions.x; i++) {
 					for (int j = 0; j < pref.dimensions.y; j++) {
 						foreach (Vector2 door in pref.doorLocations) {
-							/*Debug.Log (	" | Room: " + roomsToPlace.Count +
-								" | Room Type: " +pref.name +
-								" | Previous node: " +prev+
-								" | Door location: " + (source.Location()-new Vector2(i,j)+door-Vector2.one) +
-								"");*/
 							if (prev == source.Location()-new Vector2(i,j)+door-Vector2.one) {
 								Arrangement arr = new Arrangement();
 								arr.offset = new Vector2(i,j);
@@ -370,6 +370,9 @@ public class LevelGenerator : MonoBehaviour {
 			float y = room.original.dimensions.y/2;
 			init.transform.position = new Vector3(x+room.sourceNode.x-room.offset.x, 0, y+room.sourceNode.y-room.offset.y)*gridScale;
 			init.name = "Room " + roomsToCreate.IndexOf (room) + " " + room.original.name;
+			rooms.Add(init);
+			RoomInfo ri = init.AddComponent<RoomInfo>();
+			ri.SetInfo(this, init.transform.position/gridScale, room.original.dimensions.x, room.original.dimensions.y);
 			for (int i = 0; i < init.transform.childCount; i++) {
 				GameObject ourDoor = init.transform.GetChild(i).gameObject;
 				for (int j = 0; j < room.original.doorLocations.Length; j++) {
