@@ -96,7 +96,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1275566720350092
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +126,11 @@ GameObject:
   - component: {fileID: 114762696090986370}
   m_Layer: 5
   m_Name: PickUpText
+<<<<<<< HEAD
+  m_TagString: pickupText
+=======
   m_TagString: PickupText
+>>>>>>> a63cf4bb7ce519204034b4922a935c7f2f78a69d
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1429012010626250
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +214,7 @@ GameObject:
   - component: {fileID: 222978870642136090}
   - component: {fileID: 114967645423983640}
   m_Layer: 5
-  m_Name: rifleImage
+  m_Name: railGunImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +246,7 @@ GameObject:
   - component: {fileID: 222918446944861518}
   - component: {fileID: 114632942670176102}
   m_Layer: 5
-  m_Name: sonicImage
+  m_Name: shotGunImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1864513253224772
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +298,11 @@ GameObject:
   - component: {fileID: 114820225149115410}
   m_Layer: 5
   m_Name: gunText
+<<<<<<< HEAD
+  m_TagString: gunText
+=======
   m_TagString: GunText
+>>>>>>> a63cf4bb7ce519204034b4922a935c7f2f78a69d
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -566,7 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -763,7 +771,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5561109731d314e07826fe6ea3613daf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -947,14 +955,14 @@ RectTransform:
   m_GameObject: {fileID: 1811196660495862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 224020526073750470}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -20, y: 0}
   m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224156604565893658
@@ -1026,8 +1034,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 167, y: 40}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 191.7, y: 20.2}
+  m_SizeDelta: {x: 117.34, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224384569116336758
 RectTransform:
