@@ -8,9 +8,8 @@ public class Gun : MonoBehaviour {
     //Get your weapon, bullet, and where it spawns
     public GameObject weapon;
     public GameObject bullet;
-    public Transform bulletSpawn; 
-    
-
+    public Transform bulletSpawn;
+   
     //Weapon Types
     [Header("Weapon Types")]
     public const string shotgun = "shotgun";
@@ -38,6 +37,8 @@ public class Gun : MonoBehaviour {
     public bool equipped;
     public bool canShoot;
 
+        //Just to allow the shots to dissapear if they hit anything
+        GameObject shot;
 
     //All your firearm needs...
     [Header("Gun Info")]
@@ -123,7 +124,7 @@ Reload Speed: 2 seconds
     {
 		type = CurrentWeapon;
         bulletSpeed = 200;
-        
+           
         switch (type)
         {
 		case shotgun:
@@ -246,14 +247,17 @@ Reload Speed: 2 seconds
         
 
     }
-    
-    
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(shot!=null) Destroy(shot);
+        }
 
-    //Gun type methods for fireing and ammo amounts 
-	void Railgun(int ammo, int clip) {
+
+        //Gun type methods for fireing and ammo amounts 
+        void Railgun(int ammo, int clip) {
             if (ammo > 0)
             {
-                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 
 
@@ -267,6 +271,7 @@ Reload Speed: 2 seconds
 
                 // Destroy the bullet after 2 seconds
                 Destroy(shot, 0.35f);
+                
             }
 
             else {
@@ -280,7 +285,7 @@ Reload Speed: 2 seconds
         void Rifle(int ammo, int clip) {
             if (ammo > 0)
             {
-                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 
 
@@ -293,6 +298,7 @@ Reload Speed: 2 seconds
 
                 // Destroy the bullet after 2 seconds
                 Destroy(shot, 0.35f);
+                
 
             }
             else
@@ -307,7 +313,7 @@ Reload Speed: 2 seconds
 	void Revolver(int ammo, int clip) {
             if (ammo > 0)
             {
-                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;     
                 //play sound
                 if (REVOLVER[0] != null)
@@ -339,7 +345,7 @@ Reload Speed: 2 seconds
             {
                 foreach (Quaternion quat in pellets)
                 {
-                    var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                    shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                     pellets[i] = Random.rotation;
                     shot.transform.rotation = Quaternion.RotateTowards(shot.transform.rotation, pellets[i], spreadAgle); //Make sure the pellet prefab itself is set to the pellet Layer in the inspector
                     shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
@@ -359,7 +365,7 @@ Reload Speed: 2 seconds
 	void RayGun(int ammo, int clip) {
             if (ammo > 0)
             {
-                var shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                 shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 
 
