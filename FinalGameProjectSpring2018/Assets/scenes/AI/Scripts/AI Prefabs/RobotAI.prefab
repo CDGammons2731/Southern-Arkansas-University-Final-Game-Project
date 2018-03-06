@@ -898,9 +898,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1506439689358042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b22f8baf6ffab419a04f6144c332b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 29aae443feb563548ae86b524c2dcf0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShootableObject: {fileID: 0}
+  plyr: {fileID: 0}
+  LookRange: 20
 --- !u!195 &195069504302474546
 NavMeshAgent:
   m_ObjectHideFlags: 1
