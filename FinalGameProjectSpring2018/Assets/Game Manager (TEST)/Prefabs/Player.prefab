@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893987726926354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -0.9820484}
+  m_LocalPosition: {x: -4.9058905, y: -3.240212, z: -1.6713963}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4514888461127774}
@@ -255,7 +255,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0bfaa24bd9082334e8110818bbfd2f05, type: 2}
+  - {fileID: 2100000, guid: 80760ed4047a7f844bb6ee71fd120c0c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -457,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95808435508029410}
+  Generic_Recoil: {fileID: 0}
   scopeOverlay: {fileID: 0}
   weaponCamera: {fileID: 1436845341026296}
   crossHair: {fileID: 0}
@@ -466,6 +467,9 @@ MonoBehaviour:
   isRifle: 0
   isShotgun: 0
   isShooting: 0
+  isRevolver: 0
+  reloadTime: 0
+  duration: 0
 --- !u!114 &114576951292994028
 MonoBehaviour:
   m_ObjectHideFlags: 1

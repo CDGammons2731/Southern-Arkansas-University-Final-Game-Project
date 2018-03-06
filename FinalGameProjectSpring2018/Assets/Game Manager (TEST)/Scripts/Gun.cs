@@ -123,7 +123,7 @@ Reload Speed: 2 seconds
     {
 		type = CurrentWeapon;
         bulletSpeed = 200;
-        
+           
         switch (type)
         {
 		case shotgun:

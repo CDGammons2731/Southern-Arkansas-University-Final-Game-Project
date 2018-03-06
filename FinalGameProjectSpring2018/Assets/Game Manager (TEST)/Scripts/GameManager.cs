@@ -35,7 +35,7 @@ namespace GAMEMANAGER
         public static GameManager GAME;
         public GameObject PlayerObj;
         public Camera PlayerCam;
-    
+
 
         [Header("Game Sounds")]
         public AudioClip ThemeMusic;
@@ -67,6 +67,8 @@ namespace GAMEMANAGER
         public Gun yourGun;
         public Text gunText, gunStat, pickupText;
 
+
+
         struct Robot
         {
             public int health;
@@ -92,9 +94,8 @@ namespace GAMEMANAGER
             }
             audiosource = GetComponent<AudioSource>();
             audiosource.PlayOneShot(ThemeMusic, 0.5f);
+
             
-            
-       
         }
 			
 
@@ -241,9 +242,10 @@ namespace GAMEMANAGER
             if (playerHealth > 100)
             {
                 playerHealth = 100;
-            }     
-            
+            }
+         
         }
+
 
     }
 }

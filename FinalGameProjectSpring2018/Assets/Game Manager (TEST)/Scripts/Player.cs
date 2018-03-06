@@ -120,7 +120,6 @@ public class Player : MonoBehaviour
             {
                 currentGun = weapon.tag;
                 gun = weapon.GetComponent<Gun>();
-                gun.currentAmmo = gun.ammoClip;
                 GM.yourGun = weapon.GetComponent<Gun>();
                 PickUpWeapon(weapon);
 
