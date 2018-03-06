@@ -8,36 +8,48 @@ using GUN;
 public class hud : MonoBehaviour {
     public GameObject hubScreen;
 
+    public Text pickUpText;
+
+    GameManager gm;
     public Text timer;
     float countDown=300f;
 
     //Ammo Display
-    Gun ammoAmt;
+
     public Text ammoDisplay;
 
+
+
     //Player health bar
-    GameManager hlth;
+
     float maxHealth = 100.0f;
     public GameObject needle;
     public float smooth = 2.0f;
 
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
+
+    }
+    // Update is called once per frame
+    void Update () {
+
         countDown-=Time.deltaTime;
         int sec=(int)countDown%60;
         int min = (int)countDown / 60;
         timer.text=min.ToString()+ ":"+sec.ToString();
 
         loseHealth();
-        if (ammoAmt.ammoClip != 0) {
-			ammoDisplay.text= (ammoAmt.currentAmmo) + "/" + ammoAmt.AmmoUpdate;
-		}
+
+        ammoDisplay.text= gm.curAmmo +"/"+ gm.maxAmmo;
+
+        pickUpText.text = gm.pickupText.text;
         
 	}
 
     void loseHealth(){
-        float rotationZ = 270.0f * (hlth.playerHealth / maxHealth)-270.0f;
+        float rotationZ = 270.0f * (gm.playerHealth / maxHealth)-270.0f;
         Quaternion target = Quaternion.Euler(0,0,rotationZ);
         needle.transform.rotation = Quaternion.Slerp(needle.transform.rotation, target, smooth * Time.deltaTime);
 
