@@ -75,7 +75,9 @@ public class pauseMenu : MonoBehaviour
     {
         //SceneManager.LoadScene("startMenu", LoadSceneMode.Single);//loads start menu
         SceneManager.LoadScene(0);
-       // Time.timeScale = 1; //Aaron: The cursor would be invisible if you quit and went to the main menu so I commented it out.
+        // Time.timeScale = 1; //Aaron: The cursor would be invisible if you quit and went to the main menu so I commented it out.
+
+        
    
     }
     public void Reset(){
