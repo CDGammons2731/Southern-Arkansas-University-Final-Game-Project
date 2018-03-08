@@ -10,6 +10,7 @@ public class hud : MonoBehaviour {
     public GameObject hubScreen;
     public Player playerScript;
     public Text pickUpText;
+    public Text yourWeapon;
     GameManager gm;
     public Text timer;
     float countDown=300f;
@@ -56,9 +57,11 @@ public class hud : MonoBehaviour {
         {
             ShowAmmo();
         }
+
+     
+            yourWeapon.text = gm.yourGun.CurrentWeapon;
         
-        
-	}
+    }
 
     void loseHealth(){
         float rotationZ = 270.0f * (gm.playerHealth / maxHealth)-270.0f;

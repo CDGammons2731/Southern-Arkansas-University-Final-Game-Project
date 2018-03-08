@@ -35,6 +35,7 @@ using GUN;
         public bool isWeapon;
         public string currentGun;
 
+        public GameObject UI;
 
         GunTransitions gunTran;
 
@@ -54,6 +55,7 @@ using GUN;
             gunTran = GetComponentInChildren<GunTransitions>();
             GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
 
+            UI = GameObject.FindGameObjectWithTag("UI");
 
         }
 
@@ -87,7 +89,7 @@ using GUN;
             {
                 weapon = other.gameObject;
                 weaponInRange = true;
-                GM.pickupText.text = ("Press F to pickup " + weapon.tag);
+                UI.GetComponent<hud>().pickUpText.text= ("Press F to pickup " + weapon.tag);
 
             }
         }
@@ -95,8 +97,9 @@ using GUN;
         void OnTriggerExit(Collider other)
         {
             weaponInRange = false;
+            UI.GetComponent<hud>().pickUpText.text = ("");
 
-        }
+    }
 
 
         void PickUpWeapon(GameObject weapon)
