@@ -110,16 +110,18 @@ public class LevelGenerator : MonoBehaviour {
 				RemoveExcessNavmesh ();
 				DoorInfo[] dGrp = FindObjectsOfType<DoorInfo> ();
 				for (int i = dGrp.Length - 1; i >= 0; i--) {
-					if (dGrp [i].pair != null) {
+					if (dGrp [i].pair != null && dGrp[i] != null) {
 						dGrp [i].pair.transform.parent.GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].transform.parent.gameObject);
 						dGrp [i].transform.parent.GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].pair.transform.parent.gameObject);
 						if (!dGrp [i].MarkForRemoval) {
 							dGrp [i].PlaceDoorObject (unlockedDoor, gridScale);
 						}
-						if (dGrp [i].MarkForRemoval) {
-							Destroy (dGrp [i].gameObject);
-						}
 						yield return null;
+					}
+				}
+				for (int i = dGrp.Length - 1; i >= 0; i--) {
+					if (dGrp [i].MarkForRemoval) {
+						Destroy (dGrp [i].gameObject);
 					}
 				}
 			} 
