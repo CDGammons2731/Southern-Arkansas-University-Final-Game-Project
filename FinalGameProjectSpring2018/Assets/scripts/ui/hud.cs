@@ -42,7 +42,7 @@ public class hud : MonoBehaviour {
 
         loseHealth();
 
-        ammoDisplay.text= gm.curAmmo +"/"+ gm.maxAmmo;
+        //ammoDisplay.text= gm.curAmmo +"/"+ gm.maxAmmo;
 
         pickUpText.text = gm.pickupText.text;
         
