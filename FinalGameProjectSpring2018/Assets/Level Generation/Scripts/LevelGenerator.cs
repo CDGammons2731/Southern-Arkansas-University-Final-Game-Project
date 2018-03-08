@@ -127,18 +127,12 @@ public class LevelGenerator : MonoBehaviour {
 			} 
 			loaded = true;
 		}
+		StopCoroutine (GenerateLevel ());
 		yield return null;
 	}
 
 	void Start() {
 		StartCoroutine (GenerateLevel());
-	}
-
-	void Update() {
-		Debug.Log (loaded);
-		if (loaded) {
-			StopCoroutine (GenerateLevel ());
-		}
 	}
 
 	void RemoveExcessNavmesh() {
