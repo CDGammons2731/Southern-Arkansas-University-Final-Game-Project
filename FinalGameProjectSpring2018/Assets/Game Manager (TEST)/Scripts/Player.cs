@@ -144,7 +144,7 @@ using GUN;
                 g.transform.position = holdingPosition.transform.position;
                 g.transform.rotation = holdingPosition.transform.rotation;
                 gun.FireWeapon(currentGun);
-                GM.pickupText.text = "";
+               // GM.pickupText.text = "";
             }
 
             if (Input.GetKeyDown(KeyCode.B))

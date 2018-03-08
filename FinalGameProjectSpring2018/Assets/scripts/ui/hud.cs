@@ -59,7 +59,7 @@ public class hud : MonoBehaviour {
         }
 
      
-            yourWeapon.text = gm.yourGun.CurrentWeapon;
+        yourWeapon.text = gm.yourGun.CurrentWeapon;
         
     }
 

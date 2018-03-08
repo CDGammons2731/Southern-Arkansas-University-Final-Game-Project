@@ -377,7 +377,7 @@ Reload Speed: 2 seconds
 
                 }
 
-                // Destroy the bullet after 2 seconds
+                // Destroy the bullet after .35s seconds
                 Destroy(shot, 0.35f);
             }
             else
