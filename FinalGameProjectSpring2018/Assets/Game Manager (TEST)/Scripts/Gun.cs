@@ -247,6 +247,7 @@ Reload Speed: 2 seconds
         
 
     }
+        //Just to make sure your pullets are destroyed
         private void OnCollisionEnter(Collision collision)
         {
             if(shot!=null) Destroy(shot);

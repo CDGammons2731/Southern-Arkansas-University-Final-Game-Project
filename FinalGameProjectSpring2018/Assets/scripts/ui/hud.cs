@@ -5,11 +5,11 @@ using UnityEngine.UI;
 using GAMEMANAGER;
 using GUN;
 
+
 public class hud : MonoBehaviour {
     public GameObject hubScreen;
-
+    public Player playerScript;
     public Text pickUpText;
-
     GameManager gm;
     public Text timer;
     float countDown=300f;
@@ -30,8 +30,18 @@ public class hud : MonoBehaviour {
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
+        playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        
 
     }
+
+    void ShowAmmo() {
+        ammoDisplay.text = gm.curAmmo + "/" + gm.maxAmmo;
+
+        //pickUpText.text = gm.pickupText.text;
+
+    }
+
     // Update is called once per frame
     void Update () {
 
@@ -42,9 +52,11 @@ public class hud : MonoBehaviour {
 
         loseHealth();
 
-        ammoDisplay.text= gm.curAmmo +"/"+ gm.maxAmmo;
-
-        pickUpText.text = gm.pickupText.text;
+        if (gm.yourGun != null)
+        {
+            ShowAmmo();
+        }
+        
         
 	}
 
