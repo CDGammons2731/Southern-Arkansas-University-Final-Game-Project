@@ -28,6 +28,8 @@ public class LevelGenerator : MonoBehaviour {
 
 	public GameObject unlockedDoor;
 
+	public bool loaded = false;
+
 	public LevelGenCategory[] categories;
 	/*
 	// 0  - Normal Room
@@ -35,79 +37,105 @@ public class LevelGenerator : MonoBehaviour {
 	// 2  - End Room
 	*/
 
-	void Start() {
-		if (gX * gY > 1) {
+	IEnumerator GenerateLevel() {
+		while (!loaded) {
+			if (gX * gY > 1) {
 				//First set up the grid
-			InitializeGrid(gX, gY);
+				InitializeGrid (gX, gY);
+				yield return null;
 				//Assign 2 places to serve as our start and end rooms
-			int r1Q = Random.Range(1,4); //What quadrant will the start room be in?
-			int r2Q = Random.Range(1,4); //Same for the end room
-			if (r1Q == r2Q) {
-				r2Q++;
-				if (r2Q == 5) r2Q = 1;
-			}
-			bool r1Assigned = false;
-			do { r1Assigned = AssignRandomRoom(1, r1Q); } while (!r1Assigned);
-			bool r2Assigned = false;
-			do { r2Assigned = AssignRandomRoom(2, r2Q); } while (!r2Assigned);
-			end.occupied = false;
-			for (int i = 0; i < gX; i++) {
-				for (int j = 0; j < gY; j++) {
-					grid[i,j].weight = Random.Range(0,50);
+				int r1Q = Random.Range (1, 4); //What quadrant will the start room be in?
+				int r2Q = Random.Range (1, 4); //Same for the end room
+				if (r1Q == r2Q) {
+					r2Q++;
+					if (r2Q == 5)
+						r2Q = 1;
 				}
-			}
-			start.weight = 0;
-			path = FindPath();
-			//InstantiateRooms ();
-			roomsToPlace = new List<Arrangement>(0);
-			List<Node> pathOrig = new List<Node>(0);
-			foreach (Node n in path) {
-				pathOrig.Add(n);
-			}
-			for (int i = 0; i < pathOrig.Count-1; i++) {
-				if (path.Contains (pathOrig [i])) {
-					if (roomsToPlace.Count == 0) {
-						roomsToPlace.Add (PlaceRoom (path [0], Arrangement.pathFailure, true));
+				bool r1Assigned = false;
+				do {
+					r1Assigned = AssignRandomRoom (1, r1Q);
+				} while (!r1Assigned);
+				bool r2Assigned = false;
+				do {
+					r2Assigned = AssignRandomRoom (2, r2Q);
+				} while (!r2Assigned);
+				end.occupied = false;
+				yield return null;
+				for (int i = 0; i < gX; i++) {
+					for (int j = 0; j < gY; j++) {
+						grid [i, j].weight = Random.Range (0, 50);
 					}
-					roomsToPlace.Add (PlaceRoom (path [0], roomsToPlace[roomsToPlace.Count-1].pathExitPt, true));
 				}
-			}
-			roomsToPlace.Add(PlaceRoom(end, roomsToPlace[roomsToPlace.Count-1].pathExitPt, false));
-			InstantiateRooms(roomsToPlace);
-			roomsToPlace.Clear ();
-			for (int i = 0; i < sideRooms; i++) {
-				if (openDoors.Count > 0) {
-					DoorInfo door = openDoors [Random.Range (0, openDoors.Count)];
-					if (((int)door.loc.x >= 0 && (int)door.loc.x < gX) && ((int)door.loc.y >= 0 && (int)door.loc.y < gY)) {
-						Arrangement r = PlaceRoom (grid [(int)(door.loc.x), (int)(door.loc.y)], door.loc - door.face, false);
-						if (r != null) {
-							roomsToPlace.Add (r);
-							InstantiateRooms (roomsToPlace);
-							roomsToPlace.Clear ();
-						} else {
-							openDoors.Remove (door);
-							i--;
+				yield return null;
+				start.weight = 0;
+				path = FindPath ();
+				//InstantiateRooms ();
+				roomsToPlace = new List<Arrangement> (0);
+				List<Node> pathOrig = new List<Node> (0);
+				foreach (Node n in path) {
+					pathOrig.Add (n);
+				}
+				for (int i = 0; i < pathOrig.Count - 1; i++) {
+					if (path.Contains (pathOrig [i])) {
+						if (roomsToPlace.Count == 0) {
+							roomsToPlace.Add (PlaceRoom (path [0], Arrangement.pathFailure, true));
 						}
-					}
-				} else
-					break;
-			}
-			RemoveExcessNavmesh();
-			DoorInfo[] dGrp = FindObjectsOfType<DoorInfo>();
-			for (int i = dGrp.Length -1; i >= 0; i--) {
-				if (dGrp[i].pair != null) {
-					dGrp[i].pair.transform.parent.GetComponent<RoomInfo>().AddToNeighborList(dGrp[i].transform.parent.gameObject);
-					dGrp[i].transform.parent.GetComponent<RoomInfo>().AddToNeighborList(dGrp[i].pair.transform.parent.gameObject);
-					if (!dGrp[i].MarkForRemoval) {
-						dGrp[i].PlaceDoorObject(unlockedDoor, gridScale);
-					}
-					if (dGrp[i].MarkForRemoval) {
-						Destroy(dGrp[i].gameObject);
+						roomsToPlace.Add (PlaceRoom (path [0], roomsToPlace [roomsToPlace.Count - 1].pathExitPt, true));
+						yield return null;
 					}
 				}
-			}
-		} else {
-			Debug.LogWarning("Grid size not large enough for start and end rooms to be put on the grid! Aborting level generation");
+				roomsToPlace.Add (PlaceRoom (end, roomsToPlace [roomsToPlace.Count - 1].pathExitPt, false));
+				yield return null;
+				InstantiateRooms (roomsToPlace);
+				yield return null;
+				roomsToPlace.Clear ();
+				for (int i = 0; i < sideRooms; i++) {
+					if (openDoors.Count > 0) {
+						DoorInfo door = openDoors [Random.Range (0, openDoors.Count)];
+						if (((int)door.loc.x >= 0 && (int)door.loc.x < gX) && ((int)door.loc.y >= 0 && (int)door.loc.y < gY)) {
+							Arrangement r = PlaceRoom (grid [(int)(door.loc.x), (int)(door.loc.y)], door.loc - door.face, false);
+							if (r != null) {
+								roomsToPlace.Add (r);
+								InstantiateRooms (roomsToPlace);
+								roomsToPlace.Clear ();
+							} else {
+								openDoors.Remove (door);
+								i--;
+							}
+							yield return null;
+						}
+					} else
+						break;
+				}
+				RemoveExcessNavmesh ();
+				DoorInfo[] dGrp = FindObjectsOfType<DoorInfo> ();
+				for (int i = dGrp.Length - 1; i >= 0; i--) {
+					if (dGrp [i].pair != null) {
+						dGrp [i].pair.transform.parent.GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].transform.parent.gameObject);
+						dGrp [i].transform.parent.GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].pair.transform.parent.gameObject);
+						if (!dGrp [i].MarkForRemoval) {
+							dGrp [i].PlaceDoorObject (unlockedDoor, gridScale);
+						}
+						if (dGrp [i].MarkForRemoval) {
+							Destroy (dGrp [i].gameObject);
+						}
+						yield return null;
+					}
+				}
+			} 
+			loaded = true;
+		}
+		yield return null;
+	}
+
+	void Start() {
+		StartCoroutine (GenerateLevel());
+	}
+
+	void Update() {
+		Debug.Log (loaded);
+		if (loaded) {
+			StopCoroutine (GenerateLevel ());
 		}
 	}
 
