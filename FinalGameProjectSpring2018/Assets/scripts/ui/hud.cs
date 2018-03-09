@@ -28,10 +28,16 @@ public class hud : MonoBehaviour {
     public float smooth = 2.0f;
 
 
+    public Image gunIcon;
+    public Sprite[] icons;
+
+
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
         playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+
+
         
 
     }
@@ -60,6 +66,27 @@ public class hud : MonoBehaviour {
 
      
         yourWeapon.text = gm.yourGun.CurrentWeapon;
+
+
+        if(gm.yourGun.CurrentWeapon=="revolver"){
+            gunIcon.sprite = icons[0];
+        }
+        if (gm.yourGun.CurrentWeapon == "railgun")
+        {
+            gunIcon.sprite = icons[1];
+        }
+        if (gm.yourGun.CurrentWeapon == "tommygun")
+        {
+            gunIcon.sprite = icons[2];
+        }
+        if (gm.yourGun.CurrentWeapon == "shotgun")
+        {
+            gunIcon.sprite = icons[3];
+        }
+
+
+
+
         
     }
 
