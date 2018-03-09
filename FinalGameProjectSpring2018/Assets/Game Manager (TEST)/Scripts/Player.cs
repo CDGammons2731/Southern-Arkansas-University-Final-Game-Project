@@ -5,151 +5,161 @@ using UnityStandardAssets.Characters.FirstPerson;
 using GAMEMANAGER;
 using GUN;
 
-public class Player : MonoBehaviour
-{
-    private Rigidbody rb;
-    public GameManager GM;
-    public Camera PlayerCam;
 
-    [Header("Player Sounds")]
-    public AudioClip PlayerHurt;
-    public AudioClip PlayerDied;
-    public AudioClip Healed;
-    public AudioClip HeartBeat;
-    public AudioClip Ticking;
-    public AudioSource PlayerSound;
-
-    private int health;
-    private int armor;
-    private int score;
-    private string name;
-     
-	public Vector3 gunOffset;
-    public GameObject holdingPosition;
-    public GameObject weapon;
-	public Gun gun;
-
-    public bool weaponInRange;
-	public bool hasWeapon;
-    public bool isWeapon;
-    public string currentGun;
-
-
-	GunTransitions gunTran;
-
-    void Start()
+    public class Player : MonoBehaviour
     {
-     
-        rb = GetComponent<Rigidbody>();
-        health = 0;
-        armor = 0;
-        score = 0;
-        name = "Player";
+        private Rigidbody rb;
+        public GameManager GM;
+        public Camera PlayerCam;
 
-        PlayerSound=GetComponent<AudioSource>();
+        [Header("Player Sounds")]
+        public AudioClip PlayerHurt;
+        public AudioClip PlayerDied;
+        public AudioClip Healed;
+        public AudioClip HeartBeat;
+        public AudioClip Ticking;
+        public AudioSource PlayerSound;
 
-        weaponInRange = false;
-		gunOffset= new Vector3(rb.transform.position.x-.05f,rb.transform.position.y-.5f,rb.transform.position.z+2f); //Delete this later
-		gunTran= GetComponentInChildren<GunTransitions>();
-        GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
-     
-      
-    }
+        private int health;
+        private int armor;
+        private int score;
+        private string name;
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Health"))
+        public Vector3 gunOffset;
+        public GameObject holdingPosition;
+        public GameObject weapon;
+        public Gun gun;
+
+        public bool weaponInRange;
+        public bool hasWeapon;
+        public bool isWeapon;
+        public string currentGun;
+
+        public GameObject UI;
+
+        GunTransitions gunTran;
+
+        void Start()
         {
-            GM.HealthUp();
-            other.gameObject.SetActive(false);
+
+            rb = GetComponent<Rigidbody>();
+            health = 0;
+            armor = 0;
+            score = 0;
+            name = "Player";
+
+            PlayerSound = GetComponent<AudioSource>();
+
+            weaponInRange = false;
+            gunOffset = new Vector3(rb.transform.position.x - .05f, rb.transform.position.y - .5f, rb.transform.position.z + 2f); //Delete this later
+            gunTran = GetComponentInChildren<GunTransitions>();
+            GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
+
+            UI = GameObject.FindGameObjectWithTag("UI");
+
         }
 
-        if (other.gameObject.CompareTag("Armor"))
+        void OnTriggerEnter(Collider other)
         {
-            GM.ArmorUp();
-            other.gameObject.SetActive(false);
-        }
-
-        if (other.gameObject.CompareTag("Ammo"))
-        {
-            gun.ammo +=50;
-            other.gameObject.SetActive(false);
-        }
-
-        if (other.gameObject.CompareTag("Damage"))
-        {
-            GM.HealthDown();
-            other.gameObject.SetActive(false);
-        }
-
-        if (other.gameObject.CompareTag("shotgun") ||other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") ||other.gameObject.CompareTag("raygun") || other.gameObject.CompareTag("railgun"))
-		{
-            weapon = other.gameObject;
-            weaponInRange = true;
-            GM.pickupText.text = ("Press F to pickup " + weapon.tag);
-        
-        }   
-    }
-
-    void OnTriggerExit(Collider other) {
-        weaponInRange = false;
-        
-    }
-
-
-    void PickUpWeapon(GameObject weapon) {
-        //Play animation for weapon pick up
-        hasWeapon = true;
-		weaponInRange = false;
-        gun.equipped = true;
-        if (Input.GetMouseButton(1)){
-			gun.FireWeapon (weapon.tag);
-		}
-
-	}
-	GameObject g;
-
-    void Update()
-    {
-       
-
-        if (health > 100) health = 100;
-        if (weaponInRange == true)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (other.gameObject.CompareTag("Health"))
             {
-                currentGun = weapon.tag;
-                gun = weapon.GetComponent<Gun>();
-                GM.yourGun = weapon.GetComponent<Gun>();
-                PickUpWeapon(weapon);
+                GM.HealthUp();
+                other.gameObject.SetActive(false);
+            }
+
+            if (other.gameObject.CompareTag("Armor"))
+            {
+                GM.ArmorUp();
+                other.gameObject.SetActive(false);
+            }
+
+            if (other.gameObject.CompareTag("Ammo"))
+            {
+                gun.ammo += 50;
+                other.gameObject.SetActive(false);
+            }
+
+            if (other.gameObject.CompareTag("Damage"))
+            {
+                GM.HealthDown();
+                other.gameObject.SetActive(false);
+            }
+
+            if (other.gameObject.CompareTag("shotgun") || other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") || other.gameObject.CompareTag("raygun") || other.gameObject.CompareTag("railgun"))
+            {
+                weapon = other.gameObject;
+                weaponInRange = true;
+                UI.GetComponent<hud>().pickUpText.text= ("Press F to pickup " + weapon.tag);
+
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            weaponInRange = false;
+            UI.GetComponent<hud>().pickUpText.text = ("");
+
+    }
+
+
+        void PickUpWeapon(GameObject weapon)
+        {
+            //Play animation for weapon pick up
+            hasWeapon = true;
+            weaponInRange = false;
+            gun.equipped = true;
+            if (Input.GetMouseButton(1))
+            {
+                gun.FireWeapon(weapon.tag);
+            }
+
+        }
+        GameObject g;
+
+        void Update()
+        {
+
+
+            if (health > 100) health = 100;
+            if (weaponInRange == true)
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    currentGun = weapon.tag;
+                    gun = weapon.GetComponent<Gun>();
+                    GM.yourGun = weapon.GetComponent<Gun>();
+                    PickUpWeapon(weapon);
+
+                }
+
+                if (GM.pickupText != null) { }
+
 
             }
 
-            if (GM.pickupText != null) { }
 
-       
+            if (hasWeapon == true)
+            {
+                g = GameObject.FindGameObjectWithTag(currentGun);
+                g.transform.position = holdingPosition.transform.position;
+                g.transform.rotation = holdingPosition.transform.rotation;
+                gun.FireWeapon(currentGun);
+               // GM.pickupText.text = "";
+            }
+
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                hasWeapon = false;
+                gun.equipped = false;
+            }
+
+            if (GM.playerHealth <= 30)
+            {
+                PlayerSound.clip = HeartBeat;
+                PlayerSound.Play();
+            }
+
+            //if player health <=30 play heart beat
+
         }
-       
-
-		if(hasWeapon==true){
-			g = GameObject.FindGameObjectWithTag (currentGun);
-			g.transform.position = holdingPosition.transform.position;
-			g.transform.rotation = holdingPosition.transform.rotation;
-			gun.FireWeapon (currentGun);
-            GM.pickupText.text = "";
-        }
-
-        if (Input.GetKeyDown(KeyCode.B)) {
-            hasWeapon = false;
-            gun.equipped = false;
-        }
-
-        if (GM.playerHealth <= 30) {
-            PlayerSound.clip = HeartBeat;
-            PlayerSound.Play();
-        }
-
-        //if player health <=30 play heart beat
-
     }
-}

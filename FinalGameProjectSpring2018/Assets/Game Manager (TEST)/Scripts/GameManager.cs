@@ -67,6 +67,11 @@ namespace GAMEMANAGER
         public Gun yourGun;
         public Text gunText, gunStat, pickupText;
 
+        public int curAmmo;
+        public int maxAmmo;
+
+        public GameObject UI;
+
 
 
         struct Robot
@@ -87,6 +92,7 @@ namespace GAMEMANAGER
             {
                 DontDestroyOnLoad(gameObject);
                 GAME = this;
+                
             }
             else if (GAME != this)
             {
@@ -94,8 +100,8 @@ namespace GAMEMANAGER
             }
             audiosource = GetComponent<AudioSource>();
             audiosource.PlayOneShot(ThemeMusic, 0.5f);
+            UI = GameObject.FindGameObjectWithTag("UI");
 
-            
         }
 			
 
@@ -230,20 +236,26 @@ namespace GAMEMANAGER
 
         void Update()
         {
-          
+           
+
 			if (yourGun.CurrentWeapon != null&& gunText!=null) {
-				gunText.text = yourGun.CurrentWeapon;
+				//UI.GetComponent<hud>().yourWeapon.text = yourGun.CurrentWeapon;
 			}
 			if (yourGun.ammoClip != 0) {
-				gunStat.text = (yourGun.currentAmmo) + "/" + yourGun.AmmoUpdate;
-			}
-            stats.text = "Health " + playerHealth + " Armor: " + playerArmor + " Score: " + score;
+				//gunStat.text = (yourGun.currentAmmo) + "/" + yourGun.AmmoUpdate;
+                curAmmo = yourGun.currentAmmo;
+                maxAmmo = yourGun.AmmoUpdate;
+            }
+            //stats.text = "Health " + playerHealth + " Armor: " + playerArmor + " Score: " + score;
 
             if (playerHealth > 100)
             {
                 playerHealth = 100;
             }
-         
+
+           
+
+
         }
 
 
