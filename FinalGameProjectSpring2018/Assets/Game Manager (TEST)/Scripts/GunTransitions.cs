@@ -5,7 +5,7 @@ using GUN;
 
 public class GunTransitions : MonoBehaviour {
 	public Animator animator;
-    public Animation Generic_Recoil;
+    public Animation GunRecoil;
     public GameObject scopeOverlay;
     public GameObject weaponCamera;
     public GameObject crossHair;
@@ -19,10 +19,13 @@ public class GunTransitions : MonoBehaviour {
     public bool isShotgun= false;
     public bool isShooting = false;
     public bool isRevolver = false;
+    public bool isRaygun= false;
+    public bool isRailgun = false;
 
     public float reloadTime;
     public float duration; //to tweak how long the generic animation plays (Temporary: Need to have one day of work devoted to getting all animations and setting up all States)
-
+    public string weapon;
+    public string weaponBool;
     bool isRel;
 
    
@@ -31,65 +34,112 @@ public class GunTransitions : MonoBehaviour {
         reloadTime = GetComponentInParent<Player>().weapon.GetComponent<Gun>().reloadRate;
 
         if (Input.GetMouseButtonDown(1))
-   
         {
-            
                 Scoped = !Scoped;
                 animator.SetBool("isScoped", Scoped);
                 if (Scoped)
                     StartCoroutine(OnScoped());
                 else
                     OnUnscoped();
-
-            
         }
 
-		if (Input.GetKeyDown(KeyCode.R)) {
+		if (Input.GetKeyDown(KeyCode.R)&& weapon!=null) {
 			Reloading = !Reloading;
-            if (Generic_Recoil != null) {
-                Generic_Recoil["Reload_Generic"].speed = reloadTime;
-            }
-			animator.SetBool ("reloading", Reloading);
-			StartCoroutine (ReloadWait ());
+            //GunRecoil["GunRecoil"].speed = reloadTime;
+            ReloadGun(weapon);
+            ReloadWaitTime(reloadTime);
+			
 		}
 
-        if (Input.GetMouseButtonDown(0) && gameObject.GetComponentInParent<Camera>().gameObject.GetComponentInParent<Player>().currentGun == "shotgun") {
-            isShotgun = !isShotgun;
-            animator.SetBool("isShotgun", isShotgun);
-            StartCoroutine(Shotgun_RecoilTime());
+        if (Input.GetMouseButtonDown(0)){
+            weapon = gameObject.GetComponentInParent<Camera>().gameObject.GetComponentInParent<Player>().currentGun;
+            if (weapon == "shotgun")
+            {
+                isShotgun = true;
+                weaponBool = "isShotgun";
+            }
 
+            if (weapon == "revolver")
+            {
+                isRevolver = true;
+                weaponBool = "isRevolver";
+            }
+
+            if (weapon == "rifle")
+            {
+                isRifle = true;
+                weaponBool = "isRifle";
+            }
+
+            if (weapon == "raygun")
+            {
+                isRaygun = true;
+                weaponBool = "isRaygun";
+            }
+
+            if (weapon == "railgun")
+            {
+                isRailgun = true;
+                weaponBool = "isRailgun";
+            }
+
+            Recoil();
+        }
+    }
+    //To set the reload animation based on the current weapon
+    void ReloadGun(string gun) {
+        gun = weapon;
+        switch (gun) {
+            case "railgun":
+                animator.SetBool(weaponBool, true);
+                break;
+            case "raygun":
+                animator.SetBool(weaponBool, true);
+                break;
+            case "revolver":
+                animator.SetBool(weaponBool, true);
+                break;
+            case "rifle":
+                animator.SetBool(weaponBool, true);
+                break;
+            case "shotgun":
+                animator.SetBool(weaponBool, true);
+                break;
+            default:
+               
+                break;
         }
 
-        if ((Input.GetMouseButton(0) && gameObject.GetComponentInParent<Camera>().gameObject.GetComponentInParent<Player>().currentGun == "rifle" )|| (Input.GetMouseButton(0)&& gameObject.GetComponentInParent<Camera>().gameObject.GetComponentInParent<Player>().currentGun == "tommygun"))
+    }
+
+    void Recoil() {
+        //Can't do switch with booleans here so I'll do a bunch of ifs
+        if (isShotgun == true)
         {
-           // isRifle = !isRifle;
-           // animator.SetBool("isRifle", isRifle);
-           // StartCoroutine(Rifle_RecoilTime());
+        }
+        if (isRifle == true)
+        {
 
         }
-        
+        if (isShotgun == true)
+        {
 
+        }
+        if (isRevolver == true) {
+
+        }
+        if (isRailgun == true) {
+        }
+        if (isRaygun == true) {
+
+        }
 
     }
-    IEnumerator Rifle_RecoilTime()
+    IEnumerator ReloadWaitTime(float time)
     {
-        yield return new WaitForSeconds(.3f);
-        isRifle = false;
-        animator.SetBool("isRifle", isRifle);
+        yield return new WaitForSeconds(time);
+        animator.SetBool(weaponBool, false);
     }
-
-    IEnumerator Shotgun_RecoilTime()
-    {
-        yield return new WaitForSeconds(0.2f);
-        isShotgun = false;
-        animator.SetBool("isShotgun", isShotgun);
-    }
-
-    IEnumerator ReloadWait(){
-		yield return new WaitForSeconds (reloadTime);
-		Reloading = false;
-		animator.SetBool ("reloading", Reloading);
-	}
 
     IEnumerator OnScoped() {
 
