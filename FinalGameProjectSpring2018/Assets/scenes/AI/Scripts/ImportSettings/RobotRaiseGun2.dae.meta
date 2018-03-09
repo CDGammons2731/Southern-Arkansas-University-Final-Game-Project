@@ -1,69 +1,72 @@
 fileFormatVersion: 2
-guid: 567befd0bb88d0d43955d3be269466a7
-timeCreated: 1520379657
+guid: e6e48915273ae744f86aa6616a546018
+timeCreated: 1520607790
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: ChestArmor
-    100002: Furnance
-    100004: Head_grp
-    100006: HeadBracePipes
-    100008: L_Arm
-    100010: L_Arm_grp
-    100012: L_Shoulder
-    100014: Neck_grp
-    100016: NeckCables
-    100018: R_Arm
-    100020: R_Arm_grp
-    100022: R_Shoulder
-    100024: RoboHead
-    100026: //RootNode
-    100028: RocketRegion
-    100030: SteamTank
-    100032: Tank_grp
-    100034: Torso_grp
-    400000: ChestArmor
-    400002: Furnance
-    400004: Head_grp
-    400006: HeadBracePipes
-    400008: L_Arm
-    400010: L_Arm_grp
-    400012: L_Shoulder
-    400014: Neck_grp
-    400016: NeckCables
-    400018: R_Arm
-    400020: R_Arm_grp
-    400022: R_Shoulder
-    400024: RoboHead
-    400026: //RootNode
-    400028: RocketRegion
-    400030: SteamTank
-    400032: Tank_grp
-    400034: Torso_grp
-    2100000: lambert1
-    2300000: ChestArmor
-    2300002: Furnance
-    2300004: HeadBracePipes
-    2300006: L_Arm
-    2300008: L_Shoulder
-    2300010: NeckCables
-    2300012: R_Arm
-    2300014: R_Shoulder
-    2300016: RoboHead
-    2300018: RocketRegion
-    2300020: SteamTank
-    3300000: ChestArmor
-    3300002: Furnance
-    3300004: HeadBracePipes
-    3300006: L_Arm
-    3300008: L_Shoulder
-    3300010: NeckCables
-    3300012: R_Arm
-    3300014: R_Shoulder
-    3300016: RoboHead
-    3300018: RocketRegion
-    3300020: SteamTank
+    100000: Bot_Mesh_grp
+    100002: Chest_jnt
+    100004: ChestArmor
+    100006: Furnance
+    100008: Head_grp
+    100010: Head_Tip_jnt
+    100012: HeadBracePipes
+    100014: L_Arm
+    100016: L_Arm_grp
+    100018: L_Clavicle_jnt
+    100020: L_Elbow_jnt
+    100022: L_Hand_jnt
+    100024: L_Shoulder
+    100026: L_Shoulder_jnt
+    100028: Neck_grp
+    100030: NeckCables
+    100032: R_Arm
+    100034: R_Arm_grp
+    100036: R_Clavicle_jnt
+    100038: R_Elbow_jnt
+    100040: R_Fork_jnt
+    100042: R_Hand_jnt
+    100044: R_Shoulder
+    100046: R_Shoulder_jnt
+    100048: RoboHead
+    100050: //RootNode
+    100052: RocketRegion
+    100054: Root_jnt
+    100056: SteamTank
+    100058: Tank_grp
+    100060: Torso_grp
+    400000: Bot_Mesh_grp
+    400002: Chest_jnt
+    400004: ChestArmor
+    400006: Furnance
+    400008: Head_grp
+    400010: Head_Tip_jnt
+    400012: HeadBracePipes
+    400014: L_Arm
+    400016: L_Arm_grp
+    400018: L_Clavicle_jnt
+    400020: L_Elbow_jnt
+    400022: L_Hand_jnt
+    400024: L_Shoulder
+    400026: L_Shoulder_jnt
+    400028: Neck_grp
+    400030: NeckCables
+    400032: R_Arm
+    400034: R_Arm_grp
+    400036: R_Clavicle_jnt
+    400038: R_Elbow_jnt
+    400040: R_Fork_jnt
+    400042: R_Hand_jnt
+    400044: R_Shoulder
+    400046: R_Shoulder_jnt
+    400048: RoboHead
+    400050: //RootNode
+    400052: RocketRegion
+    400054: Root_jnt
+    400056: SteamTank
+    400058: Tank_grp
+    400060: Torso_grp
     4300000: SteamTank
     4300002: HeadBracePipes
     4300004: NeckCables
@@ -77,6 +80,17 @@ ModelImporter:
     4300020: L_Arm
     7400000: Take 001
     9500000: //RootNode
+    13700000: ChestArmor
+    13700002: Furnance
+    13700004: HeadBracePipes
+    13700006: L_Arm
+    13700008: L_Shoulder
+    13700010: NeckCables
+    13700012: R_Arm
+    13700014: R_Shoulder
+    13700016: RoboHead
+    13700018: RocketRegion
+    13700020: SteamTank
   materials:
     importMaterials: 1
     materialName: 0
@@ -113,7 +127,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -128,7 +142,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []

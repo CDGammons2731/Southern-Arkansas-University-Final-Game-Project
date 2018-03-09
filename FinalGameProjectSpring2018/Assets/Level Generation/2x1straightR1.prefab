@@ -300,9 +300,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74317d86e76297c47ab23c374ec97214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AIToSpawn: {fileID: 1506439689358042, guid: 5381ac131daa2384393def7702afed22, type: 2}
+  Health: 30
+  Samage: 0
+  EnemyNumber: 0
+  player: {fileID: 0}
+  Respawn: 0
+  TimeToRespawn: 300
+  LookRange: 5
+  AIToSpawn: {fileID: 1941537500325920, guid: 1e14889d2d15620469b20c5df54b4982, type: 2}
+  EnemiesNumber: 0
   EnemiesMaxNumber: 1
   range: 5
   SpawnActivateRandomizer: 0
   NumberToActivate: 5
   MaxRange: 10
+  Respawn: 0
+  TimeToRespawn: 300
