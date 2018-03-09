@@ -36,37 +36,31 @@ public class hud : MonoBehaviour {
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
         playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
-
-
-        
-
-    }
-
-    void ShowAmmo() {
-        ammoDisplay.text = gm.curAmmo + "/" + gm.maxAmmo;
-
     }
 
     // Update is called once per frame
     void Update () {
 
+        //prints out the timer
         countDown-=Time.deltaTime;
         int sec=(int)countDown%60;
         int min = (int)countDown / 60;
         timer.text=min.ToString()+ ":"+sec.ToString();
 
+        //updates health meter
         loseHealth();
 
+        //Updates Ammo player has
         if (gm.yourGun != null)
         {
             ShowAmmo();
         }
 
-     
+        //tells which gun you have
         yourWeapon.text = gm.yourGun.CurrentWeapon;
 
-
-        if(gm.yourGun.CurrentWeapon=="revolver"){
+        //figures which icon to use
+        if(gm.yourGun.CurrentWeapon == "revolver"){
             gunIcon.sprite = icons[0];
         }
         if (gm.yourGun.CurrentWeapon == "railgun")
@@ -82,17 +76,23 @@ public class hud : MonoBehaviour {
             gunIcon.sprite = icons[3];
         }
 
-
-
-
-        
     }
 
+
+
+    //Health
     void loseHealth(){
+        //rotating needle to represent health
         float rotationZ = 270.0f * (gm.playerHealth / maxHealth)-270.0f;
         Quaternion target = Quaternion.Euler(0,0,rotationZ);
         needle.transform.rotation = Quaternion.Slerp(needle.transform.rotation, target, smooth * Time.deltaTime);
+    }
 
-        
+
+    //Ammo
+    void ShowAmmo()
+    {
+        ammoDisplay.text = gm.curAmmo + "/" + gm.maxAmmo;
+
     }
 }
