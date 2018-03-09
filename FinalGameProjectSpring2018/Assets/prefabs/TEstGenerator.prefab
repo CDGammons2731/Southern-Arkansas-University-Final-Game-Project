@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114502811181698714}
   m_Layer: 0
   m_Name: TEstGenerator
-  m_TagString: Untagged
+  m_TagString: LevelGenerator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,8 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gX: 75
   gY: 75
-  minDistance: 15
-  borderDistance: 10
+  minDistance: 5
+  borderDistance: 5
   gridScale: 20
   sideRooms: 100
   debugging: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   navRemover: {fileID: 1773123860463978, guid: aa7c71b930392d34b91449ab1e7af694, type: 2}
   unlockedDoor: {fileID: 1466096836412968, guid: 0b10e0f53f37a4f4a87175dcc6414efc,
     type: 2}
+  loaded: 0
   categories:
   - {fileID: 11400000, guid: dce71dfddb57f9b4a9c0b754e4a1137a, type: 2}
   - {fileID: 11400000, guid: adb29e1db877006459d1a5840be2384a, type: 2}
