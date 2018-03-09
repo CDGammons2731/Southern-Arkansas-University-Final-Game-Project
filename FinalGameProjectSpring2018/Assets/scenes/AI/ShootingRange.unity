@@ -833,13 +833,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74317d86e76297c47ab23c374ec97214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 30
+  Samage: 0
+  EnemyNumber: 0
+  player: {fileID: 0}
+  Respawn: 1
+  TimeToRespawn: 300
   AIToSpawn: {fileID: 1506439689358042, guid: 5381ac131daa2384393def7702afed22, type: 2}
+  EnemiesNumber: 0
   EnemiesMaxNumber: 1
   range: 10
   SpawnActivateRandomizer: 0
   NumberToActivate: 5
   MaxRange: 10
   Respawn: 1
+  TimeToRespawn: 300
 --- !u!4 &535753290 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4476532122140894, guid: 76b911a4e9684474da02dc15a33b06fb,
