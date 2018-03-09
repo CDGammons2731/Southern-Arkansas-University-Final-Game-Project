@@ -77,6 +77,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if(Input.GetKeyUp(KeyCode.Escape))
             {
                 m_cursorIsLocked = false;
+                
             }
             else if(Input.GetMouseButtonUp(0)&&Time.timeScale!=0)
             {
@@ -84,8 +85,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             if (SceneManager.GetActiveScene().buildIndex == 0) {
                 m_cursorIsLocked = false;
-                
-       
+
             }
 
             if (m_cursorIsLocked)
