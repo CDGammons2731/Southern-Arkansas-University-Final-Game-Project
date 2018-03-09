@@ -51,7 +51,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 527f50f6bc0bf144c93cd2653c98b166, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d46679051b021410fb88257c3a5db89e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -150,12 +150,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff0b5fa9523e48f8bf192fe88de1288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hubScreen: {fileID: 0}
+  timer: {fileID: 0}
   playerScript: {fileID: 0}
   pickUpText: {fileID: 0}
   yourWeapon: {fileID: 0}
-  timer: {fileID: 0}
   ammoDisplay: {fileID: 0}
+  keyText: {fileID: 0}
+  evidText: {fileID: 0}
   needle: {fileID: 0}
   smooth: 2
   gunIcon: {fileID: 0}

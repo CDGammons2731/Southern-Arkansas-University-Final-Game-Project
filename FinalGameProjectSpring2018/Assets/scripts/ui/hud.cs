@@ -7,27 +7,27 @@ using GUN;
 
 
 public class hud : MonoBehaviour {
-    public GameObject hubScreen;
-    public Player playerScript;
-    public Text pickUpText;
-    public Text yourWeapon;
-    GameManager gm;
     public Text timer;
     float countDown=300f;
 
     //Ammo Display
 
+    public Player playerScript;
+    public Text pickUpText;
+    public Text yourWeapon;
+    GameManager gm;
     public Text ammoDisplay;
 
-
+    //Items Player Collect
+    public Text keyText;
+    public Text evidText;
 
     //Player health bar
-
     float maxHealth = 100.0f;
     public GameObject needle;
     public float smooth = 2.0f;
 
-
+    //Gun Icon
     public Image gunIcon;
     public Sprite[] icons;
 
@@ -44,8 +44,6 @@ public class hud : MonoBehaviour {
 
     void ShowAmmo() {
         ammoDisplay.text = gm.curAmmo + "/" + gm.maxAmmo;
-
-        //pickUpText.text = gm.pickupText.text;
 
     }
 
