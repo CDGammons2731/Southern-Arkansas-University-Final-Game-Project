@@ -37,15 +37,17 @@ public class LevelGenerator : MonoBehaviour {
 	// 2  - End Room
 	*/
 
+	void Start() {
+		StartCoroutine (GenerateLevel());
+	}
+
 	IEnumerator GenerateLevel() {
 		while (!loaded) {
 			if (gX * gY > 1) {
-				//First set up the grid
 				InitializeGrid (gX, gY);
 				yield return null;
-				//Assign 2 places to serve as our start and end rooms
-				int r1Q = Random.Range (1, 4); //What quadrant will the start room be in?
-				int r2Q = Random.Range (1, 4); //Same for the end room
+				int r1Q = Random.Range (1, 4);
+				int r2Q = Random.Range (1, 4);
 				if (r1Q == r2Q) {
 					r2Q++;
 					if (r2Q == 5)
@@ -68,8 +70,7 @@ public class LevelGenerator : MonoBehaviour {
 				}
 				yield return null;
 				start.weight = 0;
-				path = FindPath ();
-				//InstantiateRooms ();
+				path = DijkstraAlgorithm.FindPath(start, end, grid, gX, gY);
 				roomsToPlace = new List<Arrangement> (0);
 				List<Node> pathOrig = new List<Node> (0);
 				foreach (Node n in path) {
@@ -128,39 +129,71 @@ public class LevelGenerator : MonoBehaviour {
 			loaded = true;
 		}
 		StopCoroutine (GenerateLevel ());
-		yield return null;
 	}
-
-	void Start() {
-		StartCoroutine (GenerateLevel());
-	}
-
-	void RemoveExcessNavmesh() {
-		for (int i = 0; i < gX; i++) {
-			bool start = false;
-			Vector2 stNode = Vector2.zero;
-			Vector2 enNode = Vector2.zero;
-			for (int j = 0; j < gY; j++) {
-				if (grid[i,j].occupied == false && !start) {
-					stNode = new Vector2 (i,j);
-					start = true;
-				}
-				if ((grid[i,j].occupied == true) && start) {
-					enNode = new Vector2 (i,j);
-					start = false;
-					GameObject cut = Instantiate(navRemover);
-					cut.transform.position = new Vector3(gridScale/2,0,0)+new Vector3 (i, 0, (stNode.y + enNode.y)/2) * gridScale;
-					cut.transform.localScale = new Vector3(1, 1, (enNode.y-stNode.y))*gridScale;
-				}
-				if (j == gY-1 && start) {
-					enNode = new Vector2 (i,j);
-					start = false;
-					GameObject cut = Instantiate(navRemover);
-					cut.transform.position = new Vector3(gridScale/2,0,0)+new Vector3 (i, 0, (1+(stNode.y + enNode.y))/2) * gridScale;
-					cut.transform.localScale = new Vector3(1, 1, 1+(enNode.y-stNode.y))*gridScale;
-				}
+		
+	void InitializeGrid(int x, int y) {
+		grid = new Node[x,y];
+		for (int i = 0; i < x; i++) {
+			for (int j = 0; j < y; j++) {
+				grid[i,j] = new Node();
+				grid[i,j].roomType = 0;
+				grid[i,j].x = i;
+				grid[i,j].y = j;
 			}
 		}
+	}
+		
+	bool AssignRandomRoom(int i, int quad) {
+		int rX, rY;
+		switch (quad) {
+		case 1:
+			if (minDistance < gX) {
+				rX = Random.Range((gX+minDistance)/2, gX-borderDistance);
+			} else {rX = Random.Range(gX/2, gX);}
+			if (minDistance < gY) {
+				rY = Random.Range((gY+minDistance)/2, gY-borderDistance);
+			} else {rY = Random.Range(gY/2, gY);}
+			break;
+		case 2:
+			if (minDistance < gX) {
+				rX = Random.Range(0+borderDistance, (gX-minDistance)/2);
+			} else {rX = Random.Range(0, gX/2);}
+			if (minDistance < gY) {
+				rY = Random.Range((gY+minDistance)/2, gY-borderDistance);
+			} else {rY = Random.Range(gY/2, gY);}
+			break;
+		case 3:
+			if (minDistance < gX) {
+				rX = Random.Range(0+borderDistance, (gX-minDistance)/2);
+			} else {rX = Random.Range(0, gX/2);}
+			if (minDistance < gY) {
+				rY = Random.Range(0+borderDistance, (gY-minDistance)/2);
+			} else {rY = Random.Range(0, gY/2);}
+			break;
+		case 4:
+			if (minDistance < gX) {
+				rX = Random.Range((gX+minDistance)/2, gX-borderDistance);
+			} else {rX = Random.Range(gX/2, gX);}
+			if (minDistance < gY) {
+				rY = Random.Range(0+borderDistance, (gY-minDistance)/2);
+			} else {rY = Random.Range(0, gY/2);}
+			break;
+		default:
+			rX = Random.Range(0, gX);
+			rY = Random.Range(0, gY);
+			break;
+		}
+		if (grid[rX,rY].roomType == 0) {
+			grid[rX,rY].roomType = i;
+			if (i == 1) {
+				start = grid[rX,rY];
+			}
+			if (i == 2) {
+				end = grid[rX,rY];
+			}
+			return true;
+		}
+		return false;
 	}
 
 	Arrangement PlaceRoom(Node source, Vector2 prev, bool isPathed) {
@@ -168,7 +201,6 @@ public class LevelGenerator : MonoBehaviour {
 		/*/
 		/// Step 1: Get all the initial arrangements that can be in that spot, assuming nothing's there and we don't have to connect to anything else
 		/*/
-
 		foreach (LevelGenPrefab pref in categories[source.roomType].components) {
 			if (prev==Arrangement.pathFailure) {
 				for (int i = 0; i < pref.dimensions.x; i++) {
@@ -208,11 +240,6 @@ public class LevelGenerator : MonoBehaviour {
 			foreach (Arrangement pot in potential) {
 				for (int i = path.IndexOf(pot.sourceNode); i < path.Count; i++) {
 					foreach (Vector2 door in pot.original.doorLocations) {	
-						/*Debug.Log (	" | Room: " + roomsToPlace.Count +
-									" | Room name: " +pot.original.name +
-									" | Path[i] location: " + path [i].Location () +
-									" | Door location: " + (pot.sourceNode.Location () - Vector2.one - pot.offset + door) +
-									"");*/
 						if (path[i].Location() == pot.sourceNode.Location()-Vector2.one-pot.offset+door) {
 							pot.pathExitPt = path[i].Location();
 							//Door will never be on a corner
@@ -292,101 +319,7 @@ public class LevelGenerator : MonoBehaviour {
 		}
 		return use;
 	}
-
-	// Use A* pathfinding algorithm to generate a path from start to end, so that we always have a way to the exit
-	List<Node> FindPath() {
-		List<Node> closedSet = new List<Node>(0);
-		List<Node> openSet = new List<Node>(0);
-		openSet.Add(start);
-		foreach (Node n in grid) {
-			if (n != start) {
-				n.s_Cost = 9999999;
-				n.f_Cost = 9999999;
-			}
-			if (n == start) {
-				n.s_Cost = 0;
-				n.f_Cost = Node.NodeDistance(start,end);
-			}
-		}
-		while (openSet.Count > 0) {
-			Node current = openSet[0];
-			foreach (Node a in openSet) {
-				if (a.f_Cost < current.f_Cost) {
-					current = a;
-				}
-			}
-			if (current == end) {
-				return BuildPath(current);
-			}
-			openSet.Remove(current);
-			closedSet.Add(current);
-
-			Node neighbor;
-			if (current.x != 0) {
-				neighbor = grid[current.x-1, current.y]; 
-				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor)) {
-					openSet.Add(neighbor);
-					CompareNeighbors(neighbor,current);
-				}
-			}
-			if (current.x < gX-1) {
-				neighbor = grid[current.x+1, current.y];
-				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor)) {
-					openSet.Add(neighbor);
-					CompareNeighbors(neighbor,current);
-				}
-			}
-			if (current.y != 0) {
-				neighbor = grid[current.x, current.y-1];
-				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor)) {
-					openSet.Add(neighbor);
-					CompareNeighbors(neighbor,current);
-				}
-			}
-			if (current.y < gY - 1) {
-				neighbor = grid[current.x, current.y+1];
-				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor)) {
-					openSet.Add(neighbor);
-					CompareNeighbors(neighbor,current);
-				}
-			}
-		}
-		return null;
-	}
-
-	void CompareNeighbors(Node neighbor, Node current) {
-		int tempS_Cost = current.s_Cost + Node.NodeDistance(current, neighbor) + neighbor.weight;
-		if (tempS_Cost < neighbor.s_Cost) {
-			neighbor.cameFrom = current;
-			neighbor.s_Cost = tempS_Cost;
-			neighbor.f_Cost = neighbor.s_Cost + Node.NodeDistance(neighbor, end);
-		}
-	}
-
-	//Get a path from the nodes
-	List<Node> BuildPath(Node n) {
-		Node currentNode = n;
-		List<Node> route = new List<Node>(0);
-		while (currentNode != start) {
-			route.Add(currentNode);
-			currentNode = currentNode.cameFrom;
-		}
-		route.Add(start);
-		route.Reverse();
-		return route;
-	}
-
-	//Creating the rooms for testing grid generation
-	void InstantiateRooms() {
-		foreach (Node n in path) {
-			GameObject room;
-			room = Instantiate(gridVisual);
-			room.transform.position = new Vector3(gridScale/2,0,gridScale/2)+new Vector3 (n.x, 0, n.y) * gridScale;
-			room.name = "x: "+ n.x + " | y: " + n.y + " | node: "+path.IndexOf(n);
-		}
-	}
-
-	//Creating the rooms from a list
+		
 	void InstantiateRooms(List<Arrangement> roomsToCreate) {
 		foreach (Arrangement room in roomsToCreate) {
 			GameObject init = Instantiate(room.original.prefab);
@@ -442,70 +375,30 @@ public class LevelGenerator : MonoBehaviour {
 		}
 	}
 
-	//Make a random? room into either a start or end room
-	bool AssignRandomRoom(int i, int quad) {
-		int rX, rY;
-			// We get a random position in the grid in the quadrant we want - if there's enough room for minimum distance to be taken into account, we use it
-		switch (quad) {
-		case 1:
-			if (minDistance < gX) {
-				rX = Random.Range((gX+minDistance)/2, gX-borderDistance);
-			} else {rX = Random.Range(gX/2, gX);}
-			if (minDistance < gY) {
-				rY = Random.Range((gY+minDistance)/2, gY-borderDistance);
-			} else {rY = Random.Range(gY/2, gY);}
-		break;
-		case 2:
-			if (minDistance < gX) {
-				rX = Random.Range(0+borderDistance, (gX-minDistance)/2);
-			} else {rX = Random.Range(0, gX/2);}
-			if (minDistance < gY) {
-				rY = Random.Range((gY+minDistance)/2, gY-borderDistance);
-			} else {rY = Random.Range(gY/2, gY);}
-		break;
-		case 3:
-			if (minDistance < gX) {
-				rX = Random.Range(0+borderDistance, (gX-minDistance)/2);
-			} else {rX = Random.Range(0, gX/2);}
-			if (minDistance < gY) {
-				rY = Random.Range(0+borderDistance, (gY-minDistance)/2);
-			} else {rY = Random.Range(0, gY/2);}
-		break;
-		case 4:
-			if (minDistance < gX) {
-				rX = Random.Range((gX+minDistance)/2, gX-borderDistance);
-			} else {rX = Random.Range(gX/2, gX);}
-			if (minDistance < gY) {
-				rY = Random.Range(0+borderDistance, (gY-minDistance)/2);
-			} else {rY = Random.Range(0, gY/2);}
-		break;
-		default:
-			rX = Random.Range(0, gX);
-			rY = Random.Range(0, gY);
-		break;
-		}
-		if (grid[rX,rY].roomType == 0) {
-			grid[rX,rY].roomType = i;
-			if (i == 1) {
-				start = grid[rX,rY];
-			}
-			if (i == 2) {
-				end = grid[rX,rY];
-			}
-			return true;
-		}
-		return false;
-	}
-
-	//Set up the 2d grid array, 0 as default entry
-	void InitializeGrid(int x, int y) {
-		grid = new Node[x,y];
-		for (int i = 0; i < x; i++) {
-			for (int j = 0; j < y; j++) {
-				grid[i,j] = new Node();
-				grid[i,j].roomType = 0;
-				grid[i,j].x = i;
-				grid[i,j].y = j;
+	void RemoveExcessNavmesh() {
+		for (int i = 0; i < gX; i++) {
+			bool start = false;
+			Vector2 stNode = Vector2.zero;
+			Vector2 enNode = Vector2.zero;
+			for (int j = 0; j < gY; j++) {
+				if (grid[i,j].occupied == false && !start) {
+					stNode = new Vector2 (i,j);
+					start = true;
+				}
+				if ((grid[i,j].occupied == true) && start) {
+					enNode = new Vector2 (i,j);
+					start = false;
+					GameObject cut = Instantiate(navRemover);
+					cut.transform.position = new Vector3(gridScale/2,0,0)+new Vector3 (i, 0, (stNode.y + enNode.y)/2) * gridScale;
+					cut.transform.localScale = new Vector3(1, 1, (enNode.y-stNode.y))*gridScale;
+				}
+				if (j == gY-1 && start) {
+					enNode = new Vector2 (i,j);
+					start = false;
+					GameObject cut = Instantiate(navRemover);
+					cut.transform.position = new Vector3(gridScale/2,0,0)+new Vector3 (i, 0, (1+(stNode.y + enNode.y))/2) * gridScale;
+					cut.transform.localScale = new Vector3(1, 1, 1+(enNode.y-stNode.y))*gridScale;
+				}
 			}
 		}
 	}
