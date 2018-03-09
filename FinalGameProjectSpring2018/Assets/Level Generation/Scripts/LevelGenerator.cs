@@ -93,7 +93,7 @@ public class LevelGenerator : MonoBehaviour {
 				for (int i = 0; i < sideRooms; i++) {
 					if (openDoors.Count > 0) {
 						DoorInfo door = openDoors [Random.Range (0, openDoors.Count)];
-						if (((int)door.loc.x >= 0 && (int)door.loc.x < gX) && ((int)door.loc.y >= 0 && (int)door.loc.y < gY)) {
+						if (InBounds((int)door.loc.x, (int)door.loc.y)) {
 							Arrangement r = PlaceRoom (grid [(int)(door.loc.x), (int)(door.loc.y)], door.loc - door.face, false);
 							if (r != null) {
 								roomsToPlace.Add (r);
@@ -229,9 +229,6 @@ public class LevelGenerator : MonoBehaviour {
 				}
 			}
 		}
-		if (potential.Count == 0) {
-			if (debugging) Debug.Log ("Failure at Step 1 for Room "+roomsToPlace.Count);
-		}
 		/*/
 		/// Step 2: Check every door for every arrangement, see which door leads the furthest along the path, if there aren't any, we don't use that arrangement
 		/// This is purely for rooms that are on generated paths
@@ -267,9 +264,6 @@ public class LevelGenerator : MonoBehaviour {
 				i--;
 			}
 		}
-		if (potential.Count == 0) {
-			if (debugging)Debug.Log ("Failure at Step 2 for Room "+roomsToPlace.Count);
-		}
 		/*/
 		/// Step 3: Check every arrangement for collisions with other rooms or any path nodes farther along than where we are, remove the arrangements if there are any
 		/*/
@@ -277,7 +271,7 @@ public class LevelGenerator : MonoBehaviour {
 			for (int i = (int)(pot.sourceNode.x-pot.offset.x); i < (int)(pot.sourceNode.x-pot.offset.x+pot.original.dimensions.x); i++) {
 				for (int j = (int)(pot.sourceNode.y-pot.offset.y); j < (int)(pot.sourceNode.y-pot.offset.y+pot.original.dimensions.y); j++) {
 					//Debug.Log ("Room " + pot.original.name + " | Point: (" + i + "," + j + ")");
-					if (i < gX && j < gY && i >= 0 && j >= 0) {
+					if (InBounds(i,j)) {
 						if ((isPathed && path.Contains(grid[i,j]) && path.IndexOf(grid[i,j]) > path.IndexOf(pot.pathExitNode))) {
 							pot.markForRemoval=true;
 						}
@@ -295,9 +289,6 @@ public class LevelGenerator : MonoBehaviour {
 				potential.Remove(potential[i]);
 				i--;
 			}
-		}
-		if (potential.Count == 0) {
-			if (debugging)Debug.Log ("Failure at Step 3 for Room "+roomsToPlace.Count);
 		}
 		/*/
 		/// Step 4: Clean up eaten path, mark occupied grid spots as occupied, get door information
@@ -318,6 +309,11 @@ public class LevelGenerator : MonoBehaviour {
 			}
 		}
 		return use;
+	}
+
+	bool InBounds(int x, int y) {
+		if (x < gX && y < gY && x >= 0 && y >= 0) return true;
+		else return false;
 	}
 		
 	void InstantiateRooms(List<Arrangement> roomsToCreate) {
