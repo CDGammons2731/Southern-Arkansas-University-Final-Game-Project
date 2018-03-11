@@ -9,6 +9,8 @@ public class AI : MonoBehaviour
 	public Transform destination;
 	public Transform DatDerBadGoober;
 	private NavMeshAgent agent;
+	public float range = 10.0f;
+	int X = 0;
 
 
 	void Start(){
@@ -24,21 +26,43 @@ public class AI : MonoBehaviour
 
     }
 
-	void Update () 
+	bool RandomPoint(Vector3 Center, float range, out Vector3 result){
+		for (int i = 0; i < 30; i++) {
+			Vector3 RandomPosition = Center + Random.insideUnitSphere * range;
+			NavMeshHit hit;
+			if (NavMesh.SamplePosition (RandomPosition, out hit, 20.0f, NavMesh.AllAreas)) {
+				result = hit.position;
+				return true;
+			}
+		}
+		result = Vector3.zero;
+		return false;
+	}
+
+
+	void Update ()
 	{
 
 		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
 		//Debug.Log ("Distance to AI: " + dist);
 
-		if (dist <= 8) {
-			agent = gameObject.GetComponent<NavMeshAgent> ();
-			if (dist > 5) {
-				agent.SetDestination (destination.position);
-			} else {
-				agent.SetDestination (transform.position);
+		Vector3 point;
+		if (X != 200) {
+			X++;
+		} else if (dist > 8) {
+			if (RandomPoint (transform.position, range, out point)) {
+				float Idledist = Vector3.Distance (point, transform.position);
+				agent = gameObject.GetComponent<NavMeshAgent> ();
+					agent.SetDestination (point);
 			}
+			X = 0;
 		}
+
+		if (dist > 5 && dist <= 8) {
+			agent.SetDestination (destination.position);
+		} else if (dist <= 5) {
+			agent.SetDestination (transform.position);
+		}
+		
 	}
-
-
 }
