@@ -5,7 +5,7 @@ using UnityEngine;
 public class AIAttack : MonoBehaviour {
 
 	public GameObject bullet;
-	public GameObject ShootableObject;
+	public GameObject shot;
 	public Transform bulletSpawn;
 	public Transform plyr;
 	public int Shootrange = 5;
@@ -26,24 +26,19 @@ public class AIAttack : MonoBehaviour {
 
 		if(Vector3.Distance(plyr.position, gameObject.transform.position) <= LookRange){
 			gameObject.transform.LookAt (plyr);
-			if (X == 20) {
-				bullet = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-				bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
+			if (X == 47) {
+				shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+				shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 				X = 0;
 			}
 			X++;
 
-			//Destroy(bullet, 0.35f);
+			Destroy(shot, 0.35f);
 
 		}
 
-		if(Vector3.Distance(plyr.position, gameObject.transform.position) <= Shootrange){
-
-
-		}
-
-		if(Vector3.Distance(plyr.position, gameObject.transform.position) <= Meleerange){
-		}
+		//if(Vector3.Distance(plyr.position, gameObject.transform.position) <= Meleerange){
+		//}
 	}
 
 }
