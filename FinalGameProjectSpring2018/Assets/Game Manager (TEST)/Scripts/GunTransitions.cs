@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GUN;
+using PLAYER;
 
 public class GunTransitions : MonoBehaviour {
 	public Animator animator;

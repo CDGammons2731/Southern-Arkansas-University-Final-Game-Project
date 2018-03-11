@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using GAMEMANAGER;
 using GUN;
+using PLAYER;
 
 
 public class hud : MonoBehaviour {

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using System;
 using GUN;
+using PLAYER;
 
 namespace GAMEMANAGER 
 {
@@ -31,10 +32,10 @@ namespace GAMEMANAGER
     {
         [Header("Game Attatchments")]
         public Text stats;
-		public InputField NewSaveName; //Use this to allow the user to type their Player Name
         public static GameManager GAME;
         public GameObject PlayerObj;
         public Camera PlayerCam;
+   
 
 
         [Header("Game Sounds")]
@@ -71,18 +72,7 @@ namespace GAMEMANAGER
         public int maxAmmo;
 
         public GameObject UI;
-
-
-
-        struct Robot
-        {
-            public int health;
-            public int pointValue;//if needed
-            
-            //Make type
-
-        }
-
+        public Player player;
 
 
         //Other saved info: level, lives, upgrade bool + upgrade type, enemy count / enemies spawned, etc
@@ -101,7 +91,8 @@ namespace GAMEMANAGER
             audiosource = GetComponent<AudioSource>();
             audiosource.PlayOneShot(ThemeMusic, 0.5f);
             UI = GameObject.FindGameObjectWithTag("UI");
-
+            player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+           
         }
 			
 
@@ -181,18 +172,7 @@ namespace GAMEMANAGER
         {
             score += 250;
         }
-        public void NameChange()
-        {
-			
-			NewSaveName.enabled = true;
-			NewSaveName.textComponent.enabled = true;
-			NewSaveName.image.enabled = true;
-
-			string newName;
-			newName=NewSaveName.text;
-			NewGame (newName);
-        }
-
+      
         public void NewGame(string NewPlayer) {
 			
             if (NewPlayer == null)
@@ -230,25 +210,18 @@ namespace GAMEMANAGER
 
         void Update()
         {
-           
+            if (player != null) {
+                playerHealth = player.player_health;
+            }
 
 			if (yourGun.CurrentWeapon != null&& gunText!=null) {
 				//UI.GetComponent<hud>().yourWeapon.text = yourGun.CurrentWeapon;
 			}
-			if (yourGun.ammoClip != 0) {
-				//gunStat.text = (yourGun.currentAmmo) + "/" + yourGun.AmmoUpdate;
+            if (yourGun.ammoClip != 0)
+            {
                 curAmmo = yourGun.currentAmmo;
                 maxAmmo = yourGun.AmmoUpdate;
             }
-            //stats.text = "Health " + playerHealth + " Armor: " + playerArmor + " Score: " + score;
-
-            if (playerHealth > 100)
-            {
-                playerHealth = 100;
-            }
-
-           
-
 
         }
 

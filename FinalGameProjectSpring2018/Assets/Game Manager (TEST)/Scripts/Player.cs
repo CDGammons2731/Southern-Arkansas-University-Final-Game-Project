@@ -5,6 +5,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 using GAMEMANAGER;
 using GUN;
 
+namespace PLAYER
+{
+
 
     public class Player : MonoBehaviour
     {
@@ -20,10 +23,10 @@ using GUN;
         public AudioClip Ticking;
         public AudioSource PlayerSound;
 
-        private int health;
-        private int armor;
-        private int score;
-        private string name;
+        //Integrating player health for player object to work with game manager
+        public int player_health;
+        public int score;
+        public string player_name;
 
         public Vector3 gunOffset;
         public GameObject holdingPosition;
@@ -41,17 +44,19 @@ using GUN;
 
         void Start()
         {
-
+            //Need to recognize player body
             rb = GetComponent<Rigidbody>();
-            health = 0;
-            armor = 0;
-            score = 0;
-            name = "Player";
 
+            //Start setting player data
+            player_health = 100;
+            player_name = "Player";
+            score = 0;
+            //Get your audiosource to play sound 
             PlayerSound = GetComponent<AudioSource>();
 
+
             weaponInRange = false;
-            gunOffset = new Vector3(rb.transform.position.x - .05f, rb.transform.position.y - .5f, rb.transform.position.z + 2f); //Delete this later
+
             gunTran = GetComponentInChildren<GunTransitions>();
             GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
 
@@ -89,7 +94,7 @@ using GUN;
             {
                 weapon = other.gameObject;
                 weaponInRange = true;
-                UI.GetComponent<hud>().pickUpText.text= ("Press F to pickup " + weapon.tag);
+                UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup " + weapon.tag);
 
             }
         }
@@ -99,7 +104,7 @@ using GUN;
             weaponInRange = false;
             UI.GetComponent<hud>().pickUpText.text = ("");
 
-    }
+        }
 
 
         void PickUpWeapon(GameObject weapon)
@@ -120,7 +125,8 @@ using GUN;
         {
 
 
-            if (health > 100) health = 100;
+            if (player_health > 100) player_health = 100;
+
             if (weaponInRange == true)
             {
                 if (Input.GetKeyDown(KeyCode.F))
@@ -137,14 +143,13 @@ using GUN;
 
             }
 
-
             if (hasWeapon == true)
             {
                 g = GameObject.FindGameObjectWithTag(currentGun);
                 g.transform.position = holdingPosition.transform.position;
                 g.transform.rotation = holdingPosition.transform.rotation;
                 gun.FireWeapon(currentGun);
-               // GM.pickupText.text = "";
+                // GM.pickupText.text = "";
             }
 
             if (Input.GetKeyDown(KeyCode.B))
@@ -153,13 +158,12 @@ using GUN;
                 gun.equipped = false;
             }
 
-            if (GM.playerHealth <= 30)
+            if (player_health <= 30)
             {
                 PlayerSound.clip = HeartBeat;
                 PlayerSound.Play();
             }
 
-            //if player health <=30 play heart beat
-
         }
     }
+}
