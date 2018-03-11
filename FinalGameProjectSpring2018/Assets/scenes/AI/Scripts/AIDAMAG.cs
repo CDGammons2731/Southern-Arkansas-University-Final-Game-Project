@@ -5,22 +5,35 @@ using GUN;
 
 public class AIDAMAG : MonoBehaviour {
 
+	Animator anim;
 	public int Health = 30;
 	public int Samage = 0;
 	public int EnemyNumber = 0;
 	public GameObject player;
 	public float Respawn = 0f;
 	public float TimeToRespawn = 300f;
+	public int LookRange = 5;
+
 
 
 	void Awake(){
 		player = GameObject.FindGameObjectWithTag ("player");
 		Respawn = TimeToRespawn;
 		Samage = 0;
+		anim = GetComponent<Animator> ();
 	}
 
 
 	void Update(){
+				
+		if (Vector3.Distance (player.transform.position, gameObject.transform.position) <= LookRange) {
+			gameObject.transform.LookAt (player.transform);
+			anim.SetTrigger ("IsFiring");
+		} else {
+			anim.ResetTrigger ("IsFiring");
+		}
+
+
 		if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null && Input.GetKeyDown(KeyCode.F)) {
 			Samage = player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
 			Debug.Log ("Damage: " + Samage);

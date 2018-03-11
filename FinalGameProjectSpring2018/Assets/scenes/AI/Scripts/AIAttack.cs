@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class AIAttack : MonoBehaviour {
 
-	//public Animation Meleeanim;
-	//public Animation Shootanim;
 	public GameObject bullet;
-	public GameObject ShootableObject;
+	public GameObject shot;
 	public Transform bulletSpawn;
 	public Transform plyr;
 	public int Shootrange = 5;
 	public int Meleerange = 3;
 	public int LookRange = 5;
 	public int bulletSpeed = 200;
+	public int X = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -27,18 +26,19 @@ public class AIAttack : MonoBehaviour {
 
 		if(Vector3.Distance(plyr.position, gameObject.transform.position) <= LookRange){
 			gameObject.transform.LookAt (plyr);
-			Instantiate(bullet, gameObject.transform.position, gameObject.transform.rotation);
-			bullet.transform.position = Vector3.MoveTowards (bullet.transform.position, plyr.position, bulletSpeed);
+			if (X == 47) {
+				shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+				shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
+				X = 0;
+			}
+			X++;
+
+			Destroy(shot, 0.35f);
+
 		}
 
-		if(Vector3.Distance(plyr.position, gameObject.transform.position) <= Shootrange){
-			//Shootanim.Play ();
-
-		}
-
-		if(Vector3.Distance(plyr.position, gameObject.transform.position) <= Meleerange){
-			//Meleeanim.Play ();
-		}
+		//if(Vector3.Distance(plyr.position, gameObject.transform.position) <= Meleerange){
+		//}
 	}
 
 }

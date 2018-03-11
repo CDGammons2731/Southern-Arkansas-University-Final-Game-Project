@@ -15,6 +15,7 @@ public class AISpawner : AIDAMAG {
 	public float MaxRange = 10.0f;
 	public float Respawn = 0f;
 	public float TimeToRespawn = 300f;
+	public float WaitToStart = 3000f;
 
 	// Use this for initialization
 	void Start () {
@@ -41,25 +42,31 @@ public class AISpawner : AIDAMAG {
 	
 	// Update is called once per frame
 	void Update () {
-		EnemiesNumber = EnemiesNumber - EnemyNumber;
+		if (WaitToStart != 0) {
+			WaitToStart -= 1;
+		} else {
+			EnemiesNumber = EnemiesNumber - EnemyNumber;
 
 
-		if (SpawnActivateRandomizer == true) {
-			if (Respawn <= 0f) {
-				Vector3 point;
-				if (EnemiesNumber <= EnemiesMaxNumber) {
-					if (RandomPoint (transform.position, range, out point)) {
-						Instantiate (AIToSpawn, point, Quaternion.identity);
-						EnemiesNumber++;
+			if (SpawnActivateRandomizer == true) {
+				if (Respawn <= 0f) {
+					Vector3 point;
+					if (EnemiesNumber <= EnemiesMaxNumber) {
+						if (RandomPoint (transform.position, range, out point)) {
+							Instantiate (AIToSpawn, point, Quaternion.identity);
+							EnemiesNumber++;
+							Respawn = TimeToRespawn;
+						}
+					} else {
 						Respawn = TimeToRespawn;
 					}
-				} else {
-					Respawn = TimeToRespawn;
 				}
-			}
 
-			Respawn = Respawn - Time.deltaTime;
-			//Debug.Log (Respawn);
+				Respawn = Respawn - Time.deltaTime;
+				//Debug.Log (Respawn);
+			}
+				
+
 		}
 	}
 }

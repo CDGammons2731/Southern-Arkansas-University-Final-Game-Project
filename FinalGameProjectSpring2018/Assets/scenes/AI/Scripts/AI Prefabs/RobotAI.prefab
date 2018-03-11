@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 54267980428375100}
   - component: {fileID: 65695795965965294}
   - component: {fileID: 114331805241732170}
+  - component: {fileID: 114591534866429662}
   m_Layer: 0
   m_Name: RobotAI
   m_TagString: Untagged
@@ -294,7 +295,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1506439689358042}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6346838, y: 3.52, z: 2.4274025}
+  m_LocalPosition: {x: -1.2195501, y: -0.066, z: -7.256073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4184499838515618}
@@ -881,7 +882,7 @@ Animator:
   m_GameObject: {fileID: 1506439689358042}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4ec42e22b2c49e34bb2bac037a627920, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63a86eeca9779a14abd831e1d8365bc7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -916,9 +917,10 @@ MonoBehaviour:
   Health: 30
   Samage: 0
   EnemyNumber: 0
-  player: {fileID: 0}
+  player: {fileID: 1893987726926354, guid: 347ded99c84e3894e9e5a925253b11a3, type: 2}
   Respawn: 0
   TimeToRespawn: 300
+  LookRange: 5
 --- !u!114 &114434551256324118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -932,12 +934,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1025971916029544, guid: 04f808e235767cd4994bcf5003c07387, type: 2}
   ShootableObject: {fileID: 0}
-  bulletSpawn: {fileID: 0}
+  bulletSpawn: {fileID: 4229486492466780}
   plyr: {fileID: 0}
   Shootrange: 5
   Meleerange: 3
   LookRange: 5
   bulletSpeed: 200
+  X: 0
+--- !u!114 &114591534866429662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1506439689358042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cafc1a3796d8994b9a5c339b837616d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &195069504302474546
 NavMeshAgent:
   m_ObjectHideFlags: 1
