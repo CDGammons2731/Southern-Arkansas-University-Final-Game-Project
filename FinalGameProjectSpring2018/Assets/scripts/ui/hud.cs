@@ -36,7 +36,7 @@ public class hud : MonoBehaviour {
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
-        playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        //playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -58,7 +58,7 @@ public class hud : MonoBehaviour {
         }
 
         //tells which gun you have
-        yourWeapon.text = gm.yourGun.CurrentWeapon;
+       yourWeapon.text = gm.yourGun.CurrentWeapon;
 
         //figures which icon to use
         if(gm.yourGun.CurrentWeapon == "revolver"){
@@ -93,7 +93,7 @@ public class hud : MonoBehaviour {
     //Ammo
     void ShowAmmo()
     {
-        ammoDisplay.text = gm.curAmmo + "/" + gm.maxAmmo;
+       ammoDisplay.text = gm.yourGun.currentAmmo+ "/" + gm.yourGun.AmmoUpdate;
 
     }
 }

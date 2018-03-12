@@ -8,6 +8,7 @@ using System;
 using GUN;
 using PLAYER;
 
+
 namespace GAMEMANAGER 
 {
     /*PLAYER- dectective. Make NewGame() method to enter the players name to create the saved data
@@ -92,7 +93,7 @@ namespace GAMEMANAGER
             audiosource.PlayOneShot(ThemeMusic, 0.5f);
             UI = GameObject.FindGameObjectWithTag("UI");
             player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
-           
+
         }
 			
 
@@ -210,17 +211,17 @@ namespace GAMEMANAGER
 
         void Update()
         {
-            if (player != null) {
-                playerHealth = player.player_health;
+            
+            if (yourGun.ammoClip < 0)
+            {
+                UI.GetComponent<hud>().ammoDisplay.text = yourGun.currentAmmo + "/" + yourGun.AmmoUpdate;
+                //curAmmo = yourGun.currentAmmo;
+               // maxAmmo = yourGun.AmmoUpdate;
             }
 
-			if (yourGun.CurrentWeapon != null&& gunText!=null) {
-				//UI.GetComponent<hud>().yourWeapon.text = yourGun.CurrentWeapon;
-			}
-            if (yourGun.ammoClip != 0)
+           if (player != null)
             {
-                curAmmo = yourGun.currentAmmo;
-                maxAmmo = yourGun.AmmoUpdate;
+               playerHealth = player.player_health;
             }
 
         }
