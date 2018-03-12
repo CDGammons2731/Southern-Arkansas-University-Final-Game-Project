@@ -10,7 +10,7 @@ public class AIAttack : MonoBehaviour {
 	public Transform plyr;
 	public int Shootrange = 5;
 	public int Meleerange = 3;
-	public int LookRange = 5;
+	public int LookRange = 20;
 	public int bulletSpeed = 200;
 	public int X = 0;
 
@@ -27,7 +27,7 @@ public class AIAttack : MonoBehaviour {
 		if(Vector3.Distance(plyr.position, gameObject.transform.position) <= LookRange){
 			gameObject.transform.LookAt (plyr);
 			if (X == 47) {
-				shot = (GameObject)Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+				shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
 				shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
 				X = 0;
 			}

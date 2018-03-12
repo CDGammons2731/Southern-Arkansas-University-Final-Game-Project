@@ -13,7 +13,7 @@ public class AIDAMAG : AISpawner {
 	public Transform Head;
 	public Transform Bullet;
 	public GameObject plyr;
-	public int LookRange = 5;
+	public int LookRange = 20;
 	public bool EnemyHasDied = false;
 
 

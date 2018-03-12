@@ -882,7 +882,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1768324825042014}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.536, y: 0.416, z: 0.42799187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -910,7 +910,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1941537500325920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.3156757, y: 6.824008e-17, z: -18.43956}
+  m_LocalPosition: {x: 7.550756, y: 4.7993257e-17, z: -12.968545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4685226378481912}
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   plyr: {fileID: 0}
   Shootrange: 5
   Meleerange: 3
-  LookRange: 5
+  LookRange: 20
   bulletSpeed: 200
   X: 0
 --- !u!114 &114337530898436866
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   Head: {fileID: 4984340048336848}
   Bullet: {fileID: 4192100455164814, guid: 04f808e235767cd4994bcf5003c07387, type: 2}
   plyr: {fileID: 0}
-  LookRange: 5
+  LookRange: 20
   EnemyHasDied: 0
 --- !u!114 &114771957676140284
 MonoBehaviour:
