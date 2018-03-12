@@ -49,7 +49,7 @@ public class AI : MonoBehaviour
 		Vector3 point;
 		if (X != 200) {
 			X++;
-		} else if (dist > 8) {
+		} else if (dist > 12) {
 			if (RandomPoint (transform.position, range, out point)) {
 				float Idledist = Vector3.Distance (point, transform.position);
 				agent = gameObject.GetComponent<NavMeshAgent> ();
@@ -58,7 +58,7 @@ public class AI : MonoBehaviour
 			X = 0;
 		}
 
-		if (dist > 5 && dist <= 8) {
+		if (dist > 5 && dist <= 12) {
 			agent.SetDestination (destination.position);
 		} else if (dist <= 5) {
 			agent.SetDestination (transform.position);

@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using GUN;
 
-public class AIDAMAG : MonoBehaviour {
+public class AIDAMAG : AISpawner {
 
 	Animator anim;
 	public int Health = 30;
-	public int Samage = 0;
-	public int EnemyNumber = 0;
-	public GameObject player;
-	public float Respawn = 0f;
-	public float TimeToRespawn = 300f;
+	public static int Samage = 0;
+	public GameObject plyr;
 	public int LookRange = 5;
+	public bool EnemyHasDied = false;
 
 
 
 	void Awake(){
 		player = GameObject.FindGameObjectWithTag ("player");
-		Respawn = TimeToRespawn;
-		Samage = 0;
 		anim = GetComponent<Animator> ();
 	}
 
@@ -33,15 +29,9 @@ public class AIDAMAG : MonoBehaviour {
 			anim.ResetTrigger ("IsFiring");
 		}
 
-
-		if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null && Input.GetKeyDown(KeyCode.F)) {
-			Samage = player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
-			Debug.Log ("Damage: " + Samage);
-		}
-
-		Respawn = Respawn - Time.deltaTime;
-		if (Respawn <= 0) {
-			Respawn = TimeToRespawn;
+		if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
+			Samage = AIDAMAG.Damage;
+			Debug.Log (Samage);
 		}
 	}
 
@@ -51,18 +41,16 @@ public class AIDAMAG : MonoBehaviour {
 				Health -= Samage;
 				//Debug.Log ("Health: " + Health);
 			} else {
-				if (EnemyNumber <= 2) {
-					EnemyNumber++;
-				}
 				DestroyObject (gameObject);
 			}
 		} else if (collision.transform.gameObject.tag == "pellet") {
 			if (Health >= 0) {
 				Health -= Samage;
 			} else {
-				EnemyNumber++;
 				DestroyObject (gameObject);
 			}
 		}
+
 	}
+
 }
