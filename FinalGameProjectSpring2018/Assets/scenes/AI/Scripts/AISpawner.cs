@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using GUN;
+using PLAYER;
 
 
 public class AISpawner : MonoBehaviour {
