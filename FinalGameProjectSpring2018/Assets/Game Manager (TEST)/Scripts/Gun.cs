@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour {
     public GameObject weapon;
     public GameObject bullet;
     public Transform bulletSpawn;
+    //public Animator gunAnim;
    
     //Weapon Types
     [Header("Weapon Types")]
@@ -104,7 +105,7 @@ Reload Speed: 2 seconds
 
         // Use this for initialization
         void Start () {
-		    CurrentWeapon = gameObject.tag;
+		    CurrentWeapon = this.gameObject.tag;
             GunSound = GetComponentInParent<AudioSource>(); //Assign audiosource at start
             lineOfSight = GetComponent<LineRenderer>();
             shotCount = 0;
@@ -114,7 +115,7 @@ Reload Speed: 2 seconds
 			for (int i = 0; i < pelletCount; i++) {
 				pellets.Add (Quaternion.Euler (Vector3.zero));
 			}
-
+           //gunAnim = GetComponent<Animator>();
            canShoot = true; //Just to start off able at all times
            Player_Cam=GetComponentInParent<Camera>(); //@Testing---
         }

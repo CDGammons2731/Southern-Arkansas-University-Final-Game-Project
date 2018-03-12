@@ -1,0 +1,467 @@
+fileFormatVersion: 2
+guid: 2195cd242cb49d743ae86e451c6128e5
+timeCreated: 1520811165
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: AmmoBox
+    100002: Brace
+    100004: Brace 1
+    100006: Brace 2
+    100008: Brace 3
+    100010: Brace 4
+    100012: Brace 5
+    100014: Brace 6
+    100016: Brace 7
+    100018: Brace1
+    100020: Brace2
+    100022: Bracket
+    100024: Bracket 1
+    100026: Bracket 2
+    100028: Bracket 3
+    100030: Bracket1
+    100032: Bracket10
+    100034: Bracket11
+    100036: Bracket4
+    100038: Bracket4 1
+    100040: Bracket4 2
+    100042: Bracket4 3
+    100044: Bracket5
+    100046: Bracket6
+    100048: Bracket7
+    100050: Bracket8
+    100052: Bracket9
+    100054: Connection
+    100056: Connection 1
+    100058: Connection 2
+    100060: Connection 3
+    100062: Container
+    100064: Container 1
+    100066: Crate
+    100068: Crate 1
+    100070: Crate 2
+    100072: Crate 3
+    100074: Crate 4
+    100076: //RootNode
+    100078: Handle
+    100080: Handle 1
+    100082: Handle 10
+    100084: Handle 11
+    100086: Handle 12
+    100088: Handle 13
+    100090: Handle 2
+    100092: Handle 3
+    100094: Handle 4
+    100096: Handle 5
+    100098: Handle 6
+    100100: Handle 7
+    100102: Handle 8
+    100104: Handle 9
+    100106: Handle10
+    100108: Handle11
+    100110: Handle12
+    100112: Handle13
+    100114: Handle8
+    100116: Handle8 1
+    100118: Hook
+    100120: Hook 1
+    100122: Hook1
+    100124: Hook1 1
+    100126: Latch
+    100128: Latch 1
+    100130: Latch 2
+    100132: Latch1
+    100134: Latch2
+    100136: Lid
+    100138: Lid 1
+    100140: Lid 2
+    100142: Lid 3
+    100144: Lid 4
+    100146: Lid 5
+    100148: Lid 6
+    100150: Lid 7
+    100152: Lid 8
+    100154: Lock
+    100156: Lock 1
+    100158: Lock 2
+    100160: Lock 3
+    100162: Lock1
+    100164: LockMovement
+    100166: LockMovement 1
+    100168: MedCrate
+    100170: Metal_Crate_V4
+    100172: Metal_Crate_V5
+    100174: Open_1
+    100176: Open_2
+    100178: polySurface2
+    100180: ToolBox1
+    100182: ToolBox_Bottom
+    100184: ToolBox_Top
+    100186: Wood_Crate_Long
+    100188: Wood_Crate_Small
+    100190: Wood_Crate_Square
+    400000: AmmoBox
+    400002: Brace
+    400004: Brace 1
+    400006: Brace 2
+    400008: Brace 3
+    400010: Brace 4
+    400012: Brace 5
+    400014: Brace 6
+    400016: Brace 7
+    400018: Brace1
+    400020: Brace2
+    400022: Bracket
+    400024: Bracket 1
+    400026: Bracket 2
+    400028: Bracket 3
+    400030: Bracket1
+    400032: Bracket10
+    400034: Bracket11
+    400036: Bracket4
+    400038: Bracket4 1
+    400040: Bracket4 2
+    400042: Bracket4 3
+    400044: Bracket5
+    400046: Bracket6
+    400048: Bracket7
+    400050: Bracket8
+    400052: Bracket9
+    400054: Connection
+    400056: Connection 1
+    400058: Connection 2
+    400060: Connection 3
+    400062: Container
+    400064: Container 1
+    400066: Crate
+    400068: Crate 1
+    400070: Crate 2
+    400072: Crate 3
+    400074: Crate 4
+    400076: //RootNode
+    400078: Handle
+    400080: Handle 1
+    400082: Handle 10
+    400084: Handle 11
+    400086: Handle 12
+    400088: Handle 13
+    400090: Handle 2
+    400092: Handle 3
+    400094: Handle 4
+    400096: Handle 5
+    400098: Handle 6
+    400100: Handle 7
+    400102: Handle 8
+    400104: Handle 9
+    400106: Handle10
+    400108: Handle11
+    400110: Handle12
+    400112: Handle13
+    400114: Handle8
+    400116: Handle8 1
+    400118: Hook
+    400120: Hook 1
+    400122: Hook1
+    400124: Hook1 1
+    400126: Latch
+    400128: Latch 1
+    400130: Latch 2
+    400132: Latch1
+    400134: Latch2
+    400136: Lid
+    400138: Lid 1
+    400140: Lid 2
+    400142: Lid 3
+    400144: Lid 4
+    400146: Lid 5
+    400148: Lid 6
+    400150: Lid 7
+    400152: Lid 8
+    400154: Lock
+    400156: Lock 1
+    400158: Lock 2
+    400160: Lock 3
+    400162: Lock1
+    400164: LockMovement
+    400166: LockMovement 1
+    400168: MedCrate
+    400170: Metal_Crate_V4
+    400172: Metal_Crate_V5
+    400174: Open_1
+    400176: Open_2
+    400178: polySurface2
+    400180: ToolBox1
+    400182: ToolBox_Bottom
+    400184: ToolBox_Top
+    400186: Wood_Crate_Long
+    400188: Wood_Crate_Small
+    400190: Wood_Crate_Square
+    2300000: Brace
+    2300002: Brace 1
+    2300004: Brace 2
+    2300006: Brace 3
+    2300008: Brace 4
+    2300010: Brace 5
+    2300012: Brace 6
+    2300014: Brace 7
+    2300016: Brace1
+    2300018: Brace2
+    2300020: Bracket
+    2300022: Bracket 1
+    2300024: Bracket 2
+    2300026: Bracket 3
+    2300028: Bracket1
+    2300030: Bracket10
+    2300032: Bracket11
+    2300034: Bracket4
+    2300036: Bracket4 1
+    2300038: Bracket4 2
+    2300040: Bracket4 3
+    2300042: Bracket5
+    2300044: Bracket6
+    2300046: Bracket7
+    2300048: Bracket8
+    2300050: Bracket9
+    2300052: Connection
+    2300054: Connection 1
+    2300056: Connection 2
+    2300058: Connection 3
+    2300060: Container
+    2300062: Container 1
+    2300064: Crate
+    2300066: Crate 1
+    2300068: Crate 2
+    2300070: Crate 3
+    2300072: Crate 4
+    2300074: Handle 1
+    2300076: Handle 11
+    2300078: Handle 12
+    2300080: Handle 13
+    2300082: Handle 2
+    2300084: Handle 3
+    2300086: Handle 4
+    2300088: Handle 8
+    2300090: Hook
+    2300092: Hook 1
+    2300094: Hook1
+    2300096: Hook1 1
+    2300098: Latch
+    2300100: Latch 1
+    2300102: Latch1
+    2300104: Latch2
+    2300106: Lid 2
+    2300108: Lid 3
+    2300110: Lid 4
+    2300112: Lid 5
+    2300114: Lid 6
+    2300116: Lid 7
+    2300118: Lid 8
+    2300120: Lock
+    2300122: Lock 2
+    2300124: Lock 3
+    2300126: polySurface2
+    3300000: Brace
+    3300002: Brace 1
+    3300004: Brace 2
+    3300006: Brace 3
+    3300008: Brace 4
+    3300010: Brace 5
+    3300012: Brace 6
+    3300014: Brace 7
+    3300016: Brace1
+    3300018: Brace2
+    3300020: Bracket
+    3300022: Bracket 1
+    3300024: Bracket 2
+    3300026: Bracket 3
+    3300028: Bracket1
+    3300030: Bracket10
+    3300032: Bracket11
+    3300034: Bracket4
+    3300036: Bracket4 1
+    3300038: Bracket4 2
+    3300040: Bracket4 3
+    3300042: Bracket5
+    3300044: Bracket6
+    3300046: Bracket7
+    3300048: Bracket8
+    3300050: Bracket9
+    3300052: Connection
+    3300054: Connection 1
+    3300056: Connection 2
+    3300058: Connection 3
+    3300060: Container
+    3300062: Container 1
+    3300064: Crate
+    3300066: Crate 1
+    3300068: Crate 2
+    3300070: Crate 3
+    3300072: Crate 4
+    3300074: Handle 1
+    3300076: Handle 11
+    3300078: Handle 12
+    3300080: Handle 13
+    3300082: Handle 2
+    3300084: Handle 3
+    3300086: Handle 4
+    3300088: Handle 8
+    3300090: Hook
+    3300092: Hook 1
+    3300094: Hook1
+    3300096: Hook1 1
+    3300098: Latch
+    3300100: Latch 1
+    3300102: Latch1
+    3300104: Latch2
+    3300106: Lid 2
+    3300108: Lid 3
+    3300110: Lid 4
+    3300112: Lid 5
+    3300114: Lid 6
+    3300116: Lid 7
+    3300118: Lid 8
+    3300120: Lock
+    3300122: Lock 2
+    3300124: Lock 3
+    3300126: polySurface2
+    4300000: Crate
+    4300002: Lid
+    4300004: Crate
+    4300006: Lid
+    4300008: Crate
+    4300010: Lid
+    4300012: Crate
+    4300014: Connection
+    4300016: Handle
+    4300018: Brace
+    4300020: Latch
+    4300022: Hook1
+    4300024: Hook
+    4300026: Lock
+    4300028: Connection
+    4300030: Handle
+    4300032: Brace
+    4300034: Bracket8
+    4300036: Bracket7
+    4300038: Bracket6
+    4300040: Bracket5
+    4300042: Container
+    4300044: Lid
+    4300046: Brace
+    4300048: Bracket
+    4300050: Handle
+    4300052: Bracket4
+    4300054: Lid
+    4300056: Brace
+    4300058: Bracket
+    4300060: Handle
+    4300062: Bracket4
+    4300064: Bracket10
+    4300066: Bracket9
+    4300068: polySurface2
+    4300070: Brace1
+    4300072: Latch2
+    4300074: Lid
+    4300076: Bracket1
+    4300078: Latch1
+    4300080: Brace2
+    4300082: Brace
+    4300084: Bracket4
+    4300086: Handle
+    4300088: Bracket
+    4300090: Lock
+    4300092: Bracket11
+    4300094: Container
+    4300096: Brace
+    4300098: Bracket
+    4300100: Handle
+    4300102: Bracket4
+    4300104: Lid
+    4300106: Connection
+    4300108: Handle
+    4300110: Brace
+    4300112: Latch
+    4300114: Hook1
+    4300116: Hook
+    4300118: Lock
+    4300120: Crate
+    4300122: Connection
+    4300124: Handle
+    4300126: Brace
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

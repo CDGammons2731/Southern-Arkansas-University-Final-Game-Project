@@ -26,8 +26,8 @@ public class Clickable : MonoBehaviour {
 	void OnMouseDown(){
 		//GetComponent<TextMesh> ().text = "Your function";
 		//Place function
-		GM.NameChange();
-		GetComponent<TextMesh> ().text =GM.playerSaved+ " Level: 0 " + " Score: " + GM.score + " Health: " + GM.playerHealth + " Armor: "+ GM.playerArmor; //Set a text box next to each to show scores?
+		//GM.NameChange();
+		//GetComponent<TextMesh> ().text =GM.playerSaved+ " Level: 0 " + " Score: " + GM.score + " Health: " + GM.playerHealth + " Armor: "+ GM.playerArmor; //Set a text box next to each to show scores?
 
 	}
 }
