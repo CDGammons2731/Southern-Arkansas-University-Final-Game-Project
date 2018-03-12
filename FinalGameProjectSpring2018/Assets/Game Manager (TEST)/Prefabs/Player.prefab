@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 114576951292994028}
   - component: {fileID: 54485871610969156}
   - component: {fileID: 82095863389311518}
-  - component: {fileID: 114286417814682362}
+  - component: {fileID: 114121960315078296}
   m_Layer: 0
   m_Name: Player
   m_TagString: player
@@ -416,7 +416,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114286417814682362
+--- !u!114 &114121960315078296
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -424,17 +424,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1893987726926354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d7163eae5f121b4fbf2ff3d349f01ca, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e63acfeac1954fa4648210f881d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
-  PlayerCam: {fileID: 20645446048721150}
+  PlayerCam: {fileID: 0}
   PlayerHurt: {fileID: 0}
   PlayerDied: {fileID: 0}
   Healed: {fileID: 0}
-  HeartBeat: {fileID: 8300000, guid: bf8390417785ad14280dee54bd49d9bb, type: 3}
+  HeartBeat: {fileID: 0}
   Ticking: {fileID: 0}
   PlayerSound: {fileID: 0}
+  player_health: 0
+  score: 0
+  player_name: 
   gunOffset: {x: 0, y: 0, z: 0}
   holdingPosition: {fileID: 1828311899285564}
   weapon: {fileID: 0}

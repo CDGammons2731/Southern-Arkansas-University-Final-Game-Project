@@ -64,26 +64,28 @@ namespace PLAYER
 
         }
 
+        //Work on changing some of this 
         void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Health"))
             {
-                GM.HealthUp();
+                player_health += 50;
                 other.gameObject.SetActive(false);
             }
-
+            //Armor will be deleted if not used 
             if (other.gameObject.CompareTag("Armor"))
             {
                 GM.ArmorUp();
                 other.gameObject.SetActive(false);
             }
 
+            //Later change this to pick up specific types of ammo 
             if (other.gameObject.CompareTag("Ammo"))
             {
                 gun.ammo += 50;
                 other.gameObject.SetActive(false);
             }
-
+            //Damage testing, change to take damage from bullets, traps, and hits
             if (other.gameObject.CompareTag("Damage"))
             {
                 GM.HealthDown();
@@ -123,8 +125,6 @@ namespace PLAYER
 
         void Update()
         {
-
-
             if (player_health > 100) player_health = 100;
 
             if (weaponInRange == true)
