@@ -86,10 +86,10 @@ namespace PLAYER
                 other.gameObject.SetActive(false);
             }
             //Damage testing, change to take damage from bullets, traps, and hits
-            if (other.gameObject.CompareTag("Damage"))
+            if (other.gameObject.CompareTag("AIbullet"))
             {
-                GM.HealthDown();
-                other.gameObject.SetActive(false);
+                player_health -= 5;
+                Destroy(other.gameObject);
             }
 
             if (other.gameObject.CompareTag("shotgun") || other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") || other.gameObject.CompareTag("raygun") || other.gameObject.CompareTag("railgun"))
