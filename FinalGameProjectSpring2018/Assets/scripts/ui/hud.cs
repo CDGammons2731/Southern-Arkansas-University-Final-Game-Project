@@ -36,11 +36,12 @@ public class hud : MonoBehaviour {
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
-        //playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update () {
+        playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
 
         //prints out the timer
         countDown-=Time.deltaTime;
@@ -79,12 +80,10 @@ public class hud : MonoBehaviour {
 
     }
 
-
-
     //Health
     void loseHealth(){
         //rotating needle to represent health
-        float rotationZ = 270.0f * (gm.playerHealth / maxHealth)-270.0f;
+        float rotationZ = 270.0f * ((float)playerScript.player_health / maxHealth)-270.0f;
         Quaternion target = Quaternion.Euler(0,0,rotationZ);
         needle.transform.rotation = Quaternion.Slerp(needle.transform.rotation, target, smooth * Time.deltaTime);
     }
