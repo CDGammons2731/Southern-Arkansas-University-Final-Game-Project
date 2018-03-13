@@ -8,6 +8,8 @@ public class AI : MonoBehaviour
 
 	public Transform destination;
 	public Transform DatDerBadGoober;
+	public Transform BoboHead;
+	public float LookRange = 20f;
 	private NavMeshAgent agent;
 	public float range = 10.0f;
 	int X = 0;
@@ -42,6 +44,16 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
+		RaycastHit hit;
+		Ray BoboPeekABOO = new Ray (BoboHead.position, Vector3.back);
+		Debug.DrawRay (BoboHead.position, Vector3.back);
+
+		if(Physics.Raycast(BoboPeekABOO, out hit, LookRange)){
+			Debug.Log (hit.collider.tag);
+			if (hit.collider.tag == "player") {
+				Debug.Log ("Bobo sees you!");
+			}
+		}
 
 		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
 		//Debug.Log ("Distance to AI: " + dist);

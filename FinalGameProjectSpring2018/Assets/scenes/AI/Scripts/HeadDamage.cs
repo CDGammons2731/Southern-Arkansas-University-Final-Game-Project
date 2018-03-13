@@ -8,6 +8,7 @@ public class HeadDamage : AIDAMAG {
 	public static int Clamage;
 	public GameObject BoboGoBOOOM;
 
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("player");
@@ -15,6 +16,7 @@ public class HeadDamage : AIDAMAG {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
 			Clamage = AIDAMAG.Damage;
 			Clamage = Clamage + (Clamage / 2);
