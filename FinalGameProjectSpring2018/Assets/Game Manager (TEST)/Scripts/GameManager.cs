@@ -60,7 +60,7 @@ namespace GAMEMANAGER
         // Gameplay (TEST)
         [Header("Enemy Info")]
         public int enemyCount;
-        public int[] enemyhealth = { 30, 50, 80, 100, 120, 150, 200, 250, 300 }; //Different health amounts of your enemy
+        //public int[] enemyhealth = { 30, 50, 80, 100, 120, 150, 200, 250, 300 }; //Different health amounts of your enemy
 
         private float timer; //Game Timer
         private bool escaped; //If the player escapes, next level or win's game, show stats and score
@@ -165,10 +165,7 @@ namespace GAMEMANAGER
         {
             playerHealth -= 20;
         }
-        public void ArmorUp()
-        {
-            playerArmor += 50;
-        }
+        
         public void ScoreUp()
         {
             score += 250;
@@ -211,6 +208,7 @@ namespace GAMEMANAGER
 
         void Update()
         {
+
             
             if (yourGun.ammoClip < 0)
             {
@@ -218,12 +216,7 @@ namespace GAMEMANAGER
                 //curAmmo = yourGun.currentAmmo;
                // maxAmmo = yourGun.AmmoUpdate;
             }
-
-           if (player != null)
-            {
-               playerHealth = player.player_health;
-            }
-
+           
         }
 
 

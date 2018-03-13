@@ -39,6 +39,10 @@ namespace PLAYER
         public string currentGun;
 
         public GameObject UI;
+        public GameObject xmark;
+        public Vector3 surface_location;
+        public Vector3 player_location;
+        GameObject Markable;
 
         GunTransitions gunTran;
 
@@ -61,7 +65,7 @@ namespace PLAYER
             GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
 
             UI = GameObject.FindGameObjectWithTag("UI");
-
+            Markable = GameObject.FindGameObjectWithTag("markable");
         }
 
         //Work on changing some of this 
@@ -75,7 +79,7 @@ namespace PLAYER
             //Armor will be deleted if not used 
             if (other.gameObject.CompareTag("Armor"))
             {
-                GM.ArmorUp();
+                
                 other.gameObject.SetActive(false);
             }
 
@@ -123,6 +127,17 @@ namespace PLAYER
         }
         GameObject g;
 
+        void PlaceMark() {
+
+            var collider = Markable.GetComponent<Collider>();
+
+            if (!collider)
+                return; // nothing to do without a collider
+            Vector3 closestPoint = collider.ClosestPoint(surface_location);
+            Instantiate(xmark, transform.position,transform.rotation);
+            //use instantiate
+        }
+
         void Update()
         {
             if (player_health > 100) player_health = 100;
@@ -163,7 +178,15 @@ namespace PLAYER
                 PlayerSound.clip = HeartBeat;
                 PlayerSound.Play();
             }
-
+            //Update players pos for placement purposes 
+            player_location = gameObject.transform.TransformDirection(Vector3.forward);
+            if (Physics.Raycast(transform.position, player_location, 1)) {
+                //highlight circle
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    PlaceMark();
+                }
+            }
         }
     }
 }
