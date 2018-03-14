@@ -61,7 +61,7 @@ public class AI : MonoBehaviour
 		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
 		//Debug.Log ("Distance to AI: " + dist);
 
-		if (!Physics.Raycast (BoboPeekABOO, transform.forward, LookRange, mask) && Escape == false) {
+		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
 			if (hit.collider.tag == "player") {
 				Vector3 point;
 				if (X != 200) {
@@ -77,8 +77,9 @@ public class AI : MonoBehaviour
 			}
 		}
 
-		if (Physics.Raycast (BoboPeekABOO, transform.forward, LookRange, mask) || Escape == true) {
+		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
 			if (hit.collider.tag == "player") {
+				gameObject.transform.LookAt (destination);
 				Escape = true;
 				if (dist > 20) {
 					Escape = false;

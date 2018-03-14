@@ -12,6 +12,7 @@ public class AIAttack : MonoBehaviour {
 	public int Meleerange = 3;
 	public int LookRange = 20;
 	public int bulletSpeed = 200;
+	public static bool BoboShoot;
 	public int X = 0;
 
 	// Use this for initialization
@@ -22,10 +23,10 @@ public class AIAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		BoboShoot = AI.Escape;
 
+		if(BoboShoot == true){
 
-		if(Vector3.Distance(plyr.position, gameObject.transform.position) <= LookRange){
-			gameObject.transform.LookAt (plyr);
 			if (X == 47) {
 				shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
 				shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
