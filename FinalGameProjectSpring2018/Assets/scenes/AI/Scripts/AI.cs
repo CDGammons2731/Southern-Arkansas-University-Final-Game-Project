@@ -9,9 +9,11 @@ public class AI : MonoBehaviour
 	public Transform destination;
 	public Transform DatDerBadGoober;
 	public Transform BoboHead;
+	public LayerMask mask = -1;
 	public float LookRange = 20f;
 	private NavMeshAgent agent;
 	public float range = 10.0f;
+	public bool Escape = false;
 	int X = 0;
 
 
@@ -44,24 +46,28 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
-		RaycastHit hit;
-		Ray BoboPeekABOO = new Ray (BoboHead.position, Vector3.back);
-		Debug.DrawRay (BoboHead.position, Vector3.back);
+		if (Escape == true) {
+			gameObject.transform.LookAt (destination);
+		}
 
-		if(Physics.Raycast(BoboPeekABOO, out hit, LookRange)){
-			Debug.Log (hit.collider.tag);
+		RaycastHit hit;
+		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
+		Debug.DrawRay (BoboHead.position, transform.forward);
+
+		if(Physics.Raycast(BoboPeekABOO, out hit, LookRange, mask.value)){
+			Debug.Log (mask);
 			if (hit.collider.tag == "player") {
 				Debug.Log ("Bobo sees you!");
 			}
 		}
 
 		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
-		//Debug.Log ("Distance to AI: " + dist);
+		Debug.Log ("Distance to AI: " + dist);
 
 		Vector3 point;
 		if (X != 200) {
 			X++;
-		} else if (dist > 20) {
+		} else if (!Physics.Raycast(BoboPeekABOO, out hit, LookRange, mask.value) && Escape == false) {
 			if (RandomPoint (transform.position, range, out point)) {
 				float Idledist = Vector3.Distance (point, transform.position);
 				agent = gameObject.GetComponent<NavMeshAgent> ();
@@ -70,10 +76,17 @@ public class AI : MonoBehaviour
 			X = 0;
 		}
 
-		if (dist > 5 && dist <= 20) {
-			agent.SetDestination (destination.position);
-		} else if (dist <= 5) {
-			agent.SetDestination (transform.position);
+		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask.value)) {
+			if (hit.collider.tag == "player") {
+				Escape = true;
+				if (dist > 20) {
+					Escape = false;
+				} else if (dist > 5 && dist <= 20) {
+					agent.SetDestination (destination.position);
+				} else if (dist <= 5) {
+					agent.SetDestination (transform.position);
+				}
+			}
 		}
 		
 	}
