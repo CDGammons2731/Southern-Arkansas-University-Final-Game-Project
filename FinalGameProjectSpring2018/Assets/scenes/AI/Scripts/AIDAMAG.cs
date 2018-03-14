@@ -28,8 +28,8 @@ public class AIDAMAG : AISpawner {
 	void Update(){
 
 		RaycastHit hit;
-		Ray BoboPeekABOO = new Ray (BoboHead.position, Vector3.back);
-		Debug.DrawRay (BoboHead.position, Vector3.back);
+		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
+		Debug.DrawRay (BoboHead.position, transform.forward);
 				
 		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask)) {
 			if (hit.collider.tag == "player") {
