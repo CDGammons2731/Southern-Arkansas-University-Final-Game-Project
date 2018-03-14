@@ -13,6 +13,7 @@ public class AIDAMAG : AISpawner {
 	public Transform BoboHead;
 	public LayerMask mask = -1;
 	public Transform Bullet;
+	public Transform play;
 	public GameObject plyr;
 	public int LookRange = 20;
 	public bool EnemyHasDied = false;
@@ -27,15 +28,15 @@ public class AIDAMAG : AISpawner {
 
 
 	void Update(){
-		float dist = Vector3.Distance (plyr.transform.position, transform.position);
+		float dist = Vector3.Distance (play.position, transform.position);
 		shootHIM = AI.Escape;
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		//Debug.DrawRay (BoboHead.position, transform.forward);
 				
-		if (shootHIM == true && dist <= LookRange) {
-				anim.SetTrigger ("IsFiring");
+		if (shootHIM == true) {
+			anim.SetTrigger ("IsFiring");
 		} else {
 			anim.ResetTrigger ("IsFiring");
 		}
