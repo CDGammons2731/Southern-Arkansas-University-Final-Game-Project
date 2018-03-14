@@ -81,7 +81,7 @@ public class AI : MonoBehaviour
 		}
 
 		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
-			Debug.Log ("hit: " + hit.collider.tag);
+			//Debug.Log ("hit: " + hit.collider.tag);
 			if (hit.collider.tag == "player") {
 				Escape = true;
 				if (dist > 20) {

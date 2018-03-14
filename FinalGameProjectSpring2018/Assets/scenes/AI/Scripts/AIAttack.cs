@@ -23,9 +23,10 @@ public class AIAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		float dist = Vector3.Distance (plyr.position, transform.position);
 		BoboShoot = AI.Escape;
 
-		if(BoboShoot == true){
+		if(BoboShoot == true && dist <= LookRange){
 
 			if (X == 47) {
 				shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);

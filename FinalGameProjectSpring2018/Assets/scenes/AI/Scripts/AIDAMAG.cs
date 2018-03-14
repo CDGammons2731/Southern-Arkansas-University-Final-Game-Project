@@ -27,13 +27,14 @@ public class AIDAMAG : AISpawner {
 
 
 	void Update(){
+		float dist = Vector3.Distance (plyr.transform.position, transform.position);
 		shootHIM = AI.Escape;
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
-		Debug.DrawRay (BoboHead.position, transform.forward);
+		//Debug.DrawRay (BoboHead.position, transform.forward);
 				
-		if (shootHIM == true) {
+		if (shootHIM == true && dist <= LookRange) {
 				anim.SetTrigger ("IsFiring");
 		} else {
 			anim.ResetTrigger ("IsFiring");
