@@ -133,7 +133,7 @@ Reload Speed: 2 seconds
                     fireRate = 0.75f;
                     ammoClip = 6;
                     ammoMax = 48;
-                    damage = 2; //or 1.5
+                    damage = 4; //or 1.5
                     reloadRate = 4;
 
                 //Create shot spread
@@ -272,7 +272,7 @@ Reload Speed: 2 seconds
                 }
 
                 // Destroy the bullet after 2 seconds
-                Destroy(shot, 0.35f);
+                Destroy(shot, 0.50f);
                 
             }
 
@@ -299,7 +299,7 @@ Reload Speed: 2 seconds
                 }
 
                 // Destroy the bullet after 2 seconds
-                Destroy(shot, 0.35f);
+                Destroy(shot, 0.50f);
                 
 
             }
@@ -327,7 +327,7 @@ Reload Speed: 2 seconds
                 }
 
                 // Destroy the bullet after 2 seconds
-                Destroy(shot, 0.35f);
+                Destroy(shot, 0.50f);
             
         }
             else
@@ -352,7 +352,7 @@ Reload Speed: 2 seconds
                     shot.transform.rotation = Quaternion.RotateTowards(shot.transform.rotation, pellets[i], spreadAgle); //Make sure the pellet prefab itself is set to the pellet Layer in the inspector
                     shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
                     i++;
-                    Destroy(shot, 0.35f);
+                    Destroy(shot, 0.50f);
                 }
                 //play sound
                 if (SHOTGUN[0] != null)
@@ -379,7 +379,7 @@ Reload Speed: 2 seconds
                 }
 
                 // Destroy the bullet after .35s seconds
-                Destroy(shot, 0.35f);
+                Destroy(shot, 0.50f);
             }
             else
             {
