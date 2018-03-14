@@ -134,7 +134,6 @@ namespace PLAYER
 
         void PlaceMark() {
 
-   
             if (!col)
                 return; // nothing to do without a collider
             Vector3 closestPoint = col.ClosestPoint(surface_location);
