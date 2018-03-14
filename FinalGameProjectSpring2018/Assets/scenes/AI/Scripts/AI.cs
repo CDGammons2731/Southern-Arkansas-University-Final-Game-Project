@@ -13,7 +13,7 @@ public class AI : MonoBehaviour
 	public float LookRange = 20f;
 	private NavMeshAgent agent;
 	public float range = 10.0f;
-	public bool Escape = false;
+	public static bool Escape = false;
 	int X = 0;
 
 

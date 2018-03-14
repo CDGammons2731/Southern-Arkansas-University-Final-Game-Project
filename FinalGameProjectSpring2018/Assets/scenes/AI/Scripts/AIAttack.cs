@@ -15,6 +15,8 @@ public class AIAttack : MonoBehaviour {
 	public int LookRange = 20;
 	public int bulletSpeed = 200;
 	public int X = 0;
+	public static bool ShootHIM;
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,13 +25,13 @@ public class AIAttack : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		ShootHIM = AI.Escape;
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		Debug.DrawRay (BoboHead.position, transform.forward);
 
-		if(Physics.Raycast(BoboPeekABOO, out hit, LookRange, mask.value)){
-			if (hit.collider.tag == "player") {
+		if(ShootHIM == true){
 				if (X == 47) {
 					shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
 					shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
@@ -38,8 +40,6 @@ public class AIAttack : MonoBehaviour {
 				X++;
 
 				Destroy (shot, 0.35f);
-			}
-
 		}
 
 		//if(Vector3.Distance(plyr.position, gameObject.transform.position) <= Meleerange){

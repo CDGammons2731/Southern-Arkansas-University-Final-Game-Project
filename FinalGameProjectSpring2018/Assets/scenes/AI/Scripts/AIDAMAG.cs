@@ -18,7 +18,6 @@ public class AIDAMAG : AISpawner {
 	public bool EnemyHasDied = false;
 
 
-
 	void Awake(){
 		player = GameObject.FindGameObjectWithTag ("player");
 		anim = GetComponent<Animator> ();
@@ -26,6 +25,7 @@ public class AIDAMAG : AISpawner {
 
 
 	void Update(){
+
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
