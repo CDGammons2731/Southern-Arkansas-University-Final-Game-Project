@@ -42,7 +42,8 @@ namespace PLAYER
         public GameObject xmark;
         public Vector3 surface_location;
         public Vector3 player_location;
-        GameObject Markable;
+        GameObject[] Markable;
+        Collider col;
 
         GunTransitions gunTran;
 
@@ -65,7 +66,11 @@ namespace PLAYER
             GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
 
             UI = GameObject.FindGameObjectWithTag("UI");
-            Markable = GameObject.FindGameObjectWithTag("markable");
+            Markable = GameObject.FindGameObjectsWithTag("markable");
+
+            for (int i = 0; i < Markable.Length; i++) {
+                 col = Markable[i].GetComponent<Collider>();
+            }
         }
 
         //Work on changing some of this 
@@ -129,11 +134,10 @@ namespace PLAYER
 
         void PlaceMark() {
 
-            var collider = Markable.GetComponent<Collider>();
-
-            if (!collider)
+   
+            if (!col)
                 return; // nothing to do without a collider
-            Vector3 closestPoint = collider.ClosestPoint(surface_location);
+            Vector3 closestPoint = col.ClosestPoint(surface_location);
             Instantiate(xmark, transform.position,transform.rotation);
             //use instantiate
         }
