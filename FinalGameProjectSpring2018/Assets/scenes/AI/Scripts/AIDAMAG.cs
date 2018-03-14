@@ -10,6 +10,8 @@ public class AIDAMAG : AISpawner {
 	public int Health = 30;
 	public static int Samage = 0;
 	public static int Dmge = 0;
+	public Transform BoboHead;
+	public LayerMask mask = -1;
 	public Transform Head;
 	public Transform Bullet;
 	public GameObject plyr;
@@ -25,10 +27,15 @@ public class AIDAMAG : AISpawner {
 
 
 	void Update(){
+
+		RaycastHit hit;
+		Ray BoboPeekABOO = new Ray (BoboHead.position, Vector3.back);
+		Debug.DrawRay (BoboHead.position, Vector3.back);
 				
-		if (Vector3.Distance (player.transform.position, gameObject.transform.position) <= LookRange) {
-			gameObject.transform.LookAt (player.transform);
-			anim.SetTrigger ("IsFiring");
+		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask)) {
+			if (hit.collider.tag == "player") {
+				anim.SetTrigger ("IsFiring");
+			}
 		} else {
 			anim.ResetTrigger ("IsFiring");
 		}
