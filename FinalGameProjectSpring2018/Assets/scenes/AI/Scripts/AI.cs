@@ -13,7 +13,7 @@ public class AI : MonoBehaviour
 	public float LookRange = 20f;
 	private NavMeshAgent agent;
 	public float range = 10.0f;
-	public static bool Escape;
+	public static bool Escape = false;
 	int X = 0;
 
 
@@ -47,6 +47,11 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
+
+		if (Escape == true) {
+			gameObject.transform.LookAt (destination);
+		}
+
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		Debug.DrawRay (BoboHead.position, transform.forward);
@@ -62,7 +67,6 @@ public class AI : MonoBehaviour
 		//Debug.Log ("Distance to AI: " + dist);
 
 		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
-			if (hit.collider.tag == "player") {
 				Vector3 point;
 				if (X != 200) {
 					X++;
@@ -74,12 +78,11 @@ public class AI : MonoBehaviour
 					}
 					X = 0;
 				}
-			}
 		}
 
 		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
+			Debug.Log ("hit: " + hit.collider.tag);
 			if (hit.collider.tag == "player") {
-				gameObject.transform.LookAt (destination);
 				Escape = true;
 				if (dist > 20) {
 					Escape = false;

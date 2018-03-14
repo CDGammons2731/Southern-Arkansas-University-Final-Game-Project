@@ -16,6 +16,7 @@ public class AIDAMAG : AISpawner {
 	public GameObject plyr;
 	public int LookRange = 20;
 	public bool EnemyHasDied = false;
+	public static bool shootHIM;
 
 
 
@@ -26,15 +27,14 @@ public class AIDAMAG : AISpawner {
 
 
 	void Update(){
+		shootHIM = AI.Escape;
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		Debug.DrawRay (BoboHead.position, transform.forward);
 				
-		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask)) {
-			if (hit.collider.tag == "player") {
+		if (shootHIM == true) {
 				anim.SetTrigger ("IsFiring");
-			}
 		} else {
 			anim.ResetTrigger ("IsFiring");
 		}
