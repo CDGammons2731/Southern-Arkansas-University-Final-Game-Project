@@ -12,7 +12,6 @@ public class AIDAMAG : AISpawner {
 	public static int Dmge = 0;
 	public Transform BoboHead;
 	public LayerMask mask = -1;
-	public Transform Head;
 	public Transform Bullet;
 	public GameObject plyr;
 	public int LookRange = 20;
