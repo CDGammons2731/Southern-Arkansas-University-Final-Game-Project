@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1066369983811402, guid: 5875924acaf33dd48acb44ed38253010, type: 2}
   shot: {fileID: 0}
-  BoboHead: {fileID: 0}
+  BoboHead: {fileID: 4228812472676804}
   bulletSpawn: {fileID: 4955963241795774}
   plyr: {fileID: 0}
   mask:
@@ -1041,7 +1041,6 @@ MonoBehaviour:
     m_Bits: 4096
   LookRange: 20
   range: 10
-  Escape: 0
 --- !u!114 &114417911670692164
 MonoBehaviour:
   m_ObjectHideFlags: 1
