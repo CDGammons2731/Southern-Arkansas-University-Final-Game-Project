@@ -9,9 +9,11 @@ public class AI : MonoBehaviour
 	public Transform destination;
 	public Transform DatDerBadGoober;
 	public Transform BoboHead;
+	public LayerMask mask = -1;
 	public float LookRange = 20f;
 	private NavMeshAgent agent;
 	public float range = 10.0f;
+	public static bool Escape = false;
 	int X = 0;
 
 
@@ -27,6 +29,7 @@ public class AI : MonoBehaviour
         //DatDerBadGoober = GameObject.Find ("player").transform;
 
     }
+
 
 	bool RandomPoint(Vector3 Center, float range, out Vector3 result){
 		for (int i = 0; i < 30; i++) {
@@ -44,36 +47,43 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
-		RaycastHit hit;
-		Ray BoboPeekABOO = new Ray (BoboHead.position, Vector3.back);
-		Debug.DrawRay (BoboHead.position, Vector3.back);
 
-		if(Physics.Raycast(BoboPeekABOO, out hit, LookRange)){
-			Debug.Log (hit.collider.tag);
-			if (hit.collider.tag == "player") {
-				Debug.Log ("Bobo sees you!");
-			}
+		if (Escape == true) {
+			gameObject.transform.LookAt (destination);
 		}
+
+		RaycastHit hit;
+		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
+		Debug.DrawRay (BoboHead.position, transform.forward);
 
 		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
 		//Debug.Log ("Distance to AI: " + dist);
 
-		Vector3 point;
-		if (X != 200) {
-			X++;
-		} else if (dist > 20) {
-			if (RandomPoint (transform.position, range, out point)) {
-				float Idledist = Vector3.Distance (point, transform.position);
-				agent = gameObject.GetComponent<NavMeshAgent> ();
-					agent.SetDestination (point);
-			}
-			X = 0;
+		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
+				Vector3 point;
+				if (X != 200) {
+					X++;
+				} else {
+					if (RandomPoint (transform.position, range, out point)) {
+						float Idledist = Vector3.Distance (point, transform.position);
+						agent = gameObject.GetComponent<NavMeshAgent> ();
+						agent.SetDestination (point);
+					}
+					X = 0;
+				}
 		}
 
-		if (dist > 5 && dist <= 20) {
-			agent.SetDestination (destination.position);
-		} else if (dist <= 5) {
-			agent.SetDestination (transform.position);
+		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
+				if (hit.collider.tag == "player") {
+					Escape = true;
+					if (dist > 20) {
+						Escape = false;
+					} else if (dist > 5 && dist <= 20) {
+						agent.SetDestination (destination.position);
+					} else if (dist <= 5) {
+						agent.SetDestination (transform.position);
+					}
+				}
 		}
 		
 	}

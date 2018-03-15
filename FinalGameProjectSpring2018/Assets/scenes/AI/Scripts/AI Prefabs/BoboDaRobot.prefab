@@ -1032,6 +1032,9 @@ MonoBehaviour:
   destination: {fileID: 0}
   DatDerBadGoober: {fileID: 0}
   BoboHead: {fileID: 4961581455728556}
+  mask:
+    serializedVersion: 2
+    m_Bits: 8192
   LookRange: 20
   range: 10
 --- !u!114 &114417911670692164
@@ -1058,9 +1061,13 @@ MonoBehaviour:
   TimeToRespawn: 3
   WaitToStart: 0
   Health: 30
-  Head: {fileID: 4984340048336848}
+  BoboHead: {fileID: 4228812472676804}
+  mask:
+    serializedVersion: 2
+    m_Bits: 8192
   Bullet: {fileID: 4192100455164814, guid: 04f808e235767cd4994bcf5003c07387, type: 2}
-  plyr: {fileID: 0}
+  play: {fileID: 4440257052596088, guid: 5666b1957c7c6d3459cbfab33f6f4256, type: 2}
+  plyr: {fileID: 1933786559247950, guid: 5666b1957c7c6d3459cbfab33f6f4256, type: 2}
   LookRange: 20
   EnemyHasDied: 0
 --- !u!114 &114771957676140284
@@ -1087,8 +1094,12 @@ MonoBehaviour:
   TimeToRespawn: 300
   WaitToStart: 50
   Health: 30
-  Head: {fileID: 0}
+  BoboHead: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   Bullet: {fileID: 0}
+  play: {fileID: 0}
   plyr: {fileID: 0}
   LookRange: 5
   EnemyHasDied: 0
