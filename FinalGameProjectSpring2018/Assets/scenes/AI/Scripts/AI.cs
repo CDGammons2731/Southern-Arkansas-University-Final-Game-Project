@@ -14,6 +14,7 @@ public class AI : MonoBehaviour
 	private NavMeshAgent agent;
 	public float range = 10.0f;
 	public static bool Escape = false;
+	public static bool WhosYourDaddy = false;
 	int X = 0;
 
 
@@ -48,7 +49,7 @@ public class AI : MonoBehaviour
 	void Update ()
 	{
 
-		if (Escape == true) {
+		if (Escape == true || WhosYourDaddy == true) {
 			gameObject.transform.LookAt (destination);
 		}
 
@@ -74,14 +75,20 @@ public class AI : MonoBehaviour
 		}
 
 		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
-				if (hit.collider.tag == "player") {
-					Escape = true;
+			Escape = true;
+			if (hit.collider.tag == "player") {
 					if (dist > 20) {
 						Escape = false;
 					} else if (dist > 5 && dist <= 20) {
 						agent.SetDestination (destination.position);
+							WhosYourDaddy = false;
 					} else if (dist <= 5) {
-						agent.SetDestination (transform.position);
+						WhosYourDaddy = true;
+						if (dist >= 3) {
+							agent.SetDestination (destination.position);
+						} else {
+							agent.SetDestination (transform.position);
+						}
 					}
 				}
 		}

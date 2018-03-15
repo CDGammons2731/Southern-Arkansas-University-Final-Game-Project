@@ -17,7 +17,8 @@ public class AIDAMAG : AISpawner {
 	public GameObject plyr;
 	public int LookRange = 20;
 	public bool EnemyHasDied = false;
-	public static bool shootHIM;
+	public static bool shootHIM = false;
+	public static bool MuhFaceHurt = false;
 
 
 
@@ -30,13 +31,21 @@ public class AIDAMAG : AISpawner {
 	void Update(){
 		float dist = Vector3.Distance (play.position, transform.position);
 		shootHIM = AI.Escape;
+		MuhFaceHurt = AI.WhosYourDaddy;
+		Debug.Log (MuhFaceHurt);
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		//Debug.DrawRay (BoboHead.position, transform.forward);
 				
 		if (shootHIM == true) {
-			anim.SetTrigger ("IsFiring");
+			if (MuhFaceHurt == false) {
+				anim.SetTrigger ("IsFiring");
+				anim.ResetTrigger ("IsHitting");
+			} else {
+				anim.ResetTrigger ("IsFiring");
+				anim.SetTrigger ("IsHitting");
+			}
 		} else {
 			anim.ResetTrigger ("IsFiring");
 		}

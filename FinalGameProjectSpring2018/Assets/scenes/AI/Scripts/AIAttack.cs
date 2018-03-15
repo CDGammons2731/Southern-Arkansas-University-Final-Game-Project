@@ -13,6 +13,7 @@ public class AIAttack : MonoBehaviour {
 	public int LookRange = 20;
 	public int bulletSpeed = 200;
 	public static bool BoboShoot;
+
 	public int X = 0;
 
 	// Use this for initialization
@@ -26,7 +27,8 @@ public class AIAttack : MonoBehaviour {
 		float dist = Vector3.Distance (plyr.position, transform.position);
 		BoboShoot = AI.Escape;
 
-		if(BoboShoot == true && dist <= LookRange){
+
+		if(BoboShoot == true && dist > 5 && dist <= LookRange){
 
 			if (X == 47) {
 				shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
