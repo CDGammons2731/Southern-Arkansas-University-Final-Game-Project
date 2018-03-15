@@ -1,59 +1,39 @@
 fileFormatVersion: 2
-guid: 9ce10b4356e487f4c81d0b910f6e7070
-timeCreated: 1520978064
+guid: 02b04737c0bed5b4cb7f2027699b6be9
+timeCreated: 1521151160
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: body
-    100002: coils
-    100004: focusRing
-    100006: lever
-    100008: pipe
-    100010: //RootNode
-    100012: recoilStock
-    100014: stock
-    100016: stockSpring1
-    100018: stockSpring2
-    100020: trigger
-    400000: body
-    400002: coils
-    400004: focusRing
-    400006: lever
-    400008: pipe
-    400010: //RootNode
-    400012: recoilStock
-    400014: stock
-    400016: stockSpring1
-    400018: stockSpring2
-    400020: trigger
-    2300000: body
-    2300002: coils
-    2300004: focusRing
-    2300006: lever
-    2300008: pipe
-    2300010: stock
-    2300012: stockSpring1
-    2300014: stockSpring2
-    2300016: trigger
-    3300000: body
-    3300002: coils
-    3300004: focusRing
-    3300006: lever
-    3300008: pipe
-    3300010: stock
-    3300012: stockSpring1
-    3300014: stockSpring2
-    3300016: trigger
-    4300000: trigger
-    4300002: coils
-    4300004: body
-    4300006: focusRing
-    4300008: lever
-    4300010: pipe
-    4300012: stock
-    4300014: stockSpring1
-    4300016: stockSpring2
+    100000: Game_R_Hand_Final_R_Elbow_COM_ctrl
+    100002: Game_R_Hand_Final_R_Index_ctrl
+    100004: Game_R_Hand_Final_R_Index_grp
+    100006: Game_R_Hand_Final_R_Middle_ctrl
+    100008: Game_R_Hand_Final_R_Middle_grp
+    100010: Game_R_Hand_Final_R_Pinky_ctrl
+    100012: Game_R_Hand_Final_R_Pinky_grp
+    100014: Game_R_Hand_Final_R_Ring_ctrl
+    100016: Game_R_Hand_Final_R_Ring_grp
+    100018: Game_R_Hand_Final_R_Thumb_ctrl
+    100020: Game_R_Hand_Final_R_Thumb_grp
+    100022: Game_R_Hand_Final_R_Wrist_ctrl
+    100024: Game_R_Hand_Final_R_Wrist_grp
+    100026: //RootNode
+    400000: Game_R_Hand_Final_R_Elbow_COM_ctrl
+    400002: Game_R_Hand_Final_R_Index_ctrl
+    400004: Game_R_Hand_Final_R_Index_grp
+    400006: Game_R_Hand_Final_R_Middle_ctrl
+    400008: Game_R_Hand_Final_R_Middle_grp
+    400010: Game_R_Hand_Final_R_Pinky_ctrl
+    400012: Game_R_Hand_Final_R_Pinky_grp
+    400014: Game_R_Hand_Final_R_Ring_ctrl
+    400016: Game_R_Hand_Final_R_Ring_grp
+    400018: Game_R_Hand_Final_R_Thumb_ctrl
+    400020: Game_R_Hand_Final_R_Thumb_grp
+    400022: Game_R_Hand_Final_R_Wrist_ctrl
+    400024: Game_R_Hand_Final_R_Wrist_grp
+    400026: //RootNode
+    7400000: Take 001
     9500000: //RootNode
   materials:
     importMaterials: 1

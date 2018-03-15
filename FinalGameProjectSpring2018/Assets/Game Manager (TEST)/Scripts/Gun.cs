@@ -171,8 +171,8 @@ Reload Speed: 2 seconds
                     break;
             case rifle:
                 fireRate = 0.1f;
-                ammoClip = 30;
-                ammoMax = 210;
+                ammoClip = 50;
+                ammoMax = 300;
                 damage = 8;
                 reloadRate = 2;
 
