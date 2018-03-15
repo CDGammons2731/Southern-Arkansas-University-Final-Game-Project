@@ -49,9 +49,11 @@ public class AI : MonoBehaviour
 	void Update ()
 	{
 
+
 		if (Escape == true || WhosYourDaddy == true) {
 			gameObject.transform.LookAt (destination);
 		}
+
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
@@ -62,17 +64,21 @@ public class AI : MonoBehaviour
 
 		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
 				Vector3 point;
-				if (X != 200) {
-					X++;
-				} else {
-					if (RandomPoint (transform.position, range, out point)) {
-						float Idledist = Vector3.Distance (point, transform.position);
-						agent = gameObject.GetComponent<NavMeshAgent> ();
-						agent.SetDestination (point);
-					}
-					X = 0;
+			if (X != 200) {
+				X++;
+			} else if (dist > 5) {
+				if (RandomPoint (transform.position, range, out point)) {
+					float Idledist = Vector3.Distance (point, transform.position);
+					agent = gameObject.GetComponent<NavMeshAgent> ();
+					agent.SetDestination (point);
 				}
+				X = 0;
+			} else {
+				Escape = true;
+				WhosYourDaddy = true;
+			}
 		}
+
 
 		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
 			Escape = true;
@@ -92,6 +98,5 @@ public class AI : MonoBehaviour
 					}
 				}
 		}
-		
 	}
 }
