@@ -49,6 +49,10 @@ public class hud : MonoBehaviour {
         int min = (int)countDown / 60;
         timer.text=min.ToString()+ ":"+sec.ToString();
 
+        if(countDown <= 0){
+            countDown = 300f;
+        }
+
         //updates health meter
         loseHealth();
 
