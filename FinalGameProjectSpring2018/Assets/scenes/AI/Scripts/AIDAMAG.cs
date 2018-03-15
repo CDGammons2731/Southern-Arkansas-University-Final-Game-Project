@@ -59,6 +59,7 @@ public class AIDAMAG : AISpawner {
 
 	void OnCollisionEnter(Collision collision){
 		if (collision.transform.gameObject.tag == "bullet") {
+			AI.Escape = true;
 				if (Health >= 0) {
 					Health -= Samage;
 					//Debug.Log ("Health: " + Health);
@@ -66,6 +67,7 @@ public class AIDAMAG : AISpawner {
 					DestroyObject (gameObject);
 				}
 		} else if (collision.transform.gameObject.tag == "pellet") {
+			AI.Escape = true;
 				if (Health >= 0) {
 					Health -= Samage;
 				} else {
