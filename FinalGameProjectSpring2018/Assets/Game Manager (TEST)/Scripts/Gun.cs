@@ -34,7 +34,8 @@ public class Gun : MonoBehaviour {
     //The source that the audio clips can be played by
     public AudioSource GunSound;
 
-    //Check to see if weapon is equpiied
+    //Check to see if weapon is equppied
+    //
     public bool equipped;
     public bool canShoot;
 
@@ -99,10 +100,6 @@ Ammo type: Energy Cell
 Reload Speed: 2 seconds
 
 */
-
-
-
-
         // Use this for initialization
         void Start () {
 		    CurrentWeapon = this.gameObject.tag;
@@ -133,7 +130,7 @@ Reload Speed: 2 seconds
                     fireRate = 0.75f;
                     ammoClip = 6;
                     ammoMax = 48;
-                    damage = 4; //or 1.5
+                    damage = 5; //or 1.5
                     reloadRate = 4;
 
                 //Create shot spread
