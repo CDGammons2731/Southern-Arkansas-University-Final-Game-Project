@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4570218485325464}
-  - component: {fileID: 136231971823042506}
   - component: {fileID: 54214505660908750}
   - component: {fileID: 199006958703240966}
   - component: {fileID: 198305089761512394}
   - component: {fileID: 96548398219175570}
+  - component: {fileID: 136858178459254580}
   m_Layer: 0
   m_Name: TestParticle
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1590987268347284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.565, y: 1.5, z: -0.155}
+  m_LocalPosition: {x: 6.22, y: 1.5, z: 4.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -148,9 +148,9 @@ TrailRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 0.05
   m_Autodestruct: 0
---- !u!136 &136231971823042506
+--- !u!136 &136858178459254580
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -159,10 +159,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.05
-  m_Height: 1
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.24921966
+  m_Height: 0.4984393
+  m_Direction: 0
+  m_Center: {x: 0.012704134, y: 0.011377454, z: -0.18006253}
 --- !u!198 &198305089761512394
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -222,7 +222,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1087236803
+  randomSeed: -1669047538
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -270,7 +270,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.35474133
+      scalar: -0.373178
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -687,7 +687,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.01
+      value: 0.042107463
       mode: 0
       spread: 0
       speed:
@@ -733,7 +733,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 2
       spread: 0
       speed:
         serializedVersion: 2

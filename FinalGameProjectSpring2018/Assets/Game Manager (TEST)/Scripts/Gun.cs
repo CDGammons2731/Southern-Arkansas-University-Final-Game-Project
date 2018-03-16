@@ -140,13 +140,21 @@ Reload Speed: 2 seconds
                         ammo -= 1;
                         shotCount++;
                         currentAmmo -= 1;
-					if (currentAmmo<=0) { 
-					reload (type);
-				}
+                        if (currentAmmo <= 0)
+                        {
+                            reload(type);
+                        }
+                    }
 
+                    else
+                    {
+                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo==0)
+                        {
+                            GunSound.PlayOneShot(Empty, 0.85f);
+                        }
                     }
                     //lather, rinse, repeat for all weapons
-                break;
+                    break;
             case revolver:
                 fireRate = 0.35f;
                 ammoClip = 6;
@@ -155,7 +163,7 @@ Reload Speed: 2 seconds
                 reloadRate = 3;
 
 
-                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
+                    if (Input.GetMouseButtonUp(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
                     {
                         nextFire = Time.time + fireRate;
                         Revolver(ammo, ammoClip);
@@ -165,6 +173,15 @@ Reload Speed: 2 seconds
 					if (currentAmmo<=0)
                         {
                             reload(type);
+                        }
+
+                    }
+
+                    else
+                    {
+                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                        {
+                            GunSound.PlayOneShot(Empty, 0.85f);
                         }
                     }
 
@@ -189,6 +206,14 @@ Reload Speed: 2 seconds
                         }
                     }
 
+                    else
+                    {
+                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                        {
+                            GunSound.PlayOneShot(Empty, 0.85f);
+                        }
+                    }
+
                     break;
             case raygun:
                 fireRate = 1.0f;
@@ -210,6 +235,14 @@ Reload Speed: 2 seconds
                         }
                     }
 
+                    else
+                    {
+                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                        {
+                            GunSound.PlayOneShot(Empty, 0.85f);
+                        }
+                    }
+
                     break;
             case railgun:
                 fireRate = 1.25f;
@@ -228,6 +261,14 @@ Reload Speed: 2 seconds
 					if (currentAmmo<=0)
                         {
                             reload(type);
+                        }
+                    }
+
+                    else
+                    {
+                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                        {
+                            GunSound.PlayOneShot(Empty, 0.85f);
                         }
                     }
                     break;

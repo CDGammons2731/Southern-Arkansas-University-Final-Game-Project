@@ -70,6 +70,7 @@ namespace PLAYER
 
             for (int i = 0; i < Markable.Length; i++) {
                  col = Markable[i].GetComponent<Collider>();
+                
             }
         }
 
