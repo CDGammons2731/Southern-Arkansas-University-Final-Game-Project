@@ -23,7 +23,9 @@ public class AIDAMAG : AISpawner {
 
 
 	void Awake(){
-		player = GameObject.FindGameObjectWithTag ("player");
+		play = GameObject.FindGameObjectWithTag ("player").transform;
+		plyr = GameObject.FindGameObjectWithTag ("player");
+
 		anim = GetComponent<Animator> ();
 	}
 

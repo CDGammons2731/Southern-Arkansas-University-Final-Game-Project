@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4931563127864130}
   - component: {fileID: 20631460778908686}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: WeaponCamera
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 20645446048721150}
   - component: {fileID: 81542406119350442}
   - component: {fileID: 124901786983575558}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -56,9 +56,9 @@ GameObject:
   - component: {fileID: 33285858613785268}
   - component: {fileID: 23116186465697054}
   - component: {fileID: 95754159910346684}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: PlayerHand(Small)
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,9 +73,9 @@ GameObject:
   - component: {fileID: 4629942204408132}
   - component: {fileID: 95808435508029410}
   - component: {fileID: 114300360381955242}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HoldingPosition
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,8 @@ GameObject:
   - component: {fileID: 54485871610969156}
   - component: {fileID: 82095863389311518}
   - component: {fileID: 114121960315078296}
-  m_Layer: 0
+  - component: {fileID: 135688338104752420}
+  m_Layer: 13
   m_Name: Player
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -120,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893987726926354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -0.9820484}
+  m_LocalPosition: {x: -13.8, y: 0.9, z: -21.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4514888461127774}
@@ -579,8 +580,8 @@ MonoBehaviour:
   m_FootstepSounds:
   - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
-  m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
-  m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  m_JumpSound: {fileID: 0}
+  m_LandSound: {fileID: 0}
 --- !u!124 &124901786983575558
 Behaviour:
   m_ObjectHideFlags: 1
@@ -588,6 +589,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1655886338580366}
   m_Enabled: 1
+--- !u!135 &135688338104752420
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1893987726926354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &143497955098430904
 CharacterController:
   m_ObjectHideFlags: 1
