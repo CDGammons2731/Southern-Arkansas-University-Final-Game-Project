@@ -15,7 +15,7 @@ public class AI : MonoBehaviour
 	public float range = 10.0f;
 	public static bool Escape = false;
 	public static bool WhosYourDaddy = false;
-	int X = 0;
+	int X = 200;
 
 
 	void Start(){
@@ -48,10 +48,13 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
-
+		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
+		//Debug.Log ("Distance to AI: " + dist);
 
 		if (Escape == true || WhosYourDaddy == true) {
-			gameObject.transform.LookAt (destination);
+			if (dist <= 20) {
+				gameObject.transform.LookAt (destination);
+			}
 		}
 
 
@@ -59,8 +62,7 @@ public class AI : MonoBehaviour
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		Debug.DrawRay (BoboHead.position, transform.forward);
 
-		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
-		//Debug.Log ("Distance to AI: " + dist);
+	
 
 		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
 				Vector3 point;
@@ -90,6 +92,7 @@ public class AI : MonoBehaviour
 							WhosYourDaddy = false;
 					} else if (dist <= 5) {
 						WhosYourDaddy = true;
+						Debug.Log ("Made It Here!");
 						if (dist >= 3) {
 							agent.SetDestination (destination.position);
 						} else {
