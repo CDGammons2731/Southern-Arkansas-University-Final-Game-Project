@@ -41,10 +41,10 @@ public class AIDAMAG : AISpawner {
 		//Debug.DrawRay (BoboHead.position, transform.forward);
 				
 		if (shootHIM == true) {
-			if (MuhFaceHurt == false) {
+			if (MuhFaceHurt == false && dist <= 5) {
 				anim.SetTrigger ("IsFiring");
 				anim.ResetTrigger ("IsHitting");
-			} else {
+			} else if(MuhFaceHurt == true && dist <= 5) {
 				anim.ResetTrigger ("IsFiring");
 				anim.SetTrigger ("IsHitting");
 			}
