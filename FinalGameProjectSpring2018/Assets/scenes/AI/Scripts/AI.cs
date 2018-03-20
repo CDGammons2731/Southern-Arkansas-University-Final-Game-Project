@@ -15,6 +15,7 @@ public class AI : MonoBehaviour
 	public float range = 10.0f;
 	public static bool Escape = false;
 	public static bool WhosYourDaddy = false;
+	bool kite = false;
 	int X = 200;
 
 
@@ -48,15 +49,15 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
+
 		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
-		//Debug.Log ("Distance to AI: " + dist);
+		Debug.Log ("Distance to AI: " + dist);
 
 		if (Escape == true || WhosYourDaddy == true) {
-			if (dist <= 20) {
+			if (dist <= LookRange) {
 				gameObject.transform.LookAt (destination);
 			}
 		}
-
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
@@ -64,9 +65,11 @@ public class AI : MonoBehaviour
 
 	
 
-		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
-				Vector3 point;
-			if (X != 200) {
+		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == false) {
+			Escape = false;
+			kite = false;
+			Vector3 point;
+			if (X != 200 && dist > 5) {
 				X++;
 			} else if (dist > 5) {
 				if (RandomPoint (transform.position, range, out point)) {
@@ -75,31 +78,41 @@ public class AI : MonoBehaviour
 					agent.SetDestination (point);
 				}
 				X = 0;
-			} else {
+			} else if (dist <= 5) {
 				Escape = true;
 				WhosYourDaddy = true;
 			}
 		}
 
-
-		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
+		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || kite == true) {
 			Escape = true;
+			Debug.Log (Escape + " " + WhosYourDaddy);
+			kite = true;
+		} else if (dist > 20) {
+			kite = false;
+			Escape = false;
+			WhosYourDaddy = false;
+		}
+
+		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == true) {
 			if (hit.collider.tag == "player") {
-					if (dist > 20) {
-						Escape = false;
-					} else if (dist > 5 && dist <= 20) {
+				if (dist > 20) {
+					Escape = false;
+					Debug.Log ("Made It Here!");
+					X = 0;
+				} else if (dist > 5 && dist <= 20) {
+					Escape = true;
+					agent.SetDestination (destination.position);
+					WhosYourDaddy = false;
+				} else if (dist <= 5) {
+					WhosYourDaddy = true;
+					if (dist >= 3) {
 						agent.SetDestination (destination.position);
-							WhosYourDaddy = false;
-					} else if (dist <= 5) {
-						WhosYourDaddy = true;
-						Debug.Log ("Made It Here!");
-						if (dist >= 3) {
-							agent.SetDestination (destination.position);
-						} else {
-							agent.SetDestination (transform.position);
-						}
+					} else {
+						agent.SetDestination (transform.position);
 					}
 				}
+			}
 		}
 	}
 }

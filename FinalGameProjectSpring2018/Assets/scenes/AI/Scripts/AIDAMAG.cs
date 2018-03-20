@@ -34,6 +34,7 @@ public class AIDAMAG : AISpawner {
 		float dist = Vector3.Distance (play.position, transform.position);
 		shootHIM = AI.Escape;
 		MuhFaceHurt = AI.WhosYourDaddy;
+		Debug.Log (shootHIM);
 		Debug.Log (MuhFaceHurt);
 
 		RaycastHit hit;
