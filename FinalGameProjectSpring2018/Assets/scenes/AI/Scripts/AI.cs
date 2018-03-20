@@ -15,6 +15,7 @@ public class AI : MonoBehaviour
 	public float range = 10.0f;
 	public static bool Escape = false;
 	public static bool WhosYourDaddy = false;
+	public static float dist;
 	bool kite = false;
 	int X = 200;
 
@@ -50,7 +51,7 @@ public class AI : MonoBehaviour
 	void Update ()
 	{
 
-		float dist = Vector3.Distance (DatDerBadGoober.position, transform.position);
+		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		Debug.Log ("Distance to AI: " + dist);
 
 		if (Escape == true || WhosYourDaddy == true) {
@@ -65,7 +66,7 @@ public class AI : MonoBehaviour
 
 	
 
-		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == false) {
+		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
 			Escape = false;
 			kite = false;
 			Vector3 point;
@@ -94,7 +95,7 @@ public class AI : MonoBehaviour
 			WhosYourDaddy = false;
 		}
 
-		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == true) {
+		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
 			if (hit.collider.tag == "player") {
 				if (dist > 20) {
 					Escape = false;

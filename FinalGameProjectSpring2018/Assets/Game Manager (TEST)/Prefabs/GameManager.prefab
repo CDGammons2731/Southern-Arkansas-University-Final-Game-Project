@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4062438819814178}
   - component: {fileID: 114977377409071744}
   - component: {fileID: 82701973410062220}
+  - component: {fileID: 114694012141886196}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GM
@@ -121,6 +122,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114694012141886196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1493710648539564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a699dbcbfce1482478a0cb4811f07232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114977377409071744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,10 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
-  NewSaveName: {fileID: 0}
   PlayerObj: {fileID: 0}
   PlayerCam: {fileID: 0}
-  ThemeMusic: {fileID: 8300000, guid: c6a3548b54107414281b30e3a4b7ddb5, type: 3}
+  ThemeMusic: {fileID: 0}
   ActionMusic: {fileID: 0}
   VictoryMusic: {fileID: 0}
   DeathMusic: {fileID: 0}
@@ -149,8 +160,11 @@ MonoBehaviour:
   defualtSaved: /PlayerInfo.dat
   playerSaved: 
   enemyCount: 0
-  enemyhealth: 1e0000003200000050000000640000007800000096000000c8000000fa0000002c010000
   yourGun: {fileID: 0}
   gunText: {fileID: 0}
   gunStat: {fileID: 0}
   pickupText: {fileID: 0}
+  curAmmo: 0
+  maxAmmo: 0
+  UI: {fileID: 0}
+  player: {fileID: 0}
