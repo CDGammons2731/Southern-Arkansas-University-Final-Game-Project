@@ -112,8 +112,8 @@ public class LevelGenerator : MonoBehaviour {
 				DoorInfo[] dGrp = FindObjectsOfType<DoorInfo> ();
 				for (int i = dGrp.Length - 1; i >= 0; i--) {
 					if (dGrp [i].pair != null && dGrp[i] != null) {
-						dGrp [i].pair.transform.parent.GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].transform.parent.gameObject);
-						dGrp [i].transform.parent.GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].pair.transform.parent.gameObject);
+						dGrp [i].pair.GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].gameObject);
+						dGrp [i].GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].pair.gameObject);
 						if (!dGrp [i].MarkForRemoval) {
 							dGrp [i].PlaceDoorObject (unlockedDoor, gridScale);
 						}
@@ -122,7 +122,7 @@ public class LevelGenerator : MonoBehaviour {
 				}
 				for (int i = dGrp.Length - 1; i >= 0; i--) {
 					if (dGrp [i].MarkForRemoval) {
-						Destroy (dGrp [i].gameObject);
+						Destroy (dGrp [i]);
 					}
 				}
 			} 
@@ -326,40 +326,32 @@ public class LevelGenerator : MonoBehaviour {
 			rooms.Add(init);
 			RoomInfo ri = init.AddComponent<RoomInfo>();
 			ri.SetInfo(this, init.transform.position/gridScale, room.original.dimensions.x, room.original.dimensions.y);
-			for (int i = 0; i < init.transform.childCount; i++) {
-				GameObject ourDoor = init.transform.GetChild(i).gameObject;
-				for (int j = 0; j < room.original.doorLocations.Length; j++) {
-					if (ourDoor.name == room.original.doorObjs[j].name) {
-						DoorInfo doorInf = ourDoor.AddComponent<DoorInfo>();
-						Vector2 d = room.original.doorLocations [j];
-						doorInf.loc = room.sourceNode.Location () - room.offset - Vector2.one + d;
-						//Door will never be on a corner
-						if (d.x > room.original.dimensions.x) { //Door is on the right
-							doorInf.face = Vector2.right;
-						} else if (d.x < 1) { //Door is on the left
-							doorInf.face = Vector2.left;
-						} else if (d.y > room.original.dimensions.y) { //Door is up
-							doorInf.face = Vector2.up;
-						} else if (d.y < 1) { //Door is down
-							doorInf.face = Vector2.down;
-						}
-						foreach (DoorInfo other in openDoors) {
-							Material mat;
-							if (doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.doorEntry || doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.pathExitPt && room.needsReqDoor) {
-								room.needsReqDoor = false;
-								mat = requiredDoor;
-							} else {
-								mat = connectedDoor;
-							}
-							bool con = doorInf.PairDoors(other, mat);
-							if (con) {
-								other.MarkForRemoval = true;
-							}
-						}
-						if (doorInf.pair == null) {
-							openDoors.Add(doorInf);
-						}
+			for (int j = 0; j < room.original.doorLocations.Length; j++) {
+				DoorInfo doorInf = init.AddComponent<DoorInfo>();
+				Vector2 d = room.original.doorLocations [j];
+				doorInf.loc = room.sourceNode.Location () - room.offset - Vector2.one + d;
+				//Door will never be on a corner
+				if (d.x > room.original.dimensions.x) { //Door is on the right
+					doorInf.face = Vector2.right;
+				} else if (d.x < 1) { //Door is on the left
+					doorInf.face = Vector2.left;
+				} else if (d.y > room.original.dimensions.y) { //Door is up
+					doorInf.face = Vector2.up;
+				} else if (d.y < 1) { //Door is down
+					doorInf.face = Vector2.down;
+				}
+				foreach (DoorInfo other in openDoors) {
+					Material mat;
+					if (doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.doorEntry || doorInf.loc == room.sourceNode.Location () - room.offset - Vector2.one + room.pathExitPt && room.needsReqDoor) {
+						room.needsReqDoor = false;
 					}
+					bool con = doorInf.PairDoors(other);
+					if (con) {
+						other.MarkForRemoval = true;
+					}
+				}
+				if (doorInf.pair == null) {
+					openDoors.Add(doorInf);
 				}
 			}
 		}
