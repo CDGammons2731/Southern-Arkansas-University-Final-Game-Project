@@ -11,6 +11,7 @@ public class DoorInfo : MonoBehaviour {
 	public Vector2 loc;			// Where the door is located
 	public Vector2 face;
 	public bool MarkForRemoval = false;
+	public bool locked = false;
 
 	public DoorInfo(Vector2 _loc, Vector2 _face) {
 		loc = _loc;

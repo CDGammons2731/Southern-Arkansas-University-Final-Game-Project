@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3996cba998bf7b64da58b96f3c4fa29f, type: 3}
+  m_Name: lockedRoomR1
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1616780760329262, guid: 599908384398b5c448d0bf58a8bf457a, type: 2}
+  dimensions: {x: 1, y: 1}
+  doorLocations:
+  - {x: 0, y: 1}
+  LockedRoom: 1

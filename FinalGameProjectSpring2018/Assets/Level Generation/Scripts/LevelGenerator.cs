@@ -27,6 +27,7 @@ public class LevelGenerator : MonoBehaviour {
 	public GameObject navRemover;
 
 	public GameObject unlockedDoor;
+	public GameObject lockedDoor;
 
 	public bool loaded = false;
 
@@ -35,6 +36,7 @@ public class LevelGenerator : MonoBehaviour {
 	// 0  - Normal Room
 	// 1  - Start Room
 	// 2  - End Room
+	// 3  - Locked Room
 	*/
 
 	void Start() {
@@ -90,6 +92,40 @@ public class LevelGenerator : MonoBehaviour {
 				InstantiateRooms (roomsToPlace);
 				yield return null;
 				roomsToPlace.Clear ();
+				bool rLAssigned = false;
+				Node lockRoom;
+				if (openDoors.Count > 0) {
+					do {
+						lockRoom =  grid[Random.Range(0, gX), Random.Range(0,gY)];
+						if (!lockRoom.occupied) {
+							rLAssigned = true;
+						}
+					} while (!rLAssigned);
+					lockRoom.weight = 0;
+					lockRoom.roomType = 3;
+					DoorInfo d = openDoors [Random.Range (0, openDoors.Count)];
+					Node hallRoom = grid[(int)d.loc.x, (int)d.loc.y];
+					path = DijkstraAlgorithm.FindPath(hallRoom, lockRoom, grid, gX, gY);
+					roomsToPlace = new List<Arrangement> (0);
+					pathOrig = new List<Node> (0);
+					foreach (Node n in path) {
+						pathOrig.Add (n);
+					}
+					for (int i = 0; i < pathOrig.Count - 1; i++) {
+						if (path.Contains (pathOrig [i])) {
+							if (roomsToPlace.Count == 0) {
+								roomsToPlace.Add (PlaceRoom (path [0], Arrangement.pathFailure, true));
+							}
+							roomsToPlace.Add (PlaceRoom (path [0], roomsToPlace [roomsToPlace.Count - 1].pathExitPt, true));
+							yield return null;
+						}
+					}
+					roomsToPlace.Add (PlaceRoom (lockRoom, roomsToPlace [roomsToPlace.Count - 1].pathExitPt, false));
+					yield return null;
+					InstantiateRooms (roomsToPlace);
+					yield return null;
+					roomsToPlace.Clear ();
+				}
 				for (int i = 0; i < sideRooms; i++) {
 					if (openDoors.Count > 0) {
 						DoorInfo door = openDoors [Random.Range (0, openDoors.Count)];
@@ -115,7 +151,11 @@ public class LevelGenerator : MonoBehaviour {
 						dGrp [i].pair.GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].gameObject);
 						dGrp [i].GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].pair.gameObject);
 						if (!dGrp [i].MarkForRemoval) {
-							dGrp [i].PlaceDoorObject (unlockedDoor, gridScale);
+							if (!dGrp[i].locked) {
+								dGrp [i].PlaceDoorObject (unlockedDoor, gridScale);
+							} else {
+								dGrp [i].PlaceDoorObject (lockedDoor, gridScale);
+							}
 						}
 						yield return null;
 					}
@@ -183,7 +223,7 @@ public class LevelGenerator : MonoBehaviour {
 			rY = Random.Range(0, gY);
 			break;
 		}
-		if (grid[rX,rY].roomType == 0) {
+		if (grid[rX,rY].roomType == 0 && !grid[rX,rY].occupied) {
 			grid[rX,rY].roomType = i;
 			if (i == 1) {
 				start = grid[rX,rY];
@@ -270,7 +310,6 @@ public class LevelGenerator : MonoBehaviour {
 		foreach (Arrangement pot in potential) {
 			for (int i = (int)(pot.sourceNode.x-pot.offset.x); i < (int)(pot.sourceNode.x-pot.offset.x+pot.original.dimensions.x); i++) {
 				for (int j = (int)(pot.sourceNode.y-pot.offset.y); j < (int)(pot.sourceNode.y-pot.offset.y+pot.original.dimensions.y); j++) {
-					//Debug.Log ("Room " + pot.original.name + " | Point: (" + i + "," + j + ")");
 					if (InBounds(i,j)) {
 						if ((isPathed && path.Contains(grid[i,j]) && path.IndexOf(grid[i,j]) > path.IndexOf(pot.pathExitNode))) {
 							pot.markForRemoval=true;
@@ -328,6 +367,9 @@ public class LevelGenerator : MonoBehaviour {
 			ri.SetInfo(this, init.transform.position/gridScale, room.original.dimensions.x, room.original.dimensions.y);
 			for (int j = 0; j < room.original.doorLocations.Length; j++) {
 				DoorInfo doorInf = init.AddComponent<DoorInfo>();
+				if (room.original.LockedRoom) {
+					doorInf.locked = true;
+				}
 				Vector2 d = room.original.doorLocations [j];
 				doorInf.loc = room.sourceNode.Location () - room.offset - Vector2.one + d;
 				//Door will never be on a corner

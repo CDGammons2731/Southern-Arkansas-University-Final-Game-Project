@@ -34,28 +34,28 @@ public static class DijkstraAlgorithm {
 			Node neighbor;
 			if (current.x != 0) {
 				neighbor = grid[current.x-1, current.y]; 
-				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor)) {
+				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor) && !neighbor.occupied) {
 					openSet.Add(neighbor);
 					CompareNeighbors(neighbor,current,end);
 				}
 			}
 			if (current.x < gX-1) {
 				neighbor = grid[current.x+1, current.y];
-				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor)) {
+				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor) && !neighbor.occupied) {
 					openSet.Add(neighbor);
 					CompareNeighbors(neighbor,current,end);
 				}
 			}
 			if (current.y != 0) {
 				neighbor = grid[current.x, current.y-1];
-				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor)) {
+				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor) && !neighbor.occupied) {
 					openSet.Add(neighbor);
 					CompareNeighbors(neighbor,current,end);
 				}
 			}
 			if (current.y < gY - 1) {
 				neighbor = grid[current.x, current.y+1];
-				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor)) {
+				if (!closedSet.Contains(neighbor) && !openSet.Contains(neighbor) && !neighbor.occupied) {
 					openSet.Add(neighbor);
 					CompareNeighbors(neighbor,current,end);
 				}
