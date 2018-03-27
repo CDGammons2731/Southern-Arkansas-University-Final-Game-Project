@@ -9,7 +9,9 @@ using PLAYER;
 
 public class hud : MonoBehaviour {
     public Text timer;
-    float countDown=300f;
+    float count=0f;
+    float maxCount = 3600f;
+    public GameObject clockNeedle;
 
     //Ammo Display
 
@@ -44,13 +46,17 @@ public class hud : MonoBehaviour {
         playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
 
         //prints out the timer
-        countDown-=Time.deltaTime;
-        int sec=(int)countDown%60;
-        int min = (int)countDown / 60;
-        timer.text=min.ToString()+ ":"+sec.ToString();
+        count+=Time.deltaTime;
+        //int sec=(int)countDown%60;
+        //int min = (int)countDown / 60;
+        //timer.text=min.ToString()+ ":"+sec.ToString();
+        float rotZ = -235.0f *count/maxCount+235.0f;
+        Quaternion tar = Quaternion.Euler(0, 0, rotZ);
+        clockNeedle.transform.rotation = Quaternion.Slerp(clockNeedle.transform.rotation, tar, smooth * Time.deltaTime);
 
-        if(countDown <= 0){
-            countDown = 300f;
+
+        if(count <= 0){
+            count = 300f;
         }
 
         //updates health meter
