@@ -46,6 +46,11 @@ namespace PLAYER
         Collider col;
 
         GunTransitions gunTran;
+        //The guns the player can hold
+        public List<GameObject> Inventory = new List<GameObject>();
+        public bool hasKey = false;
+
+
 
         void Start()
         {
@@ -118,6 +123,33 @@ namespace PLAYER
 
         }
 
+        void SwitchWeapon() {
+            if (Input.GetKeyUp(KeyCode.Alpha1)) {
+                currentGun = Inventory[0].tag;
+                gun = Inventory[0].GetComponent<Gun>();
+                GM.yourGun = Inventory[0].GetComponent<Gun>();
+                PickUpWeapon(Inventory[0]);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Alpha2))
+            {
+                currentGun = Inventory[1].tag;
+                gun = Inventory[1].GetComponent<Gun>();
+                GM.yourGun = Inventory[1].GetComponent<Gun>();
+                PickUpWeapon(Inventory[1]);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Alpha3))
+            {
+                currentGun = Inventory[2].tag;
+                gun = Inventory[2].GetComponent<Gun>();
+                GM.yourGun = Inventory[2].GetComponent<Gun>();
+                PickUpWeapon(Inventory[2]);
+            }
+
+
+        }
+
 
         void PickUpWeapon(GameObject weapon)
         {
@@ -154,13 +186,17 @@ namespace PLAYER
                     gun = weapon.GetComponent<Gun>();
                     GM.yourGun = weapon.GetComponent<Gun>();
                     PickUpWeapon(weapon);
-
+                    Inventory.Add(weapon);
                 }
 
                 if (GM.pickupText != null) { }
 
 
             }
+            if (Inventory.Count > 3) {
+                Inventory.Remove(Inventory[0]);
+            }
+            SwitchWeapon();
 
             if (hasWeapon == true)
             {
