@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
-using UnityEngine.SceneManagement;
+
 namespace UnityStandardAssets.Characters.FirstPerson
 {
     [Serializable]
@@ -77,15 +77,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if(Input.GetKeyUp(KeyCode.Escape))
             {
                 m_cursorIsLocked = false;
-                
             }
-            else if(Input.GetMouseButtonUp(0)&&Time.timeScale!=0)
+            else if(Input.GetMouseButtonUp(0))
             {
                 m_cursorIsLocked = true;
-            }
-            if (SceneManager.GetActiveScene().buildIndex == 0) {
-                m_cursorIsLocked = false;
-
             }
 
             if (m_cursorIsLocked)
