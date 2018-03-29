@@ -19,6 +19,7 @@ public class AIDAMAG : AISpawner {
 	public bool EnemyHasDied = false;
 	public static bool shootHIM = false;
 	public static bool MuhFaceHurt = false;
+	public static float dist;
 
 
 
@@ -31,7 +32,7 @@ public class AIDAMAG : AISpawner {
 
 
 	void Update(){
-		float dist = Vector3.Distance (play.position, transform.position);
+		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		shootHIM = AI.Escape;
 		MuhFaceHurt = AI.WhosYourDaddy;
 		Debug.Log (shootHIM);

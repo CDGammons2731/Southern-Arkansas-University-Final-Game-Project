@@ -16,7 +16,6 @@ public class AI : MonoBehaviour
 	public static bool Escape = false;
 	public static bool WhosYourDaddy = false;
 	public static float dist;
-	bool kite = false;
 	int X = 200;
 
 
@@ -52,11 +51,13 @@ public class AI : MonoBehaviour
 	{
 
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
-		Debug.Log ("Distance to AI: " + dist);
+		//Debug.Log ("Distance to AI: " + dist);
 
 		if (Escape == true || WhosYourDaddy == true) {
-			if (dist <= LookRange) {
 				gameObject.transform.LookAt (destination);
+			if (dist > LookRange) {
+				Escape = false;
+				WhosYourDaddy = false;
 			}
 		}
 
@@ -67,8 +68,6 @@ public class AI : MonoBehaviour
 	
 
 		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
-			Escape = false;
-			kite = false;
 			Vector3 point;
 			if (X != 200 && dist > 5) {
 				X++;
@@ -85,28 +84,19 @@ public class AI : MonoBehaviour
 			}
 		}
 
-		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || kite == true) {
-			Escape = true;
-			Debug.Log (Escape + " " + WhosYourDaddy);
-			kite = true;
-		} else if (dist > 20) {
-			kite = false;
-			Escape = false;
-			WhosYourDaddy = false;
-		}
-
 		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
-			if (hit.collider.tag == "player") {
+			if (hit.collider.CompareTag("player")) {
 				if (dist > 20) {
 					Escape = false;
+					WhosYourDaddy = false;
 					Debug.Log ("Made It Here!");
 					X = 0;
 				} else if (dist > 5 && dist <= 20) {
 					Escape = true;
 					agent.SetDestination (destination.position);
 					WhosYourDaddy = false;
+					Debug.Log ("Whos Your Daddy: " + WhosYourDaddy);
 				} else if (dist <= 5) {
-					WhosYourDaddy = true;
 					if (dist >= 3) {
 						agent.SetDestination (destination.position);
 					} else {
@@ -114,6 +104,6 @@ public class AI : MonoBehaviour
 					}
 				}
 			}
-		}
+		} 
 	}
 }
