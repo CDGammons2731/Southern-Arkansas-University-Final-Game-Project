@@ -14,8 +14,7 @@ public class hud : MonoBehaviour {
     public GameObject clockNeedle;
 
     //Ammo Display
-
-    public Player playerScript;
+    Player playerScript;
     public Text pickUpText;
     public Text yourWeapon;
     GameManager gm;
@@ -30,9 +29,14 @@ public class hud : MonoBehaviour {
     public GameObject needle;
     public float smooth = 2.0f;
 
+    //GameOver
+    public GameObject gameOver;
+
     //Gun Icon
     public Image gunIcon;
     public Sprite[] icons;
+
+
 
 
     private void Start()
@@ -86,6 +90,10 @@ public class hud : MonoBehaviour {
         if (gm.yourGun.CurrentWeapon == "shotgun")
         {
             gunIcon.sprite = icons[3];
+        }
+
+        if(playerScript.player_health<=0){
+            gameOver.SetActive(true);
         }
 
     }
