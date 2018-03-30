@@ -28,13 +28,23 @@ public class DoorInfo : MonoBehaviour {
 
 	public void PlaceDoorObject(GameObject d, float scale) {
 		if (pair != null) {
-			GameObject _d = Instantiate(d);
-			_d.transform.position = ((new Vector3(pair.loc.x+loc.x+1f, 0, pair.loc.y+loc.y+1f) /2f) * scale) + Vector3.up*5;
+			GameObject _d = Instantiate (d);
+			_d.transform.position = ((new Vector3 (pair.loc.x + loc.x + 1f, 0, pair.loc.y + loc.y + 1f) / 2f) * scale) + Vector3.up * 5;
 			if (pair.face.x != 0) {
-				_d.transform.Rotate(0,90,0);
+				_d.transform.Rotate (0, 90, 0);
 			}
 			MarkForRemoval = true;
 			pair.MarkForRemoval = true;
+		} else {
+			GameObject _d = Instantiate (d);
+			_d.transform.position = ((new Vector3 (loc.x-(face.y/2f)+face.y, 0, loc.y-(face.x/2f)+face.x)) * scale) + Vector3.up * 5;
+			if (face.x < 0 || face.y < 0) {
+				_d.transform.position += new Vector3 (scale, 0, scale);
+			}
+			_d.name = face.ToString();
+			if (face.x != 0) {
+				_d.transform.Rotate (0, 90, 0);
+			}
 		}
 	}
 }

@@ -152,7 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: {fileID: 0}
   clockNeedle: {fileID: 0}
-  playerScript: {fileID: 0}
   pickUpText: {fileID: 0}
   yourWeapon: {fileID: 0}
   ammoDisplay: {fileID: 0}
@@ -160,9 +159,10 @@ MonoBehaviour:
   evidText: {fileID: 0}
   needle: {fileID: 0}
   smooth: 2
+  gameOver: {fileID: 0}
   gunIcon: {fileID: 0}
   icons:
   - {fileID: 21300000, guid: 61b2f8d50fc7d4fd6bcc1f4e24ec1824, type: 3}
   - {fileID: 21300000, guid: 820168cb7de5a489187a5c14c864664f, type: 3}
   - {fileID: 21300000, guid: 5561109731d314e07826fe6ea3613daf, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: ad354c15e232641c19c1d9f0bf34e618, type: 3}
