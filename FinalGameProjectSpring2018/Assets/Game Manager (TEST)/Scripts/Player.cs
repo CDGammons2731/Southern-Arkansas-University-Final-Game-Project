@@ -103,6 +103,7 @@ namespace PLAYER
             //Damage testing, change to take damage from bullets, traps, and hits
             if (other.gameObject.CompareTag("AIbullet"))
             {
+				Debug.Log ("Bullet has hit player");
                 player_health -= 5;
                 Destroy(other.gameObject);
             }

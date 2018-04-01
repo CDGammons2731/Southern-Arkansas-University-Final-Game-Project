@@ -54,10 +54,10 @@ public class AISpawner : MonoBehaviour {
 			WaitToStart -= 1;
 		} else {
 
-		if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null && Input.GetKeyDown(KeyCode.F)) {
+		/*if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null && Input.GetKeyDown(KeyCode.F)) {
 			Damage = player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
 			Debug.Log ("Damage: " + Damage);
-		}
+		}*/
 
 			if (SpawnActivateRandomizer == true) {
 			if (Respawn <= 0f) {

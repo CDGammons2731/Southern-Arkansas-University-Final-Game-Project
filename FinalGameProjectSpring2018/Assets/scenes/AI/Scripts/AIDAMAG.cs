@@ -30,6 +30,31 @@ public class AIDAMAG : AISpawner {
 		anim = GetComponent<Animator> ();
 	}
 
+	void GetDamage(string weaponName){
+		switch (weaponName) {
+		case "shotgun":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			break;
+		case"revolver":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			break;
+		case "railgun":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			break;
+		case"raygun":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			break;
+		case "tommygun":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			
+			break;
+		default:
+			//do nothing
+			break;
+		}
+
+	}
+
 
 	void Update(){
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
@@ -55,25 +80,25 @@ public class AIDAMAG : AISpawner {
 		} else {
 			anim.ResetTrigger ("IsFiring");
 		}
-
-		if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
+		GetDamage (plyr.GetComponent<Player> ().currentGun);
+		/*if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
 			Samage = AISpawner.Damage;
 			Debug.Log (Samage);
-		}
+		}*/
 	}
 
 
 	void OnCollisionEnter(Collision collision){
 		if (collision.transform.gameObject.tag == "bullet") {
-			AI.Escape = true;
 				if (Health >= 0) {
-					Health -= Samage;
+				Health -= Samage;
+				Debug.Log ("Robot has been hit with "+ Samage+ "Damage");
 					//Debug.Log ("Health: " + Health);
 				} else {
 					DestroyObject (gameObject);
 				}
 		} else if (collision.transform.gameObject.tag == "pellet") {
-			AI.Escape = true;
+			//AI.Escape = true;
 				if (Health >= 0) {
 					Health -= Samage;
 				} else {
