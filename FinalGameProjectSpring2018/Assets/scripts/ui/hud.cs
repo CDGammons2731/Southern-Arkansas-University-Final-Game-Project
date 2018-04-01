@@ -9,11 +9,12 @@ using PLAYER;
 
 public class hud : MonoBehaviour {
     public Text timer;
-    float countDown=300f;
+    float count=0f;
+    float maxCount = 3600f;
+    public GameObject clockNeedle;
 
     //Ammo Display
-
-    public Player playerScript;
+    Player playerScript;
     public Text pickUpText;
     public Text yourWeapon;
     GameManager gm;
@@ -28,9 +29,14 @@ public class hud : MonoBehaviour {
     public GameObject needle;
     public float smooth = 2.0f;
 
+    //GameOver
+    public GameObject gameOver;
+
     //Gun Icon
     public Image gunIcon;
     public Sprite[] icons;
+
+
 
 
     private void Start()
@@ -44,13 +50,17 @@ public class hud : MonoBehaviour {
         playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
 
         //prints out the timer
-        countDown-=Time.deltaTime;
-        int sec=(int)countDown%60;
-        int min = (int)countDown / 60;
-        timer.text=min.ToString()+ ":"+sec.ToString();
+        count+=Time.deltaTime;
+        //int sec=(int)countDown%60;
+        //int min = (int)countDown / 60;
+        //timer.text=min.ToString()+ ":"+sec.ToString();
+        float rotZ = -235.0f *count/maxCount+235.0f;
+        Quaternion tar = Quaternion.Euler(0, 0, rotZ);
+        clockNeedle.transform.rotation = Quaternion.Slerp(clockNeedle.transform.rotation, tar, smooth * Time.deltaTime);
 
-        if(countDown <= 0){
-            countDown = 300f;
+
+        if(count <= 0){
+            count = 300f;
         }
 
         //updates health meter
@@ -80,6 +90,10 @@ public class hud : MonoBehaviour {
         if (gm.yourGun.CurrentWeapon == "shotgun")
         {
             gunIcon.sprite = icons[3];
+        }
+
+        if(playerScript.player_health<=0){
+            gameOver.SetActive(true);
         }
 
     }

@@ -28,6 +28,7 @@ public class LevelGenerator : MonoBehaviour {
 
 	public GameObject unlockedDoor;
 	public GameObject lockedDoor;
+	public GameObject sealedDoor;
 
 	public bool loaded = false;
 
@@ -133,8 +134,10 @@ public class LevelGenerator : MonoBehaviour {
 							yield return null;
 						}
 					}
-					roomsToPlace.Add (PlaceRoom (lockRoom, roomsToPlace [roomsToPlace.Count - 1].pathExitPt, false));
-					yield return null;
+					if (roomsToPlace.Count > 0) {
+						roomsToPlace.Add (PlaceRoom (lockRoom, roomsToPlace [roomsToPlace.Count - 1].pathExitPt, false));
+						yield return null;
+					}
 					InstantiateRooms (roomsToPlace);
 					yield return null;
 					roomsToPlace.Clear ();
@@ -160,17 +163,19 @@ public class LevelGenerator : MonoBehaviour {
 				RemoveExcessNavmesh ();
 				DoorInfo[] dGrp = FindObjectsOfType<DoorInfo> ();
 				for (int i = dGrp.Length - 1; i >= 0; i--) {
-					if (dGrp [i].pair != null && dGrp[i] != null) {
+					if (dGrp [i].pair != null) {
 						dGrp [i].pair.GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].gameObject);
 						dGrp [i].GetComponent<RoomInfo> ().AddToNeighborList (dGrp [i].pair.gameObject);
 						if (!dGrp [i].MarkForRemoval) {
-							if (!dGrp[i].locked) {
+							if (!dGrp [i].locked) {
 								dGrp [i].PlaceDoorObject (unlockedDoor, gridScale);
 							} else {
 								dGrp [i].PlaceDoorObject (lockedDoor, gridScale);
 							}
 						}
 						yield return null;
+					} else {
+						dGrp [i].PlaceDoorObject (sealedDoor, gridScale);
 					}
 				}
 				for (int i = dGrp.Length - 1; i >= 0; i--) {

@@ -19,6 +19,7 @@ public class AIDAMAG : AISpawner {
 	public bool EnemyHasDied = false;
 	public static bool shootHIM = false;
 	public static bool MuhFaceHurt = false;
+	public static float dist;
 
 
 
@@ -29,15 +30,40 @@ public class AIDAMAG : AISpawner {
 		anim = GetComponent<Animator> ();
 	}
 
+	void GetDamage(string weaponName){
+		switch (weaponName) {
+		case "shotgun":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			break;
+		case"revolver":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			break;
+		case "railgun":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			break;
+		case"raygun":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			break;
+		case "tommygun":
+			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
+			
+			break;
+		default:
+			//do nothing
+			break;
+		}
+
+	}
+
 
 	void Update(){
-		float dist = Vector3.Distance (play.position, transform.position);
+		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		shootHIM = AI.Escape;
 		MuhFaceHurt = AI.WhosYourDaddy;
 		Debug.Log (shootHIM);
 		Debug.Log (MuhFaceHurt);
 
-		RaycastHit hit;
+		//RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		//Debug.DrawRay (BoboHead.position, transform.forward);
 				
@@ -54,25 +80,25 @@ public class AIDAMAG : AISpawner {
 		} else {
 			anim.ResetTrigger ("IsFiring");
 		}
-
-		if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
+		GetDamage (plyr.GetComponent<Player> ().currentGun);
+		/*if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
 			Samage = AISpawner.Damage;
 			Debug.Log (Samage);
-		}
+		}*/
 	}
 
 
 	void OnCollisionEnter(Collision collision){
 		if (collision.transform.gameObject.tag == "bullet") {
-			AI.Escape = true;
 				if (Health >= 0) {
-					Health -= Samage;
+				Health -= Samage;
+				Debug.Log ("Robot has been hit with "+ Samage+ "Damage");
 					//Debug.Log ("Health: " + Health);
 				} else {
 					DestroyObject (gameObject);
 				}
 		} else if (collision.transform.gameObject.tag == "pellet") {
-			AI.Escape = true;
+			//AI.Escape = true;
 				if (Health >= 0) {
 					Health -= Samage;
 				} else {
