@@ -3045,7 +3045,7 @@ MonoBehaviour:
   PlayerHurt: {fileID: 0}
   PlayerDied: {fileID: 0}
   Healed: {fileID: 0}
-  HeartBeat: {fileID: 0}
+  HeartBeat: {fileID: 8300000, guid: bf8390417785ad14280dee54bd49d9bb, type: 3}
   Ticking: {fileID: 0}
   PlayerSound: {fileID: 0}
   player_health: 0
@@ -3063,6 +3063,8 @@ MonoBehaviour:
   xmark: {fileID: 1594910569203764, guid: 3942de54cd51fa54d90004148f97345e, type: 2}
   surface_location: {x: 0, y: 0, z: 0}
   player_location: {x: 0, y: 0, z: 0}
+  Inventory: []
+  hasKey: 0
 --- !u!114 &114598833065622616
 MonoBehaviour:
   m_ObjectHideFlags: 1

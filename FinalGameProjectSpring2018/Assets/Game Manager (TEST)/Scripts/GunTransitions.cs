@@ -34,7 +34,7 @@ public class GunTransitions : MonoBehaviour {
     void Update () {
         reloadTime = GetComponentInParent<Player>().weapon.GetComponent<Gun>().reloadRate;
 
-        if (Input.GetMouseButtonDown(1))
+        /*if (Input.GetMouseButtonDown(1))
         {
                 Scoped = !Scoped;
                 animator.SetBool("isScoped", Scoped);
@@ -42,7 +42,7 @@ public class GunTransitions : MonoBehaviour {
                     StartCoroutine(OnScoped());
                 else
                     OnUnscoped();
-        }
+        }*/
 
 		if (Input.GetKeyDown(KeyCode.R)&& weapon!=null) {
 			Reloading = !Reloading;

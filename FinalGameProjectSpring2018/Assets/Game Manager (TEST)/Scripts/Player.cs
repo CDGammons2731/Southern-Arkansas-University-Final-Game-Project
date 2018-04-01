@@ -30,6 +30,7 @@ namespace PLAYER
 
         public Vector3 gunOffset;
         public GameObject holdingPosition;
+        public GameObject playerBack;
         public GameObject weapon;
         public Gun gun;
 
@@ -49,6 +50,7 @@ namespace PLAYER
         //The guns the player can hold
         public List<GameObject> Inventory = new List<GameObject>();
         public bool hasKey = false;
+        int currentPick = 0;
 
 
 
@@ -63,7 +65,7 @@ namespace PLAYER
             score = 0;
             //Get your audiosource to play sound 
             PlayerSound = GetComponent<AudioSource>();
-
+            
 
             weaponInRange = false;
 
@@ -109,6 +111,7 @@ namespace PLAYER
 
             if (other.gameObject.CompareTag("shotgun") || other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") || other.gameObject.CompareTag("raygun") || other.gameObject.CompareTag("railgun"))
             {
+                //other.gameObject.GetComponentInChildren<GameObject>().gameObject;
                 weapon = other.gameObject;
                 weaponInRange = true;
                 UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup " + weapon.tag);
@@ -129,6 +132,9 @@ namespace PLAYER
                 gun = Inventory[0].GetComponent<Gun>();
                 GM.yourGun = Inventory[0].GetComponent<Gun>();
                 PickUpWeapon(Inventory[0]);
+                currentPick = 1;
+               
+
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha2))
@@ -137,6 +143,7 @@ namespace PLAYER
                 gun = Inventory[1].GetComponent<Gun>();
                 GM.yourGun = Inventory[1].GetComponent<Gun>();
                 PickUpWeapon(Inventory[1]);
+                currentPick = 2;
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha3))
@@ -145,6 +152,7 @@ namespace PLAYER
                 gun = Inventory[2].GetComponent<Gun>();
                 GM.yourGun = Inventory[2].GetComponent<Gun>();
                 PickUpWeapon(Inventory[2]);
+                currentPick = 3;
             }
 
 
@@ -164,6 +172,11 @@ namespace PLAYER
 
         }
         GameObject g;
+        void PlayHeatBeat() {
+
+            PlayerSound.PlayOneShot(HeartBeat);
+
+        }
 
         void PlaceMark() {
 
@@ -207,16 +220,19 @@ namespace PLAYER
                 // GM.pickupText.text = "";
             }
 
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.B)&& hasWeapon==true)
             {
+                Inventory.Remove(Inventory[currentPick]);
                 hasWeapon = false;
                 gun.equipped = false;
+
             }
 
             if (player_health <= 30)
             {
                 PlayerSound.clip = HeartBeat;
-                PlayerSound.Play();
+                PlayHeatBeat();
+                
             }
             //Update players pos for placement purposes 
             player_location = gameObject.transform.TransformDirection(Vector3.forward);
@@ -226,6 +242,10 @@ namespace PLAYER
                 {
                     PlaceMark();
                 }
+            }
+
+            if (Inventory.Count == 1) {
+                currentPick = 0;
             }
         }
     }
