@@ -62,10 +62,10 @@ public class AI : MonoBehaviour
 		}
 
 		RaycastHit hit;
-		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
-		Debug.DrawRay (BoboHead.position, transform.forward);
+		Ray BoboPeekABOO = new Ray (gameObject.transform.position, transform.forward * LookRange);
+		Debug.DrawRay (BoboHead.position, transform.forward * LookRange, Color.red);
 
-	
+		Debug.Log (BoboHead.position);
 
 		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
 			Vector3 point;
@@ -85,7 +85,6 @@ public class AI : MonoBehaviour
 		}
 
 		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
-			if (hit.collider.CompareTag("player")) {
 				if (dist > 20) {
 					Escape = false;
 					WhosYourDaddy = false;
@@ -97,13 +96,13 @@ public class AI : MonoBehaviour
 					WhosYourDaddy = false;
 					Debug.Log ("Whos Your Daddy: " + WhosYourDaddy);
 				} else if (dist <= 5) {
+					WhosYourDaddy = true;
 					if (dist >= 3) {
 						agent.SetDestination (destination.position);
 					} else {
 						agent.SetDestination (transform.position);
 					}
 				}
-			}
 		} 
 	}
 }

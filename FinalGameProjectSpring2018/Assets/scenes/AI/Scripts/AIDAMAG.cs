@@ -63,7 +63,7 @@ public class AIDAMAG : AISpawner {
 		Debug.Log (shootHIM);
 		Debug.Log (MuhFaceHurt);
 
-		RaycastHit hit;
+		//RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		//Debug.DrawRay (BoboHead.position, transform.forward);
 				

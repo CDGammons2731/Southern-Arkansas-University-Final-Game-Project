@@ -1092,10 +1092,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 65288069103241782, guid: 2cb04807071a4c94ca01211a4f7385cb,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 4838272837804798, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.7076767
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838272837804798, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.7053463
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838272837804798, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.02911474
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838272837804798, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.028857557
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
