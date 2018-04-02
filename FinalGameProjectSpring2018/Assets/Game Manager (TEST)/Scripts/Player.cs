@@ -51,6 +51,7 @@ namespace PLAYER
         public List<GameObject> Inventory = new List<GameObject>();
         public bool hasKey = false;
         int currentPick = 0;
+        public bool dying = false;
 
 
 
@@ -79,6 +80,8 @@ namespace PLAYER
                  col = Markable[i].GetComponent<Collider>();
                 
             }
+
+            GM.DeathCam.enabled = false;
         }
 
         //Work on changing some of this 
@@ -105,7 +108,6 @@ namespace PLAYER
             //Damage testing, change to take damage from bullets, traps, and hits
             if (other.gameObject.CompareTag("AIbullet"))
             {
-				Debug.Log ("Bullet has hit player");
                 player_health -= 5;
                 Destroy(other.gameObject);
             }
@@ -127,6 +129,26 @@ namespace PLAYER
 
         }
 
+        void CarryWeapons(int current) {
+            current = currentPick;
+            switch (current){
+                case 1:
+                    if (Inventory[1] != null) Inventory[1].transform.position = playerBack.transform.position;
+                    if (Inventory[2] != null) Inventory[2].transform.position = playerBack.transform.position;
+                    break;
+                case 2:
+                    if (Inventory[0] != null) Inventory[0].transform.position = playerBack.transform.position;
+                    if (Inventory[2] != null) Inventory[2].transform.position = playerBack.transform.position;
+                    break;
+                case 3:
+                    if (Inventory[0] != null) Inventory[0].transform.position = playerBack.transform.position;
+                    if (Inventory[1] != null) Inventory[1].transform.position = playerBack.transform.position;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         void SwitchWeapon() {
             if (Input.GetKeyUp(KeyCode.Alpha1)) {
                 currentGun = Inventory[0].tag;
@@ -134,7 +156,7 @@ namespace PLAYER
                 GM.yourGun = Inventory[0].GetComponent<Gun>();
                 PickUpWeapon(Inventory[0]);
                 currentPick = 1;
-               
+                
 
             }
 
@@ -145,6 +167,7 @@ namespace PLAYER
                 GM.yourGun = Inventory[1].GetComponent<Gun>();
                 PickUpWeapon(Inventory[1]);
                 currentPick = 2;
+                
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha3))
@@ -154,6 +177,7 @@ namespace PLAYER
                 GM.yourGun = Inventory[2].GetComponent<Gun>();
                 PickUpWeapon(Inventory[2]);
                 currentPick = 3;
+                
             }
 
 
@@ -173,9 +197,9 @@ namespace PLAYER
 
         }
         GameObject g;
-        void PlayHeatBeat() {
-
-            PlayerSound.PlayOneShot(HeartBeat);
+        void PlayHeatBeat(bool isDying) {
+            isDying = dying;
+            if(isDying==true) PlayerSound.PlayOneShot(HeartBeat);
 
         }
 
@@ -231,8 +255,7 @@ namespace PLAYER
 
             if (player_health <= 30)
             {
-                PlayerSound.clip = HeartBeat;
-                PlayHeatBeat();
+                dying = true;  
                 
             }
             //Update players pos for placement purposes 
@@ -245,9 +268,19 @@ namespace PLAYER
                 }
             }
 
-            if (Inventory.Count == 1) {
+            if (Inventory.Count == 1)
+            {
                 currentPick = 0;
             }
+
+            if (player_health <= 0)
+            {
+
+                GM.DeathCam.enabled = true;
+                Destroy(gameObject);
+            }
+
+            CarryWeapons(currentPick);
         }
     }
 }
