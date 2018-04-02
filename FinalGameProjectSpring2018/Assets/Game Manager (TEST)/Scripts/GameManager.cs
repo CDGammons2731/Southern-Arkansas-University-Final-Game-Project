@@ -36,6 +36,7 @@ namespace GAMEMANAGER
         public static GameManager GAME;
         public GameObject PlayerObj;
         public Camera PlayerCam;
+        public Camera DeathCam;
    
 
 
@@ -93,6 +94,7 @@ namespace GAMEMANAGER
             audiosource.PlayOneShot(ThemeMusic, 0.5f);
             UI = GameObject.FindGameObjectWithTag("UI");
             player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+            
 
         }
 			
@@ -216,6 +218,7 @@ namespace GAMEMANAGER
                 //curAmmo = yourGun.currentAmmo;
                // maxAmmo = yourGun.AmmoUpdate;
             }
+
            
         }
 
