@@ -93,55 +93,6 @@ public class LevelGenerator : MonoBehaviour {
 				InstantiateRooms (roomsToPlace);
 				yield return null;
 				roomsToPlace.Clear ();
-				bool rLAssigned = false;
-				Node lockRoom;
-				if (openDoors.Count > 0) {
-					do {
-						lockRoom =  grid[Random.Range(0, gX), Random.Range(0,gY)];
-						if (!lockRoom.occupied) {
-							rLAssigned = true;
-						}
-					} while (!rLAssigned);
-					lockRoom.weight = 0;
-					lockRoom.roomType = 3;
-					do {
-						DoorInfo d = openDoors [Random.Range (0, openDoors.Count)];
-						Node hallRoom = grid [(int)d.loc.x, (int)d.loc.y];
-						path = DijkstraAlgorithm.FindPath (hallRoom, lockRoom, grid, gX, gY);
-						roomsToPlace = new List<Arrangement> (0);
-						pathOrig = new List<Node> (0);
-						if (path.Count > 0) {
-							foreach (Node n in path) {
-								pathOrig.Add (n);
-							}
-						}
-					} while (path.Count == 0);
-					for (int i = 0; i < pathOrig.Count - 1; i++) {
-						Arrangement room;
-						if (path.Contains (pathOrig [i])) {
-							if (roomsToPlace.Count == 0) {
-								room = PlaceRoom (path [0], Arrangement.pathFailure, true);
-								if (room != null) {
-									roomsToPlace.Add (room);
-								} else
-									break;
-							}
-							room = PlaceRoom (path [0], roomsToPlace [roomsToPlace.Count - 1].pathExitPt, true);
-							if (room != null) {
-								roomsToPlace.Add (room);
-							} else
-								break;
-							yield return null;
-						}
-					}
-					if (roomsToPlace.Count > 0) {
-						roomsToPlace.Add (PlaceRoom (lockRoom, roomsToPlace [roomsToPlace.Count - 1].pathExitPt, false));
-						yield return null;
-					}
-					InstantiateRooms (roomsToPlace);
-					yield return null;
-					roomsToPlace.Clear ();
-				}
 				for (int i = 0; i < sideRooms; i++) {
 					if (openDoors.Count > 0) {
 						DoorInfo door = openDoors [Random.Range (0, openDoors.Count)];
