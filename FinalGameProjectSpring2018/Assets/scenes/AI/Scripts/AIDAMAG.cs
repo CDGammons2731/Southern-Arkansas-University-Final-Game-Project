@@ -20,17 +20,21 @@ public class AIDAMAG : AISpawner {
 	public static bool shootHIM = false;
 	public static bool MuhFaceHurt = false;
 	public static float dist;
+    //Aaron is adding this
 
 
 
-	void Awake(){
+
+ 
+    void Awake(){
 		play = GameObject.FindGameObjectWithTag ("player").transform;
 		plyr = GameObject.FindGameObjectWithTag ("player");
 
 		anim = GetComponent<Animator> ();
+
 	}
 
-	void GetDamage(string weaponName){
+	/*void GetDamage(string weaponName){
 		switch (weaponName) {
 		case "shotgun":
 			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
@@ -44,7 +48,7 @@ public class AIDAMAG : AISpawner {
 		case"raygun":
 			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
 			break;
-		case "tommygun":
+		case "rifle":
 			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
 			
 			break;
@@ -54,7 +58,7 @@ public class AIDAMAG : AISpawner {
 		}
 
 	}
-
+    */
 
 	void Update(){
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
@@ -63,8 +67,10 @@ public class AIDAMAG : AISpawner {
 		Debug.Log (shootHIM);
 		Debug.Log (MuhFaceHurt);
 
-		//RaycastHit hit;
-		Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
+        Samage = plyr.GetComponent<Player>().weapon.GetComponent<Gun>().damage;
+
+        //RaycastHit hit;
+        Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		//Debug.DrawRay (BoboHead.position, transform.forward);
 				
 		if (shootHIM == true) {
@@ -80,7 +86,8 @@ public class AIDAMAG : AISpawner {
 		} else {
 			anim.ResetTrigger ("IsFiring");
 		}
-		GetDamage (plyr.GetComponent<Player> ().currentGun);
+        //GetDamage (plyr.GetComponent<Player> ().currentGun);
+      
 		/*if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
 			Samage = AISpawner.Damage;
 			Debug.Log (Samage);
@@ -93,7 +100,7 @@ public class AIDAMAG : AISpawner {
 				if (Health >= 0) {
 				Health -= Samage;
 				Debug.Log ("Robot has been hit with "+ Samage+ "Damage");
-					//Debug.Log ("Health: " + Health);
+				Debug.Log ("Health: " + Health);
 				} else {
 					DestroyObject (gameObject);
 				}
