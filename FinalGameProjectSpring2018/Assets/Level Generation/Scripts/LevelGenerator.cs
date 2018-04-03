@@ -27,8 +27,9 @@ public class LevelGenerator : MonoBehaviour {
 	public GameObject navRemover;
 
 	public GameObject unlockedDoor;
-	public GameObject lockedDoor;
 	public GameObject sealedDoor;
+	public GameObject lockBoxObj;
+	public GameObject lockPickObj;
 
 	public bool loaded = false;
 
@@ -120,8 +121,6 @@ public class LevelGenerator : MonoBehaviour {
 						if (!dGrp [i].MarkForRemoval) {
 							if (!dGrp [i].locked) {
 								dGrp [i].PlaceDoorObject (unlockedDoor, gridScale);
-							} else {
-								dGrp [i].PlaceDoorObject (lockedDoor, gridScale);
 							}
 						}
 						yield return null;
@@ -136,6 +135,23 @@ public class LevelGenerator : MonoBehaviour {
 				}
 			} 
 			loaded = true;
+			GameObject[] Hpickups = GameObject.FindGameObjectsWithTag ("Health");
+			GameObject[] Apickups = GameObject.FindGameObjectsWithTag ("Ammo");
+			List<GameObject> picks = new List<GameObject> ();
+			foreach (GameObject g in Hpickups) {
+				picks.Add (g);
+			}
+			foreach (GameObject g in Apickups) {
+				picks.Add (g);
+			}
+			GameObject lockboxPos = picks [Random.Range (0, picks.Count)];
+			GameObject lockbox = Instantiate (lockBoxObj);
+			lockbox.transform.position = lockboxPos.transform.position;
+			Destroy (lockboxPos);
+			GameObject lockpickPos = picks [Random.Range (0, picks.Count)];
+			GameObject lockpick = Instantiate (lockPickObj);
+			lockpick.transform.position = lockpickPos.transform.position;
+			Destroy (lockpickPos);
 		}
 		StopCoroutine (GenerateLevel ());
 	}
