@@ -74,7 +74,7 @@ public class AIDAMAG : AISpawner {
 		//Debug.DrawRay (BoboHead.position, transform.forward);
 				
 		if (shootHIM == true) {
-			if (dist <= 20) {
+			if (dist <= LookRange) {
 				if (MuhFaceHurt == false) {
 					anim.SetTrigger ("IsFiring");
 					anim.ResetTrigger ("IsHitting");
