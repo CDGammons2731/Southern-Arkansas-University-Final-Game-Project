@@ -8,18 +8,18 @@ public class AIDamage : MonoBehaviour {
 
 	public int Health = 100;
 	public int damage = 0;
-	public 
+  
 
 
 	void start(){
-
+      
 	}
 
 
 	void Update(){
 
-		damage = GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
-		//Debug.Log ("Damage: " + damage);
+		damage = GetComponent<Player>().weapon.GetComponent<Gun>().damage;
+		Debug.Log ("Damage: " + damage);
 
 	}
 
