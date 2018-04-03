@@ -53,6 +53,9 @@ namespace PLAYER
         int currentPick = 0;
         public bool dying = false;
 
+        public int Evidence;
+        public bool isEvidence = false;
+
 
 
         void Start()
@@ -82,6 +85,7 @@ namespace PLAYER
             }
 
             GM.DeathCam.enabled = false;
+
         }
 
         //Work on changing some of this 
@@ -120,15 +124,30 @@ namespace PLAYER
                 UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup " + weapon.tag);
 
             }
+
+            if (other.gameObject.CompareTag("evidence")) {
+               UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup evidence");
+                isEvidence = true;
+                if (isEvidence == true && Input.GetKeyUp(KeyCode.F)) {
+                    Evidence += 1;
+                    Destroy(other.gameObject);
+                }
+            }
         }
 
         void OnTriggerExit(Collider other)
         {
             weaponInRange = false;
+            isEvidence = false;
             UI.GetComponent<hud>().pickUpText.text = ("");
+            
 
         }
 
+        IEnumerator WaitForDeath() {
+            yield return new WaitForSeconds(2.0f);
+            Destroy(gameObject);
+        }
         void CarryWeapons(int current) {
             current = currentPick;
             switch (current){
@@ -231,6 +250,7 @@ namespace PLAYER
 
 
             }
+
             if (Inventory.Count > 3) {
                 Inventory.Remove(Inventory[0]);
             }
@@ -253,10 +273,16 @@ namespace PLAYER
 
             }
 
+            
             if (player_health <= 30)
             {
-                dying = true;  
-                
+                //dying = true;  
+            }
+
+            if (dying == true) {
+                PlayerSound.clip = HeartBeat;
+                PlayerSound.Play();
+                dying = false;
             }
             //Update players pos for placement purposes 
             player_location = gameObject.transform.TransformDirection(Vector3.forward);
@@ -277,7 +303,7 @@ namespace PLAYER
             {
 
                 GM.DeathCam.enabled = true;
-                Destroy(gameObject);
+               StartCoroutine(WaitForDeath());
             }
 
             CarryWeapons(currentPick);
