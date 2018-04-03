@@ -16,6 +16,7 @@ public class AI : MonoBehaviour
 	public static bool Escape = false;
 	public static bool WhosYourDaddy = false;
 	public static float dist;
+	public float Distance;
 	int X = 200;
 
 
@@ -49,17 +50,17 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
-
+		Distance = Vector3.Distance (gameObject.transform.position, destination.position);
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		//Debug.Log ("Distance to AI: " + dist);
 
-		if (Escape == true || WhosYourDaddy == true) {
+		if ((Escape == true || WhosYourDaddy == true) && Distance <= LookRange) {
 				gameObject.transform.LookAt (destination);
-			if (dist > LookRange) {
-				Escape = false;
-				WhosYourDaddy = false;
+				if (dist > LookRange) {
+					Escape = false;
+					WhosYourDaddy = false;
+				}
 			}
-		}
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (gameObject.transform.position, transform.forward * LookRange);
@@ -67,7 +68,7 @@ public class AI : MonoBehaviour
 
 		Debug.Log (BoboHead.position);
 
-		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
+		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && (Escape == false || Distance > LookRange)) {
 			Vector3 point;
 			if (X != 200 && dist > 5) {
 				X++;
@@ -83,8 +84,8 @@ public class AI : MonoBehaviour
 				WhosYourDaddy = true;
 			}
 		}
-
-		if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
+		if (Distance <= LookRange) {
+			if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
 				if (dist > 20) {
 					Escape = false;
 					WhosYourDaddy = false;
@@ -97,12 +98,17 @@ public class AI : MonoBehaviour
 					Debug.Log ("Whos Your Daddy: " + WhosYourDaddy);
 				} else if (dist <= 5) {
 					WhosYourDaddy = true;
-					if (dist >= 3) {
+					if (dist > 3) {
 						agent.SetDestination (destination.position);
 					} else {
-						agent.SetDestination (transform.position);
+						if (Distance <= 3) {
+							agent.SetDestination (transform.position);
+						} else {
+							agent.SetDestination (destination.position);
+						}
 					}
 				}
-		} 
+			} 
+		}
 	}
 }

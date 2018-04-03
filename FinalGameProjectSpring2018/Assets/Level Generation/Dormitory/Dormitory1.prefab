@@ -1426,6 +1426,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4330639307988926}
+  - component: {fileID: 114099316792405702}
   m_Layer: 0
   m_Name: Dormitory1
   m_TagString: Untagged
@@ -8748,3 +8749,26 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114099316792405702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1613827224534510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74317d86e76297c47ab23c374ec97214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIToSpawn: {fileID: 1520156917899428, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
+  player: {fileID: 0}
+  Enemies: []
+  EnemiesNumber: 0
+  EnemiesMaxNumber: 1
+  range: 10
+  SpawnActivateRandomizer: 0
+  NumberToActivate: 5
+  MaxRange: 10
+  Respawn: 0
+  TimeToRespawn: 300
+  WaitToStart: 50
