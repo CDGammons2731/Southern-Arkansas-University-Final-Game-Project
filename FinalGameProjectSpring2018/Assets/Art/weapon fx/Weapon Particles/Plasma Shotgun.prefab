@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 198034031781521658}
   - component: {fileID: 199740914745474018}
   - component: {fileID: 54800070346364178}
+  - component: {fileID: 135071375737096912}
   m_Layer: 0
   m_Name: Plasma Shotgun
   m_TagString: Untagged
@@ -35,13 +36,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625406158874452}
-  m_LocalRotation: {x: -0.9999871, y: -0, z: -0, w: -0.0050824545}
-  m_LocalPosition: {x: 2.74, y: 0.29, z: 5.71}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.384, y: 0.654, z: 0.756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -180.582, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &54800070346364178
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -57,6 +58,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &135071375737096912
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1625406158874452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.07
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198034031781521658
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -116,7 +129,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1947317205
+  randomSeed: -830219265
   InitialModule:
     serializedVersion: 3
     enabled: 1
