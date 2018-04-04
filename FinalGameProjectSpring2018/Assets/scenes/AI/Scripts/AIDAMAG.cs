@@ -64,34 +64,35 @@ public class AIDAMAG : AISpawner {
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		shootHIM = AI.Escape;
 		MuhFaceHurt = AI.WhosYourDaddy;
-		Debug.Log (shootHIM);
-		Debug.Log (MuhFaceHurt);
+	
 
-        Samage = plyr.GetComponent<Player>().weapon.GetComponent<Gun>().damage;
+        //Samage = plyr.GetComponent<Player>().weapon.GetComponent<Gun>().damage;
 
-        //RaycastHit hit;
-        Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
+       // RaycastHit hit;
+        //Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		//Debug.DrawRay (BoboHead.position, transform.forward);
-				
 		if (shootHIM == true) {
-			if (dist <= LookRange) {
-				if (MuhFaceHurt == false) {
-					anim.SetTrigger ("IsFiring");
-					anim.ResetTrigger ("IsHitting");
-				} else {
-					anim.ResetTrigger ("IsFiring");
-					anim.SetTrigger ("IsHitting");
-				}
+			if (MuhFaceHurt == false) {
+				anim.SetTrigger ("IsFiring");
+				anim.ResetTrigger ("IsHitting");
+			} else {
+				Debug.Log ("I'm here!");
+				anim.ResetTrigger ("IsFiring");
+				anim.SetTrigger ("IsHitting");
 			}
 		} else {
 			anim.ResetTrigger ("IsFiring");
 		}
+
         //GetDamage (plyr.GetComponent<Player> ().currentGun);
       
 		/*if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
 			Samage = AISpawner.Damage;
 			Debug.Log (Samage);
 		}*/
+
+		Debug.Log (shootHIM);
+		Debug.Log (MuhFaceHurt);
 	}
 
 
