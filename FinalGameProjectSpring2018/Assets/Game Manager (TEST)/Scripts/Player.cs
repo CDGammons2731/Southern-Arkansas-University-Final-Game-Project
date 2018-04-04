@@ -56,6 +56,9 @@ namespace PLAYER
         public int Evidence;
         public bool isEvidence = false;
 
+        //Have to do this for stupid reasons
+        GameObject YourEvidence;
+
 
 
         void Start()
@@ -126,12 +129,10 @@ namespace PLAYER
             }
 
             if (other.gameObject.CompareTag("evidence")) {
-               UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup evidence");
                 isEvidence = true;
-                if (isEvidence == true && Input.GetKeyUp(KeyCode.F)) {
-                    Evidence += 1;
-                    Destroy(other.gameObject);
-                }
+                YourEvidence = other.gameObject;
+               // UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup evidence");
+
             }
         }
 
@@ -251,8 +252,10 @@ namespace PLAYER
 
             }
 
+         
             if (Inventory.Count > 3) {
                 Inventory.Remove(Inventory[0]);
+                
             }
             SwitchWeapon();
 
@@ -265,6 +268,12 @@ namespace PLAYER
                 // GM.pickupText.text = "";
             }
 
+            if (isEvidence == true && Input.GetKeyDown(KeyCode.F)) {
+                Evidence += 1;
+                Destroy(YourEvidence);
+                isEvidence = false;
+            }
+
             if (Input.GetKeyDown(KeyCode.B)&& hasWeapon==true)
             {
                 Inventory.Remove(Inventory[currentPick]);
@@ -272,17 +281,14 @@ namespace PLAYER
                 gun.equipped = false;
 
             }
-
-            
             if (player_health <= 30)
             {
                 //dying = true;  
+                //PlayHeatBeat(dying);
             }
 
             if (dying == true) {
-                PlayerSound.clip = HeartBeat;
-                PlayerSound.Play();
-                dying = false;
+               
             }
             //Update players pos for placement purposes 
             player_location = gameObject.transform.TransformDirection(Vector3.forward);
