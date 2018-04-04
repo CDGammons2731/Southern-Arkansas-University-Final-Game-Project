@@ -68,7 +68,7 @@ public class AI : MonoBehaviour
 
 		//Debug.Log (BoboHead.position);
 
-		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && (Escape == false || Distance > LookRange)) {
+		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
 			Vector3 point;
 			if (X != 200 && dist > 5) {
 				X++;
@@ -84,7 +84,8 @@ public class AI : MonoBehaviour
 					WhosYourDaddy = true;
 			}
 		}
-		if (Distance <= LookRange) {
+
+		if (dist <= LookRange) {
 			if (Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) || Escape == true) {
 				if (dist > 20) {
 					Escape = false;
@@ -99,7 +100,7 @@ public class AI : MonoBehaviour
 				} else if (dist <= 5) {
 					WhosYourDaddy = true;
 					if (dist > 3) {
-						agent.SetDestination (destination.position);
+							agent.SetDestination (destination.position);
 					} else {
 						if (Distance <= 3) {
 							agent.SetDestination (transform.position);

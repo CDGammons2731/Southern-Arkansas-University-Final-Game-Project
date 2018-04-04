@@ -20,6 +20,7 @@ public class AIDAMAG : AISpawner {
 	public static bool shootHIM = false;
 	public static bool MuhFaceHurt = false;
 	public static float dist;
+	public float Distance;
     //Aaron is adding this
 
 
@@ -62,6 +63,7 @@ public class AIDAMAG : AISpawner {
 
 	void Update(){
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
+		Distance = Vector3.Distance (gameObject.transform.position, play.position);
 		shootHIM = AI.Escape;
 		MuhFaceHurt = AI.WhosYourDaddy;
 	
@@ -71,7 +73,7 @@ public class AIDAMAG : AISpawner {
        // RaycastHit hit;
         //Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		//Debug.DrawRay (BoboHead.position, transform.forward);
-		if (shootHIM == true) {
+		if (shootHIM == true && Distance <= LookRange) {
 			if (MuhFaceHurt == false) {
 				anim.SetTrigger ("IsFiring");
 				anim.ResetTrigger ("IsHitting");
