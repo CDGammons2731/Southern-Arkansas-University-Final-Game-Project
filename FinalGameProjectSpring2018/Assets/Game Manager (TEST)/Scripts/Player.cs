@@ -50,6 +50,7 @@ namespace PLAYER
         //The guns the player can hold
         public List<GameObject> Inventory = new List<GameObject>();
         public bool hasKey = false;
+        public bool isKey = false;
         int currentPick = 0;
         public bool dying = false;
 
@@ -58,6 +59,7 @@ namespace PLAYER
 
         //Have to do this for stupid reasons
         GameObject YourEvidence;
+        GameObject Key;
 
 
 
@@ -102,7 +104,7 @@ namespace PLAYER
             //Armor will be deleted if not used 
             if (other.gameObject.CompareTag("Armor"))
             {
-                
+
                 other.gameObject.SetActive(false);
             }
 
@@ -131,8 +133,13 @@ namespace PLAYER
             if (other.gameObject.CompareTag("evidence")) {
                 isEvidence = true;
                 YourEvidence = other.gameObject;
-               // UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup evidence");
+                // UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup evidence");
 
+            }
+
+            if (other.gameObject.CompareTag("Key")) {
+                isKey = true;
+                Key = other.gameObject;
             }
         }
 
@@ -140,6 +147,7 @@ namespace PLAYER
         {
             weaponInRange = false;
             isEvidence = false;
+            isKey = false;
             UI.GetComponent<hud>().pickUpText.text = ("");
             
 
@@ -251,7 +259,12 @@ namespace PLAYER
 
 
             }
+            if (isKey == true && Input.GetKeyDown(KeyCode.F)) {
+                hasKey = true;
+                //Temporary unless there is no animation for unlocking the door
+                Destroy(Key);
 
+            }
          
             if (Inventory.Count > 3) {
                 Inventory.Remove(Inventory[0]);
