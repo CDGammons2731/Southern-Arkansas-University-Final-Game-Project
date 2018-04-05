@@ -20,7 +20,7 @@ public class AISpawner : MonoBehaviour {
 	public float MaxRange = 10.0f;
 	public float Respawn = 0f;
 	public float TimeToRespawn = 300f;
-	public float WaitToStart = 50f;
+	public float WaitToStart = 300f;
 
 	// Use this for initialization
 	void Start () {

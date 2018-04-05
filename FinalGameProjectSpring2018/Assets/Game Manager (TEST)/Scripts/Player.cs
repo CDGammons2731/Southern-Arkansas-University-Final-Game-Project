@@ -38,6 +38,7 @@ namespace PLAYER
         public bool hasWeapon;
         public bool isWeapon;
         public string currentGun;
+		public static string AIDAMAGCURRENTGUNINFO; //Added To collect current gun for AI damage -- Caleb
 
         public GameObject UI;
         public GameObject xmark;
@@ -249,6 +250,7 @@ namespace PLAYER
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     currentGun = weapon.tag;
+					AIDAMAGCURRENTGUNINFO = currentGun; //To collect name of current gun so that appropriate damage can be applied -- Caleb.
                     gun = weapon.GetComponent<Gun>();
                     GM.yourGun = weapon.GetComponent<Gun>();
                     PickUpWeapon(weapon);
