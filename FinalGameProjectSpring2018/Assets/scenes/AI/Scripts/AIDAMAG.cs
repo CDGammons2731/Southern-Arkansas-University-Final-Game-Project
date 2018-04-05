@@ -21,6 +21,7 @@ public class AIDAMAG : AISpawner {
 	public static bool MuhFaceHurt = false;
 	public static float dist;
 	public float Distance;
+	public string curGun;
     //Aaron is adding this
 
 
@@ -62,13 +63,29 @@ public class AIDAMAG : AISpawner {
     */
 
 	void Update(){
+
+		curGun = Player.AIDAMAGCURRENTGUNINFO;
+		Debug.Log (curGun);
+
+		if (curGun == "railgun") {
+			Samage = 12;
+		} else if (curGun == "raygun") {
+			Samage = 10;
+		} else if (curGun == "shotgun") {
+			Samage = 15;
+		} else if (curGun == "revolver") {
+			Samage = 10;
+		} else if (curGun == "tommygun") {
+			Samage = 6;
+		}
+
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		Distance = Vector3.Distance (gameObject.transform.position, play.position);
 		shootHIM = AI.Escape;
 		MuhFaceHurt = AI.WhosYourDaddy;
 	
 
-        //Samage = plyr.GetComponent<Player>().weapon.GetComponent<Gun>().damage;
+        
 
        // RaycastHit hit;
         //Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
@@ -86,6 +103,8 @@ public class AIDAMAG : AISpawner {
 			anim.ResetTrigger ("IsFiring");
 		}
 
+		//Samage = plyr.GetComponent<Player>().weapon.GetComponent<Gun>().;
+
         //GetDamage (plyr.GetComponent<Player> ().currentGun);
       
 		/*if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
@@ -100,15 +119,16 @@ public class AIDAMAG : AISpawner {
 
 	void OnCollisionEnter(Collision collision){
 		if (collision.transform.gameObject.tag == "bullet") {
+			AI.Escape = true;
 				if (Health >= 0) {
 				Health -= Samage;
-				Debug.Log ("Robot has been hit with "+ Samage+ "Damage");
+				Debug.Log ("Robot has been hit with: "+ Samage + " Damage.");
 				Debug.Log ("Health: " + Health);
 				} else {
 					DestroyObject (gameObject);
 				}
 		} else if (collision.transform.gameObject.tag == "pellet") {
-			//AI.Escape = true;
+			AI.Escape = true;
 				if (Health >= 0) {
 					Health -= Samage;
 				} else {
