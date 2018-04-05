@@ -20,6 +20,7 @@ public class AIDAMAG : AISpawner {
 	public static bool shootHIM = false;
 	public static bool MuhFaceHurt = false;
 	public static float dist;
+	public float Distance;
     //Aaron is adding this
 
 
@@ -62,36 +63,38 @@ public class AIDAMAG : AISpawner {
 
 	void Update(){
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
+		Distance = Vector3.Distance (gameObject.transform.position, play.position);
 		shootHIM = AI.Escape;
 		MuhFaceHurt = AI.WhosYourDaddy;
-		Debug.Log (shootHIM);
-		Debug.Log (MuhFaceHurt);
+	
 
-        Samage = plyr.GetComponent<Player>().weapon.GetComponent<Gun>().damage;
+        //Samage = plyr.GetComponent<Player>().weapon.GetComponent<Gun>().damage;
 
-        //RaycastHit hit;
-        Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
+       // RaycastHit hit;
+        //Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
 		//Debug.DrawRay (BoboHead.position, transform.forward);
-				
-		if (shootHIM == true) {
-			if (dist <= LookRange) {
-				if (MuhFaceHurt == false) {
-					anim.SetTrigger ("IsFiring");
-					anim.ResetTrigger ("IsHitting");
-				} else {
-					anim.ResetTrigger ("IsFiring");
-					anim.SetTrigger ("IsHitting");
-				}
+		if (shootHIM == true && Distance <= LookRange) {
+			if (MuhFaceHurt == false) {
+				anim.SetTrigger ("IsFiring");
+				anim.ResetTrigger ("IsHitting");
+			} else {
+				Debug.Log ("I'm here!");
+				anim.ResetTrigger ("IsFiring");
+				anim.SetTrigger ("IsHitting");
 			}
 		} else {
 			anim.ResetTrigger ("IsFiring");
 		}
+
         //GetDamage (plyr.GetComponent<Player> ().currentGun);
       
 		/*if (plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage != null && Input.GetKeyDown (KeyCode.F)) {
 			Samage = AISpawner.Damage;
 			Debug.Log (Samage);
 		}*/
+
+		Debug.Log (shootHIM);
+		Debug.Log (MuhFaceHurt);
 	}
 
 

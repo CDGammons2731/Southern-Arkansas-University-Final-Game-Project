@@ -29,7 +29,7 @@ public class AISpawner : MonoBehaviour {
 
 		//SpawnActivator = Random.Range (0.0f, MaxRange);
 		SpawnActivator = 6;
-		Debug.Log (SpawnActivator);
+		//Debug.Log (SpawnActivator);
 		if (SpawnActivator > NumberToActivate) {
 			SpawnActivateRandomizer = true;
 		}
