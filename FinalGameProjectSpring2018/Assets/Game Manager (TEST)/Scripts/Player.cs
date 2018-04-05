@@ -287,6 +287,7 @@ namespace PLAYER
 
             if (isEvidence == true && Input.GetKeyDown(KeyCode.F)) {
                 Evidence += 1;
+                //UI.GetComponent<hud>().evidText.text = Evidence.ToString();
                 Destroy(YourEvidence);
                 isEvidence = false;
             }

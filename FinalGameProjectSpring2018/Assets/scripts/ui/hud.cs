@@ -84,7 +84,7 @@ public class hud : MonoBehaviour {
 
         //updates health meter
         loseHealth();
-
+        evidText.text = playerScript.Evidence.ToString();
         //Updates Ammo player has
         if (gm.yourGun != null)
         {
@@ -116,10 +116,6 @@ public class hud : MonoBehaviour {
         if(playerScript.player_health<=0){
             gameOver.SetActive(true);
         }
-
-        evidText.text = "playerScript.Evidence";
-
-
 
 
     }
