@@ -11,7 +11,7 @@ public class AI : MonoBehaviour
 	public Transform BoboHead;
 	public LayerMask mask = -1;
 	public float LookRange = 20f;
-	private NavMeshAgent agent;
+	public NavMeshAgent agent;
 	public float range = 10.0f;
 	public static bool Escape = false;
 	public static bool WhosYourDaddy = false;
@@ -30,7 +30,7 @@ public class AI : MonoBehaviour
         //destination = GameObject.Find("player").transform;
         DatDerBadGoober = GameObject.FindGameObjectWithTag("player").transform;
         //DatDerBadGoober = GameObject.Find ("player").transform;
-
+		agent = GetComponent<NavMeshAgent> ();
     }
 
 
@@ -50,6 +50,7 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
+		
 		Distance = Vector3.Distance (gameObject.transform.position, destination.position);
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		//Debug.Log ("Distance to AI: " + dist);
@@ -75,7 +76,6 @@ public class AI : MonoBehaviour
 			} else if (dist > 5) {
 				if (RandomPoint (transform.position, range, out point)) {
 					float Idledist = Vector3.Distance (point, transform.position);
-					agent = gameObject.GetComponent<NavMeshAgent> ();
 					agent.SetDestination (point);
 				}
 				X = 0;

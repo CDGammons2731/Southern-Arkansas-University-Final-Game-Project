@@ -26,8 +26,8 @@ GameObject:
   m_Name: Wall(blank) (3)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1061575447896820
 GameObject:
@@ -162,8 +162,8 @@ GameObject:
   m_Name: Wall(blank) (5)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1211772849221318
 GameObject:
@@ -230,8 +230,8 @@ GameObject:
   m_Name: Cube (61)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1253096678218884
 GameObject:
@@ -248,8 +248,8 @@ GameObject:
   m_Name: Cube (64)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1256400755713964
 GameObject:
@@ -316,8 +316,8 @@ GameObject:
   m_Name: Cube (61)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1362576680816898
 GameObject:
@@ -334,8 +334,8 @@ GameObject:
   m_Name: Wall(blank)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1366080076687884
 GameObject:
@@ -453,8 +453,8 @@ GameObject:
   m_Name: Cube (61)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1470866805094134
 GameObject:
@@ -471,8 +471,8 @@ GameObject:
   m_Name: Cube (64)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1512527867653334
 GameObject:
@@ -489,8 +489,8 @@ GameObject:
   m_Name: Cube (64)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1547115524306534
 GameObject:
@@ -507,8 +507,8 @@ GameObject:
   m_Name: Wall(blank) (2)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1559829632216876
 GameObject:
@@ -612,8 +612,8 @@ GameObject:
   m_Name: Wall(blank) (1)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1749084799722674
 GameObject:
@@ -733,8 +733,8 @@ GameObject:
   m_Name: Wall(blank) (4)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1998998470656188
 GameObject:
@@ -751,8 +751,8 @@ GameObject:
   m_Name: Cube (61)
   m_TagString: markable
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4062937167779634
 Transform:
@@ -1095,7 +1095,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1211772849221318}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -66.56764, y: 42.700886, z: -57.51416}
+  m_LocalPosition: {x: 258.29694, y: 72.185905, z: 1034.6929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4893655584863078}
