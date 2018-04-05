@@ -30,7 +30,7 @@ namespace PLAYER
 
         public Vector3 gunOffset;
         public GameObject holdingPosition;
-        public GameObject playerBack;
+        public GameObject Pos1, Pos2, Pos3;
         public GameObject weapon;
         public Gun gun;
 
@@ -133,13 +133,14 @@ namespace PLAYER
             if (other.gameObject.CompareTag("evidence")) {
                 isEvidence = true;
                 YourEvidence = other.gameObject;
-                // UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup evidence");
+                 UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup evidence");
 
             }
 
             if (other.gameObject.CompareTag("Key")) {
                 isKey = true;
                 Key = other.gameObject;
+                UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup lockpick");
             }
         }
 
@@ -161,16 +162,16 @@ namespace PLAYER
             current = currentPick;
             switch (current){
                 case 1:
-                    if (Inventory[1] != null) Inventory[1].transform.position = playerBack.transform.position;
-                    if (Inventory[2] != null) Inventory[2].transform.position = playerBack.transform.position;
+                    if (Inventory[1] != null) Inventory[1].transform.position = Pos2.transform.position;
+                    if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
                     break;
                 case 2:
-                    if (Inventory[0] != null) Inventory[0].transform.position = playerBack.transform.position;
-                    if (Inventory[2] != null) Inventory[2].transform.position = playerBack.transform.position;
+                    if (Inventory[0] != null) Inventory[0].transform.position = Pos1.transform.position;
+                    if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
                     break;
                 case 3:
-                    if (Inventory[0] != null) Inventory[0].transform.position = playerBack.transform.position;
-                    if (Inventory[1] != null) Inventory[1].transform.position = playerBack.transform.position;
+                    if (Inventory[0] != null) Inventory[0].transform.position = Pos1.transform.position;
+                    if (Inventory[1] != null) Inventory[1].transform.position = Pos2.transform.position;
                     break;
                 default:
                     break;
@@ -289,6 +290,7 @@ namespace PLAYER
 
             if (Input.GetKeyDown(KeyCode.B)&& hasWeapon==true)
             {
+                
                 Inventory.Remove(Inventory[currentPick]);
                 hasWeapon = false;
                 gun.equipped = false;
