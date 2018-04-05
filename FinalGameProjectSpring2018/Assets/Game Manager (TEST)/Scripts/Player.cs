@@ -55,7 +55,7 @@ namespace PLAYER
         int currentPick = 0;
         public bool dying = false;
 
-        public int Evidence;
+        public int Evidence=0;
         public bool isEvidence = false;
 
         //Have to do this for stupid reasons
@@ -151,6 +151,7 @@ namespace PLAYER
             isEvidence = false;
             isKey = false;
             UI.GetComponent<hud>().pickUpText.text = ("");
+            
             
 
         }
