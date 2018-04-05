@@ -20,7 +20,7 @@ public class AISpawner : MonoBehaviour {
 	public float MaxRange = 10.0f;
 	public float Respawn = 0f;
 	public float TimeToRespawn = 300f;
-	public float WaitToStart = 300f;
+	public float WaitToStart = 25f;
 
 	// Use this for initialization
 	void Start () {
@@ -50,8 +50,9 @@ public class AISpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (WaitToStart != 0) {
-			WaitToStart -= 1;
+		if (WaitToStart > 0) {
+			WaitToStart = WaitToStart - Time.deltaTime;
+			Debug.Log (WaitToStart);
 		} else {
 
 		/*if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null && Input.GetKeyDown(KeyCode.F)) {

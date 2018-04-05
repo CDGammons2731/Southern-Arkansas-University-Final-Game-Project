@@ -8,14 +8,11 @@ public class AIDistanceCalculator : MonoBehaviour {
 	public Transform[] EnemyLocations;
 	public float[] EnemyDistances;
 	public static float ClosestEnemyDistance;
-
-	// Use this for initialization
-	void Start () {
-		player = GameObject.FindGameObjectWithTag ("player");
-	}
 	
 	// Update is called once per frame
 	void Update () {
+		player = GameObject.FindGameObjectWithTag ("player");
+
 		Enemies = GameObject.FindGameObjectsWithTag ("AI");
 		EnemyLocations = new Transform[Enemies.Length];
 		EnemyDistances = new float[Enemies.Length];
