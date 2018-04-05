@@ -37,7 +37,6 @@ public class hud : MonoBehaviour {
     public Sprite[] icons;
 
     //Evidence Text
-    public Text evidTxt;
     string[] txt = new string[15];
 
 
@@ -118,6 +117,7 @@ public class hud : MonoBehaviour {
             gameOver.SetActive(true);
         }
 
+        evidText.text = "playerScript.Evidence";
 
 
 
