@@ -67,6 +67,18 @@ public class AIDAMAG : AISpawner {
 		curGun = Player.AIDAMAGCURRENTGUNINFO;
 		Debug.Log (curGun);
 
+		if (curGun == "railgun") {
+			Samage = 12;
+		} else if (curGun == "raygun") {
+			Samage = 10;
+		} else if (curGun == "shotgun") {
+			Samage = 15;
+		} else if (curGun == "revolver") {
+			Samage = 10;
+		} else if (curGun == "tommygun") {
+			Samage = 6;
+		}
+
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		Distance = Vector3.Distance (gameObject.transform.position, play.position);
 		shootHIM = AI.Escape;
