@@ -120,9 +120,8 @@ public class AIDAMAG : AISpawner {
 	void OnCollisionEnter(Collision collision){
 		if (collision.transform.gameObject.tag == "bullet") {
 			AI.Escape = true;
-				if (Health >= 0) {
+				if (Health > 0) {
 				Health -= Samage;
-				Debug.Log ("Robot has been hit with: "+ Samage + " Damage.");
 				Debug.Log ("Health: " + Health);
 				} else {
 					DestroyObject (gameObject);
