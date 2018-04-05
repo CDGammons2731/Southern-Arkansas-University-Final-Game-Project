@@ -75,7 +75,7 @@ public class AIDAMAG : AISpawner {
 			Samage = 15;
 		} else if (curGun == "revolver") {
 			Samage = 10;
-		} else if (curGun == "tommygun") {
+		} else if (curGun == "tommygun"|| curGun =="rifle") {
 			Samage = 6;
 		}
 
@@ -118,7 +118,7 @@ public class AIDAMAG : AISpawner {
 
 
 	void OnCollisionEnter(Collision collision){
-		if (collision.gameObject.tag == "bullet") {
+		if (collision.gameObject.tag == "bullet" || collision.gameObject.tag == "pellet") {
 			AI.Escape = true;
 				if (Health > 0) {
 				Health -= Samage;
