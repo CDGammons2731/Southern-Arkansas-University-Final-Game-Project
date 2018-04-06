@@ -16,9 +16,12 @@ public class miniMapMovement : MonoBehaviour
     }
     void LateUpdate()
     {
-        Vector3 newPosition = player.transform.position;
-        newPosition.y = this.transform.position.y;
-        this.transform.position = newPosition;
+        if (player != null)
+        {
+            Vector3 newPosition = player.transform.position;
+            newPosition.y = this.transform.position.y;
+            this.transform.position = newPosition;
+        }
 
     }
 }

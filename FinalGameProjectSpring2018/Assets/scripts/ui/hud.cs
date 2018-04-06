@@ -37,7 +37,7 @@ public class hud : MonoBehaviour {
     public Sprite[] icons;
 
     //Evidence Text
-    string[] txt = new string[15];
+    string[] txt = new string[16];
     public Text evidDes;
 
 
@@ -46,7 +46,9 @@ public class hud : MonoBehaviour {
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
-        playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+
+        //playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        
 
         txt[1] = "Public Announcement To All Staff... As I have been so gracious and kind to allow you to keep your jobs in my company, you understand there will be some changes in how we run things. Firstly, my son Jonathan, is now the new CEO because the Board of Directors and I have an “understanding” you might say. Secondly, from hence forth, anytime you refer to myself, I will be called Godfather. Thirdly, if you value your life and your family’s lives, you will do anything I or my son says, trust me, my sons robots can be quite dangerous if you disobey my orders. Your managers have been briefed quite clearly on your new roles in the company. Now if you’ll excuse me, I must go and have lunch with President Woodrow, I do not like how he is running my war, Your Godfather,Maddox Richter";
         txt[2] = "Public Announcement To All Staff... This is your new CEO Johnathan, I have reviewed the company policy and have decided you all don’t need lunch breaks, you need more work.These guns won’t manufacture themselves you know. Therefore, starting today, your expected daily quota is tripled and there will no longer be any lunch breaks.Also, those who don’t meet their quota will be whacked by my robots on the head till they either die or are put in a coma. Honestly, you people just don’t understand how hard it is to be the CEO of a company. That is all for now, Johnathan Richter";
@@ -67,7 +69,10 @@ public class hud : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        if (playerScript != null)
+        {
+            playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        }
 
         //prints out the timer
         count+=Time.deltaTime;
@@ -83,48 +88,59 @@ public class hud : MonoBehaviour {
             count = 300f;
         }
 
-        //updates health meter
-        loseHealth();
+        if (playerScript != null)
+        {
+            //updates health meter
+            loseHealth();
 
-        //evidence display
-        evidText.text = playerScript.Evidence.ToString();
 
-        for (int i = playerScript.Evidence; i < 15; i++){
-            evidDes.text = txt[i];  
+            //evidence display
+            evidText.text = playerScript.Evidence.ToString();
+
+
+            //Pop up GameOver
+            if (playerScript.player_health <= 0)
+            {
+                gameOver.SetActive(true);
+            }
         }
+
+
+        /*for (int i = playerScript.Evidence; i < 15; i++){
+            evidDes.text = txt[i];  
+        }*/
 
 
         //Updates Ammo player has
         if (gm.yourGun != null)
         {
             ShowAmmo();
-        }
 
-        //tells which gun you have
-       yourWeapon.text = gm.yourGun.CurrentWeapon;
-
-        //figures which icon to use
-        if(gm.yourGun.CurrentWeapon == "revolver"){
-            gunIcon.sprite = icons[0];
-        }
-        if (gm.yourGun.CurrentWeapon == "railgun")
-        {
-            gunIcon.sprite = icons[1];
-        }
-        if (gm.yourGun.CurrentWeapon == "tommygun")
-        {
-            gunIcon.sprite = icons[2];
-        }
-        if (gm.yourGun.CurrentWeapon == "shotgun")
-        {
-            gunIcon.sprite = icons[3];
-        }
+            //tells which gun you have
+            yourWeapon.text = gm.yourGun.CurrentWeapon;
 
 
-        //Pop up GameOver
-        if(playerScript.player_health<=0){
-            gameOver.SetActive(true);
+
+            //figures which icon to use
+            if (gm.yourGun.CurrentWeapon == "revolver")
+            {
+                gunIcon.sprite = icons[0];
+            }
+            if (gm.yourGun.CurrentWeapon == "railgun")
+            {
+                gunIcon.sprite = icons[1];
+            }
+            if (gm.yourGun.CurrentWeapon == "tommygun")
+            {
+                gunIcon.sprite = icons[2];
+            }
+            if (gm.yourGun.CurrentWeapon == "shotgun")
+            {
+                gunIcon.sprite = icons[3];
+            }
+
         }
+        
 
 
     }
@@ -132,9 +148,12 @@ public class hud : MonoBehaviour {
     //Health
     void loseHealth(){
         //rotating needle to represent health
-        float rotationZ = 270.0f * ((float)playerScript.player_health / maxHealth)-270.0f;
-        Quaternion target = Quaternion.Euler(0,0,rotationZ);
-        needle.transform.rotation = Quaternion.Slerp(needle.transform.rotation, target, smooth * Time.deltaTime);
+        if (playerScript != null)
+        {
+            float rotationZ = 270.0f * ((float)playerScript.player_health / maxHealth) - 270.0f;
+            Quaternion target = Quaternion.Euler(0, 0, rotationZ);
+            needle.transform.rotation = Quaternion.Slerp(needle.transform.rotation, target, smooth * Time.deltaTime);
+        }
     }
 
 
