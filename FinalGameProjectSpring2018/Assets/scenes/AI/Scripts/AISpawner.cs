@@ -50,10 +50,6 @@ public class AISpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (WaitToStart > 0) {
-			WaitToStart = WaitToStart - Time.deltaTime;
-			Debug.Log (WaitToStart);
-		} else {
 
 		/*if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null && Input.GetKeyDown(KeyCode.F)) {
 			Damage = player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
@@ -92,6 +88,5 @@ public class AISpawner : MonoBehaviour {
 				Respawn = Respawn - Time.deltaTime;
 				//Debug.Log (Respawn);
 			}
-		}
 	}
 }

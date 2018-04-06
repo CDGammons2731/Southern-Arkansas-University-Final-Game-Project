@@ -96,7 +96,6 @@ public class AI : MonoBehaviour
 					Escape = true;
 					agent.SetDestination (destination.position);
 					WhosYourDaddy = false;
-					//Debug.Log ("Whos Your Daddy: " + WhosYourDaddy);
 				} else if (dist <= 5) {
 					WhosYourDaddy = true;
 					if (dist > 3) {
