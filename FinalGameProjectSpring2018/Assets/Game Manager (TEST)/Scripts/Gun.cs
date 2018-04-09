@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour {
     public GameObject weapon;
     public GameObject bullet;
     public Transform bulletSpawn;
+    public ParticleSystem PS;
     //public Animator gunAnim;
    
     //Weapon Types
@@ -115,6 +116,8 @@ Reload Speed: 2 seconds
            //gunAnim = GetComponent<Animator>();
            canShoot = true; //Just to start off able at all times
            Player_Cam=GetComponentInParent<Camera>(); //@Testing---
+            
+
         }
 
     //Choose weapon to fire from switch statements from it's selected string (the weapon's tag)
@@ -167,6 +170,7 @@ Reload Speed: 2 seconds
                     {
                         nextFire = Time.time + fireRate;
                         Revolver(ammo, ammoClip);
+                        PS.Play();
                         ammo -= 1;
                         shotCount++;
                         currentAmmo -= 1;
@@ -197,6 +201,7 @@ Reload Speed: 2 seconds
                     {
                         nextFire = Time.time + fireRate;
                         Rifle(ammo, ammoClip);
+                        PS.Play();
                         ammo -= 1;
                         shotCount++;
                         currentAmmo -= 1;
