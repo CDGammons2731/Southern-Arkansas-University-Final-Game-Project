@@ -69,10 +69,18 @@ public class hud : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (playerScript != null)
+        //Aaron: you're telling it to set the player script if a player script is already there. THat's why the Hud stopped
+
+        /*if (playerScript != null)
         {
             playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        }*/
+
+        //Try this instead
+        if (gm != null) {
+            playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
         }
+
 
         //prints out the timer
         count+=Time.deltaTime;
