@@ -140,6 +140,7 @@ Reload Speed: 2 seconds
                     if (Input.GetMouseButton(0)&&Time.time> nextFire && ammo!=0 && canShoot==true){
                     nextFire = Time.time + fireRate;
 				    Shotgun (ammo,ammoClip);//Call the method for the selected gun
+                        PS.Play();
                         ammo -= 1;
                         shotCount++;
                         currentAmmo -= 1;
