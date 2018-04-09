@@ -310,7 +310,7 @@ Reload Speed: 2 seconds
                 }
 
                 // Destroy the bullet after 2 seconds
-                Destroy(shot, 0.75f);
+                Destroy(shot, 1.5f);
                 
             }
 
@@ -337,7 +337,7 @@ Reload Speed: 2 seconds
                 }
 
                 // Destroy the bullet after 2 seconds
-                Destroy(shot, 0.75f);
+                Destroy(shot, 1.5f);
                 
 
             }
@@ -345,7 +345,7 @@ Reload Speed: 2 seconds
             {
                 if (Empty != null)
                 {
-                    GunSound.PlayOneShot(Empty, 0.85f);
+                    GunSound.PlayOneShot(Empty, 1f);
                 }
             }
 
@@ -359,13 +359,13 @@ Reload Speed: 2 seconds
                 if (REVOLVER[0] != null)
                 {
                
-                  GunSound.PlayOneShot(REVOLVER[0], 0.85f);
+                  GunSound.PlayOneShot(REVOLVER[0], 1f);
                   
 
                 }
 
                 // Destroy the bullet after 2 seconds
-                Destroy(shot, 0.75f);
+                Destroy(shot, 1.5f);
             
         }
             else
@@ -390,7 +390,7 @@ Reload Speed: 2 seconds
                     shot.transform.rotation = Quaternion.RotateTowards(shot.transform.rotation, pellets[i], spreadAgle); //Make sure the pellet prefab itself is set to the pellet Layer in the inspector
                     shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
                     i++;
-                    Destroy(shot, 0.75f);
+                    Destroy(shot, 1.5f);
                 }
                 //play sound
                 if (SHOTGUN[0] != null)
@@ -417,7 +417,7 @@ Reload Speed: 2 seconds
                 }
 
                 // Destroy the bullet after .35s seconds
-                Destroy(shot, 0.75f);
+                Destroy(shot, 1.5f);
             }
             else
             {

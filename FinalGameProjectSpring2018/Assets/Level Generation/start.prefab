@@ -3881,9 +3881,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888206360779184}
-  m_LocalRotation: {x: -6.123234e-17, y: -1, z: 6.123234e-17, w: -5.0532154e-16}
-  m_LocalPosition: {x: 0.004, y: 0.144, z: -0.167}
-  m_LocalScale: {x: -1, y: 1, z: -1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.004, y: 0.144, z: -0.199}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4650809175788644}
   m_RootOrder: 5
@@ -3926,7 +3926,7 @@ Transform:
   m_GameObject: {fileID: 1036022194221714}
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -4.4, y: 12.8, z: 57.2}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4226142481226870}
   m_RootOrder: 0
@@ -4327,7 +4327,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118655212612754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.904228, y: 1.7827001, z: 6.6887937}
+  m_LocalPosition: {x: 82.962425, y: 334.7672, z: -575.5008}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4226142481226870}
@@ -6715,7 +6715,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1928627412239772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 11.3, z: -53.8}
+  m_LocalPosition: {x: -0, y: 11.3, z: -51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4091896142004630}
@@ -13456,8 +13456,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 15, z: 60}
-  m_Center: {x: 0, y: 10, z: 0}
+  m_Size: {x: 5, y: 15, z: 50}
+  m_Center: {x: 0, y: 10, z: 5}
 --- !u!65 &65627753478755770
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -14215,7 +14215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1034839605345102}
-  bullet: {fileID: 1590987268347284, guid: 732f1dad40f3a844888d7bf84d925d00, type: 2}
+  bullet: {fileID: 1025971916029544, guid: 04f808e235767cd4994bcf5003c07387, type: 2}
   bulletSpawn: {fileID: 4848090112624826}
   CurrentWeapon: 
   SHOTGUN:

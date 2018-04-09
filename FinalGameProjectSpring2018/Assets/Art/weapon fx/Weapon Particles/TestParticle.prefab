@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1590987268347284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.22, y: 1.5, z: 4.23}
+  m_LocalPosition: {x: 340.666, y: 332.138, z: -342.481}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,14 +100,14 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
-        time: 0.04965973
-        value: 0.108444214
+        time: 0.034276962
+        value: 0.4834423
         inSlope: 0.57830006
         outSlope: 0.57830006
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.9858341
-        value: 0.120488286
+        time: 1
+        value: 0.24548447
         inSlope: 0.19987302
         outSlope: 0.19987302
         tangentMode: 0
@@ -157,12 +157,12 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1590987268347284}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.24921966
-  m_Height: 0.4984393
-  m_Direction: 0
-  m_Center: {x: 0.012704134, y: 0.011377454, z: -0.18006253}
+  m_Radius: 0.08916646
+  m_Height: 0.43562984
+  m_Direction: 2
+  m_Center: {x: 0.012704134, y: 0, z: -0.21146727}
 --- !u!198 &198305089761512394
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -222,7 +222,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1669047538
+  randomSeed: -1208256973
   InitialModule:
     serializedVersion: 3
     enabled: 1
