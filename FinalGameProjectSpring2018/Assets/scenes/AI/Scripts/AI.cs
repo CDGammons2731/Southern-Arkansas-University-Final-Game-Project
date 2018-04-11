@@ -53,11 +53,20 @@ public class AI : MonoBehaviour
 		
 		Distance = Vector3.Distance (gameObject.transform.position, destination.position);
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
-		//Debug.Log ("Distance to AI: " + dist);
+        //Debug.Log ("Distance to AI: " + dist);
 
-	
+        if ((Escape == true || WhosYourDaddy == true) && Distance <= LookRange)
+        {
+            gameObject.transform.LookAt(destination);
+            if (dist > LookRange)
+            {
+                Escape = false;
+                WhosYourDaddy = false;
+            }
+        }
 
-		RaycastHit hit;
+
+        RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (gameObject.transform.position, transform.forward * LookRange);
 		Debug.DrawRay (BoboHead.position, transform.forward * LookRange, Color.red);
 
@@ -106,15 +115,7 @@ public class AI : MonoBehaviour
 			} 
 		}
 
-        if ((Escape == true || WhosYourDaddy == true) && Distance <= LookRange)
-        {
-            gameObject.transform.LookAt(destination);
-            if (dist > LookRange)
-            {
-                Escape = false;
-                WhosYourDaddy = false;
-            }
-        }
+        
         else {
 			Escape = false;
 		}
