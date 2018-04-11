@@ -26,12 +26,12 @@ public class AI : MonoBehaviour
 		//GameObject. Just a note for clarification. My method did work for finding the
 		//player but it is more efficent to look for the tag in the Hierarchy.
 
-        destination = GameObject.FindGameObjectWithTag("player").transform;
-        //destination = GameObject.Find("player").transform;
-        DatDerBadGoober = GameObject.FindGameObjectWithTag("player").transform;
-        //DatDerBadGoober = GameObject.Find ("player").transform;
+		destination = GameObject.FindGameObjectWithTag("player").transform;
+		//destination = GameObject.Find("player").transform;
+		DatDerBadGoober = GameObject.FindGameObjectWithTag("player").transform;
+		//DatDerBadGoober = GameObject.Find ("player").transform;
 		agent = GetComponent<NavMeshAgent> ();
-    }
+	}
 
 
 	bool RandomPoint(Vector3 Center, float range, out Vector3 result){
@@ -50,23 +50,20 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
-		
+
 		Distance = Vector3.Distance (gameObject.transform.position, destination.position);
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
-        //Debug.Log ("Distance to AI: " + dist);
+		//Debug.Log ("Distance to AI: " + dist);
 
-        if ((Escape == true || WhosYourDaddy == true) && Distance <= LookRange)
-        {
-            gameObject.transform.LookAt(destination);
-            if (dist > LookRange)
-            {
-                Escape = false;
-                WhosYourDaddy = false;
-            }
-        }
+		if ((Escape == true || WhosYourDaddy == true) && Distance <= LookRange) {
+			gameObject.transform.LookAt (destination);
+			if (dist > LookRange) {
+				Escape = false;
+				WhosYourDaddy = false;
+			}
+		}
 
-
-        RaycastHit hit;
+		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (gameObject.transform.position, transform.forward * LookRange);
 		Debug.DrawRay (BoboHead.position, transform.forward * LookRange, Color.red);
 
@@ -74,7 +71,7 @@ public class AI : MonoBehaviour
 
 		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
 			Vector3 point;
-			if (X != 20 && dist > 5) {
+			if (X != 200 && dist > 5) {
 				X++;
 			} else if (dist > 5) {
 				if (RandomPoint (transform.position, range, out point)) {
@@ -83,8 +80,8 @@ public class AI : MonoBehaviour
 				}
 				X = 0;
 			} else if (dist <= 5) {
-					Escape = true;
-					WhosYourDaddy = true;
+				Escape = true;
+				WhosYourDaddy = true;
 			}
 		}
 
@@ -102,8 +99,7 @@ public class AI : MonoBehaviour
 				} else if (dist <= 5) {
 					WhosYourDaddy = true;
 					if (dist > 3) {
-                        
-							agent.SetDestination (destination.position);
+						agent.SetDestination (destination.position);
 					} else {
 						if (Distance <= 3) {
 							agent.SetDestination (transform.position);
@@ -113,10 +109,7 @@ public class AI : MonoBehaviour
 					}
 				}
 			} 
-		}
-
-        
-        else {
+		} else {
 			Escape = false;
 		}
 	}
