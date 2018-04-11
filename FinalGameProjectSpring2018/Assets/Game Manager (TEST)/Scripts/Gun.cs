@@ -295,7 +295,7 @@ Reload Speed: 2 seconds
         //Just to make sure your pullets are destroyed
         private void OnCollisionEnter(Collision collision)
         {
-            if(shot!=null) Destroy(shot);
+           // if(shot!=null) Destroy(shot);
         }
 
 
@@ -343,7 +343,7 @@ Reload Speed: 2 seconds
                 }
 
                 // Destroy the bullet after 2 seconds
-                Destroy(shot, 1.5f);
+                Destroy(shot, 2f);
                 
 
             }
