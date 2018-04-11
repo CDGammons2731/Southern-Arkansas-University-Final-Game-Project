@@ -53,17 +53,20 @@ public class AI : MonoBehaviour
 		
 		Distance = Vector3.Distance (gameObject.transform.position, destination.position);
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
-		//Debug.Log ("Distance to AI: " + dist);
+        //Debug.Log ("Distance to AI: " + dist);
 
-		if ((Escape == true || WhosYourDaddy == true) && Distance <= LookRange) {
-				gameObject.transform.LookAt (destination);
-				if (dist > LookRange) {
-					Escape = false;
-					WhosYourDaddy = false;
-				}
-			}
+        if ((Escape == true || WhosYourDaddy == true) && Distance <= LookRange)
+        {
+            gameObject.transform.LookAt(destination);
+            if (dist > LookRange)
+            {
+                Escape = false;
+                WhosYourDaddy = false;
+            }
+        }
 
-		RaycastHit hit;
+
+        RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (gameObject.transform.position, transform.forward * LookRange);
 		Debug.DrawRay (BoboHead.position, transform.forward * LookRange, Color.red);
 
@@ -71,7 +74,7 @@ public class AI : MonoBehaviour
 
 		if (!Physics.Raycast (BoboPeekABOO, out hit, LookRange, mask) && Escape == false) {
 			Vector3 point;
-			if (X != 200 && dist > 5) {
+			if (X != 20 && dist > 5) {
 				X++;
 			} else if (dist > 5) {
 				if (RandomPoint (transform.position, range, out point)) {
@@ -99,6 +102,7 @@ public class AI : MonoBehaviour
 				} else if (dist <= 5) {
 					WhosYourDaddy = true;
 					if (dist > 3) {
+                        
 							agent.SetDestination (destination.position);
 					} else {
 						if (Distance <= 3) {
@@ -109,7 +113,10 @@ public class AI : MonoBehaviour
 					}
 				}
 			} 
-		} else {
+		}
+
+        
+        else {
 			Escape = false;
 		}
 	}

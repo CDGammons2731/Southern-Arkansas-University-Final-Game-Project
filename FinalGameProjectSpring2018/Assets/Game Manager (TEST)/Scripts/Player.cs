@@ -164,18 +164,27 @@ namespace PLAYER
             current = currentPick;
             switch (current){
                 case 1:
-                    if (Inventory[1] != null) Inventory[1].transform.position = Pos2.transform.position;
-                    if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
+                    //if (Inventory[1] != null) Inventory[1].transform.position = Pos2.transform.position;
+                    //if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
+                    /*Inventory[0].SetActive(true);
+                    if (Inventory[1] != null) Inventory[1].SetActive(false);
+                    if (Inventory[2] != null) Inventory[2].SetActive(false);*/
+                    
                     break;
                 case 2:
-                    if (Inventory[0] != null) Inventory[0].transform.position = Pos1.transform.position;
-                    if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
+                   /* Inventory[0].SetActive(true);
+                    if (Inventory[0] != null) Inventory[0].SetActive(false);
+                    if (Inventory[2] != null) Inventory[2].SetActive(false);
+                    */
                     break;
                 case 3:
-                    if (Inventory[0] != null) Inventory[0].transform.position = Pos1.transform.position;
-                    if (Inventory[1] != null) Inventory[1].transform.position = Pos2.transform.position;
+                   /* Inventory[0].SetActive(true);
+                    if (Inventory[0] != null) Inventory[0].SetActive(false);
+                    if (Inventory[1] != null) Inventory[1].SetActive(false);
+                    */
                     break;
                 default:
+
                     break;
             }
         }
