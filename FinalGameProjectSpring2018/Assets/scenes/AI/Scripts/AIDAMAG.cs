@@ -36,7 +36,39 @@ public class AIDAMAG : AISpawner {
 
 	}
 
-	/*void GetDamage(string weaponName){
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "bullet" || collision.gameObject.tag == "pellet")
+        {
+
+            if (Health > 0)
+            {
+                Health -= Samage;
+                Debug.Log("Health: " + Health);
+            }
+            else
+            {
+                DestroyObject(gameObject);
+            }
+        }
+        else if (collision.gameObject.tag == "pellet")
+        {
+            //AI.Escape = true;
+            if (Health >= 0)
+            {
+                Health -= Samage;
+            }
+            else
+            {
+                DestroyObject(gameObject);
+            }
+        }
+
+       // AI.Escape = true;
+
+    }
+
+    /*void GetDamage(string weaponName){
 		switch (weaponName) {
 		case "shotgun":
 			Samage = plyr.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
@@ -62,9 +94,13 @@ public class AIDAMAG : AISpawner {
 	}
     */
 
-	void Update(){
+    void Update(){
+        dist = AIDistanceCalculator.ClosestEnemyDistance;
+        Distance = Vector3.Distance(gameObject.transform.position, play.position);
+        shootHIM = AI.Escape;
+        MuhFaceHurt = AI.WhosYourDaddy;
 
-		curGun = Player.AIDAMAGCURRENTGUNINFO;
+        curGun = Player.AIDAMAGCURRENTGUNINFO;
 		Debug.Log (curGun);
 
 		if(curGun == "railgun"){
@@ -83,14 +119,6 @@ public class AIDAMAG : AISpawner {
 			Samage = 6;
 		}
         if(Health<=0) DestroyObject(gameObject);
-
-        dist = AIDistanceCalculator.ClosestEnemyDistance;
-		Distance = Vector3.Distance (gameObject.transform.position, play.position);
-		shootHIM = AI.Escape;
-		MuhFaceHurt = AI.WhosYourDaddy;
-	
-
-        
 
        // RaycastHit hit;
         //Ray BoboPeekABOO = new Ray (BoboHead.position, transform.forward);
@@ -122,24 +150,6 @@ public class AIDAMAG : AISpawner {
 	}
 
 
-	void OnCollisionEnter(Collision collision){
-		if (collision.gameObject.tag == "bullet" || collision.gameObject.tag == "pellet") {
-			AI.Escape = true;
-				if (Health > 0) {
-				Health -= Samage;
-				Debug.Log ("Health: " + Health);
-				} else {
-					DestroyObject (gameObject);
-				}
-		} else if (collision.gameObject.tag == "pellet") {
-			AI.Escape = true;
-				if (Health >= 0) {
-					Health -= Samage;
-				} else {
-					DestroyObject (gameObject);
-				}
-		}
-
-	}
+	
 
 }

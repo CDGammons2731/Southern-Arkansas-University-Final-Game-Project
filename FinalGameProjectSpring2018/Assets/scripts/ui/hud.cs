@@ -39,8 +39,14 @@ public class hud : MonoBehaviour {
     //Evidence Text
     string[] txt = new string[16];
     public Text evidDes;
+    public GameObject evidPopUp;
+    public bool evid;
 
+    public Text keyTxt;
+    public bool key;
+    public int keyAmt=0;
 
+    public int currentGun;
 
 
     private void Start()
@@ -91,7 +97,7 @@ public class hud : MonoBehaviour {
         Quaternion tar = Quaternion.Euler(0, 0, rotZ);
         clockNeedle.transform.rotation = Quaternion.Slerp(clockNeedle.transform.rotation, tar, smooth * Time.deltaTime);
 
-
+        //key = playerScript.hasKey;
         if(count <= 0){
             count = 300f;
         }
@@ -102,8 +108,9 @@ public class hud : MonoBehaviour {
             loseHealth();
 
 
-            //evidence display
-            evidText.text = playerScript.Evidence.ToString();
+
+
+
 
 
             //Pop up GameOver
@@ -111,15 +118,40 @@ public class hud : MonoBehaviour {
             {
                 gameOver.SetActive(true);
             }
+
+            //key count increase
+            key = playerScript.hasKey;
+            if (key == true)
+            {
+                keyAmt += 1;
+                playerScript.hasKey=false;
+
+            }
+
+            //evidence count display
+            evidText.text = playerScript.Evidence.ToString();
+
+            //evidence PopUp
+            evid = playerScript.hasEvidence;
+            if(evid==true){
+                evidPopUp.SetActive(true);
+                evidDes.text = txt[playerScript.Evidence];
+                Time.timeScale = 0;
+
+            }
+
+
+
         }
+        //key count display
+        keyTxt.text = keyAmt.ToString();
 
 
-        /*for (int i = playerScript.Evidence; i < 15; i++){
-            evidDes.text = txt[i];  
-        }*/
 
 
-        //Updates Ammo player has
+
+
+        //Updates Ammo and Gun Icon/Name player has
         if (gm.yourGun != null)
         {
             ShowAmmo();
@@ -148,6 +180,8 @@ public class hud : MonoBehaviour {
             }
 
         }
+
+
         
 
 
@@ -170,5 +204,10 @@ public class hud : MonoBehaviour {
     {
        ammoDisplay.text = gm.yourGun.currentAmmo+ "/" + gm.yourGun.AmmoUpdate;
 
+    }
+    public void Resume(){
+        playerScript.hasEvidence = false;
+        evidPopUp.SetActive(false);
+        Time.timeScale = 1;
     }
 }

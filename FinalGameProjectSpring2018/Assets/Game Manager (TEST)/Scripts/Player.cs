@@ -52,11 +52,12 @@ namespace PLAYER
         public List<GameObject> Inventory = new List<GameObject>();
         public bool hasKey = false;
         public bool isKey = false;
-        int currentPick = 0;
+        public int currentPick = 0;
         public bool dying = false;
 
         public int Evidence=0;
         public bool isEvidence = false;
+        public bool hasEvidence = false;
 
         //Have to do this for stupid reasons
         GameObject YourEvidence;
@@ -164,18 +165,27 @@ namespace PLAYER
             current = currentPick;
             switch (current){
                 case 1:
-                    if (Inventory[1] != null) Inventory[1].transform.position = Pos2.transform.position;
-                    if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
+                    //if (Inventory[1] != null) Inventory[1].transform.position = Pos2.transform.position;
+                    //if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
+                    /*Inventory[0].SetActive(true);
+                    if (Inventory[1] != null) Inventory[1].SetActive(false);
+                    if (Inventory[2] != null) Inventory[2].SetActive(false);*/
+                    
                     break;
                 case 2:
-                    if (Inventory[0] != null) Inventory[0].transform.position = Pos1.transform.position;
-                    if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
+                   /* Inventory[0].SetActive(true);
+                    if (Inventory[0] != null) Inventory[0].SetActive(false);
+                    if (Inventory[2] != null) Inventory[2].SetActive(false);
+                    */
                     break;
                 case 3:
-                    if (Inventory[0] != null) Inventory[0].transform.position = Pos1.transform.position;
-                    if (Inventory[1] != null) Inventory[1].transform.position = Pos2.transform.position;
+                   /* Inventory[0].SetActive(true);
+                    if (Inventory[0] != null) Inventory[0].SetActive(false);
+                    if (Inventory[1] != null) Inventory[1].SetActive(false);
+                    */
                     break;
                 default:
+
                     break;
             }
         }
@@ -289,8 +299,10 @@ namespace PLAYER
                 Evidence += 1;
                 //UI.GetComponent<hud>().evidText.text = Evidence.ToString();
                 Destroy(YourEvidence);
+                hasEvidence = true;
                 isEvidence = false;
             }
+
 
             if (Input.GetKeyDown(KeyCode.B)&& hasWeapon==true)
             {

@@ -26,12 +26,12 @@ public class AI : MonoBehaviour
 		//GameObject. Just a note for clarification. My method did work for finding the
 		//player but it is more efficent to look for the tag in the Hierarchy.
 
-        destination = GameObject.FindGameObjectWithTag("player").transform;
-        //destination = GameObject.Find("player").transform;
-        DatDerBadGoober = GameObject.FindGameObjectWithTag("player").transform;
-        //DatDerBadGoober = GameObject.Find ("player").transform;
+		destination = GameObject.FindGameObjectWithTag("player").transform;
+		//destination = GameObject.Find("player").transform;
+		DatDerBadGoober = GameObject.FindGameObjectWithTag("player").transform;
+		//DatDerBadGoober = GameObject.Find ("player").transform;
 		agent = GetComponent<NavMeshAgent> ();
-    }
+	}
 
 
 	bool RandomPoint(Vector3 Center, float range, out Vector3 result){
@@ -50,18 +50,18 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
-		
+
 		Distance = Vector3.Distance (gameObject.transform.position, destination.position);
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		//Debug.Log ("Distance to AI: " + dist);
 
 		if ((Escape == true || WhosYourDaddy == true) && Distance <= LookRange) {
-				gameObject.transform.LookAt (destination);
-				if (dist > LookRange) {
-					Escape = false;
-					WhosYourDaddy = false;
-				}
+			gameObject.transform.LookAt (destination);
+			if (dist > LookRange) {
+				Escape = false;
+				WhosYourDaddy = false;
 			}
+		}
 
 		RaycastHit hit;
 		Ray BoboPeekABOO = new Ray (gameObject.transform.position, transform.forward * LookRange);
@@ -80,8 +80,8 @@ public class AI : MonoBehaviour
 				}
 				X = 0;
 			} else if (dist <= 5) {
-					Escape = true;
-					WhosYourDaddy = true;
+				Escape = true;
+				WhosYourDaddy = true;
 			}
 		}
 
@@ -99,7 +99,7 @@ public class AI : MonoBehaviour
 				} else if (dist <= 5) {
 					WhosYourDaddy = true;
 					if (dist > 3) {
-							agent.SetDestination (destination.position);
+						agent.SetDestination (destination.position);
 					} else {
 						if (Distance <= 3) {
 							agent.SetDestination (transform.position);
