@@ -39,8 +39,13 @@ public class hud : MonoBehaviour {
     //Evidence Text
     string[] txt = new string[16];
     public Text evidDes;
+    public GameObject evidPopUp;
 
+    public Text keyTxt;
+    public bool key;
+    public int keyAmt=0;
 
+    public int currentGun;
 
 
     private void Start()
@@ -91,7 +96,7 @@ public class hud : MonoBehaviour {
         Quaternion tar = Quaternion.Euler(0, 0, rotZ);
         clockNeedle.transform.rotation = Quaternion.Slerp(clockNeedle.transform.rotation, tar, smooth * Time.deltaTime);
 
-
+        //key = playerScript.hasKey;
         if(count <= 0){
             count = 300f;
         }
@@ -106,20 +111,32 @@ public class hud : MonoBehaviour {
             evidText.text = playerScript.Evidence.ToString();
 
 
+
+
             //Pop up GameOver
             if (playerScript.player_health <= 0)
             {
                 gameOver.SetActive(true);
             }
+
+
+            key = playerScript.hasKey;
+            if (key == true)
+            {
+                keyAmt += 1;
+                playerScript.hasKey=false;
+
+            }
         }
 
-
-        /*for (int i = playerScript.Evidence; i < 15; i++){
-            evidDes.text = txt[i];  
-        }*/
+        keyTxt.text = keyAmt.ToString();
 
 
-        //Updates Ammo player has
+
+
+
+
+        //Updates Ammo and Gun Icon/Name player has
         if (gm.yourGun != null)
         {
             ShowAmmo();
@@ -148,6 +165,8 @@ public class hud : MonoBehaviour {
             }
 
         }
+
+
         
 
 
