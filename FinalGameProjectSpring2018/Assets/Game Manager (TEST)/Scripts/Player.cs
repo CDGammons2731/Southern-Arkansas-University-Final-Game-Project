@@ -52,11 +52,12 @@ namespace PLAYER
         public List<GameObject> Inventory = new List<GameObject>();
         public bool hasKey = false;
         public bool isKey = false;
-        int currentPick = 0;
+        public int currentPick = 0;
         public bool dying = false;
 
         public int Evidence=0;
         public bool isEvidence = false;
+        public bool hasEvidence = false;
 
         //Have to do this for stupid reasons
         GameObject YourEvidence;
@@ -298,8 +299,10 @@ namespace PLAYER
                 Evidence += 1;
                 //UI.GetComponent<hud>().evidText.text = Evidence.ToString();
                 Destroy(YourEvidence);
+                hasEvidence = true;
                 isEvidence = false;
             }
+
 
             if (Input.GetKeyDown(KeyCode.B)&& hasWeapon==true)
             {
