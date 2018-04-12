@@ -784,6 +784,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 249319001}
   m_Mesh: {fileID: 4300006, guid: 2195cd242cb49d743ae86e451c6128e5, type: 3}
+--- !u!1 &268223963 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1333530176410016, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1177636788}
 --- !u!1 &277460687
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,16 +5010,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114873007001488522, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1919831553}
     - target: {fileID: 114023044595027570, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1699731086}
-    - target: {fileID: 224177530532321768, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -30.699951
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2d5cef86f21b444ab5f5dc84ad8096a, type: 2}
   m_IsPrefabParent: 0
@@ -6838,6 +6843,16 @@ Prefab:
       propertyPath: evidDes
       value: 
       objectReference: {fileID: 2034621569}
+    - target: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
+        type: 2}
+      propertyPath: evidPopUp
+      value: 
+      objectReference: {fileID: 268223963}
+    - target: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
+        type: 2}
+      propertyPath: keyTxt
+      value: 
+      objectReference: {fileID: 1916895386}
     - target: {fileID: 114029387329043874, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
         type: 2}
       propertyPath: resumeBt
@@ -6868,11 +6883,6 @@ Prefab:
       propertyPath: pm
       value: 
       objectReference: {fileID: 582102080}
-    - target: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
-        type: 2}
-      propertyPath: keyTxt
-      value: 
-      objectReference: {fileID: 1916895386}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c2486427e10b1a4ea374bf2d217bd1b, type: 2}
   m_IsPrefabParent: 0
@@ -7707,6 +7717,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1177636788}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1919831553 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1699731084}
+  m_Script: {fileID: 11500000, guid: 9ff0b5fa9523e48f8bf192fe88de1288, type: 3}
 --- !u!1001 &1932562565
 Prefab:
   m_ObjectHideFlags: 0

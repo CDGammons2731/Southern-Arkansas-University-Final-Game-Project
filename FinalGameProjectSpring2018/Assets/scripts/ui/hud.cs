@@ -40,6 +40,7 @@ public class hud : MonoBehaviour {
     string[] txt = new string[16];
     public Text evidDes;
     public GameObject evidPopUp;
+    public bool evid;
 
     public Text keyTxt;
     public bool key;
@@ -107,8 +108,7 @@ public class hud : MonoBehaviour {
             loseHealth();
 
 
-            //evidence display
-            evidText.text = playerScript.Evidence.ToString();
+
 
 
 
@@ -119,7 +119,7 @@ public class hud : MonoBehaviour {
                 gameOver.SetActive(true);
             }
 
-
+            //key count increase
             key = playerScript.hasKey;
             if (key == true)
             {
@@ -127,8 +127,23 @@ public class hud : MonoBehaviour {
                 playerScript.hasKey=false;
 
             }
-        }
 
+            //evidence count display
+            evidText.text = playerScript.Evidence.ToString();
+
+            //evidence PopUp
+            evid = playerScript.hasEvidence;
+            if(evid==true){
+                evidPopUp.SetActive(true);
+                evidDes.text = txt[playerScript.Evidence];
+                Time.timeScale = 0;
+
+            }
+
+
+
+        }
+        //key count display
         keyTxt.text = keyAmt.ToString();
 
 
@@ -189,5 +204,10 @@ public class hud : MonoBehaviour {
     {
        ammoDisplay.text = gm.yourGun.currentAmmo+ "/" + gm.yourGun.AmmoUpdate;
 
+    }
+    public void Resume(){
+        playerScript.hasEvidence = false;
+        evidPopUp.SetActive(false);
+        Time.timeScale = 1;
     }
 }
