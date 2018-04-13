@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using GAMEMANAGER;
 using GUN;
 using PLAYER;
+using UnityStandardAssets.Characters.FirstPerson;
 
 
 public class hud : MonoBehaviour {
@@ -56,6 +57,9 @@ public class hud : MonoBehaviour {
     public bool key;
     public int keyAmt=0;
 
+    FirstPersonController curLock;
+    bool canLock=false;
+
 
 
 
@@ -85,16 +89,21 @@ public class hud : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //Aaron: you're telling it to set the player script if a player script is already there. THat's why the Hud stopped
+        
 
-        /*if (playerScript != null)
+        if (curLock== null)
         {
-            playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
-        }*/
+            GameObject playerObject = GameObject.FindGameObjectWithTag("player");
+            if (playerObject != null)
+            {
+                curLock = playerObject.GetComponent<FirstPersonController>();
+            }
+        }
 
         //Try this instead
         if (gm != null) {
             playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+
         }
 
 
@@ -135,6 +144,9 @@ public class hud : MonoBehaviour {
             {
                 gunIcon.sprite = icons[3];
             }
+            if(gm.yourGun.CurrentWeapon == "raygun"){
+                gunIcon.sprite = icons[4];
+            }
 
         }
 
@@ -152,6 +164,7 @@ public class hud : MonoBehaviour {
             if (playerScript.player_health <= 0)
             {
                 gameOver.SetActive(true);
+                curLock.m_MouseLook.SetCursorLock(canLock);
             }
 
             //key count increase
@@ -170,6 +183,7 @@ public class hud : MonoBehaviour {
             evid = playerScript.hasEvidence;
             if(evid==true){
                 evidPopUp.SetActive(true);
+                curLock.m_MouseLook.SetCursorLock(canLock);
                 evidDes.text = txt[playerScript.Evidence];
                 Time.timeScale = 0;
             }
