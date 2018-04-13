@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using GAMEMANAGER;
 using GUN;
 using PLAYER;
@@ -232,4 +233,9 @@ public class hud : MonoBehaviour {
         evidPopUp.SetActive(false);
         Time.timeScale = 1;
     }
+
+    public void Quit(){
+        SceneManager.LoadScene("startMenu", LoadSceneMode.Single);
+    }
+
 }
