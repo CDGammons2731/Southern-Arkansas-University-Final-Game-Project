@@ -345,7 +345,7 @@ public class LevelGenerator : MonoBehaviour {
 			GameObject init = Instantiate(room.original.prefab);
 			float x = room.original.dimensions.x/2;
 			float y = room.original.dimensions.y/2;
-			init.transform.position = new Vector3(x+room.sourceNode.x-room.offset.x, 0, y+room.sourceNode.y-room.offset.y)*gridScale;
+			init.transform.position = new Vector3(x+room.sourceNode.x-room.offset.x, 0, y+room.sourceNode.y-room.offset.y)*gridScale + new Vector3(0,room.original.prefab.transform.position.y,0);
 			init.name = "Room " + roomsToCreate.IndexOf (room) + " " + room.original.name;
 			rooms.Add(init);
 			RoomInfo ri = init.AddComponent<RoomInfo>();
