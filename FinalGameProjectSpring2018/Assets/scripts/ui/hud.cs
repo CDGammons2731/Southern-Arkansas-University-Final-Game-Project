@@ -17,12 +17,12 @@ public class hud : MonoBehaviour {
     Player playerScript;
     public Text pickUpText;
     public Text yourWeapon;
+    public Text yourWeapon2;
+    public Text yourWeapon3;
     GameManager gm;
     public Text ammoDisplay;
 
-    //Items Player Collect
-    public Text keyText;
-    public Text evidText;
+
 
     //Player health bar
     float maxHealth = 100.0f;
@@ -32,21 +32,30 @@ public class hud : MonoBehaviour {
     //GameOver
     public GameObject gameOver;
 
-    //Gun Icon
+    //Gun Display
     public Image gunIcon;
     public Sprite[] icons;
+    public int currentWeapon;
+    public GameObject file1;
+    public GameObject file2;
+    public GameObject file3;
 
-    //Evidence Text
+
+    //Items Player Collect
+    //Evidence
+    public Text evidText;
     string[] txt = new string[16];
     public Text evidDes;
     public GameObject evidPopUp;
     public bool evid;
 
+    //Key
+    public Text keyText;
     public Text keyTxt;
     public bool key;
     public int keyAmt=0;
 
-    public int currentGun;
+
 
 
     private void Start()
@@ -102,15 +111,40 @@ public class hud : MonoBehaviour {
             count = 300f;
         }
 
+        //Updates Ammo and Gun Icon/Name player has
+        if (gm.yourGun != null)
+        {
+            ShowAmmo();
+
+
+            //figures which icon to use
+            if (gm.yourGun.CurrentWeapon == "revolver")
+            {
+                gunIcon.sprite = icons[0];
+            }
+            if (gm.yourGun.CurrentWeapon == "railgun")
+            {
+                gunIcon.sprite = icons[1];
+            }
+            if (gm.yourGun.CurrentWeapon == "tommygun")
+            {
+                gunIcon.sprite = icons[2];
+            }
+            if (gm.yourGun.CurrentWeapon == "shotgun")
+            {
+                gunIcon.sprite = icons[3];
+            }
+
+        }
+
+
+        //key count display
+        keyTxt.text = keyAmt.ToString();
+
         if (playerScript != null)
         {
             //updates health meter
             loseHealth();
-
-
-
-
-
 
 
             //Pop up GameOver
@@ -137,49 +171,43 @@ public class hud : MonoBehaviour {
                 evidPopUp.SetActive(true);
                 evidDes.text = txt[playerScript.Evidence];
                 Time.timeScale = 0;
-
             }
 
 
+            currentWeapon = playerScript.currentPick;
+            switch(currentWeapon){
+                case 1:
+                    file1.SetActive(true);
+                    file2.SetActive(false);
+                    file3.SetActive(false);
+                    break;
+                case 2:
+                    file1.SetActive(false);
+                    file2.SetActive(true);
+                    file3.SetActive(false);
+                    break;
+                case 3:
+                    file1.SetActive(false);
+                    file2.SetActive(false);
+                    file3.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
+
+            yourWeapon.text = playerScript.Inventory[0].tag;
+            yourWeapon2.text = playerScript.Inventory[1].tag;
+            yourWeapon3.text = playerScript.Inventory[2].tag;
 
         }
-        //key count display
-        keyTxt.text = keyAmt.ToString();
 
 
 
 
 
 
-        //Updates Ammo and Gun Icon/Name player has
-        if (gm.yourGun != null)
-        {
-            ShowAmmo();
-
-            //tells which gun you have
-            yourWeapon.text = gm.yourGun.CurrentWeapon;
 
 
-
-            //figures which icon to use
-            if (gm.yourGun.CurrentWeapon == "revolver")
-            {
-                gunIcon.sprite = icons[0];
-            }
-            if (gm.yourGun.CurrentWeapon == "railgun")
-            {
-                gunIcon.sprite = icons[1];
-            }
-            if (gm.yourGun.CurrentWeapon == "tommygun")
-            {
-                gunIcon.sprite = icons[2];
-            }
-            if (gm.yourGun.CurrentWeapon == "shotgun")
-            {
-                gunIcon.sprite = icons[3];
-            }
-
-        }
 
 
         

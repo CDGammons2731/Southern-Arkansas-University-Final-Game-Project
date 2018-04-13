@@ -22,6 +22,8 @@ public class startMenu : MonoBehaviour {
     public GameObject credits;
     public GameObject exit;
     public GameObject back;
+    public GameObject creds;
+
 
     
 
@@ -53,7 +55,7 @@ public class startMenu : MonoBehaviour {
     }
     public void CreditsButton()
     {
-        //credits.SetActive(true);
+        creds.SetActive(true);
 
     }
     public void ExitButton(){
@@ -119,6 +121,10 @@ public class startMenu : MonoBehaviour {
         start.SetActive(true);
         credits.SetActive(true);
         exit.SetActive(true);
+    }
+
+    public void Quit(){
+        creds.SetActive(false);
     }
 }
 
