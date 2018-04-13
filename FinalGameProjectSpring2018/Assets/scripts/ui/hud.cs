@@ -91,19 +91,20 @@ public class hud : MonoBehaviour {
     void Update () {
         
 
-        if (curLock== null)
+
+
+        //Try this instead
+        if (gm != null) {
+            playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+
+        }
+        if (curLock == null)
         {
             GameObject playerObject = GameObject.FindGameObjectWithTag("player");
             if (playerObject != null)
             {
                 curLock = playerObject.GetComponent<FirstPersonController>();
             }
-        }
-
-        //Try this instead
-        if (gm != null) {
-            playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
-
         }
 
 
@@ -160,6 +161,19 @@ public class hud : MonoBehaviour {
             loseHealth();
 
 
+            //evidence count display
+            evidText.text = playerScript.Evidence.ToString();
+
+            //evidence PopUp
+            evid = playerScript.hasEvidence;
+            if (evid == true)
+            {
+                evidPopUp.SetActive(true);
+                curLock.m_MouseLook.SetCursorLock(canLock);
+                evidDes.text = txt[playerScript.Evidence];
+                Time.timeScale = 0;
+            }
+
             //Pop up GameOver
             if (playerScript.player_health <= 0)
             {
@@ -174,18 +188,6 @@ public class hud : MonoBehaviour {
                 keyAmt += 1;
                 playerScript.hasKey=false;
 
-            }
-
-            //evidence count display
-            evidText.text = playerScript.Evidence.ToString();
-
-            //evidence PopUp
-            evid = playerScript.hasEvidence;
-            if(evid==true){
-                evidPopUp.SetActive(true);
-                curLock.m_MouseLook.SetCursorLock(canLock);
-                evidDes.text = txt[playerScript.Evidence];
-                Time.timeScale = 0;
             }
 
 
