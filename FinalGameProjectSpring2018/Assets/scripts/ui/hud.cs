@@ -126,7 +126,7 @@ public class hud : MonoBehaviour {
             {
                 gunIcon.sprite = icons[1];
             }
-            if (gm.yourGun.CurrentWeapon == "tommygun")
+            if (gm.yourGun.CurrentWeapon == "rifle")
             {
                 gunIcon.sprite = icons[2];
             }
@@ -199,20 +199,14 @@ public class hud : MonoBehaviour {
             yourWeapon2.text = playerScript.Inventory[1].tag;
             yourWeapon3.text = playerScript.Inventory[2].tag;
 
+            if(playerScript.Inventory[0]==null){
+                yourWeapon.text = " ";
+                yourWeapon2.text = " ";
+                yourWeapon3.text = " ";
+            }
+           
+
         }
-
-
-
-
-
-
-
-
-
-
-        
-
-
     }
 
     //Health
@@ -226,13 +220,13 @@ public class hud : MonoBehaviour {
         }
     }
 
-
     //Ammo
     void ShowAmmo()
     {
        ammoDisplay.text = gm.yourGun.currentAmmo+ "/" + gm.yourGun.AmmoUpdate;
-
     }
+
+    //Resume Button
     public void Resume(){
         playerScript.hasEvidence = false;
         evidPopUp.SetActive(false);
