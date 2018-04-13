@@ -134,7 +134,6 @@ public class LevelGenerator : MonoBehaviour {
 					}
 				}
 			} 
-			loaded = true;
 			GameObject[] Hpickups = GameObject.FindGameObjectsWithTag ("Health");
 			GameObject[] Apickups = GameObject.FindGameObjectsWithTag ("Ammo");
 			List<GameObject> picks = new List<GameObject> ();
@@ -144,14 +143,23 @@ public class LevelGenerator : MonoBehaviour {
 			foreach (GameObject g in Apickups) {
 				picks.Add (g);
 			}
-			GameObject lockboxPos = picks [Random.Range (0, picks.Count)];
-			GameObject lockbox = Instantiate (lockBoxObj);
-			lockbox.transform.position = lockboxPos.transform.position;
-			Destroy (lockboxPos);
-			GameObject lockpickPos = picks [Random.Range (0, picks.Count)];
-			GameObject lockpick = Instantiate (lockPickObj);
-			lockpick.transform.position = lockpickPos.transform.position;
-			Destroy (lockpickPos);
+			for (int i = 0; i < 3; i++) {
+				if (picks.Count < 1) break;
+				GameObject lockboxPos = picks [Random.Range (0, picks.Count)];
+				GameObject lockbox = Instantiate (lockBoxObj);
+				lockbox.transform.position = lockboxPos.transform.position;
+				picks.Remove (lockboxPos);
+				Destroy (lockboxPos);
+			}
+			for (int i = 0; i < 3; i++) {
+				if (picks.Count < 1) break;
+				GameObject lockpickPos = picks [Random.Range (0, picks.Count)];
+				GameObject lockpick = Instantiate (lockPickObj);
+				lockpick.transform.position = lockpickPos.transform.position;
+				picks.Remove (lockpickPos);
+				Destroy (lockpickPos);
+			}
+			loaded = true;
 		}
 		StopCoroutine (GenerateLevel ());
 	}
