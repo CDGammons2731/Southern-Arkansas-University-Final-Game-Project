@@ -23,6 +23,7 @@ public class startMenu : MonoBehaviour {
     public GameObject exit;
     public GameObject back;
     public GameObject creds;
+    public GameObject controlsBt;
 
 
     
@@ -45,6 +46,7 @@ public class startMenu : MonoBehaviour {
         start.SetActive(false);
         credits.SetActive(false);
         exit.SetActive(false);
+        controlsBt.SetActive(false);
 
 
 
