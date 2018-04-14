@@ -55,14 +55,20 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: b944fcc2d95db3c439190391401409d3, type: 3}
         m_Scale: {x: 0.5, y: 0.5}
+=======
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+>>>>>>> 17b36e5fa457151b6851f251278d11a2c9705267
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 2800000, guid: 82ecb6613c270964590935dd52638d04, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _t1:
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: 36212de84fc2a3540be6035b792bfbb1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -80,6 +86,25 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _t5:
         m_Texture: {fileID: 2800000, guid: 48a9ad0faced236448b4838a2cfe573d, type: 3}
+=======
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _t2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _t3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _t4:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _t5:
+        m_Texture: {fileID: 0}
+>>>>>>> 17b36e5fa457151b6851f251278d11a2c9705267
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -93,7 +118,11 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+<<<<<<< HEAD
     - _Outline: 0.0059
+=======
+    - _Outline: 0.005
+>>>>>>> 17b36e5fa457151b6851f251278d11a2c9705267
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -111,7 +140,11 @@ Material:
     - _EmissionColor: {r: 0.52156866, g: 0.6431373, b: 0.8117648, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+<<<<<<< HEAD
     - _tint1: {r: 0.7647059, g: 0, b: 0, a: 0}
+=======
+    - _tint1: {r: 1, g: 1, b: 1, a: 0}
+>>>>>>> 17b36e5fa457151b6851f251278d11a2c9705267
     - _tint2: {r: 1, g: 1, b: 1, a: 0}
     - _tint3: {r: 1, g: 1, b: 1, a: 0}
     - _tint5: {r: 1, g: 1, b: 1, a: 0}
