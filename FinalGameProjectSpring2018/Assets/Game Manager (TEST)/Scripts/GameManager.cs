@@ -48,7 +48,7 @@ namespace GAMEMANAGER
         public AudioClip CreditMusic;
         public AudioSource audiosource;
 
-
+        //Not going to be used anymore 
         [Header("Player Info")]
         public int playerHealth = 100;
         public int playerArmor = 0;
@@ -75,6 +75,9 @@ namespace GAMEMANAGER
 
         public GameObject UI;
         public Player player;
+
+        //Level Counter
+        public int Level = 0;
 
 
         //Other saved info: level, lives, upgrade bool + upgrade type, enemy count / enemies spawned, etc

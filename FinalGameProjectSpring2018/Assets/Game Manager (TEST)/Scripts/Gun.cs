@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GUN{
-public class Gun : MonoBehaviour {
-	//Making all publics so I can mess with them in the editor
-    //Get your weapon, bullet, and where it spawns
-    public GameObject weapon;
-    public GameObject bullet;
-    public Transform bulletSpawn;
-    public ParticleSystem PS;
+    public class Gun : MonoBehaviour {
+        //Making all publics so I can mess with them in the editor
+        //Get your weapon, bullet, and where it spawns
+        public GameObject weapon;
+        public GameObject bullet;
+        public Transform bulletSpawn;
+        public ParticleSystem PS;
+        public Animator Reload_Animator;
+        public Animation Anim;
     //public Animator gunAnim;
    
     //Weapon Types
@@ -116,6 +118,8 @@ Reload Speed: 2 seconds
            //gunAnim = GetComponent<Animator>();
            canShoot = true; //Just to start off able at all times
            Player_Cam=GetComponentInParent<Camera>(); //@Testing---
+           Anim = GetComponent<Animation>();
+            Reload_Animator = GetComponent<Animator>();
             
 
         }
@@ -135,6 +139,7 @@ Reload Speed: 2 seconds
                     ammoMax = 48;
                     damage = 5; //or 1.5
                     reloadRate = 4;
+                    
 
                 //Create shot spread
                     if (Input.GetMouseButton(0)&&Time.time> nextFire && ammo!=0 && canShoot==true){
@@ -147,6 +152,7 @@ Reload Speed: 2 seconds
                         if (currentAmmo <= 0)
                         {
                             reload(type);
+                            Reload_Animator.Play(Anim.name);
                         }
                     }
 
@@ -209,6 +215,7 @@ Reload Speed: 2 seconds
 					if (currentAmmo<=0)
                         {
                             reload(type);
+                            Reload_Animator.Play(0);
                         }
                     }
 
@@ -238,6 +245,7 @@ Reload Speed: 2 seconds
 					if (currentAmmo<=0)
                         {
                             reload(type);
+                           
                         }
                     }
 
@@ -545,8 +553,10 @@ Reload Speed: 2 seconds
 
             if (Input.GetKeyDown(KeyCode.R) && equipped == true) {
                 reload (weapon.tag);
-               
-			}
+                Reload_Animator.Play(0);
+
+
+            }
 
             //More RayCast Testing
            
