@@ -113,5 +113,9 @@ public class pauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }*/
 
+    public void SoundSlider(){
+        AudioListener.volume = volume.value;
+    }
+
 }
 

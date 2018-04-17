@@ -15,13 +15,13 @@ public class LevelExit : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("player")) {
-			int placeholder = 0;
+			go.levelsCompleted++;
 			//increment level completion counter by 1
-			if (placeholder == 6) {
-				if (placeholder == 15) {
+			if (go.levelsCompleted == 6) {
+				if (go.evidencePickedUp == 15) {
 					// ending 15
 
-				} else if (placeholder <= 14 && placeholder >= 10) {
+				} else if (go.evidencePickedUp <= 14 && go.evidencePickedUp >= 10) {
 					// ending 10-14
 
 				} else {
