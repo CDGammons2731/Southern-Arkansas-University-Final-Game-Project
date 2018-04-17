@@ -60,6 +60,8 @@ public class hud : MonoBehaviour {
     FirstPersonController curLock;
     bool canLock=false;
 
+   
+
 
 
 
@@ -91,13 +93,11 @@ public class hud : MonoBehaviour {
     void Update () {
         
 
-
-
-        //Try this instead
+       
         if (gm != null) {
             playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
-
         }
+
         if (curLock == null)
         {
             GameObject playerObject = GameObject.FindGameObjectWithTag("player");
@@ -106,6 +106,8 @@ public class hud : MonoBehaviour {
                 curLock = playerObject.GetComponent<FirstPersonController>();
             }
         }
+
+
 
 
         //prints out the timer
