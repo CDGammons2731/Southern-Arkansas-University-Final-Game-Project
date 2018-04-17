@@ -4692,7 +4692,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118655212612754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.430137, y: 2.2494958e-17, z: -6.078497}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4911921607499972}
@@ -15564,9 +15564,11 @@ MonoBehaviour:
   Inventory: []
   hasKey: 0
   isKey: 0
+  currentPick: 0
   dying: 0
   Evidence: 0
   isEvidence: 0
+  hasEvidence: 0
 --- !u!114 &114453923632656336
 MonoBehaviour:
   m_ObjectHideFlags: 1

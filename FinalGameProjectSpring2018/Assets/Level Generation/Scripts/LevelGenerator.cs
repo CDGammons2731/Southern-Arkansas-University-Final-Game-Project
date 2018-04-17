@@ -134,7 +134,6 @@ public class LevelGenerator : MonoBehaviour {
 					}
 				}
 			} 
-			loaded = true;
 			GameObject[] Hpickups = GameObject.FindGameObjectsWithTag ("Health");
 			GameObject[] Apickups = GameObject.FindGameObjectsWithTag ("Ammo");
 			List<GameObject> picks = new List<GameObject> ();
@@ -144,14 +143,23 @@ public class LevelGenerator : MonoBehaviour {
 			foreach (GameObject g in Apickups) {
 				picks.Add (g);
 			}
-			GameObject lockboxPos = picks [Random.Range (0, picks.Count)];
-			GameObject lockbox = Instantiate (lockBoxObj);
-			lockbox.transform.position = lockboxPos.transform.position;
-			Destroy (lockboxPos);
-			GameObject lockpickPos = picks [Random.Range (0, picks.Count)];
-			GameObject lockpick = Instantiate (lockPickObj);
-			lockpick.transform.position = lockpickPos.transform.position;
-			Destroy (lockpickPos);
+			for (int i = 0; i < 3; i++) {
+				if (picks.Count < 1) break;
+				GameObject lockboxPos = picks [Random.Range (0, picks.Count)];
+				GameObject lockbox = Instantiate (lockBoxObj);
+				lockbox.transform.position = lockboxPos.transform.position;
+				picks.Remove (lockboxPos);
+				Destroy (lockboxPos);
+			}
+			for (int i = 0; i < 3; i++) {
+				if (picks.Count < 1) break;
+				GameObject lockpickPos = picks [Random.Range (0, picks.Count)];
+				GameObject lockpick = Instantiate (lockPickObj);
+				lockpick.transform.position = lockpickPos.transform.position;
+				picks.Remove (lockpickPos);
+				Destroy (lockpickPos);
+			}
+			loaded = true;
 		}
 		StopCoroutine (GenerateLevel ());
 	}
@@ -345,7 +353,7 @@ public class LevelGenerator : MonoBehaviour {
 			GameObject init = Instantiate(room.original.prefab);
 			float x = room.original.dimensions.x/2;
 			float y = room.original.dimensions.y/2;
-			init.transform.position = new Vector3(x+room.sourceNode.x-room.offset.x, 0, y+room.sourceNode.y-room.offset.y)*gridScale;
+			init.transform.position = new Vector3(x+room.sourceNode.x-room.offset.x, 0, y+room.sourceNode.y-room.offset.y)*gridScale + new Vector3(0,room.original.prefab.transform.position.y,0);
 			init.name = "Room " + roomsToCreate.IndexOf (room) + " " + room.original.name;
 			rooms.Add(init);
 			RoomInfo ri = init.AddComponent<RoomInfo>();

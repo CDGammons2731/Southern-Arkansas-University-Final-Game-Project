@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3996cba998bf7b64da58b96f3c4fa29f, type: 3}
+  m_Name: ElevatorStart
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1789494631861364, guid: 5bb1ab544b4d17749bc49c50b46e3fe8, type: 2}
+  dimensions: {x: 1, y: 1}
+  doorLocations:
+  - {x: 0, y: 1}
+  - {x: 1, y: 0}
+  - {x: 1, y: 2}
+  - {x: 2, y: 1}
+  LockedRoom: 0

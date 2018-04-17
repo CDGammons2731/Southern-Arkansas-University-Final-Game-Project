@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using GAMEMANAGER;
+using UnityStandardAssets.Characters.FirstPerson;
 
 
 public class pauseMenu : MonoBehaviour
@@ -13,26 +14,42 @@ public class pauseMenu : MonoBehaviour
     public GameObject quitBt;
     public GameObject soundSlider;
     public GameObject soundText;
+   
+    public Slider volume;
 
     bool back=false;
-  
-    
+
+    FirstPersonController cur;
+    bool locked = false;
 
     GameManager sa;
     public GameObject pm;
     private bool isEnabled = false;
 
 
+
     void Update()
     {
+        if(cur==null){
+            GameObject playerGO = GameObject.FindGameObjectWithTag("player");
+            if (playerGO != null)
+            {
+                cur = playerGO.GetComponent<FirstPersonController>();
+            }
+        }
+
         // Enable pause menu
         if (Input.GetKeyDown(KeyCode.Escape) && !isEnabled)
         {
+            
             pm.SetActive(true);
             Reset();
             back=false;
             isEnabled = true;
             Time.timeScale = 0;
+
+            cur.m_MouseLook.SetCursorLock(locked);
+           
            
         }
         // disable pause menu
@@ -41,7 +58,13 @@ public class pauseMenu : MonoBehaviour
             pm.SetActive(false);
             isEnabled = false;
             Time.timeScale = 1;
+           
         }
+
+        //AudioListener.volume = volume.value;
+
+
+
         
     }
     public void SaveButton()
@@ -53,9 +76,10 @@ public class pauseMenu : MonoBehaviour
         pm.SetActive(false);
         isEnabled = false;
         Time.timeScale = 1;
+
     }
     public void Option(){
-        
+
         if(!back){
             resumeBt.SetActive(false);
             quitBt.SetActive(false);
@@ -69,16 +93,12 @@ public class pauseMenu : MonoBehaviour
             soundSlider.SetActive(false);
             soundText.SetActive(false);
             back = false;
-        }        
+        } 
+        cur.m_MouseLook.SetCursorLock(locked);
     }
     public void Quit()
     {
-        
         SceneManager.LoadScene(0);
-
-
-        
-   
     }
     public void Reset(){
         resumeBt.SetActive(true);
@@ -87,7 +107,11 @@ public class pauseMenu : MonoBehaviour
         soundSlider.SetActive(false);
         soundText.SetActive(false);
     }
-    
+
+    /*public void Click(){
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }*/
 
 }
 

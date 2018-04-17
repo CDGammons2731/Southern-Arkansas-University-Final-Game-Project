@@ -22,6 +22,10 @@ public class startMenu : MonoBehaviour {
     public GameObject credits;
     public GameObject exit;
     public GameObject back;
+    public GameObject creds;
+    public GameObject controlsBt;
+    public GameObject controlImage;
+
 
     
 
@@ -43,6 +47,7 @@ public class startMenu : MonoBehaviour {
         start.SetActive(false);
         credits.SetActive(false);
         exit.SetActive(false);
+        controlsBt.SetActive(false);
 
 
 
@@ -53,9 +58,12 @@ public class startMenu : MonoBehaviour {
     }
     public void CreditsButton()
     {
-        //credits.SetActive(true);
-
+        creds.SetActive(true);
     }
+    public void Controls(){
+        controlImage.SetActive(true);
+    }
+
     public void ExitButton(){
         Application.Quit();
     }
@@ -119,6 +127,13 @@ public class startMenu : MonoBehaviour {
         start.SetActive(true);
         credits.SetActive(true);
         exit.SetActive(true);
+    }
+
+    public void QuitCred(){
+        creds.SetActive(false);
+    }
+    public void QuitCont(){
+        controlImage.SetActive(false);
     }
 }
 

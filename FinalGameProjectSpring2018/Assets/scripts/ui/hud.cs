@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using GAMEMANAGER;
 using GUN;
 using PLAYER;
+using UnityStandardAssets.Characters.FirstPerson;
 
 
 public class hud : MonoBehaviour {
@@ -17,12 +19,12 @@ public class hud : MonoBehaviour {
     Player playerScript;
     public Text pickUpText;
     public Text yourWeapon;
+    public Text yourWeapon2;
+    public Text yourWeapon3;
     GameManager gm;
     public Text ammoDisplay;
 
-    //Items Player Collect
-    public Text keyText;
-    public Text evidText;
+
 
     //Player health bar
     float maxHealth = 100.0f;
@@ -32,21 +34,33 @@ public class hud : MonoBehaviour {
     //GameOver
     public GameObject gameOver;
 
-    //Gun Icon
+    //Gun Display
     public Image gunIcon;
     public Sprite[] icons;
+    public int currentWeapon;
+    public GameObject file1;
+    public GameObject file2;
+    public GameObject file3;
 
-    //Evidence Text
+
+    //Items Player Collect
+    //Evidence
+    public Text evidText;
     string[] txt = new string[16];
     public Text evidDes;
     public GameObject evidPopUp;
     public bool evid;
 
+    //Key
+    public Text keyText;
     public Text keyTxt;
     public bool key;
     public int keyAmt=0;
 
-    public int currentGun;
+    FirstPersonController curLock;
+    bool canLock=false;
+
+
 
 
     private void Start()
@@ -75,16 +89,22 @@ public class hud : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //Aaron: you're telling it to set the player script if a player script is already there. THat's why the Hud stopped
+        
 
-        /*if (playerScript != null)
-        {
-            playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
-        }*/
+
 
         //Try this instead
         if (gm != null) {
             playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+
+        }
+        if (curLock == null)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("player");
+            if (playerObject != null)
+            {
+                curLock = playerObject.GetComponent<FirstPersonController>();
+            }
         }
 
 
@@ -102,63 +122,10 @@ public class hud : MonoBehaviour {
             count = 300f;
         }
 
-        if (playerScript != null)
-        {
-            //updates health meter
-            loseHealth();
-
-
-
-
-
-
-
-            //Pop up GameOver
-            if (playerScript.player_health <= 0)
-            {
-                gameOver.SetActive(true);
-            }
-
-            //key count increase
-            key = playerScript.hasKey;
-            if (key == true)
-            {
-                keyAmt += 1;
-                playerScript.hasKey=false;
-
-            }
-
-            //evidence count display
-            evidText.text = playerScript.Evidence.ToString();
-
-            //evidence PopUp
-            evid = playerScript.hasEvidence;
-            if(evid==true){
-                evidPopUp.SetActive(true);
-                evidDes.text = txt[playerScript.Evidence];
-                Time.timeScale = 0;
-
-            }
-
-
-
-        }
-        //key count display
-        keyTxt.text = keyAmt.ToString();
-
-
-
-
-
-
         //Updates Ammo and Gun Icon/Name player has
         if (gm.yourGun != null)
         {
             ShowAmmo();
-
-            //tells which gun you have
-            yourWeapon.text = gm.yourGun.CurrentWeapon;
-
 
 
             //figures which icon to use
@@ -170,7 +137,7 @@ public class hud : MonoBehaviour {
             {
                 gunIcon.sprite = icons[1];
             }
-            if (gm.yourGun.CurrentWeapon == "tommygun")
+            if (gm.yourGun.CurrentWeapon == "rifle")
             {
                 gunIcon.sprite = icons[2];
             }
@@ -178,13 +145,85 @@ public class hud : MonoBehaviour {
             {
                 gunIcon.sprite = icons[3];
             }
+            if(gm.yourGun.CurrentWeapon == "raygun"){
+                gunIcon.sprite = icons[4];
+            }
 
         }
 
 
-        
+        //key count display
+        keyTxt.text = keyAmt.ToString();
+
+        if (playerScript != null)
+        {
+            //updates health meter
+            loseHealth();
 
 
+            //evidence count display
+            evidText.text = playerScript.Evidence.ToString();
+
+            //evidence PopUp
+            evid = playerScript.hasEvidence;
+            if (evid == true)
+            {
+                evidPopUp.SetActive(true);
+                curLock.m_MouseLook.SetCursorLock(canLock);
+                evidDes.text = txt[playerScript.Evidence];
+                Time.timeScale = 0;
+            }
+
+            //Pop up GameOver
+            if (playerScript.player_health <= 0)
+            {
+                gameOver.SetActive(true);
+                curLock.m_MouseLook.SetCursorLock(canLock);
+            }
+
+            //key count increase
+            key = playerScript.hasKey;
+            if (key == true)
+            {
+                keyAmt += 1;
+                playerScript.hasKey=false;
+
+            }
+
+
+            currentWeapon = playerScript.currentPick;
+            switch(currentWeapon){
+                case 1:
+                    file1.SetActive(true);
+                    file2.SetActive(false);
+                    file3.SetActive(false);
+                    break;
+                case 2:
+                    file1.SetActive(false);
+                    file2.SetActive(true);
+                    file3.SetActive(false);
+                    break;
+                case 3:
+                    file1.SetActive(false);
+                    file2.SetActive(false);
+                    file3.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
+
+            yourWeapon.text = playerScript.Inventory[0].tag;
+            yourWeapon2.text = playerScript.Inventory[1].tag;
+            yourWeapon3.text = playerScript.Inventory[2].tag;
+
+            if(playerScript.Inventory[0]==null){
+                yourWeapon.text = " ";
+                yourWeapon2.text = " ";
+                yourWeapon3.text = " ";
+            }
+           
+
+        }
     }
 
     //Health
@@ -198,16 +237,21 @@ public class hud : MonoBehaviour {
         }
     }
 
-
     //Ammo
     void ShowAmmo()
     {
        ammoDisplay.text = gm.yourGun.currentAmmo+ "/" + gm.yourGun.AmmoUpdate;
-
     }
+
+    //Resume Button
     public void Resume(){
         playerScript.hasEvidence = false;
         evidPopUp.SetActive(false);
         Time.timeScale = 1;
     }
+
+    public void Quit(){
+        SceneManager.LoadScene("startMenu", LoadSceneMode.Single);
+    }
+
 }
