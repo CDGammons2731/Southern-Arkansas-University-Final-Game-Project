@@ -57,6 +57,8 @@ namespace GAMEMANAGER
         public new string defualtSaved = "/PlayerInfo.dat"; //Defualt Saved Data
         public new string playerSaved; //To set the new player's data. Data saved will simply be the players name + "_Info.dat"
         bool pickup = false;
+		public int evidencePickedUp;
+		public int levelsCompleted;
 
         // Gameplay (TEST)
         [Header("Enemy Info")]
