@@ -8,29 +8,29 @@ public class LevelExit : MonoBehaviour {
 
 	[SerializeField]
 	GameManager go;
+    hud hudObj;
+    int numLvls=0;
+
 
 	void Start() {
-		go = FindObjectOfType<GameManager> ();
+        go = FindObjectOfType<GameManager>();
+        hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
 	}
+    void Update()
+    {
+        if(numLvls==6){
+           /* if(hudObj.evid==0 || hudObj.evid<= 5){
+                
+            }*/
+            
+        }
+    }
 
-	void OnTriggerEnter(Collider other) {
+    void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("player")) {
-			go.levelsCompleted++;
-			//increment level completion counter by 1
-			if (go.levelsCompleted == 6) {
-				if (go.evidencePickedUp == 15) {
-					// ending 15
-
-				} else if (go.evidencePickedUp <= 14 && go.evidencePickedUp >= 10) {
-					// ending 10-14
-
-				} else {
-					// ending 0-9
-
-				}
-			} else {
-				SceneManager.LoadScene ("main", LoadSceneMode.Single);
-			}
+			SceneManager.LoadScene ("main", LoadSceneMode.Single);
+            numLvls++;
 		}
 	}
+	
 }

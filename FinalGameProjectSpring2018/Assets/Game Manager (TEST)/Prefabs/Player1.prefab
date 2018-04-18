@@ -194,7 +194,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893987726926354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -0.9820484}
+  m_LocalPosition: {x: 4.334194, y: 1.484, z: -3.1603153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4514888461127774}
@@ -253,7 +253,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828311899285564}
   m_LocalRotation: {x: -0.010471199, y: -0.010471199, z: -0.000109658016, w: 0.9998904}
-  m_LocalPosition: {x: 0.286, y: -0.25499994, z: 0.565}
+  m_LocalPosition: {x: 0.1621, y: -0.25499994, z: 0.565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4514888461127774}
@@ -573,9 +573,11 @@ MonoBehaviour:
   Inventory: []
   hasKey: 0
   isKey: 0
+  currentPick: 0
   dying: 0
   Evidence: 0
   isEvidence: 0
+  hasEvidence: 0
 --- !u!114 &114300360381955242
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -63,7 +63,13 @@ namespace PLAYER
         GameObject YourEvidence;
         GameObject Key;
 
-
+        //May need to put all player hands in here...
+        public GameObject Tommygun_Hands;
+        public GameObject Revolver_Hands;
+        public GameObject Railgun_Hands;
+        public GameObject Raygun_Hands;
+        public GameObject Sonicgun_Hands;
+        //it worked...
 
         void Start()
         {
@@ -123,13 +129,49 @@ namespace PLAYER
                 Destroy(other.gameObject);
             }
 
-            if (other.gameObject.CompareTag("shotgun") || other.gameObject.CompareTag("revolver") || other.gameObject.CompareTag("rifle") || other.gameObject.CompareTag("raygun") || other.gameObject.CompareTag("railgun"))
+            if (other.gameObject.CompareTag("shotgun"))
             {
                 //other.gameObject.GetComponentInChildren<GameObject>().gameObject;
-                weapon = other.gameObject;
+                weapon = Sonicgun_Hands;
                 weaponInRange = true;
                 UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup " + weapon.tag);
 
+            }
+            
+            if (other.gameObject.CompareTag("rifle"))
+            {
+                //other.gameObject.GetComponentInChildren<GameObject>().gameObject;
+                weapon = Tommygun_Hands;
+                weaponInRange = true;
+                UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup Tommygun");
+
+            }
+            
+            if (other.gameObject.CompareTag("revolver"))
+            {
+                //other.gameObject.GetComponentInChildren<GameObject>().gameObject;
+                weapon = Revolver_Hands;
+                weaponInRange = true;
+                UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup " + weapon.tag);
+
+            }
+
+            if (other.gameObject.CompareTag("railgun"))
+            {
+                //other.gameObject.GetComponentInChildren<GameObject>().gameObject;
+                weapon = Railgun_Hands;
+                weaponInRange = true;
+                UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup " + weapon.tag);
+
+            }
+
+            if (other.gameObject.CompareTag("raygun"))
+            {
+                //other.gameObject.GetComponentInChildren<GameObject>().gameObject;
+                weapon = Raygun_Hands;
+                weaponInRange = true;
+                UI.GetComponent<hud>().pickUpText.text = ("Press F to pickup " + weapon.tag);
+           
             }
 
             if (other.gameObject.CompareTag("evidence")) {
@@ -169,21 +211,21 @@ namespace PLAYER
                     //if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
                     /*Inventory[0].SetActive(true);
                     if (Inventory[1] != null) Inventory[1].SetActive(false);
-                    if (Inventory[2] != null) Inventory[2].SetActive(false);*/
+                    if (Inventory[2] != null) Inventory[2].SetActive(false);
                     
-                    break;
+                    break;*/
                 case 2:
-                   /* Inventory[0].SetActive(true);
+                  /* Inventory[1].SetActive(true);
                     if (Inventory[0] != null) Inventory[0].SetActive(false);
                     if (Inventory[2] != null) Inventory[2].SetActive(false);
-                    */
-                    break;
+                    
+                    break;*/
                 case 3:
-                   /* Inventory[0].SetActive(true);
+                   /* Inventory[2].SetActive(true);
                     if (Inventory[0] != null) Inventory[0].SetActive(false);
                     if (Inventory[1] != null) Inventory[1].SetActive(false);
-                    */
-                    break;
+                    
+                    break;*/
                 default:
 
                     break;
