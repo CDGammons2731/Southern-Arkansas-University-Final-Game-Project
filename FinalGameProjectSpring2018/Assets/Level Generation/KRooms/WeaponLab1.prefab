@@ -1339,6 +1339,7 @@ GameObject:
   - component: {fileID: 95220582983559140}
   - component: {fileID: 64374396755722574}
   - component: {fileID: 65049907804580222}
+  - component: {fileID: 114516493430243914}
   m_Layer: 0
   m_Name: WeaponLab1
   m_TagString: Untagged
@@ -10902,7 +10903,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1306917284119116}
-  m_LocalRotation: {x: -0.15333126, y: -0.16209598, z: 0.7081598, w: 0.6698687}
+  m_LocalRotation: {x: -0.15333128, y: -0.162096, z: 0.70815986, w: 0.66986877}
   m_LocalPosition: {x: 2.34198, y: -1.6660156, z: -0.20697021}
   m_LocalScale: {x: 0.010000007, y: 0.010000001, z: 0.010000001}
   m_Children: []
@@ -33534,6 +33535,29 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114516493430243914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1115984530294514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74317d86e76297c47ab23c374ec97214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIToSpawn: {fileID: 1520156917899428, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
+  player: {fileID: 0}
+  Enemies: []
+  EnemiesNumber: 0
+  EnemiesMaxNumber: 1
+  range: 10
+  SpawnActivateRandomizer: 0
+  NumberToActivate: 5
+  MaxRange: 10
+  Respawn: 0
+  TimeToRespawn: 300
+  WaitToStart: 25
 --- !u!208 &208098238123905200
 NavMeshObstacle:
   m_ObjectHideFlags: 1

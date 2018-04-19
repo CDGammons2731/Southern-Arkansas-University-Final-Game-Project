@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 33468878262609824}
   - component: {fileID: 23853164604421630}
   - component: {fileID: 65199280942524404}
+  - component: {fileID: 114855652818417422}
   m_Layer: 0
   m_Name: Biolab2
   m_TagString: Untagged
@@ -4741,7 +4742,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1105222188224154}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4908360172190412}
@@ -16219,3 +16220,26 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114855652818417422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105222188224154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74317d86e76297c47ab23c374ec97214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIToSpawn: {fileID: 1520156917899428, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
+  player: {fileID: 0}
+  Enemies: []
+  EnemiesNumber: 0
+  EnemiesMaxNumber: 1
+  range: 10
+  SpawnActivateRandomizer: 0
+  NumberToActivate: 5
+  MaxRange: 10
+  Respawn: 0
+  TimeToRespawn: 300
+  WaitToStart: 25

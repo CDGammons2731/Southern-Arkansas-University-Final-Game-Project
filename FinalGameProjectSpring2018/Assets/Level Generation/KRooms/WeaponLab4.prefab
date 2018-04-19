@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 23014641944049378}
   - component: {fileID: 95909341368082298}
   - component: {fileID: 65784310177239748}
+  - component: {fileID: 114769324639126804}
   m_Layer: 0
   m_Name: WeaponLab4
   m_TagString: Untagged
@@ -11293,7 +11294,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1754006943136022}
-  m_LocalRotation: {x: -0.15333128, y: -0.162096, z: 0.70815986, w: 0.66986877}
+  m_LocalRotation: {x: -0.15333126, y: -0.16209598, z: 0.7081598, w: 0.6698687}
   m_LocalPosition: {x: -6.5999756, y: -2.1599731, z: 22.190002}
   m_LocalScale: {x: 0.010000007, y: 0.010000004, z: 0.010000001}
   m_Children: []
@@ -12454,7 +12455,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1961913758541738}
-  m_LocalRotation: {x: -0.15333128, y: -0.162096, z: 0.70815986, w: 0.66986877}
+  m_LocalRotation: {x: -0.15333126, y: -0.16209598, z: 0.7081598, w: 0.6698687}
   m_LocalPosition: {x: 1.388977, y: -1.7189941, z: -0.6680298}
   m_LocalScale: {x: 0.010000007, y: 0.010000002, z: 0.010000001}
   m_Children: []
@@ -14603,7 +14604,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976680257792730}
-  m_LocalRotation: {x: -0.15333126, y: -0.16209598, z: 0.7081598, w: 0.6698687}
+  m_LocalRotation: {x: -0.15333128, y: -0.162096, z: 0.70815986, w: 0.66986877}
   m_LocalPosition: {x: -5.369995, y: -2.0900269, z: 22.789978}
   m_LocalScale: {x: 0.010000007, y: 0.010000001, z: 0.010000001}
   m_Children: []
@@ -39744,6 +39745,29 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114769324639126804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023261827950828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74317d86e76297c47ab23c374ec97214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIToSpawn: {fileID: 1520156917899428, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
+  player: {fileID: 0}
+  Enemies: []
+  EnemiesNumber: 0
+  EnemiesMaxNumber: 1
+  range: 10
+  SpawnActivateRandomizer: 0
+  NumberToActivate: 5
+  MaxRange: 10
+  Respawn: 0
+  TimeToRespawn: 300
+  WaitToStart: 25
 --- !u!208 &208029954750558760
 NavMeshObstacle:
   m_ObjectHideFlags: 1
