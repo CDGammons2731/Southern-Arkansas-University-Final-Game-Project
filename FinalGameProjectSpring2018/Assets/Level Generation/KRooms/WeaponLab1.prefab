@@ -1338,6 +1338,7 @@ GameObject:
   - component: {fileID: 23506869706599990}
   - component: {fileID: 95220582983559140}
   - component: {fileID: 64374396755722574}
+  - component: {fileID: 65049907804580222}
   m_Layer: 0
   m_Name: WeaponLab1
   m_TagString: Untagged
@@ -10901,7 +10902,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1306917284119116}
-  m_LocalRotation: {x: -0.15333128, y: -0.162096, z: 0.70815986, w: 0.66986877}
+  m_LocalRotation: {x: -0.15333126, y: -0.16209598, z: 0.7081598, w: 0.6698687}
   m_LocalPosition: {x: 2.34198, y: -1.6660156, z: -0.20697021}
   m_LocalScale: {x: 0.010000007, y: 0.010000001, z: 0.010000001}
   m_Children: []
@@ -11235,7 +11236,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1115984530294514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4190434434978502}
@@ -29489,6 +29490,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4277496, y: 0.8592336, z: 3.021623}
   m_Center: {x: -0.028934479, y: 0.42038321, z: -0.00039632656}
+--- !u!65 &65049907804580222
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1115984530294514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 59.966095, y: 5.0237665, z: 59.964653}
+  m_Center: {x: -0.000002861023, y: -5, z: 0}
 --- !u!65 &65179127914776478
 BoxCollider:
   m_ObjectHideFlags: 1

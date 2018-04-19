@@ -1338,6 +1338,7 @@ GameObject:
   - component: {fileID: 23506869706599990}
   - component: {fileID: 95220582983559140}
   - component: {fileID: 64374396755722574}
+  - component: {fileID: 65956677302124138}
   m_Layer: 0
   m_Name: WeaponLab3
   m_TagString: Untagged
@@ -11235,7 +11236,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1115984530294514}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4190434434978502}
@@ -29561,6 +29562,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.8592336, z: 3.3}
   m_Center: {x: 0, y: 0.42038321, z: 0}
+--- !u!65 &65956677302124138
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1115984530294514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 59.96611, y: 5.0237665, z: 59.96467}
+  m_Center: {x: -0.0000028610236, y: -5, z: 0}
 --- !u!95 &95000691923307524
 Animator:
   serializedVersion: 3
