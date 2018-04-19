@@ -31,7 +31,7 @@ public class LevelExit : MonoBehaviour {
             if(playerObj.Evidence <= 9){
                 hudObj.endingsNum = 0;
             }
-            else if(playerObj.Evidence>=10 || playerObj.Evidence<=14){
+            else if(playerObj.Evidence>=10 && playerObj.Evidence<=14){
                 hudObj.endingsNum = 1;
             }
             else if(playerObj.Evidence>=15){
