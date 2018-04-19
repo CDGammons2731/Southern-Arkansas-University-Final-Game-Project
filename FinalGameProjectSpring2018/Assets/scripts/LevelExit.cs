@@ -3,34 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using GAMEMANAGER;
+using PLAYER;
 
 public class LevelExit : MonoBehaviour {
 
 	[SerializeField]
 	GameManager go;
+    hud hudObj;
+    Player playerObj;
+    int numLvls=0;
+
 
 	void Start() {
-		go = FindObjectOfType<GameManager> ();
+        go = FindObjectOfType<GameManager>();
+        hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
 	}
+    void Update()
+    {
+        if( playerObj== null){
+            playerObj=GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        }
+        if( hudObj==null){
+            hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
+        }
 
-	void OnTriggerEnter(Collider other) {
+        if(numLvls==6){
+            if(playerObj.Evidence <= 9){
+                hudObj.endingsNum = 0;
+            }
+            else if(playerObj.Evidence>=10 && playerObj.Evidence<=14){
+                hudObj.endingsNum = 1;
+            }
+            else if(playerObj.Evidence>=15){
+                hudObj.endingsNum = 2;
+            }
+            
+        }
+    }
+
+    void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("player")) {
-			go.levelsCompleted++;
-			//increment level completion counter by 1
-			if (go.levelsCompleted == 6) {
-				if (go.evidencePickedUp == 15) {
-					// ending 15
-
-				} else if (go.evidencePickedUp <= 14 && go.evidencePickedUp >= 10) {
-					// ending 10-14
-
-				} else {
-					// ending 0-9
-
-				}
-			} else {
-				SceneManager.LoadScene ("main", LoadSceneMode.Single);
-			}
+			SceneManager.LoadScene ("main", LoadSceneMode.Single);
+            numLvls++;
 		}
 	}
+	
 }

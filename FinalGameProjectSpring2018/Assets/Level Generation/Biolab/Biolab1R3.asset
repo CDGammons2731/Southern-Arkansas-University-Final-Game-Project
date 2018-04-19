@@ -11,15 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3996cba998bf7b64da58b96f3c4fa29f, type: 3}
   m_Name: Biolab1R3
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1166580286240932, guid: 21b3b806144916044b8503c05d9b9812, type: 2}
+  prefab: {fileID: 1105222188224154, guid: 6a8f9128b8f938344b44b150d64a3634, type: 2}
   dimensions: {x: 3, y: 3}
   doorLocations:
   - {x: 0, y: 2}
   - {x: 2, y: 0}
   - {x: 4, y: 2}
   - {x: 2, y: 4}
-  doorObjs:
-  - {fileID: 1336655560478454, guid: 21b3b806144916044b8503c05d9b9812, type: 2}
-  - {fileID: 1437404166136102, guid: 21b3b806144916044b8503c05d9b9812, type: 2}
-  - {fileID: 1166506309317480, guid: 21b3b806144916044b8503c05d9b9812, type: 2}
-  - {fileID: 1069128748199220, guid: 21b3b806144916044b8503c05d9b9812, type: 2}
+  LockedRoom: 0
