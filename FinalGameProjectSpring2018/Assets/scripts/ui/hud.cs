@@ -110,10 +110,13 @@ public class hud : MonoBehaviour {
     // Update is called once per frame
     void Update () {
        
-        if (gm != null) {
+        if (playerScript==null) {
             playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
         }
-
+        if (playerScript != null)
+        {
+            playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        }
         //unlock Mouse
         if (curLock == null)
         {
@@ -123,9 +126,6 @@ public class hud : MonoBehaviour {
                 curLock = playerObject.GetComponent<FirstPersonController>();
             }
         }
-
-
-
 
         //prints out the timer
         count+=Time.deltaTime;
@@ -236,8 +236,6 @@ public class hud : MonoBehaviour {
                 yourWeapon3.text = " ";
             }
 
-
-
             if(endingsNum==0){
                 endings.SetActive(true);
                 endText.text = end[0];
@@ -250,9 +248,6 @@ public class hud : MonoBehaviour {
                 endings.SetActive(true);
                 endText.text = end[2];
             }
-
-
-           
 
         }
     }
