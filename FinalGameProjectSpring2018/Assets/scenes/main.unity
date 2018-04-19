@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 875ff43c8780e6f47b0c5a707550f3f4, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.020512756, g: 0.035014376, b: 0.032841176, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -6372,11 +6372,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4439157859470062, guid: c217ebfa93e98444f859e5a9eb722fa2, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.70815986
+      value: 0.7081598
       objectReference: {fileID: 0}
     - target: {fileID: 4439157859470062, guid: c217ebfa93e98444f859e5a9eb722fa2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.66986877
+      value: 0.6698687
       objectReference: {fileID: 0}
     - target: {fileID: 4439157859470062, guid: c217ebfa93e98444f859e5a9eb722fa2, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -6396,11 +6396,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4439157859470062, guid: c217ebfa93e98444f859e5a9eb722fa2, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.15333128
+      value: -0.15333126
       objectReference: {fileID: 0}
     - target: {fileID: 4439157859470062, guid: c217ebfa93e98444f859e5a9eb722fa2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.162096
+      value: -0.16209598
       objectReference: {fileID: 0}
     - target: {fileID: 4439157859470062, guid: c217ebfa93e98444f859e5a9eb722fa2, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6525,6 +6525,10 @@ Prefab:
     - target: {fileID: 4365002372064536, guid: c217ebfa93e98444f859e5a9eb722fa2, type: 2}
       propertyPath: m_LocalPosition.y
       value: 332.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648162529443172, guid: c217ebfa93e98444f859e5a9eb722fa2, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c217ebfa93e98444f859e5a9eb722fa2, type: 2}
