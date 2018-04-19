@@ -57,8 +57,16 @@ public class hud : MonoBehaviour {
     public bool key;
     public int keyAmt=0;
 
+    //unlock Mouse
     FirstPersonController curLock;
     bool canLock=false;
+
+    //Multi Endings
+    string[] end=new string[3];
+    public int endingsNum;
+    public Text endText;
+    public GameObject endings;
+
 
    
 
@@ -71,7 +79,7 @@ public class hud : MonoBehaviour {
 
         //playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
         
-
+        //Evidence text
         txt[1] = "Public Announcement To All Staff... As I have been so gracious and kind to allow you to keep your jobs in my company, you understand there will be some changes in how we run things. Firstly, my son Jonathan, is now the new CEO because the Board of Directors and I have an “understanding” you might say. Secondly, from hence forth, anytime you refer to myself, I will be called Godfather. Thirdly, if you value your life and your family’s lives, you will do anything I or my son says, trust me, my sons robots can be quite dangerous if you disobey my orders. Your managers have been briefed quite clearly on your new roles in the company. Now if you’ll excuse me, I must go and have lunch with President Woodrow, I do not like how he is running my war, Your Godfather,Maddox Richter";
         txt[2] = "Public Announcement To All Staff... This is your new CEO Johnathan, I have reviewed the company policy and have decided you all don’t need lunch breaks, you need more work.These guns won’t manufacture themselves you know. Therefore, starting today, your expected daily quota is tripled and there will no longer be any lunch breaks.Also, those who don’t meet their quota will be whacked by my robots on the head till they either die or are put in a coma. Honestly, you people just don’t understand how hard it is to be the CEO of a company. That is all for now, Johnathan Richter";
         txt[3] = "Public Announcement To All Staff... This is your CEO Johnathan, YOU IDIOTS!These guns are a mess!The customers are demanding their money back. I have several “complaints” on my desk of sleep deprivation and I quite agree there needs to be time change. From now on, the company stays open 24 / 7 and the person to quit over being sleepy will be killed on spot.Man, you people have it easy compared to me, you should be thanking me, I had to type this letter out myself because my secretary and I had a disagreement and she found herself out the window on a one - way trip. That is all for now, Johnathan Richter";
@@ -87,17 +95,26 @@ public class hud : MonoBehaviour {
         txt[13] = "To my son whom I love, don’t bother, I’ve already arranged for these deadbeat traitors and my self to have lunch. Just sit tight son, hide all the evidence, the police chief was compliant, and he won’t be bothering us again.However, because of all the suspicion, it is best if you guard the evidence of the guns with your life.If someone finds anything that might indicate that you or I are involved, then I will cut you off the money and let the police take you to jail for all of it, The Godfather and your personal father, Maddox Richter";
         txt[14] = "Father, YOU CAN’T DO THAT! WE ARE IN THIS TOGETHER! The evidence is hidden, my robots are on high alert, but know this father!You gave me this dumb job and if you dare so much as think of letting me take the fall for this company or these guns, and I’ll drag you down with me.Mark my words, do not betray me father! Your son, Johnathan Richter";
         txt[15] = "To my son whom I love, your stupid. You have no idea how to run a company, you are a disgrace to the family, to your Mama, and especially your Grandmama, may she rest in peace.After that last letter, I am cutting you off on the money and when you die I will spit on your grave.If you get caught then it is on your head, I am done covering up for your lousy mistakes.I would offer you to come to lunch with me but your no longer worth my time, The Godfather and your personal father, Maddox Richter";
+
+        end[0] = "NEWS HEADLINES: Crazy Detective Spreading Ludacris Lies Of Mafia Uprising." +
+            " Local Detective was found trespassing on private property claiming to be searching for evidence linking famous Millionaire Maddox Richter and his son Johnathan Richter to a Mafia Cult.Police apprehended the detective as he was attempting to escape Apollyon Co.claiming he was being chased down by killer robots while waving a gun in Chief of Police officer Nicholas Cisneros’s face. After six months of long grueling trials, the jury determined that the detective was crazy and found guilty of manslaughter of the dead bodies found in Apollyon Co. Mayor Joey Terrell issued out a formal apology calling the Detective quote, “disgraceful and worthless”, and gave both Maddox Richter and his son Johnathan keys to the city. The Detective has been committed to Irrenhaus Sanitorium, where he will spend the remainder of his life with people of similar mental illnesses. " +
+            "THE END";
+        end[1] = "NEWS HEADLINES: Maddox Richter And Son Apart Of Mafia Uprising? " +
+            "Local Detective has brought forward documents to police which may link famous Millionaire Maddox Richter and his son Johnathan to a Mafia Cult.After reviewing the evidence, police apprehended Maddox and Johnathan and brought them in for questioning.Afterwards the state set a court date for the investigation into the legality of practices pertaining to Apollyon Co.After reviewing all the evidence, the Court found there was just not enough evidence to convict Maddox and Johnathan Richter of any crimes related to the mafia. Mayor Joey Terrell had this to say quote, “alarming yet dissatisfying”, and proceeded to ban the Detective from being a detective within city limits. Former Detective now works as a television producer in Hollywood, directing a show about a detective who fights killer robots in the Mafia. " +
+            "THE END";
+        end[2] = "NEWS HEADLINES: New Owners of Apollyon Co. Secretly Leading Mafia Uprising!" +
+            "Local Detective has brought forward substantial evidence linking famous Millionaire Maddox Richter and his son Johnathan to serious Mafia related crimes concerning illegal weapons manufacturing.Maddox Richter attempted to gun down the police but was accidentally shot in the head by a nearby malfunctioning robot.Johnathan Richter has received the death penalty for manslaughter of the of his employees and is now in prison awaiting death.When the Detective was called into Mayor Joey Terrell’s office, the Mayor said the following quote, “Incredible but intense” and proceeded to give the detective a key to the city.Mayor Joey liked the detective so much, he fired Chief of Police Nicholas Cisneros and gave the job to the Detective. Nicholas Cisneros has since gotten a job as a computer game designer and is in the process of designing a game where mafia robots kill a detective for endless hours of “kid friendly” fun. " +
+            "THE END";
     }
 
     // Update is called once per frame
     void Update () {
-        
-
        
         if (gm != null) {
             playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
         }
 
+        //unlock Mouse
         if (curLock == null)
         {
             GameObject playerObject = GameObject.FindGameObjectWithTag("player");
@@ -112,9 +129,6 @@ public class hud : MonoBehaviour {
 
         //prints out the timer
         count+=Time.deltaTime;
-        //int sec=(int)countDown%60;
-        //int min = (int)countDown / 60;
-        //timer.text=min.ToString()+ ":"+sec.ToString();
         float rotZ = -235.0f *count/maxCount+235.0f;
         Quaternion tar = Quaternion.Euler(0, 0, rotZ);
         clockNeedle.transform.rotation = Quaternion.Slerp(clockNeedle.transform.rotation, tar, smooth * Time.deltaTime);
@@ -128,7 +142,6 @@ public class hud : MonoBehaviour {
         if (gm.yourGun != null)
         {
             ShowAmmo();
-
 
             //figures which icon to use
             if (gm.yourGun.CurrentWeapon == "revolver")
@@ -152,7 +165,6 @@ public class hud : MonoBehaviour {
             }
 
         }
-
 
         //key count display
         keyTxt.text = keyAmt.ToString();
@@ -192,7 +204,7 @@ public class hud : MonoBehaviour {
 
             }
 
-
+            //Weapon Display
             currentWeapon = playerScript.currentPick;
             switch(currentWeapon){
                 case 1:
@@ -223,6 +235,22 @@ public class hud : MonoBehaviour {
                 yourWeapon2.text = " ";
                 yourWeapon3.text = " ";
             }
+
+
+            if(endingsNum==0){
+                endings.SetActive(true);
+                endText.text = end[0];
+            }
+            else if(endingsNum==1){
+                endings.SetActive(true);
+                endText.text = end[1];
+            }
+            else if(endingsNum==2){
+                endings.SetActive(true);
+                endText.text = end[2];
+            }
+
+
            
 
         }
