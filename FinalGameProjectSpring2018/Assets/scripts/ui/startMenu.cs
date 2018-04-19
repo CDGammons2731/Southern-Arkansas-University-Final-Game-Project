@@ -6,22 +6,7 @@ using UnityEngine.UI;
 
 public class startMenu : MonoBehaviour {
 
-    public GameObject newGame1;
-    public GameObject newGame2;
-    public GameObject newGame3;
-    public GameObject fillInText;
-    public GameObject enter;
-    public GameObject fillInText1;
-    public GameObject enter1;
-    public GameObject fillInText2;
-    public GameObject enter2;
-    public GameObject start;
-    public GameObject name;
-    public GameObject name2;
-    public GameObject name3;
-    public GameObject credits;
-    public GameObject exit;
-    public GameObject back;
+
     public GameObject creds;
     public GameObject controlsBt;
     public GameObject controlImage;
@@ -37,25 +22,11 @@ public class startMenu : MonoBehaviour {
     }
     public void StartButton()
     {
-        //SceneManager.LoadScene("main", LoadSceneMode.Single);
+        Time.timeScale = 1; 
+        SceneManager.LoadScene("main", LoadSceneMode.Single);
         //load scene level
-
-        newGame1.SetActive(true);
-        newGame2.SetActive(true);
-        newGame3.SetActive(true);
-        back.SetActive(true);
-        start.SetActive(false);
-        credits.SetActive(false);
-        exit.SetActive(false);
-        controlsBt.SetActive(false);
-
-
-
     }
-    public void LoadButton()
-    {
 
-    }
     public void CreditsButton()
     {
         creds.SetActive(true);
@@ -66,67 +37,6 @@ public class startMenu : MonoBehaviour {
 
     public void ExitButton(){
         Application.Quit();
-    }
-    public  void newGameBt1(){
-       
-        fillInText.SetActive(true);
-        enter.SetActive(true);
-        newGame1.SetActive(false);
-        
-        
-    }
-     public  void newGameBt2(){
-        
-        fillInText1.SetActive(true);
-        enter1.SetActive(true);
-        newGame2.SetActive(false);
-        
-        
-    }
-     public  void newGameBt3(){
-        
-        fillInText2.SetActive(true);
-        enter2.SetActive(true);
-        newGame3.SetActive(false); 
-     
-    }
-
-    public void EnterBt(){
-        newGame1.GetComponentInChildren<Text>().text = name.GetComponent<Text>().text;
-        
-        fillInText.SetActive(false);
-        enter.SetActive(false);
-        newGame1.SetActive(true);
-        Time.timeScale = 1;
-        SceneManager.LoadScene("main", LoadSceneMode.Single);
-        
-    }
-    public void EnterBt2(){
-        newGame2.GetComponentInChildren<Text>().text = name2.GetComponent<Text>().text;
-       
-        fillInText1.SetActive(false);
-        enter1.SetActive(false);
-        newGame2.SetActive(true);
-        Time.timeScale = 1;
-        SceneManager.LoadScene("main", LoadSceneMode.Single);
-    }
-    public void EnterBt3(){
-        newGame3.GetComponentInChildren<Text>().text = name3.GetComponent<Text>().text;
-        
-        fillInText2.SetActive(false);
-        enter2.SetActive(false);
-        newGame3.SetActive(true);
-        Time.timeScale = 1; 
-        SceneManager.LoadScene("main", LoadSceneMode.Single);
-    }
-    public void BackBt(){
-        newGame1.SetActive(false);
-        newGame2.SetActive(false);
-        newGame3.SetActive(false);
-        back.SetActive(false);
-        start.SetActive(true);
-        credits.SetActive(true);
-        exit.SetActive(true);
     }
 
     public void QuitCred(){

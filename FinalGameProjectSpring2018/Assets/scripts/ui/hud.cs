@@ -236,20 +236,6 @@ public class hud : MonoBehaviour {
                 yourWeapon3.text = " ";
             }
 
-            if(playerScript.player_health<=0){
-                if(playerScript.Evidence<=9){
-                    endings.SetActive(true);
-                    endText.text = end[0];
-                }
-                else if(playerScript.Evidence>=10 && playerScript.Evidence<=14){
-                    endings.SetActive(true);
-                    endText.text = end[0];
-                }
-                else if(playerScript.Evidence>=15){
-                    endings.SetActive(true);
-                    endText.text = end[0];
-                }
-            }
 
 
             if(endingsNum==0){
