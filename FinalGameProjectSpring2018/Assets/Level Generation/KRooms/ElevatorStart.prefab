@@ -6865,7 +6865,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 200
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -13773,7 +13773,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -14357,6 +14357,8 @@ MonoBehaviour:
   bullet: {fileID: 1025971916029544, guid: 04f808e235767cd4994bcf5003c07387, type: 2}
   bulletSpawn: {fileID: 4956852973504026}
   PS: {fileID: 0}
+  Reload_Animator: {fileID: 0}
+  Anim: {fileID: 0}
   CurrentWeapon: 
   SHOTGUN:
   - {fileID: 0}
@@ -14568,6 +14570,11 @@ MonoBehaviour:
   Evidence: 0
   isEvidence: 0
   hasEvidence: 0
+  Tommygun_Hands: {fileID: 0}
+  Revolver_Hands: {fileID: 0}
+  Railgun_Hands: {fileID: 0}
+  Raygun_Hands: {fileID: 0}
+  Sonicgun_Hands: {fileID: 0}
 --- !u!114 &114776739664928240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14583,6 +14590,8 @@ MonoBehaviour:
   bullet: {fileID: 1954157319190264, guid: 6c782b9199d23f84294af494c7c2f226, type: 2}
   bulletSpawn: {fileID: 4555317375487524}
   PS: {fileID: 198629256583263548}
+  Reload_Animator: {fileID: 0}
+  Anim: {fileID: 0}
   CurrentWeapon: 
   SHOTGUN:
   - {fileID: 8300000, guid: 2a7d5d2a3612eaf4fb24a06103c80767, type: 3}
