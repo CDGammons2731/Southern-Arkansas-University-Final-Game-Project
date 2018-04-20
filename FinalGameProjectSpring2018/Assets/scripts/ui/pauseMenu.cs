@@ -20,7 +20,8 @@ public class pauseMenu : MonoBehaviour
     bool back=false;
 
     FirstPersonController cur;
-    bool locked = false;
+    bool unlocked = false;
+    bool locked = true;
 
     GameManager sa;
     public GameObject pm;
@@ -48,7 +49,7 @@ public class pauseMenu : MonoBehaviour
             isEnabled = true;
             Time.timeScale = 0;
 
-            cur.m_MouseLook.SetCursorLock(locked);
+            cur.m_MouseLook.SetCursorLock(unlocked);
            
            
         }
@@ -58,11 +59,9 @@ public class pauseMenu : MonoBehaviour
             pm.SetActive(false);
             isEnabled = false;
             Time.timeScale = 1;
+            cur.m_MouseLook.SetCursorLock(locked);
            
         }
-
-        //AudioListener.volume = volume.value;
-
 
 
         
@@ -79,7 +78,7 @@ public class pauseMenu : MonoBehaviour
 
     }
     public void Option(){
-
+        cur.m_MouseLook.SetCursorLock(unlocked);
         if(!back){
             resumeBt.SetActive(false);
             quitBt.SetActive(false);
@@ -94,7 +93,6 @@ public class pauseMenu : MonoBehaviour
             soundText.SetActive(false);
             back = false;
         } 
-        cur.m_MouseLook.SetCursorLock(locked);
     }
     public void Quit()
     {
@@ -108,10 +106,7 @@ public class pauseMenu : MonoBehaviour
         soundText.SetActive(false);
     }
 
-    /*public void Click(){
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }*/
+
 
     public void SoundSlider(){
         AudioListener.volume = volume.value;

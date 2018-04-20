@@ -50,7 +50,6 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
-
 		Distance = Vector3.Distance (gameObject.transform.position, destination.position);
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		//Debug.Log ("Distance to AI: " + dist);
