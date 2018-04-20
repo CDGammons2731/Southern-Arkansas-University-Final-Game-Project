@@ -26,26 +26,30 @@ public class LevelExit : MonoBehaviour {
         if( hudObj==null){
             hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
         }
-
-        if(numLvls==6){
-            if(playerObj.Evidence <= 9){
-                hudObj.endingsNum = 0;
-            }
-            else if(playerObj.Evidence>=10 && playerObj.Evidence<=14){
-                hudObj.endingsNum = 1;
-            }
-            else if(playerObj.Evidence>=15){
-                hudObj.endingsNum = 2;
-            }
-            
-        }
     }
 
     void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("player")) {
-			SceneManager.LoadScene ("main", LoadSceneMode.Single);
-            numLvls++;
+            if (numLvls <= 6)
+            {
+                numLvls++;
+                SceneManager.LoadScene("main", LoadSceneMode.Single);
+            }
+            else{
+                if (playerObj.Evidence <= 9)
+                {
+                    hudObj.endingsNum = 0;
+                }
+                else if (playerObj.Evidence >= 10 && playerObj.Evidence <= 14)
+                {
+                    hudObj.endingsNum = 1;
+                }
+                else if (playerObj.Evidence >= 15)
+                {
+                    hudObj.endingsNum = 2;
+                } 
+            }
+
 		}
 	}
-	
 }
