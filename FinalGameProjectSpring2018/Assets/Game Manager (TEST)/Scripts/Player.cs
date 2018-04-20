@@ -127,6 +127,7 @@ namespace PLAYER
             {
                 player_health -= 5;
                 Destroy(other.gameObject);
+                Debug.Log("Player has been hit");
             }
 
             if (other.gameObject.CompareTag("shotgun"))
