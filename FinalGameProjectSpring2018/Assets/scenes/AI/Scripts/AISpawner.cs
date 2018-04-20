@@ -21,15 +21,14 @@ public class AISpawner : MonoBehaviour {
 	public float Respawn = 0f;
 	public float TimeToRespawn = 300f;
 	public float WaitToStart = 25f;
+	public static int EnemiesCount;
 
 	// Use this for initialization
 	void Start () {
 		Enemies = new GameObject[2];
 		player = GameObject.FindGameObjectWithTag ("player");
 
-		//SpawnActivator = Random.Range (0.0f, MaxRange);
-		SpawnActivator = 6;
-		//Debug.Log (SpawnActivator);
+		SpawnActivator = Random.Range (0.0f, MaxRange);
 		if (SpawnActivator > NumberToActivate) {
 			SpawnActivateRandomizer = true;
 		}
@@ -51,42 +50,45 @@ public class AISpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		EnemiesCount = AIDistanceCalculator.EnemiesCount;
+
 		/*if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null && Input.GetKeyDown(KeyCode.F)) {
 			Damage = player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
 			Debug.Log ("Damage: " + Damage);
 		}*/
-
+		if (EnemiesCount < 10) {
 			if (SpawnActivateRandomizer == true) {
-			if (Respawn <= 0f) {
-				Vector3 point;
-				if (EnemiesNumber <= EnemiesMaxNumber) {
-					if (RandomPoint (transform.position, range, out point)) {
-						if (Enemies [0] == null) {
-							Enemies [0] = Instantiate (AIToSpawn, point, Quaternion.identity);
-						} else if (Enemies [1] == null) {
-							Enemies [1] = Instantiate (AIToSpawn, point, Quaternion.identity);
+				if (Respawn <= 0f) {
+					Vector3 point;
+					if (EnemiesNumber <= EnemiesMaxNumber) {
+						if (RandomPoint (transform.position, range, out point)) {
+							if (Enemies [0] == null) {
+								Enemies [0] = Instantiate (AIToSpawn, point, Quaternion.identity);
+							} else if (Enemies [1] == null) {
+								Enemies [1] = Instantiate (AIToSpawn, point, Quaternion.identity);
+							}
+							EnemiesNumber++;
+							Respawn = TimeToRespawn;
 						}
-						EnemiesNumber++;
+					} else {
 						Respawn = TimeToRespawn;
 					}
+
 				} else {
-					Respawn = TimeToRespawn;
-				}
+					if (EnemiesNumber > EnemiesMaxNumber) {
+						if (Enemies [0] == null) {
+							EnemiesNumber--;
+						}
 
-			} else {
-				if (EnemiesNumber > EnemiesMaxNumber) {
-					if (Enemies [0] == null) {
-						EnemiesNumber--;
-					}
-
-					if (Enemies [1] == null) {
-						EnemiesNumber--;
+						if (Enemies [1] == null) {
+							EnemiesNumber--;
+						}
 					}
 				}
-			}
 
 				Respawn = Respawn - Time.deltaTime;
 				//Debug.Log (Respawn);
 			}
+		}
 	}
 }
