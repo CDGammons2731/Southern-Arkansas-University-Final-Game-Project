@@ -60,6 +60,7 @@ public class hud : MonoBehaviour {
     //unlock Mouse
     FirstPersonController curLock;
     bool canLock=false;
+    bool lockCursor = true;
 
     //Multi Endings
     string[] end=new string[3];
@@ -237,14 +238,17 @@ public class hud : MonoBehaviour {
             }
 
             if(endingsNum==0){
+                curLock.m_MouseLook.SetCursorLock(canLock);
                 endings.SetActive(true);
                 endText.text = end[0];
             }
             else if(endingsNum==1){
+                curLock.m_MouseLook.SetCursorLock(canLock);
                 endings.SetActive(true);
                 endText.text = end[1];
             }
             else if(endingsNum==2){
+                curLock.m_MouseLook.SetCursorLock(canLock);
                 endings.SetActive(true);
                 endText.text = end[2];
             }
@@ -271,6 +275,7 @@ public class hud : MonoBehaviour {
 
     //Resume Button
     public void Resume(){
+        curLock.m_MouseLook.SetCursorLock(lockCursor);
         playerScript.hasEvidence = false;
         evidPopUp.SetActive(false);
         Time.timeScale = 1;
