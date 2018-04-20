@@ -50,14 +50,12 @@ public class AI : MonoBehaviour
 
 	void Update ()
 	{
-
 		Distance = Vector3.Distance (gameObject.transform.position, destination.position);
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		//Debug.Log ("Distance to AI: " + dist);
 
 		if ((Escape == true || WhosYourDaddy == true) && Distance <= LookRange) {
 			gameObject.transform.LookAt (destination);
-			gameObject.transform.rotation.Set(0,0,0,0);
 			if (dist > LookRange) {
 				Escape = false;
 				WhosYourDaddy = false;
