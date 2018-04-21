@@ -723,6 +723,7 @@ GameObject:
   - component: {fileID: 82684415590022166}
   - component: {fileID: 114591503993320080}
   - component: {fileID: 135130562679169576}
+  - component: {fileID: 114958450440155710}
   m_Layer: 13
   m_Name: Player 1
   m_TagString: player
@@ -17303,7 +17304,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -29420,6 +29421,17 @@ MonoBehaviour:
   spreadAgle: 0
   pelletCount: 0
   Player_Cam: {fileID: 0}
+--- !u!114 &114958450440155710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078988830904142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4561f4357d578754998e3cc17b7864e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114993244934733504
 MonoBehaviour:
   m_ObjectHideFlags: 1
