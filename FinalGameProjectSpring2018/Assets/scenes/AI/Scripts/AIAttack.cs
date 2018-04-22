@@ -8,6 +8,7 @@ public class AIAttack : MonoBehaviour {
 	public GameObject shot;
 	public Transform bulletSpawn;
 	public Transform plyr;
+	public Transform EnemyShotLookat;
 	public int Shootrange = 5;
 	public int Meleerange = 3;
 	public int LookRange = 20;
@@ -19,26 +20,21 @@ public class AIAttack : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		plyr = GameObject.FindGameObjectWithTag("player").transform;
+		EnemyShotLookat = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	// Update is called once per frame
 	void Update () {
 
-		float dist = Vector3.Distance (plyr.position, transform.position);
+
 		BoboShoot = AI.Escape;
 
 
-		if(BoboShoot == true && dist > 5 && dist <= LookRange){
-
-			if (X == 47) {
+		if(BoboShoot == true){
 				shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
+				shot.transform.LookAt (EnemyShotLookat.position);
 				shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
-				X = 0;
-			}
-			X++;
-
 			Destroy(shot, 0.35f);
-
 		}
 
 		//if(Vector3.Distance(plyr.position, gameObject.transform.position) <= Meleerange){

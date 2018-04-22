@@ -1204,6 +1204,11 @@ Prefab:
       propertyPath: crossHair
       value: 
       objectReference: {fileID: 491880152}
+    - target: {fileID: 82095863389311518, guid: 347ded99c84e3894e9e5a925253b11a3,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 347ded99c84e3894e9e5a925253b11a3, type: 2}
   m_IsPrefabParent: 0
@@ -1415,6 +1420,11 @@ Prefab:
     - target: {fileID: 4219031075406224, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114872083078252638, guid: 2cb04807071a4c94ca01211a4f7385cb,
+        type: 2}
+      propertyPath: destination
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
