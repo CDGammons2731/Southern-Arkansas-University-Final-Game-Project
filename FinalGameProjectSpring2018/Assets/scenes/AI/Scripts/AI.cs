@@ -26,7 +26,7 @@ public class AI : MonoBehaviour
 		//GameObject. Just a note for clarification. My method did work for finding the
 		//player but it is more efficent to look for the tag in the Hierarchy.
 
-		destination = GameObject.FindGameObjectWithTag("player").transform;
+		destination = GameObject.FindGameObjectWithTag("Player").transform;
 		//destination = GameObject.Find("player").transform;
 		DatDerBadGoober = GameObject.FindGameObjectWithTag("player").transform;
 		//DatDerBadGoober = GameObject.Find ("player").transform;

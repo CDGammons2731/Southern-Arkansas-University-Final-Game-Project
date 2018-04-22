@@ -134,12 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59990a569ffa83940b1059d65e16ce01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gX: 60
-  gY: 60
+  gX: 50
+  gY: 50
   minDistance: 15
   borderDistance: 10
   gridScale: 20
-  sideRooms: 30
+  sideRooms: 15
   debugging: 0
   connectedDoor: {fileID: 2100000, guid: a904b564431b19d4d92725539bf840cd, type: 2}
   requiredDoor: {fileID: 2100000, guid: 67219996e64c3964b9ae3e14671f3dc4, type: 2}
@@ -148,8 +148,9 @@ MonoBehaviour:
   unlockedDoor: {fileID: 1344275876747052, guid: 37c01f3b928129846881335246a2158c,
     type: 2}
   sealedDoor: {fileID: 1466096836412968, guid: 7eb00641610e0cd4c9b3e12019d96b95, type: 2}
-  lockBoxObj: {fileID: 1417404790021730, guid: a11a53bbb55c2fb4388cd14a470b42b6, type: 2}
-  lockPickObj: {fileID: 100000, guid: 29e3e4c923e0e1a45ac713c1a55b0312, type: 3}
+  lockBoxObj: {fileID: 1378877918828516, guid: 8374947ba74a7494ba9b782460f3ccd5, type: 2}
+  lockPickObj: {fileID: 1925706723828642, guid: 881df615e4018a84ab3f21842d2d6a40,
+    type: 2}
   loaded: 0
   categories:
   - {fileID: 11400000, guid: fe9102082541fe34d9dfafe5f49c598a, type: 2}
