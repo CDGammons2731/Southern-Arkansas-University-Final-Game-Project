@@ -33,12 +33,9 @@ public class AIAttack : MonoBehaviour {
 		if(BoboShoot == true){
 				shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
 				shot.transform.LookAt (EnemyShotLookat.position);
-				shot.GetComponent<Rigidbody>().velocity = shot.transform.forward * bulletSpeed;
-			Destroy(shot, 0.35f);
+				shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
+			Destroy (shot, 0.35f);
 		}
-
-		//if(Vector3.Distance(plyr.position, gameObject.transform.position) <= Meleerange){
-		//}
 	}
 
 }

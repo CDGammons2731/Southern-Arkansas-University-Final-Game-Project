@@ -384,13 +384,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1495277202695886}
-  m_LocalRotation: {x: 0, y: 0.08715578, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: -0.72, y: 1.123, z: 1.246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.637, y: 1.123, z: 1.614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4219031075406224}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 10, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4203895966996904
 Transform:
   m_ObjectHideFlags: 1
@@ -712,6 +712,7 @@ MonoBehaviour:
   shot: {fileID: 0}
   bulletSpawn: {fileID: 4156872514541514}
   plyr: {fileID: 0}
+  EnemyShotLookat: {fileID: 0}
   Shootrange: 5
   Meleerange: 3
   LookRange: 20
