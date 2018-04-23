@@ -237,7 +237,7 @@ public class hud : MonoBehaviour {
                 yourWeapon3.text = " ";
             }
 
-            if(endingsNum==0){
+            /*if(endingsNum==0){
                 curLock.m_MouseLook.SetCursorLock(canLock);
                 endings.SetActive(true);
                 endText.text = end[0];
@@ -252,7 +252,7 @@ public class hud : MonoBehaviour {
                 endings.SetActive(true);
                 endText.text = end[2];
             }
-
+            */
         }
     }
 
