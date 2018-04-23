@@ -104,17 +104,27 @@ namespace PLAYER
         }
 
         void HealthSoundFX() {
-            PlayerSound.PlayOneShot(Healed);
+            if (Healed != null)
+            {
+                PlayerSound.clip = Healed;
+                PlayerSound.Play();
+            }
         }
 
         void HurtSoundFX()
         {
-            PlayerSound.PlayOneShot(PlayerHurt);
+            if (PlayerHurt != null)
+            {
+                PlayerSound.PlayOneShot(PlayerHurt);
+            }
         }
 
         void DeathSoundFX()
         {
-            PlayerSound.PlayOneShot(PlayerDied);
+            if (PlayerDied != null)
+            {
+                PlayerSound.PlayOneShot(PlayerDied);
+            }
         }
 
         //Work on changing some of this 
@@ -123,6 +133,7 @@ namespace PLAYER
             if (other.gameObject.CompareTag("Health"))
             {
                 player_health += 50;
+                HealthSoundFX();
                 other.gameObject.SetActive(false);
             }
             //Armor will be deleted if not used 
