@@ -226,7 +226,7 @@ public class hud : MonoBehaviour {
                 default:
                     break;
             }
-
+            
             yourWeapon.text = playerScript.Inventory[0].tag;
             yourWeapon2.text = playerScript.Inventory[1].tag;
             yourWeapon3.text = playerScript.Inventory[2].tag;

@@ -66,10 +66,7 @@ public class pauseMenu : MonoBehaviour
 
         
     }
-    public void SaveButton()
-    {
-        sa.Save();
-    }
+  
     public void Resume(){
    
         pm.SetActive(false);
