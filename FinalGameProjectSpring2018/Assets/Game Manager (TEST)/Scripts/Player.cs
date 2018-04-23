@@ -21,6 +21,7 @@ namespace PLAYER
         public AudioClip Healed;
         public AudioClip HeartBeat;
         public AudioClip Ticking;
+        public AudioClip PickupAmmo;
         public AudioSource PlayerSound;
 
         //Integrating player health for player object to work with game manager
@@ -106,7 +107,13 @@ namespace PLAYER
         void HealthSoundFX() {
             if (Healed != null)
             {
-                PlayerSound.clip = Healed;
+                PlayerSound.PlayOneShot(Healed);
+            }
+        }
+
+        void AmmoSoundFX() {
+            if (PickupAmmo != null) {
+                PlayerSound.clip = PickupAmmo;
                 PlayerSound.Play();
             }
         }
@@ -134,20 +141,21 @@ namespace PLAYER
             {
                 player_health += 50;
                 HealthSoundFX();
-                other.gameObject.SetActive(false);
+                Destroy(other.gameObject);
             }
             //Armor will be deleted if not used 
             if (other.gameObject.CompareTag("Armor"))
             {
 
-                other.gameObject.SetActive(false);
+                Destroy(other.gameObject);
             }
 
             //Later change this to pick up specific types of ammo 
             if (other.gameObject.CompareTag("Ammo"))
             {
                 gun.ammo += 50;
-                other.gameObject.SetActive(false);
+                AmmoSoundFX();
+                Destroy(other.gameObject);
             }
             //Damage testing, change to take damage from bullets, traps, and hits
             if (other.gameObject.CompareTag("AIbullet"))
@@ -155,6 +163,14 @@ namespace PLAYER
                 player_health -= 2;
                 Destroy(other.gameObject);
             }
+
+            if (other.gameObject.CompareTag("fork"))
+            {
+                player_health -= 10;
+                Debug.Log("Player got slapped with a fork");
+        
+            }
+
 
             if (other.gameObject.CompareTag("shotgun"))
             {
@@ -165,7 +181,7 @@ namespace PLAYER
 
             }
             
-            if (other.gameObject.CompareTag("rifle"))
+            if (other.gameObject.CompareTag("rifle") || other.gameObject.CompareTag("tommygun"))
             {
                 //other.gameObject.GetComponentInChildren<GameObject>().gameObject;
                 weapon = Tommygun_Hands;
