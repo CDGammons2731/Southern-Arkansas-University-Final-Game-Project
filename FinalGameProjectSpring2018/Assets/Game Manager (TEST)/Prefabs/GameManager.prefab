@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1493710648539564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,7 +109,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -133,6 +133,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a699dbcbfce1482478a0cb4811f07232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  Enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  EnemyLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  EnemyDistances:
+  - 38.031612
+  - 148.81874
+  - 417.1232
+  - 493.45117
+  - 58.367146
+  - 347.07474
+  - 287.46155
+  - 555.19226
+  - 412.30182
+  - 533.9946
 --- !u!114 &114977377409071744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,18 +181,21 @@ MonoBehaviour:
   stats: {fileID: 0}
   PlayerObj: {fileID: 0}
   PlayerCam: {fileID: 0}
-  ThemeMusic: {fileID: 0}
+  DeathCam: {fileID: 0}
+  ThemeMusic: {fileID: 8300000, guid: c6a3548b54107414281b30e3a4b7ddb5, type: 3}
   ActionMusic: {fileID: 0}
   VictoryMusic: {fileID: 0}
   DeathMusic: {fileID: 0}
   CreditMusic: {fileID: 0}
-  audiosource: {fileID: 0}
+  audiosource: {fileID: 82701973410062220}
   playerHealth: 100
   playerArmor: 0
   score: 0
   defaultName: Player
   defualtSaved: /PlayerInfo.dat
   playerSaved: 
+  evidencePickedUp: 0
+  levelsCompleted: 0
   enemyCount: 0
   yourGun: {fileID: 0}
   gunText: {fileID: 0}
@@ -168,3 +205,4 @@ MonoBehaviour:
   maxAmmo: 0
   UI: {fileID: 0}
   player: {fileID: 0}
+  Level: 0

@@ -73,6 +73,7 @@ namespace PLAYER
 
         void Start()
         {
+            Time.timeScale = 1;
             //Need to recognize player body
             rb = GetComponent<Rigidbody>();
 
@@ -88,6 +89,7 @@ namespace PLAYER
 
             gunTran = GetComponentInChildren<GunTransitions>();
             GM = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
+            GM.enabled = true;
 
             UI = GameObject.FindGameObjectWithTag("UI");
             Markable = GameObject.FindGameObjectsWithTag("markable");
@@ -97,8 +99,22 @@ namespace PLAYER
                 
             }
 
-            GM.DeathCam.enabled = false;
+            //GM.DeathCam.enabled = false;
 
+        }
+
+        void HealthSoundFX() {
+            PlayerSound.PlayOneShot(Healed);
+        }
+
+        void HurtSoundFX()
+        {
+            PlayerSound.PlayOneShot(PlayerHurt);
+        }
+
+        void DeathSoundFX()
+        {
+            PlayerSound.PlayOneShot(PlayerDied);
         }
 
         //Work on changing some of this 
@@ -125,7 +141,7 @@ namespace PLAYER
             //Damage testing, change to take damage from bullets, traps, and hits
             if (other.gameObject.CompareTag("AIbullet"))
             {
-                player_health -= 5;
+                player_health -= 2;
                 Destroy(other.gameObject);
             }
 
@@ -381,11 +397,18 @@ namespace PLAYER
             if (player_health <= 0)
             {
 
-                GM.DeathCam.enabled = true;
+                //GM.DeathCam.enabled = true;
                StartCoroutine(WaitForDeath());
+               Time.timeScale = 0;
             }
 
             CarryWeapons(currentPick);
+
+            if (player_health > 0)
+            {
+                Time.timeScale = 1;
+            }
+            
         }
     }
 }

@@ -85,6 +85,7 @@ namespace GAMEMANAGER
         //Other saved info: level, lives, upgrade bool + upgrade type, enemy count / enemies spawned, etc
         void Awake()
         {
+            this.enabled = true;
             if (GAME == null)
             {
                 DontDestroyOnLoad(gameObject);
@@ -96,15 +97,31 @@ namespace GAMEMANAGER
                 Destroy(gameObject);
             }
             audiosource = GetComponent<AudioSource>();
-            audiosource.PlayOneShot(ThemeMusic, 0.5f);
             UI = GameObject.FindGameObjectWithTag("UI");
             player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
             
 
         }
-			
 
-        //----------------------------------------GAME SAVING-------------------------------------------
+        private void Start()
+        {
+          
+        }
+
+        void PlayBackground() {
+            audiosource.PlayOneShot(ThemeMusic);
+        }
+
+        void PlayWinMusic() {
+            audiosource.PlayOneShot(VictoryMusic);
+        }
+
+        void PlayDeathMusic()
+        {
+            audiosource.PlayOneShot(DeathMusic);
+        }
+
+
 
         [Serializable]
         class PlayerData
@@ -115,113 +132,17 @@ namespace GAMEMANAGER
             //Make automatic at beginning of level
         }
 
-        public void Save()
-        {
-           
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/PlayerInfo.dat");
-            PlayerData pd = new PlayerData();
-            pd.health = playerHealth;
-            pd.armor = playerArmor;
-            pd.score = score;
-
-            if (name== null) {
-                name = defaultName;
-            }
-
-            bf.Serialize(file, pd);
-            file.Close();
-            Debug.Log("Save successful h/a/s: " + playerHealth + " " + playerArmor + " " + score);
-
-			//playerSaved = NewPlayer;
-
-        }
-
-		public void Load() //Just load at Continue Game (Load on Saved Game Selection)
-        {
-			
-            if (File.Exists(Application.persistentDataPath + "/Player_Info.dat"))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = File.Open(Application.persistentDataPath + "/Player_Info.dat", FileMode.Open);
-                PlayerData pd = (PlayerData)bf.Deserialize(file);
-                file.Close();
-
-                playerHealth = pd.health;
-                score = pd.score;
-                playerArmor = pd.armor;
-
-                Debug.Log("Load Successful h/a/s: " + playerHealth + " " + playerArmor + " " + score);
-
-
-            }
-            else
-            {
-                Debug.Log("No saved file found");
-            }
-        }
-
-        //Create ResetData() method / DeleteSavedFile()
-        // @TESTING 
-        public void HealthUp()
-        {
-            playerHealth += 20;
-        }
-
-        public void HealthDown()
-        {
-            playerHealth -= 20;
-        }
         
-        public void ScoreUp()
-        {
-            score += 250;
-        }
-      
-        public void NewGame(string NewPlayer) {
-			
-            if (NewPlayer == null)
-            {
-                NewPlayer = defaultName;
-            }
 
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/"+NewPlayer+"_Info.dat");
-            PlayerData pd = new PlayerData();
-            pd.health = playerHealth;
-            pd.armor = playerArmor;
-            pd.score = score;
-            //pd.name=name
-          
-            bf.Serialize(file, pd);
-            file.Close();
-			playerSaved = NewPlayer;
-
-        }
-
-        private void RespawnPlayer()
-        {
-            //Respawn player at a position and orientation if they restart
-            //reset score and health
-
-        }
-
-        //If the player escapes....
-        private void Successs()
-        {
-            //Do some game winning thing here
-        }
-
-
+       
         void Update()
         {
+            enabled = true;
 
-            
             if (yourGun.ammoClip < 0)
             {
                 UI.GetComponent<hud>().ammoDisplay.text = yourGun.currentAmmo + "/" + yourGun.AmmoUpdate;
-                //curAmmo = yourGun.currentAmmo;
-               // maxAmmo = yourGun.AmmoUpdate;
+            
             }
 
            
