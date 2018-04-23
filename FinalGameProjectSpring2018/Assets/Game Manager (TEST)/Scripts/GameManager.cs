@@ -105,11 +105,13 @@ namespace GAMEMANAGER
 
         private void Start()
         {
+           
           
         }
 
         void PlayBackground() {
-            audiosource.PlayOneShot(ThemeMusic);
+            audiosource.clip = ThemeMusic;
+            audiosource.Play();
         }
 
         void PlayWinMusic() {
