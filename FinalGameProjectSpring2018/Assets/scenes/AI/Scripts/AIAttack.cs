@@ -13,6 +13,8 @@ public class AIAttack : MonoBehaviour {
 	public int Meleerange = 3;
 	public int LookRange = 20;
 	public int bulletSpeed = 200;
+	public float BobofireRate = 0.8f;
+	public float BobonextFire;
 	public static bool BoboShoot;
 
 	public int X = 0;
@@ -25,17 +27,20 @@ public class AIAttack : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-
 		BoboShoot = AI.Escape;
-
-
-		if(BoboShoot == true){
+		if(BoboShoot == true && Time.time > BobonextFire){
+			if (Vector3.Distance (gameObject.transform.position, plyr.transform.position) > 3) {
+				BobonextFire = Time.time + BobofireRate;
 				shot = (GameObject)Instantiate (bullet, bulletSpawn.position, bulletSpawn.rotation);
 				shot.transform.LookAt (EnemyShotLookat.position);
 				shot.GetComponent<Rigidbody> ().velocity = shot.transform.forward * bulletSpeed;
-			Destroy (shot, 0.35f);
+				Destroy (shot, 0.8f);
+			}
 		}
+	}
+
+	void Shoot(){
+		
 	}
 
 }
