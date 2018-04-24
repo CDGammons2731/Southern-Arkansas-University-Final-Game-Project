@@ -101,7 +101,6 @@ public class AIDAMAG : AISpawner {
         MuhFaceHurt = AI.WhosYourDaddy;
 
         curGun = Player.AIDAMAGCURRENTGUNINFO;
-		Debug.Log (curGun);
 
 		if(curGun == "railgun"){
             Samage = 12;
