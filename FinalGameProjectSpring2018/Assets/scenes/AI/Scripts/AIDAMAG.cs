@@ -144,9 +144,6 @@ public class AIDAMAG : AISpawner {
 			Samage = AISpawner.Damage;
 			Debug.Log (Samage);
 		}*/
-
-		Debug.Log (shootHIM);
-		Debug.Log (MuhFaceHurt);
 	}
 
 
