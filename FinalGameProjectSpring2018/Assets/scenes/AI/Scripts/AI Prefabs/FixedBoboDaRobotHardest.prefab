@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 195518738230481272}
   - component: {fileID: 65288069103241782}
   m_Layer: 14
-  m_Name: FixedBoboDaRobot
+  m_Name: FixedBoboDaRobotHardest
   m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,7 +415,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520156917899428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3250735, y: 2.1929695e-18, z: -11.791508}
+  m_LocalPosition: {x: 0.7109069, y: 2.0653813e-18, z: -11.10198}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4156872514541514}
@@ -863,7 +863,7 @@ MonoBehaviour:
   Respawn: 0
   TimeToRespawn: 3
   WaitToStart: 0
-  Health: 30
+  Health: 100
   Samage: 0
   BoboHead: {fileID: 4219031075406224}
   mask:
@@ -889,7 +889,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 99751cbe428855e48ac39d4bd821d300, type: 2}
+  - {fileID: 2100000, guid: caefc3f97ead94e44868a4c092129520, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
