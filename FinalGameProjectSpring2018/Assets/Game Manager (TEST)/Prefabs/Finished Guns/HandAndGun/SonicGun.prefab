@@ -332,8 +332,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4423960958352184}
-  - component: {fileID: 199742640033413750}
-  - component: {fileID: 198821356305780216}
+  - component: {fileID: 199860862451417640}
+  - component: {fileID: 198380559084240664}
   m_Layer: 0
   m_Name: SG_BS
   m_TagString: Untagged
@@ -1067,7 +1067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1936358391126660
 GameObject:
   m_ObjectHideFlags: 1
@@ -1535,7 +1535,7 @@ Transform:
   m_GameObject: {fileID: 1311006013117404}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0.00156, z: -0.02494}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 4892435403063234}
   m_RootOrder: 5
@@ -1914,7 +1914,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1727491751831520}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: -14.106863, y: -5.4175344, z: -31.760448}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4073770195805052}
@@ -2794,7 +2794,7 @@ MonoBehaviour:
   weapon: {fileID: 1727491751831520}
   bullet: {fileID: 1954157319190264, guid: 6c782b9199d23f84294af494c7c2f226, type: 2}
   bulletSpawn: {fileID: 4423960958352184}
-  PS: {fileID: 198821356305780216}
+  PS: {fileID: 0}
   Reload_Animator: {fileID: 95674531027399382}
   Anim: {fileID: 0}
   CurrentWeapon: 
@@ -3025,7 +3025,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1782780997
+  randomSeed: -1291069830
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6228,7 +6228,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
---- !u!198 &198821356305780216
+--- !u!198 &198380559084240664
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -6287,7 +6287,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1239050785
+  randomSeed: -969189950
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9547,7 +9547,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!199 &199742640033413750
+--- !u!199 &199860862451417640
 ParticleSystemRenderer:
   serializedVersion: 4
   m_ObjectHideFlags: 1

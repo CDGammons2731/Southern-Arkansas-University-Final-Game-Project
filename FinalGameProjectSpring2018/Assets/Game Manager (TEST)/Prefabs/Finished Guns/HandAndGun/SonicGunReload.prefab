@@ -140,8 +140,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4831719927084096}
-  - component: {fileID: 199401265378929062}
-  - component: {fileID: 198005891486394326}
+  - component: {fileID: 199800779759582328}
+  - component: {fileID: 198346967660436334}
   m_Layer: 0
   m_Name: SG_BS1
   m_TagString: Untagged
@@ -1865,7 +1865,7 @@ Transform:
   m_GameObject: {fileID: 1100099189841332}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0.0059666676, z: -0.024966668}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 4938094848211590}
   m_RootOrder: 5
@@ -2042,7 +2042,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1524400443113514}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.741, z: 0}
+  m_LocalPosition: {x: -28.029003, y: -19.785435, z: -20.402857}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4421853077039874}
@@ -2794,7 +2794,7 @@ MonoBehaviour:
   weapon: {fileID: 1524400443113514}
   bullet: {fileID: 1954157319190264, guid: 6c782b9199d23f84294af494c7c2f226, type: 2}
   bulletSpawn: {fileID: 4831719927084096}
-  PS: {fileID: 198005891486394326}
+  PS: {fileID: 0}
   Reload_Animator: {fileID: 95055968280623776}
   Anim: {fileID: 0}
   CurrentWeapon: 
@@ -2966,7 +2966,7 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.011226298, y: 0.000724009, z: 0.0004034281}
     m_Extent: {x: 0.011278002, y: 0.0046141697, z: 0.0033260444}
   m_DirtyAABB: 0
---- !u!198 &198005891486394326
+--- !u!198 &198346967660436334
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3025,7 +3025,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 443100911
+  randomSeed: -1985808083
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9495,7 +9495,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
---- !u!199 &199401265378929062
+--- !u!199 &199800779759582328
 ParticleSystemRenderer:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -9509,8 +9509,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 436ca81538a08d44eb4127d51431aa54, type: 2}
-  - {fileID: 2100000, guid: 436ca81538a08d44eb4127d51431aa54, type: 2}
+  - {fileID: 2100000, guid: b5ae8b5bea1402249afb9792663bb907, type: 2}
+  - {fileID: 2100000, guid: b5ae8b5bea1402249afb9792663bb907, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
