@@ -67,6 +67,7 @@ public class hud : MonoBehaviour {
     public int endingsNum;
     public Text endText;
     public GameObject endings;
+    public bool youEnd=false;
 
 
    
@@ -237,22 +238,28 @@ public class hud : MonoBehaviour {
                 yourWeapon3.text = " ";
             }
 
-            /*if(endingsNum==0){
-                curLock.m_MouseLook.SetCursorLock(canLock);
-                endings.SetActive(true);
-                endText.text = end[0];
+            if (youEnd == true)
+            {
+                if (endingsNum == 0)
+                {
+                    curLock.m_MouseLook.SetCursorLock(canLock);
+                    endings.SetActive(true);
+                    endText.text = end[0];
+                }
+                else if (endingsNum == 1)
+                {
+                    curLock.m_MouseLook.SetCursorLock(canLock);
+                    endings.SetActive(true);
+                    endText.text = end[1];
+                }
+                else if (endingsNum == 2)
+                {
+                    curLock.m_MouseLook.SetCursorLock(canLock);
+                    endings.SetActive(true);
+                    endText.text = end[2];
+                }
             }
-            else if(endingsNum==1){
-                curLock.m_MouseLook.SetCursorLock(canLock);
-                endings.SetActive(true);
-                endText.text = end[1];
-            }
-            else if(endingsNum==2){
-                curLock.m_MouseLook.SetCursorLock(canLock);
-                endings.SetActive(true);
-                endText.text = end[2];
-            }
-            */
+
         }
     }
 
@@ -277,6 +284,7 @@ public class hud : MonoBehaviour {
     public void Resume(){
         curLock.m_MouseLook.SetCursorLock(lockCursor);
         playerScript.hasEvidence = false;
+        youEnd = false;
         evidPopUp.SetActive(false);
         Time.timeScale = 1;
     }
