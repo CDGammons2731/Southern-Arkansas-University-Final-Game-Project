@@ -165,7 +165,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599531246146130}
   m_LocalRotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: -5.0532154e-16}
-  m_LocalPosition: {x: 2.067409, y: 0.44, z: 1.4822537}
+  m_LocalPosition: {x: 19, y: 0, z: -14.546}
   m_LocalScale: {x: -1, y: 1, z: -1}
   m_Children:
   - {fileID: 4380501627227616}
@@ -562,6 +562,9 @@ MonoBehaviour:
   weapon: {fileID: 1599531246146130}
   bullet: {fileID: 1025971916029544, guid: 04f808e235767cd4994bcf5003c07387, type: 2}
   bulletSpawn: {fileID: 4449994565254790}
+  PS: {fileID: 0}
+  Reload_Animator: {fileID: 0}
+  Anim: {fileID: 0}
   CurrentWeapon: 
   SHOTGUN:
   - {fileID: 0}

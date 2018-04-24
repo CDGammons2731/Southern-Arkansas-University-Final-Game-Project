@@ -191,7 +191,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1261447541516186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -0.9820484}
+  m_LocalPosition: {x: 19.300714, y: 1.191, z: -9.349237}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4024999020674806}
@@ -349,7 +349,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -526,9 +526,11 @@ MonoBehaviour:
   PlayerHurt: {fileID: 0}
   PlayerDied: {fileID: 0}
   Healed: {fileID: 8300000, guid: ca540c38718b9a5478b4603d886b010c, type: 3}
-  HeartBeat: {fileID: 8300000, guid: 300fa80182f74714baf5151064b4111b, type: 3}
-  Ticking: {fileID: 0}
+  HeartBeat: {fileID: 8300000, guid: bf8390417785ad14280dee54bd49d9bb, type: 3}
+  Ticking: {fileID: 8300000, guid: 300fa80182f74714baf5151064b4111b, type: 3}
   PickupAmmo: {fileID: 8300000, guid: 1b4337cb47c0dad43bab73b3f3d0ff20, type: 3}
+  GetFolder: {fileID: 8300000, guid: 0aab3cfc34302984eb1b70de70958149, type: 3}
+  SwapWeapon: {fileID: 8300000, guid: 0ac92d6ab88446445bf9d85308ef2a7e, type: 3}
   PlayerSound: {fileID: 82302001431535862}
   player_health: 100
   score: 0
@@ -558,16 +560,11 @@ MonoBehaviour:
   Evidence: 0
   isEvidence: 0
   hasEvidence: 0
-  Tommygun_Hands: {fileID: 1041707015524422, guid: 65166de604f380642a1cecd71ae6b618,
-    type: 2}
-  Revolver_Hands: {fileID: 1167068266248062, guid: 1f0c97228f73a3f4188ad7ed3ae20f71,
-    type: 2}
-  Railgun_Hands: {fileID: 1861267517515096, guid: 6654682b7539f6449b4cc676b54f5018,
-    type: 2}
-  Raygun_Hands: {fileID: 1850270604242274, guid: 859b06a3693df124b8ae221c04f14c91,
-    type: 2}
-  Sonicgun_Hands: {fileID: 1524400443113514, guid: 8a0a54a99367d154fa2a1f525d1df6f3,
-    type: 2}
+  Tommygun_Hands: {fileID: 0}
+  Revolver_Hands: {fileID: 0}
+  Railgun_Hands: {fileID: 0}
+  Raygun_Hands: {fileID: 0}
+  Sonicgun_Hands: {fileID: 0}
 --- !u!124 &124999009432789308
 Behaviour:
   m_ObjectHideFlags: 1

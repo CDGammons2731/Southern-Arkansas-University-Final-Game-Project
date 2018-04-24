@@ -349,7 +349,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -528,6 +528,9 @@ MonoBehaviour:
   Healed: {fileID: 0}
   HeartBeat: {fileID: 8300000, guid: 300fa80182f74714baf5151064b4111b, type: 3}
   Ticking: {fileID: 0}
+  PickupAmmo: {fileID: 0}
+  GetFolder: {fileID: 0}
+  SwapWeapon: {fileID: 0}
   PlayerSound: {fileID: 82002518957598264}
   player_health: 100
   score: 0
