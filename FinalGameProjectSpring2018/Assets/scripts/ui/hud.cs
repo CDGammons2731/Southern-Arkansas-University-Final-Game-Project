@@ -231,8 +231,8 @@ public class hud : MonoBehaviour {
             yourWeapon.text = playerScript.Inventory[0].tag;
             yourWeapon2.text = playerScript.Inventory[1].tag;
             yourWeapon3.text = playerScript.Inventory[2].tag;
-
-            if(playerScript.Inventory[0]==null){
+       
+           if(playerScript.Inventory[0]==null){
                 yourWeapon.text = " ";
                 yourWeapon2.text = " ";
                 yourWeapon3.text = " ";

@@ -12213,7 +12213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1409792281452568}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -6.997797, y: -13.811957, z: 5.199728}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4837139025632930}
@@ -12394,7 +12394,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455108755798886}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.982872, y: -6.879303, z: -1.1781006}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4850465752436208}
@@ -13664,7 +13664,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1529350922219970}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.5387192, y: -8.398041, z: -0.89556885}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4670042964144184}
@@ -15252,7 +15252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1034420812860126}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.07717037, y: -12.456953, z: 5.2331486}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4891372090724828}
@@ -18272,7 +18272,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1655681415393712}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 2.299697, y: -10.597682, z: 5.7575607}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4840039299725138}
@@ -30794,7 +30794,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -32336,9 +32336,11 @@ MonoBehaviour:
   PlayerHurt: {fileID: 0}
   PlayerDied: {fileID: 0}
   Healed: {fileID: 8300000, guid: ca540c38718b9a5478b4603d886b010c, type: 3}
-  HeartBeat: {fileID: 8300000, guid: 300fa80182f74714baf5151064b4111b, type: 3}
-  Ticking: {fileID: 0}
-  PickupAmmo: {fileID: 0}
+  HeartBeat: {fileID: 8300000, guid: bf8390417785ad14280dee54bd49d9bb, type: 3}
+  Ticking: {fileID: 8300000, guid: 300fa80182f74714baf5151064b4111b, type: 3}
+  PickupAmmo: {fileID: 8300000, guid: 1abfe574ec12de74f9903bbd0208762e, type: 3}
+  GetFolder: {fileID: 8300000, guid: 0aab3cfc34302984eb1b70de70958149, type: 3}
+  SwapWeapon: {fileID: 8300000, guid: 0ac92d6ab88446445bf9d85308ef2a7e, type: 3}
   PlayerSound: {fileID: 82684415590022166}
   player_health: 100
   score: 0
@@ -32369,7 +32371,7 @@ MonoBehaviour:
   isEvidence: 0
   hasEvidence: 0
   Tommygun_Hands: {fileID: 1655681415393712}
-  Revolver_Hands: {fileID: 1034420812860126}
+  Revolver_Hands: {fileID: 1278870623376628}
   Railgun_Hands: {fileID: 1455108755798886}
   Raygun_Hands: {fileID: 1529350922219970}
   Sonicgun_Hands: {fileID: 1409792281452568}

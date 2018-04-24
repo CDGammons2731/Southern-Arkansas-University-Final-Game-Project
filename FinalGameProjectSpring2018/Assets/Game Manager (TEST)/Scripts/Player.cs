@@ -22,6 +22,8 @@ namespace PLAYER
         public AudioClip HeartBeat;
         public AudioClip Ticking;
         public AudioClip PickupAmmo;
+        public AudioClip GetFolder;
+        public AudioClip SwapWeapon;
         public AudioSource PlayerSound;
 
         //Integrating player health for player object to work with game manager
@@ -107,7 +109,24 @@ namespace PLAYER
         void HealthSoundFX() {
             if (Healed != null)
             {
-                PlayerSound.PlayOneShot(Healed);
+                PlayerSound.clip = Healed;
+                PlayerSound.Play();
+            }
+        }
+        void SwapFX()
+        {
+            if (SwapWeapon != null)
+            {
+                PlayerSound.PlayOneShot(SwapWeapon);
+            }
+        }
+
+        void GetFolderFX()
+        {
+            if (GetFolder != null)
+            {
+                PlayerSound.clip = GetFolder;
+                PlayerSound.Play();
             }
         }
 
@@ -122,7 +141,8 @@ namespace PLAYER
         {
             if (PlayerHurt != null)
             {
-                PlayerSound.PlayOneShot(PlayerHurt);
+                PlayerSound.clip = PlayerHurt;
+                PlayerSound.Play();
             }
         }
 
@@ -130,7 +150,8 @@ namespace PLAYER
         {
             if (PlayerDied != null)
             {
-                PlayerSound.PlayOneShot(PlayerDied);
+                PlayerSound.clip = PlayerDied;
+                PlayerSound.Play();
             }
         }
 
@@ -238,8 +259,8 @@ namespace PLAYER
         void OnTriggerExit(Collider other)
         {
             weaponInRange = false;
-            isEvidence = false;
             isKey = false;
+            isEvidence = false;
             UI.GetComponent<hud>().pickUpText.text = ("");
             
             
@@ -257,17 +278,20 @@ namespace PLAYER
                     
                     if (Inventory[1] != null) Inventory[1].transform.position = Pos2.transform.position;
                     if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
+                    
                     break;
                 case 2:
 
                     if (Inventory[0] != null) Inventory[0].transform.position = Pos2.transform.position;
                     if (Inventory[2] != null) Inventory[2].transform.position = Pos3.transform.position;
+                  
 
                     break;
                 case 3:
 
                     if (Inventory[0] != null) Inventory[0].transform.position = Pos2.transform.position;
                     if (Inventory[1] != null) Inventory[1].transform.position = Pos3.transform.position;
+                 
                     break;
                 default:
 
@@ -282,6 +306,7 @@ namespace PLAYER
                 GM.yourGun = Inventory[0].GetComponent<Gun>();
                 PickUpWeapon(Inventory[0]);
                 currentPick = 1;
+                SwapFX();
                 
 
             }
@@ -293,7 +318,7 @@ namespace PLAYER
                 GM.yourGun = Inventory[1].GetComponent<Gun>();
                 PickUpWeapon(Inventory[1]);
                 currentPick = 2;
-                
+                SwapFX();
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha3))
@@ -303,7 +328,7 @@ namespace PLAYER
                 GM.yourGun = Inventory[2].GetComponent<Gun>();
                 PickUpWeapon(Inventory[2]);
                 currentPick = 3;
-                
+                SwapFX();
             }
 
 
@@ -382,10 +407,11 @@ namespace PLAYER
 
             if (isEvidence == true && Input.GetKeyDown(KeyCode.F)) {
                 Evidence += 1;
-                //UI.GetComponent<hud>().evidText.text = Evidence.ToString();
+                GetFolderFX();
                 Destroy(YourEvidence);
                 hasEvidence = true;
                 isEvidence = false;
+
             }
 
 
