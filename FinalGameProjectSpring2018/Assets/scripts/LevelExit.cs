@@ -36,6 +36,7 @@ public class LevelExit : MonoBehaviour {
                 SceneManager.LoadScene("main", LoadSceneMode.Single);
             }
             else{
+                hudObj.youEnd = true;
                 if (playerObj.Evidence <= 9)
                 {
                     hudObj.endingsNum = 0;
