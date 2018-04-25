@@ -341,7 +341,7 @@ namespace PLAYER
             hasWeapon = true;
             weaponInRange = false;
             gun.equipped = true;
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1) && gun.canShoot==true)
             {
                 gun.FireWeapon(weapon.tag);
             }

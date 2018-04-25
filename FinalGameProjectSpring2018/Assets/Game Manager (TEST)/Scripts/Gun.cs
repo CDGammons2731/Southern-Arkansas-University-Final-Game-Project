@@ -129,176 +129,183 @@ Reload Speed: 2 seconds
     {
 		type = CurrentWeapon;
         bulletSpeed = 200;
-           
-        switch (type)
-        {
-		case shotgun:
-                    //Set all your values for the specified weapon
-                    fireRate = 0.75f;
-                    ammoClip = 6;
-                    ammoMax = 48;
-                    damage = 5; //or 1.5
-                    reloadRate = 4;
-                    
+            if (canShoot == true)
+            {
+                switch (type)
+                {
+                    case shotgun:
+                        //Set all your values for the specified weapon
+                        fireRate = 0.75f;
+                        ammoClip = 6;
+                        ammoMax = 48;
+                        damage = 5; //or 1.5
+                        reloadRate = 4;
 
-                //Create shot spread
-                    if (Input.GetMouseButton(0)&&Time.time> nextFire && ammo!=0 && canShoot==true){
-                    nextFire = Time.time + fireRate;
-				    Shotgun (ammo,ammoClip);//Call the method for the selected gun
-                        PS.Play();
-                        ammo -= 1;
-                        shotCount++;
-                        currentAmmo -= 1;
-                        if (currentAmmo <= 0)
+
+                        //Create shot spread
+                        if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
                         {
-                            reload(type);
-                            Reload_Animator.Play(Anim.name);
-                        }
-                    }
+                            nextFire = Time.time + fireRate;
+                            Shotgun(ammo, ammoClip);//Call the method for the selected gun
+                            PS.Play();
+                            ammo -= 1;
+                            shotCount++;
+                            currentAmmo -= 1;
+                            if (currentAmmo <= 0)
+                            {
+                                reload(type);
+                              
 
-                    else
-                    {
-                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo==0)
-                        {
-                            GunSound.PlayOneShot(Empty, 0.85f);
-                        }
-                    }
-                    //lather, rinse, repeat for all weapons
-                    break;
-            case revolver:
-                fireRate = 0.35f;
-                ammoClip = 6;
-                ammoMax = 48;
-                damage = 10;
-                reloadRate = 3;
-
-
-                    if (Input.GetMouseButtonUp(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
-                    {
-                        nextFire = Time.time + fireRate;
-                        Revolver(ammo, ammoClip);
-                        PS.Play();
-                        ammo -= 1;
-                        shotCount++;
-                        currentAmmo -= 1;
-					if (currentAmmo<=0)
-                        {
-                            reload(type);
+                            }
                         }
 
-                    }
-
-                    else
-                    {
-                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                        else
                         {
-                            GunSound.PlayOneShot(Empty, 0.85f);
+                            if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                            {
+                                GunSound.PlayOneShot(Empty, 0.85f);
+                            }
                         }
-                    }
+                        //lather, rinse, repeat for all weapons
+                        break;
+                    case revolver:
+                        fireRate = 0.35f;
+                        ammoClip = 6;
+                        ammoMax = 48;
+                        damage = 10;
+                        reloadRate = 3;
 
-                    break;
-            case rifle:
-                fireRate = 0.1f;
-                ammoClip = 50;
-                ammoMax = 300;
-                damage = 8;
-                reloadRate = 2;
 
-                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
-                    {
-                        nextFire = Time.time + fireRate;
-                        Rifle(ammo, ammoClip);
-                        PS.Play();
-                        ammo -= 1;
-                        shotCount++;
-                        currentAmmo -= 1;
-					if (currentAmmo<=0)
+                        if (Input.GetMouseButtonUp(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
                         {
-                            reload(type);
-                            Reload_Animator.Play(0);
-                        }
-                    }
+                            nextFire = Time.time + fireRate;
+                            Revolver(ammo, ammoClip);
+                            PS.Play();
+                            ammo -= 1;
+                            shotCount++;
+                            currentAmmo -= 1;
+                            if (currentAmmo <= 0)
+                            {
+                                reload(type);
+                              
+                            }
 
-                    else
-                    {
-                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                        }
+
+                        else
                         {
-                            GunSound.PlayOneShot(Empty, 0.85f);
+                            if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                            {
+                                GunSound.PlayOneShot(Empty, 0.85f);
+                            }
                         }
-                    }
 
-                    break;
-            case raygun:
-                fireRate = 1.0f;
-                ammoClip = 12;
-                ammoMax = 36;
-                damage = 6;
-                reloadRate = 2;
+                        break;
+                    case rifle:
+                        fireRate = 0.1f;
+                        ammoClip = 50;
+                        ammoMax = 300;
+                        damage = 8;
+                        reloadRate = 3;
 
-                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
-                    {
-                        nextFire = Time.time + fireRate;
-                        RayGun(ammo, ammoClip);
-                        ammo -= 1;
-                        shotCount++;
-                        currentAmmo -= 1;
-					if (currentAmmo<=0)
+                        if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
                         {
-                            reload(type);
-                           
-                        }
-                    }
+                            nextFire = Time.time + fireRate;
+                            Rifle(ammo, ammoClip);
+                            PS.Play();
+                            ammo -= 1;
+                            shotCount++;
+                            currentAmmo -= 1;
+                            if (currentAmmo <= 0)
+                            {
+                                reload(type);
+                              
 
-                    else
-                    {
-                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                            }
+                        }
+
+                        else
                         {
-                            GunSound.PlayOneShot(Empty, 0.85f);
+                            if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                            {
+                                GunSound.PlayOneShot(Empty, 0.85f);
+                            }
                         }
-                    }
 
-                    break;
-            case railgun:
-                fireRate = 1.25f;
-                ammoClip = 8;
-                ammoMax = 32;
-                damage = 12;
-                reloadRate = 4;
+                        break;
+                    case raygun:
+                        fireRate = 1.0f;
+                        ammoClip = 12;
+                        ammoMax = 36;
+                        damage = 6;
+                        reloadRate = 2;
 
-                    if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
-                    {
-                        nextFire = Time.time + fireRate;
-                        Railgun(ammo, ammoClip);
-                        ammo -= 1;
-                        shotCount++;
-                        currentAmmo -= 1;
-					if (currentAmmo<=0)
+                        if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
                         {
-                            reload(type);
-                        }
-                    }
+                            nextFire = Time.time + fireRate;
+                            RayGun(ammo, ammoClip);
+                            ammo -= 1;
+                            shotCount++;
+                            currentAmmo -= 1;
+                            if (currentAmmo <= 0)
+                            {
+                                reload(type);
+                               
 
-                    else
-                    {
-                        if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                            }
+                        }
+
+                        else
                         {
-                            GunSound.PlayOneShot(Empty, 0.85f);
+                            if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                            {
+                                GunSound.PlayOneShot(Empty, 0.85f);
+                            }
                         }
-                    }
-                    break;
-            default:
 
-                fireRate = 0.5f;
-                ammo = 0;
-                ammoClip = 0;
-                ammoMax = 0;
-                damage = 5;
-                reloadRate = 2;
+                        break;
+                    case railgun:
+                        fireRate = 1.25f;
+                        ammoClip = 8;
+                        ammoMax = 32;
+                        damage = 12;
+                        reloadRate = 4;
 
-                    break;
-        }
-        
+                        if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
+                        {
+                            nextFire = Time.time + fireRate;
+                            Railgun(ammo, ammoClip);
+                            ammo -= 1;
+                            shotCount++;
+                            currentAmmo -= 1;
+                            if (currentAmmo <= 0)
+                            {
+                                reload(type);
+                                
+                            }
+                        }
 
+                        else
+                        {
+                            if (Input.GetMouseButtonUp(0) && Empty != null && ammo == 0)
+                            {
+                                GunSound.PlayOneShot(Empty, 0.85f);
+                            }
+                        }
+                        break;
+                    default:
+
+                        fireRate = 0.5f;
+                        ammo = 0;
+                        ammoClip = 0;
+                        ammoMax = 0;
+                        damage = 5;
+                        reloadRate = 2;
+
+                        break;
+                }
+
+            }
     }
         //Just to make sure your pullets are destroyed
         private void OnCollisionEnter(Collision collision)
@@ -445,8 +452,9 @@ Reload Speed: 2 seconds
 
     void reload(string type)
     {
-        //play animation and reset ammo to full or += ammount picked up
-        switch (type) {
+            Reload_Animator.Play(0);
+            //play animation and reset ammo to full or += ammount picked up
+            switch (type) {
 			case shotgun:
                     //play reload animation and sound
                     //Add bullets from total ammo into clip
@@ -511,15 +519,15 @@ Reload Speed: 2 seconds
                     shotCount = 0;
                     break;
         }
-            //canShoot = true;
+          
+      
     }
 
 		IEnumerator ReloadWaiting(float reloadTime){
-            reloadTime = reloadRate;
-            canShoot = false;
-			yield return new WaitForSeconds (reloadRate);
-            shotCount = 0;
+			yield return new WaitForSeconds (reloadTime);
             canShoot = true;
+            shotCount = 0;
+            
 		}    
         // Update is called once per frame
         void Update () {
@@ -551,12 +559,13 @@ Reload Speed: 2 seconds
             }
 
 
-            if (Input.GetKeyDown(KeyCode.R) && equipped == true) {
+            if (Input.GetKeyDown(KeyCode.R) && equipped == true && ammo>0) {
+                canShoot = false;
                 reload (weapon.tag);
-                Reload_Animator.Play(0);
-
 
             }
+
+            
 
             //More RayCast Testing
            

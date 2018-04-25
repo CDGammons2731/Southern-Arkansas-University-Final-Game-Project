@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1582070685166878}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9619238134547846b0e2d92efad327f, type: 3}
   m_Name: 
@@ -1340,6 +1340,8 @@ MonoBehaviour:
   bullet: {fileID: 1954157319190264, guid: 6c782b9199d23f84294af494c7c2f226, type: 2}
   bulletSpawn: {fileID: 4357947619959914}
   PS: {fileID: 0}
+  Reload_Animator: {fileID: 0}
+  Anim: {fileID: 0}
   CurrentWeapon: 
   SHOTGUN:
   - {fileID: 8300000, guid: 2a7d5d2a3612eaf4fb24a06103c80767, type: 3}

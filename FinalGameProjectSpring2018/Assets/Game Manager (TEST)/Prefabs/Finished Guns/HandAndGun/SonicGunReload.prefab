@@ -572,7 +572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1607845971850084
 GameObject:
   m_ObjectHideFlags: 1
@@ -2041,8 +2041,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1524400443113514}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -28.029003, y: -19.785435, z: -20.402857}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 1.597291, y: -6.398594, z: -9.569956}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4421853077039874}
@@ -2794,7 +2794,7 @@ MonoBehaviour:
   weapon: {fileID: 1524400443113514}
   bullet: {fileID: 1954157319190264, guid: 6c782b9199d23f84294af494c7c2f226, type: 2}
   bulletSpawn: {fileID: 4831719927084096}
-  PS: {fileID: 0}
+  PS: {fileID: 198346967660436334}
   Reload_Animator: {fileID: 95055968280623776}
   Anim: {fileID: 0}
   CurrentWeapon: 
@@ -3025,7 +3025,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1985808083
+  randomSeed: 1622967958
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6292,7 +6292,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -627959075
+  randomSeed: 326980978
   InitialModule:
     serializedVersion: 3
     enabled: 1
