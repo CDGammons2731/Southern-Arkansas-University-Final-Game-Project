@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 725f44c28ec3f2d44bee361f3006bc32
-timeCreated: 1524609203
+guid: 0487590e9a28f5a47a980d1f6fadc987
+timeCreated: 1524612255
 licenseType: Free
 ModelImporter:
-  serializedVersion: 21
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     100002: insidemetalwalls
@@ -18,10 +18,42 @@ ModelImporter:
     4300000: Room_Elevator:Elevator
     4300002: insidemetalwalls
     9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blinn3
+    second: {fileID: 2100000, guid: 8f563fac7386a824a8b86bec1a0dc3a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ceiling
+    second: {fileID: 2100000, guid: fdac7df7b0ce74445a22a7ae2d4fdf35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor
+    second: {fileID: 2100000, guid: 8f563fac7386a824a8b86bec1a0dc3a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: f3556a4480408144a9c29669519d6c8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalinsiewall
+    second: {fileID: 2100000, guid: 7b54ae0665a4b8643bc2078094b381f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall
+    second: {fileID: 2100000, guid: 506d36ffc170c0a40b91d79fcb28de1c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -34,6 +66,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
