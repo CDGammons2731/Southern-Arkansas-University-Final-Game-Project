@@ -176,7 +176,6 @@ public class hud : MonoBehaviour {
             //updates health meter
             loseHealth();
 
-
             //evidence count display
             evidText.text = playerScript.Evidence.ToString();
 
@@ -203,8 +202,11 @@ public class hud : MonoBehaviour {
             {
                 keyAmt += 1;
                 playerScript.hasKey=false;
-
             }
+
+            yourWeapon.text = playerScript.Inventory[0].tag;
+            yourWeapon2.text = playerScript.Inventory[1].tag;
+            yourWeapon3.text = playerScript.Inventory[2].tag;
 
             //Weapon Display
             currentWeapon = playerScript.currentPick;
@@ -228,35 +230,37 @@ public class hud : MonoBehaviour {
                     break;
             }
             
-            yourWeapon.text = playerScript.Inventory[0].tag;
-            yourWeapon2.text = playerScript.Inventory[1].tag;
-            yourWeapon3.text = playerScript.Inventory[2].tag;
-       
-           if(playerScript.Inventory[0]==null){
+
+            if(playerScript.Inventory[0].tag==null){
                 yourWeapon.text = " ";
+            }
+            else if(playerScript.Inventory[1].tag==null){
                 yourWeapon2.text = " ";
+            }
+            else if(playerScript.Inventory[2].tag==null){
                 yourWeapon3.text = " ";
             }
+
 
             if (youEnd == true)
             {
                 if (endingsNum == 0)
                 {
-                    curLock.m_MouseLook.SetCursorLock(canLock);
                     endings.SetActive(true);
                     endText.text = end[0];
+                    curLock.m_MouseLook.SetCursorLock(canLock);
                 }
                 else if (endingsNum == 1)
                 {
-                    curLock.m_MouseLook.SetCursorLock(canLock);
                     endings.SetActive(true);
                     endText.text = end[1];
+                    curLock.m_MouseLook.SetCursorLock(canLock);
                 }
                 else if (endingsNum == 2)
                 {
-                    curLock.m_MouseLook.SetCursorLock(canLock);
                     endings.SetActive(true);
                     endText.text = end[2];
+                    curLock.m_MouseLook.SetCursorLock(canLock);
                 }
             }
 

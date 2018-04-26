@@ -72,6 +72,7 @@ public class pauseMenu : MonoBehaviour
         pm.SetActive(false);
         isEnabled = false;
         Time.timeScale = 1;
+        cur.m_MouseLook.SetCursorLock(locked);
 
     }
     public void Option(){

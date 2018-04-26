@@ -11,7 +11,7 @@ public class LevelExit : MonoBehaviour {
 	GameManager go;
     hud hudObj;
     Player playerObj;
-    int numLvls=0;
+    public int numLvls=0;
 
 
 	void Start() {
@@ -30,12 +30,11 @@ public class LevelExit : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("player")) {
-            if (numLvls <= 6)
-            {
+            
                 numLvls++;
                 SceneManager.LoadScene("main", LoadSceneMode.Single);
-            }
-            else{
+
+            if(numLvls>=6){
                 hudObj.youEnd = true;
                 if (playerObj.Evidence <= 9)
                 {
