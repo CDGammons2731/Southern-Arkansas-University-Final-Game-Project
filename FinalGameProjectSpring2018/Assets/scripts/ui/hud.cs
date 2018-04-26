@@ -242,27 +242,28 @@ public class hud : MonoBehaviour {
             }
 
 
-            if (youEnd == true)
+            if (gm.Level >= 6)
             {
-                if (endingsNum == 0)
+                if (playerScript.Evidence <= 9)
                 {
                     endings.SetActive(true);
                     endText.text = end[0];
                     curLock.m_MouseLook.SetCursorLock(canLock);
                 }
-                else if (endingsNum == 1)
+                else if (playerScript.Evidence >= 10 && playerScript.Evidence <= 14)
                 {
                     endings.SetActive(true);
                     endText.text = end[1];
                     curLock.m_MouseLook.SetCursorLock(canLock);
                 }
-                else if (endingsNum == 2)
+                else if (playerScript.Evidence >= 15)
                 {
                     endings.SetActive(true);
                     endText.text = end[2];
                     curLock.m_MouseLook.SetCursorLock(canLock);
                 }
             }
+
 
         }
     }
