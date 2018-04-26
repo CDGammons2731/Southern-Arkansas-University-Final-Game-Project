@@ -141,7 +141,7 @@ namespace GAMEMANAGER
         {
             enabled = true;
 
-            if (yourGun.ammoClip < 0)
+            if (yourGun && yourGun.ammoClip < 0)
             {
                 UI.GetComponent<hud>().ammoDisplay.text = yourGun.currentAmmo + "/" + yourGun.AmmoUpdate;
             
