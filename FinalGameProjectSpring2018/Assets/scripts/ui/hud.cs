@@ -11,7 +11,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class hud : MonoBehaviour {
     public Text timer;
-    float count=0f;
+    float count = 0f;
     float maxCount = 3600f;
     public GameObject clockNeedle;
 
@@ -55,24 +55,22 @@ public class hud : MonoBehaviour {
     public Text keyText;
     public Text keyTxt;
     public bool key;
-    public int keyAmt=0;
+    public int keyAmt = 0;
 
     //unlock Mouse
     FirstPersonController curLock;
-    bool canLock=false;
+    bool canLock = false;
     bool lockCursor = true;
 
     //Multi Endings
-    string[] end=new string[3];
+    string[] end = new string[3];
     public int endingsNum;
     public Text endText;
     public GameObject endings;
-    public bool youEnd=false;
+    public bool youEnd = false;
 
-
-   
-
-
+    //Testing Array
+    public List<string> TabWeapons = new List<string>();
 
 
     private void Start()
@@ -80,7 +78,7 @@ public class hud : MonoBehaviour {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
 
         //playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
-        
+
         //Evidence text
         txt[1] = "Public Announcement To All Staff... As I have been so gracious and kind to allow you to keep your jobs in my company, you understand there will be some changes in how we run things. Firstly, my son Jonathan, is now the new CEO because the Board of Directors and I have an “understanding” you might say. Secondly, from hence forth, anytime you refer to myself, I will be called Godfather. Thirdly, if you value your life and your family’s lives, you will do anything I or my son says, trust me, my sons robots can be quite dangerous if you disobey my orders. Your managers have been briefed quite clearly on your new roles in the company. Now if you’ll excuse me, I must go and have lunch with President Woodrow, I do not like how he is running my war, Your Godfather,Maddox Richter";
         txt[2] = "Public Announcement To All Staff... This is your new CEO Johnathan, I have reviewed the company policy and have decided you all don’t need lunch breaks, you need more work.These guns won’t manufacture themselves you know. Therefore, starting today, your expected daily quota is tripled and there will no longer be any lunch breaks.Also, those who don’t meet their quota will be whacked by my robots on the head till they either die or are put in a coma. Honestly, you people just don’t understand how hard it is to be the CEO of a company. That is all for now, Johnathan Richter";
@@ -109,10 +107,44 @@ public class hud : MonoBehaviour {
             "THE END";
     }
 
+
+    void WeaponTab() {
+        if (playerScript.Inventory[0] != null)
+        {
+            yourWeapon.text = playerScript.Inventory[0].tag;
+
+        }
+        else
+        {
+            yourWeapon.text = "";
+        }
+
+        if (playerScript.Inventory[1] != null)
+        {
+            yourWeapon2.text = playerScript.Inventory[1].tag;
+
+        }
+        else
+        {
+            yourWeapon2.text = "";
+        }
+
+        if (playerScript.Inventory[2] != null)
+        {
+            yourWeapon3.text = playerScript.Inventory[2].tag;
+
+        }
+        else
+        {
+            yourWeapon3.text = "";
+        }
+
+    }
+
     // Update is called once per frame
-    void Update () {
-       
-        if (playerScript==null) {
+    void Update() {
+
+        if (playerScript == null) {
             playerScript = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
         }
         if (playerScript != null)
@@ -130,13 +162,13 @@ public class hud : MonoBehaviour {
         }
 
         //prints out the timer
-        count+=Time.deltaTime;
-        float rotZ = -235.0f *count/maxCount+235.0f;
+        count += Time.deltaTime;
+        float rotZ = -235.0f * count / maxCount + 235.0f;
         Quaternion tar = Quaternion.Euler(0, 0, rotZ);
         clockNeedle.transform.rotation = Quaternion.Slerp(clockNeedle.transform.rotation, tar, smooth * Time.deltaTime);
 
         //key = playerScript.hasKey;
-        if(count <= 0){
+        if (count <= 0) {
             count = 300f;
         }
 
@@ -162,7 +194,7 @@ public class hud : MonoBehaviour {
             {
                 gunIcon.sprite = icons[3];
             }
-            if(gm.yourGun.CurrentWeapon == "raygun"){
+            if (gm.yourGun.CurrentWeapon == "raygun") {
                 gunIcon.sprite = icons[4];
             }
 
@@ -201,16 +233,12 @@ public class hud : MonoBehaviour {
             if (key == true)
             {
                 keyAmt += 1;
-                playerScript.hasKey=false;
+                playerScript.hasKey = false;
             }
-
-            yourWeapon.text = playerScript.Inventory[0].tag;
-            yourWeapon2.text = playerScript.Inventory[1].tag;
-            yourWeapon3.text = playerScript.Inventory[2].tag;
 
             //Weapon Display
             currentWeapon = playerScript.currentPick;
-            switch(currentWeapon){
+            switch (currentWeapon) {
                 case 1:
                     file1.SetActive(true);
                     file2.SetActive(false);
@@ -229,18 +257,10 @@ public class hud : MonoBehaviour {
                 default:
                     break;
             }
-            
 
-            if(playerScript.Inventory[0].tag==null){
-                yourWeapon.text = " ";
-            }
-            else if(playerScript.Inventory[1].tag==null){
-                yourWeapon2.text = " ";
-            }
-            else if(playerScript.Inventory[2].tag==null){
-                yourWeapon3.text = " ";
-            }
-
+            WeaponTab();
+           
+    
 
             if (gm.Level >= 6)
             {
