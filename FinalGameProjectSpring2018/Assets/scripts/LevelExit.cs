@@ -11,12 +11,13 @@ public class LevelExit : MonoBehaviour {
 	GameManager go;
     hud hudObj;
     Player playerObj;
-    public int numLvls=0;
+    public bool complete;
 
 
 	void Start() {
         go = FindObjectOfType<GameManager>();
         hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
+        complete = false;
 	}
     void Update()
     {
@@ -26,13 +27,13 @@ public class LevelExit : MonoBehaviour {
         if( hudObj==null){
             hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
         }
+        
     }
 
     void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("player")) {
-
-
-                numLvls++;
+                complete = true;
+                go.Level++;
                 SceneManager.LoadScene("main", LoadSceneMode.Single);
 
 

@@ -262,7 +262,7 @@ public class hud : MonoBehaviour {
            
     
 
-            if (gm.Level >= 6)
+            if (gm.Level >= 1)
             {
                 if (playerScript.Evidence <= 9)
                 {
