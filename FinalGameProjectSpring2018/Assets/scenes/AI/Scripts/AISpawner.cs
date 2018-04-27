@@ -56,7 +56,7 @@ public class AISpawner : MonoBehaviour {
 			Damage = player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage;
 			Debug.Log ("Damage: " + Damage);
 		}*/
-		if (EnemiesCount < 10) {
+		if (EnemiesCount < 20) {
 			if (SpawnActivateRandomizer == true) {
 				if (Respawn <= 0f) {
 					Vector3 point;
@@ -64,9 +64,12 @@ public class AISpawner : MonoBehaviour {
 						if (RandomPoint (transform.position, range, out point)) {
 							if (Enemies [0] == null) {
 								Enemies [0] = Instantiate (AIToSpawn, point, Quaternion.identity);
-							} else if (Enemies [1] == null) {
+							}
+
+                            if (Enemies [1] == null) {
 								Enemies [1] = Instantiate (AIToSpawn, point, Quaternion.identity);
 							}
+
 							EnemiesNumber++;
 							Respawn = TimeToRespawn;
 						}

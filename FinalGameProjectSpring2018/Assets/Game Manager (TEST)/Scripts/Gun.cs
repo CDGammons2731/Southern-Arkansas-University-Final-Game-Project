@@ -458,7 +458,7 @@ Reload Speed: 2 seconds
 			case shotgun:
                     //play reload animation and sound
                     //Add bullets from total ammo into clip
-				if (currentAmmo < ammoClip && ammo > ammoClip) {
+				if (currentAmmo < ammoClip && ammo >= ammoClip) {
 					if (SHOTGUN [1] != null) {
 						GunSound.PlayOneShot (SHOTGUN [1], 0.85f);
 					}
@@ -466,11 +466,13 @@ Reload Speed: 2 seconds
 					currentAmmo = (ammoClip - currentAmmo) + currentAmmo;
 
 				}
+
+                
 					
                 break;
 			case revolver:
                     //play reload animation and sound
-				if (currentAmmo < ammoClip && ammo > ammoClip) {
+				if (currentAmmo < ammoClip && ammo >= ammoClip) {
 					if (REVOLVER [1] != null) {
 						GunSound.PlayOneShot (REVOLVER [1], 0.85f);
 					}
@@ -482,7 +484,7 @@ Reload Speed: 2 seconds
                     break;
             case rifle:
                     //play reload animation and sound
-				if (currentAmmo < ammoClip && ammo > ammoClip) {
+				if (currentAmmo < ammoClip && ammo >=ammoClip) {
 					if (RIFLE [1] != null) {
 						GunSound.PlayOneShot (RIFLE [1], 0.85f);
 					}
@@ -493,7 +495,7 @@ Reload Speed: 2 seconds
                     break;
             case raygun:
                     //play reload animation and sound
-				if (currentAmmo < ammoClip && ammo > ammoClip) {
+				if (currentAmmo < ammoClip && ammo >= ammoClip) {
 					if (RAYGUN[1] != null) {
 						GunSound.PlayOneShot (RAYGUN[1], 0.85f);
 					}
@@ -503,7 +505,7 @@ Reload Speed: 2 seconds
 				}
                     break;
             case railgun:
-				if (currentAmmo < ammoClip && ammo > ammoClip) {
+				if (currentAmmo < ammoClip && ammo >= ammoClip) {
 					if (RAILGUN [1] != null) {
 						GunSound.PlayOneShot (RAILGUN [1], 0.85f);
 					}
@@ -565,10 +567,6 @@ Reload Speed: 2 seconds
 
             }
 
-            
-
-            //More RayCast Testing
-           
             
         }
 }
