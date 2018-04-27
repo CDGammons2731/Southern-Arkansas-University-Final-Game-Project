@@ -77,20 +77,10 @@ public class pauseMenu : MonoBehaviour
     }
     public void Option(){
         cur.m_MouseLook.SetCursorLock(unlocked);
-        if(!back){
-            resumeBt.SetActive(false);
-            quitBt.SetActive(false);
-            soundSlider.SetActive(true);
-            soundText.SetActive(true);
-            back=true;
-        }
-        else{
-            resumeBt.SetActive(true);
-            quitBt.SetActive(true);
-            soundSlider.SetActive(false);
-            soundText.SetActive(false);
-            back = false;
-        } 
+
+        soundSlider.SetActive(true);
+        soundText.SetActive(true);
+            
     }
     public void Quit()
     {

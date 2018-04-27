@@ -164,8 +164,8 @@ MonoBehaviour:
   gunIcon: {fileID: 0}
   icons:
   - {fileID: 21300000, guid: 61b2f8d50fc7d4fd6bcc1f4e24ec1824, type: 3}
-  - {fileID: 21300000, guid: 820168cb7de5a489187a5c14c864664f, type: 3}
-  - {fileID: 21300000, guid: 5561109731d314e07826fe6ea3613daf, type: 3}
+  - {fileID: 21300000, guid: d00bdb164e53444b6bf83cec2f260315, type: 3}
+  - {fileID: 21300000, guid: b6a39736c09d84ae18ec86a04c6c84fa, type: 3}
   - {fileID: 21300000, guid: ad354c15e232641c19c1d9f0bf34e618, type: 3}
   - {fileID: 21300000, guid: a2fa52dbe29d045b9b4b12ac239a25ca, type: 3}
   currentWeapon: 0
@@ -180,6 +180,10 @@ MonoBehaviour:
   keyTxt: {fileID: 0}
   key: 0
   keyAmt: 0
+  LEVEL: 0
   endingsNum: 0
   endText: {fileID: 0}
   endings: {fileID: 0}
+  youEnd: 0
+  Completed: 0
+  TabWeapons: []

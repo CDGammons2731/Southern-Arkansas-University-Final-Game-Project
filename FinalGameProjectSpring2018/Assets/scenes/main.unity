@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02986244, g: 0.051501118, b: 0.048428036, a: 1}
+  m_IndirectSpecularColor: {r: 0.029862445, g: 0.05150111, b: 0.04842805, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -554,7 +554,7 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114023044595027570, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
+    - target: {fileID: 114873007001488522, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -564,7 +564,7 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1919831553}
-    - target: {fileID: 114873007001488522, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
+    - target: {fileID: 114023044595027570, guid: e2d5cef86f21b444ab5f5dc84ad8096a,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -711,6 +711,11 @@ Prefab:
       objectReference: {fileID: 985038586}
     - target: {fileID: 114029387329043874, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
         type: 2}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 1721749482}
+    - target: {fileID: 114029387329043874, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
+        type: 2}
       propertyPath: pm
       value: 
       objectReference: {fileID: 582102080}
@@ -799,21 +804,16 @@ Prefab:
       propertyPath: keyTxt
       value: 
       objectReference: {fileID: 1916895386}
-    - target: {fileID: 114029387329043874, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
-        type: 2}
-      propertyPath: volume
-      value: 
-      objectReference: {fileID: 1721749482}
-    - target: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
-        type: 2}
-      propertyPath: endings
-      value: 
-      objectReference: {fileID: 1177636789}
     - target: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
         type: 2}
       propertyPath: endText
       value: 
       objectReference: {fileID: 1177636790}
+    - target: {fileID: 114764214733560990, guid: 8c2486427e10b1a4ea374bf2d217bd1b,
+        type: 2}
+      propertyPath: endings
+      value: 
+      objectReference: {fileID: 1177636789}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c2486427e10b1a4ea374bf2d217bd1b, type: 2}
   m_IsPrefabParent: 0
