@@ -41,6 +41,7 @@ public class LevelExit : MonoBehaviour {
         else
         {
             //Do nothing (End of the game)
+            Debug.Log("Game Complete");
         }
        
     }

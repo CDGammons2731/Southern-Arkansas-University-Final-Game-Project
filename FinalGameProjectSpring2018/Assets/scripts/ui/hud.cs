@@ -186,7 +186,7 @@ public class hud : MonoBehaviour {
                 curLock.m_MouseLook.SetCursorLock(canLock);
                 Time.timeScale = 0; //Added to stop the extra movement
             }
-            else if (playerScript.Evidence >= 10 && playerScript.Evidence <= 14)
+            else if (playerScript.Evidence >= 10 && playerScript.Evidence < 15)
             {
                 endings.SetActive(true);
                 endText.text = end[1];
