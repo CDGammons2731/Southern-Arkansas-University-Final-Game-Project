@@ -11,13 +11,14 @@ public class LevelExit : MonoBehaviour {
 	GameManager go;
     hud hudObj;
     Player playerObj;
-    public bool complete;
-
+    public bool LevelComplete;
+    public bool GameComplete;
 
 	void Start() {
         go = FindObjectOfType<GameManager>();
         hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
-        complete = false;
+        LevelComplete = false;
+        GameComplete = false;
 	}
     void Update()
     {
@@ -30,14 +31,25 @@ public class LevelExit : MonoBehaviour {
         
     }
 
+    //Aaron is testing something
+    IEnumerator Wait() {
+        yield return new WaitForSeconds(0.5f);
+        if (hudObj.Completed == false)
+        {
+            SceneManager.LoadScene("main", LoadSceneMode.Single);
+        }
+        else
+        {
+            //Do nothing (End of the game)
+        }
+       
+    }
+
     void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("player")) {
-                complete = true;
-                go.Level++;
-                SceneManager.LoadScene("main", LoadSceneMode.Single);
-
-
-
+            LevelComplete = true;
+            go.Level++;
+            StartCoroutine(Wait());   //This simply gives the Completed bool a chance to change before the statement makes a decision to load the next scene   
 
 		}
 	}

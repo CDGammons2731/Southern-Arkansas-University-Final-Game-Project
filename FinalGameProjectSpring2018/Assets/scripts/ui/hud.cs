@@ -57,6 +57,9 @@ public class hud : MonoBehaviour {
     public bool key;
     public int keyAmt = 0;
 
+    //For the levels (Aaron is poking with your stuff)
+    public int LEVEL;
+
     //unlock Mouse
     FirstPersonController curLock;
     bool canLock = false;
@@ -68,6 +71,8 @@ public class hud : MonoBehaviour {
     public Text endText;
     public GameObject endings;
     public bool youEnd = false;
+
+    public bool Completed;
 
     //Testing Array
     public List<string> TabWeapons = new List<string>();
@@ -105,6 +110,8 @@ public class hud : MonoBehaviour {
         end[2] = "NEWS HEADLINES: New Owners of Apollyon Co. Secretly Leading Mafia Uprising!" +
             "Local Detective has brought forward substantial evidence linking famous Millionaire Maddox Richter and his son Johnathan to serious Mafia related crimes concerning illegal weapons manufacturing.Maddox Richter attempted to gun down the police but was accidentally shot in the head by a nearby malfunctioning robot.Johnathan Richter has received the death penalty for manslaughter of the of his employees and is now in prison awaiting death.When the Detective was called into Mayor Joey Terrell’s office, the Mayor said the following quote, “Incredible but intense” and proceeded to give the detective a key to the city.Mayor Joey liked the detective so much, he fired Chief of Police Nicholas Cisneros and gave the job to the Detective. Nicholas Cisneros has since gotten a job as a computer game designer and is in the process of designing a game where mafia robots kill a detective for endless hours of “kid friendly” fun. " +
             "THE END";
+
+        Completed = false;
     }
 
 
@@ -166,6 +173,35 @@ public class hud : MonoBehaviour {
         float rotZ = -235.0f * count / maxCount + 235.0f;
         Quaternion tar = Quaternion.Euler(0, 0, rotZ);
         clockNeedle.transform.rotation = Quaternion.Slerp(clockNeedle.transform.rotation, tar, smooth * Time.deltaTime);
+
+        //For testing purposes
+        LEVEL = gm.Level; 
+        if (LEVEL >= 2)
+        {
+            Completed = true;
+            if (playerScript.Evidence <= 9)
+            {
+                endings.SetActive(true);
+                endText.text = end[0];
+                curLock.m_MouseLook.SetCursorLock(canLock);
+                Time.timeScale = 0; //Added to stop the extra movement
+            }
+            else if (playerScript.Evidence >= 10 && playerScript.Evidence <= 14)
+            {
+                endings.SetActive(true);
+                endText.text = end[1];
+                curLock.m_MouseLook.SetCursorLock(canLock);
+                Time.timeScale = 0;//Added to stop the extra movement
+            }
+            else if (playerScript.Evidence >= 15)
+            {
+                endings.SetActive(true);
+                endText.text = end[2];
+                curLock.m_MouseLook.SetCursorLock(canLock);
+                Time.timeScale = 0;//Added to stop the extra movement
+            }
+        }
+
 
         //key = playerScript.hasKey;
         if (count <= 0) {
@@ -259,31 +295,6 @@ public class hud : MonoBehaviour {
             }
 
             WeaponTab();
-           
-    
-
-            if (gm.Level >= 1)
-            {
-                if (playerScript.Evidence <= 9)
-                {
-                    endings.SetActive(true);
-                    endText.text = end[0];
-                    curLock.m_MouseLook.SetCursorLock(canLock);
-                }
-                else if (playerScript.Evidence >= 10 && playerScript.Evidence <= 14)
-                {
-                    endings.SetActive(true);
-                    endText.text = end[1];
-                    curLock.m_MouseLook.SetCursorLock(canLock);
-                }
-                else if (playerScript.Evidence >= 15)
-                {
-                    endings.SetActive(true);
-                    endText.text = end[2];
-                    curLock.m_MouseLook.SetCursorLock(canLock);
-                }
-            }
-
 
         }
     }
@@ -315,6 +326,7 @@ public class hud : MonoBehaviour {
     }
 
     public void Quit(){
+        gm.Level = 1; //To reset the count so the win state goes away
         SceneManager.LoadScene("startMenu", LoadSceneMode.Single);
     }
 

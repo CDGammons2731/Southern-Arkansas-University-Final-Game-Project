@@ -66,7 +66,7 @@ namespace GAMEMANAGER
         //public int[] enemyhealth = { 30, 50, 80, 100, 120, 150, 200, 250, 300 }; //Different health amounts of your enemy
 
         private float timer; //Game Timer
-        private bool escaped; //If the player escapes, next level or win's game, show stats and score
+      
 
         //Testing GUN
         public Gun yourGun;
@@ -79,8 +79,8 @@ namespace GAMEMANAGER
         public Player player;
 
         //Level Counter
-        public int Level = 0;
-
+        public int Level = 1;
+        
 
         //Other saved info: level, lives, upgrade bool + upgrade type, enemy count / enemies spawned, etc
         void Awake()
