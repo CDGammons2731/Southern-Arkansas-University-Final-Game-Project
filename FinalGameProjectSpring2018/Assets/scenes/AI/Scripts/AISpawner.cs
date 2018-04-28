@@ -29,6 +29,7 @@ public class AISpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
 		Enemies = new GameObject[2];
 		player = GameObject.FindGameObjectWithTag ("player");
 
