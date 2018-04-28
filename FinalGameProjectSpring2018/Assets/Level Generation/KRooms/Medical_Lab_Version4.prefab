@@ -136812,9 +136812,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AIToSpawn: {fileID: 1520156917899428, guid: 2cb04807071a4c94ca01211a4f7385cb, type: 2}
+  AIToSpawnHarder: {fileID: 1520156917899428, guid: 7282f640628025245a19fc352477dafb,
+    type: 2}
+  AIToSpawnHardest: {fileID: 1520156917899428, guid: 3b4a66702af1d5f438619b1eab9d0019,
+    type: 2}
   player: {fileID: 0}
   Enemies: []
   EnemiesNumber: 0
+  LevelNum: 0
   EnemiesMaxNumber: 1
   range: 10
   SpawnActivateRandomizer: 0

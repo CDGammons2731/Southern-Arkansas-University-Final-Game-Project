@@ -4,14 +4,18 @@ using UnityEngine;
 using UnityEngine.AI;
 using GUN;
 using PLAYER;
+using GAMEMANAGER;
 
 
 public class AISpawner : MonoBehaviour {
 	public GameObject AIToSpawn;
+	public GameObject AIToSpawnHarder;
+	public GameObject AIToSpawnHardest;
 	public GameObject player;
 	public static int Damage;
 	public GameObject[] Enemies;
 	public int EnemiesNumber = 0;
+	public int LevelNum;
 	public int EnemiesMaxNumber = 1;
 	public float range = 10.0f;
 	public bool SpawnActivateRandomizer = false;
@@ -49,7 +53,7 @@ public class AISpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		LevelNum = GameManager.GAME.Level;
 		EnemiesCount = AIDistanceCalculator.EnemiesCount;
 
 		/*if (player.GetComponent<Player> ().weapon.GetComponent<Gun> ().damage!=null && Input.GetKeyDown(KeyCode.F)) {
@@ -63,11 +67,23 @@ public class AISpawner : MonoBehaviour {
 					if (EnemiesNumber <= EnemiesMaxNumber) {
 						if (RandomPoint (transform.position, range, out point)) {
 							if (Enemies [0] == null) {
-								Enemies [0] = Instantiate (AIToSpawn, point, Quaternion.identity);
+								if (LevelNum == 1 || LevelNum == 2) {
+									Enemies [0] = Instantiate (AIToSpawn, point, Quaternion.identity);
+								} else if (LevelNum == 3 || LevelNum == 4) {
+									Enemies [0] = Instantiate (AIToSpawnHarder, point, Quaternion.identity);
+								} else if (LevelNum == 5) {
+									Enemies [0] = Instantiate (AIToSpawnHardest, point, Quaternion.identity);
+								}
 							}
 
                             if (Enemies [1] == null) {
-								Enemies [1] = Instantiate (AIToSpawn, point, Quaternion.identity);
+								if (LevelNum == 1 || LevelNum == 2) {
+									Enemies [0] = Instantiate (AIToSpawn, point, Quaternion.identity);
+								} else if (LevelNum == 3 || LevelNum == 4) {
+									Enemies [0] = Instantiate (AIToSpawnHarder, point, Quaternion.identity);
+								} else if (LevelNum == 5) {
+									Enemies [0] = Instantiate (AIToSpawnHardest, point, Quaternion.identity);
+								}
 							}
 
 							EnemiesNumber++;
