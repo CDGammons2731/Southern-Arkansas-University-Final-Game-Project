@@ -176,7 +176,7 @@ public class hud : MonoBehaviour {
 
         //For testing purposes
         LEVEL = gm.Level; 
-        if (LEVEL >= 2)
+        if (LEVEL > 5)
         {
             Completed = true;
             if (playerScript.Evidence <= 9)
