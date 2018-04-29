@@ -31,10 +31,9 @@ public class AIAttack : MonoBehaviour {
 	void Update () {
 
 		BoboEscape = AI.Escape;
-		Debug.Log ("Escape: " + AI.Escape);
 
 		if(Time.time > BobonextFire){
-			if (BoboEscape = true) {
+			if (BoboEscape == true) {
 				if (Vector3.Distance (gameObject.transform.position, plyr.transform.position) > 3 && Vector3.Distance (gameObject.transform.position, plyr.transform.position) < 20) {
 					m_MyAudioSource.Play ();
 					BobonextFire = Time.time + BobofireRate;
