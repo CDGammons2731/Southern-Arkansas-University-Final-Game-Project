@@ -31,6 +31,7 @@ public class AIAttack : MonoBehaviour {
 	void Update () {
 
 		BoboEscape = AI.Escape;
+		Debug.Log ("Escape: " + AI.Escape);
 
 		if(Time.time > BobonextFire){
 			if (BoboEscape = true) {

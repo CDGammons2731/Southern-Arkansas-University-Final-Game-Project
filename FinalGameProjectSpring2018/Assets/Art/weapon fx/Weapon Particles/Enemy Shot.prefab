@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 199512836521883736}
   - component: {fileID: 136869559175162414}
   - component: {fileID: 54809377651624528}
+  - component: {fileID: 135545971238800792}
   m_Layer: 9
   m_Name: Enemy Shot
   m_TagString: AIbullet
@@ -89,6 +90,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 1
+--- !u!135 &135545971238800792
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1631501092896938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0.01, y: 0.03, z: 0.16}
 --- !u!136 &136869559175162414
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -3428,7 +3441,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1374281212
+  randomSeed: -1052731885
   InitialModule:
     serializedVersion: 3
     enabled: 1
