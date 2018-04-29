@@ -414,8 +414,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520156917899428}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.9474303, z: -0, w: 0.31996223}
+  m_LocalPosition: {x: 4.669691, y: 0.083333336, z: -14.806916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4156872514541514}
@@ -457,7 +457,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645283612834918}
-  m_LocalRotation: {x: -0.039313633, y: -0.039204143, z: 0.70503086, w: 0.707}
+  m_LocalRotation: {x: -0.054840863, y: -0.054688122, z: 0.7039991, w: 0.7059653}
   m_LocalPosition: {x: -0.001061, y: -0.380211, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_Children:
@@ -484,7 +484,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1249395453207420}
-  m_LocalRotation: {x: -0.4659245, y: -0.51711065, z: 0.47424385, w: 0.5390768}
+  m_LocalRotation: {x: -0.4568304, y: -0.5251668, z: 0.464299, w: 0.5476607}
   m_LocalPosition: {x: -0.257144, y: 0, z: 0}
   m_LocalScale: {x: 0.9999995, y: 1.0000005, z: 1.0000004}
   m_Children:
@@ -499,7 +499,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599804327914732}
   m_LocalRotation: {x: -0.706332, y: 0.7078807, z: -4.334519e-17, w: 4.3250366e-17}
-  m_LocalPosition: {x: -0.000178, y: 0.34667242, z: 0}
+  m_LocalPosition: {x: -0.000178, y: 0.3688951, z: 0}
   m_LocalScale: {x: 1.0000004, y: 1.0000004, z: 1}
   m_Children:
   - {fileID: 4516128639853260}
@@ -583,7 +583,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1311727018684630}
-  m_LocalRotation: {x: 0.864561, y: 0.5025279, z: 3.077096e-17, w: 5.2939096e-17}
+  m_LocalRotation: {x: 0.8258189, y: 0.5639355, z: 3.4531088e-17, w: 5.0566818e-17}
   m_LocalPosition: {x: -0.602342, y: 0, z: 0}
   m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 1}
   m_Children:
@@ -611,7 +611,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1367213676530522}
-  m_LocalRotation: {x: 0.7076767, y: -0.7053463, z: -0.029114727, w: 0.028857544}
+  m_LocalRotation: {x: 0.70782536, y: -0.705494, z: -0.0252266, w: 0.025003374}
   m_LocalPosition: {x: 0.001038, y: 0.372156, z: 0}
   m_LocalScale: {x: 1.0000005, y: 1.0000001, z: 0.9999997}
   m_Children:
@@ -638,7 +638,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1005305150165950}
-  m_LocalRotation: {x: -0.000075868775, y: -0.0016252326, z: -0.046937935, w: 0.99889654}
+  m_LocalRotation: {x: -0.0001303529, y: -0.0016217728, z: -0.080424644, w: 0.9967594}
   m_LocalPosition: {x: -0.649796, y: 0, z: 0}
   m_LocalScale: {x: 0.99999964, y: 1.0000004, z: 1.0000002}
   m_Children:
@@ -835,9 +835,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   LookRange: 20
-  agent: {fileID: 0}
+  agent: {fileID: 195518738230481272}
   range: 10
-  Distance: 0
+  Distance: 25.856611
 --- !u!114 &114965428794173558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -850,11 +850,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AIToSpawn: {fileID: 0}
+  AIToSpawnHarder: {fileID: 0}
+  AIToSpawnHardest: {fileID: 0}
   player: {fileID: 0}
   Enemies:
   - {fileID: 0}
   - {fileID: 0}
   EnemiesNumber: 0
+  LevelNum: 0
   EnemiesMaxNumber: 1
   range: 10
   SpawnActivateRandomizer: 1
@@ -874,7 +877,7 @@ MonoBehaviour:
   plyr: {fileID: 0}
   LookRange: 20
   EnemyHasDied: 0
-  Distance: 0
+  Distance: 25.895947
   curGun: 
 --- !u!137 &137939393332958976
 SkinnedMeshRenderer:
@@ -1012,7 +1015,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1939541950
+  randomSeed: 1882555150
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3451,7 +3454,7 @@ ParticleSystem:
     radiusScale: 1
   SubModule:
     serializedVersion: 2
-    enabled: 1
+    enabled: 0
     subEmitters:
     - emitter: {fileID: 198038379022503778, guid: a705a46d5361f8346b0aabbe0cbdecf9,
         type: 2}
@@ -4234,7 +4237,7 @@ ParticleSystemRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1226828307275398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1

@@ -850,11 +850,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AIToSpawn: {fileID: 0}
+  AIToSpawnHarder: {fileID: 0}
+  AIToSpawnHardest: {fileID: 0}
   player: {fileID: 0}
   Enemies:
   - {fileID: 0}
   - {fileID: 0}
   EnemiesNumber: 0
+  LevelNum: 0
   EnemiesMaxNumber: 1
   range: 10
   SpawnActivateRandomizer: 1
@@ -3451,7 +3454,7 @@ ParticleSystem:
     radiusScale: 1
   SubModule:
     serializedVersion: 2
-    enabled: 1
+    enabled: 0
     subEmitters:
     - emitter: {fileID: 198038379022503778, guid: a705a46d5361f8346b0aabbe0cbdecf9,
         type: 2}
