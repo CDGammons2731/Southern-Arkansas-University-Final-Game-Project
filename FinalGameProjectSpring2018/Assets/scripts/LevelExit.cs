@@ -13,8 +13,10 @@ public class LevelExit : MonoBehaviour {
     Player playerObj;
     public bool LevelComplete;
     public bool GameComplete;
+	public bool LevelIncreased;
 
 	void Start() {
+		LevelIncreased = false;
         go = FindObjectOfType<GameManager>();
         hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
         LevelComplete = false;
@@ -49,7 +51,10 @@ public class LevelExit : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("player")) {
             LevelComplete = true;
-            go.Level++;
+			if (LevelIncreased == false) {
+				go.Level++;
+				LevelIncreased = true;
+			}
             StartCoroutine(Wait());   //This simply gives the Completed bool a chance to change before the statement makes a decision to load the next scene   
 
 		}
