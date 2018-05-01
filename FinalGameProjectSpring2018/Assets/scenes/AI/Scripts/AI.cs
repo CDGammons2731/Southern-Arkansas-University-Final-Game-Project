@@ -19,13 +19,15 @@ public class AI : MonoBehaviour
 	public float Distance;
 	int X = 200;
 
+	float timer = .5f;
+	float timeC;
 
 	void Start(){
 
 		//Arron changed destination and DatDerBadGoober to look for tag instead of Hierarchy
 		//GameObject. Just a note for clarification. My method did work for finding the
 		//player but it is more efficent to look for the tag in the Hierarchy.
-
+		timeC = Random.Range(0, timer);
 		destination = GameObject.FindGameObjectWithTag("Player").transform;
 		//destination = GameObject.Find("player").transform;
 		DatDerBadGoober = GameObject.FindGameObjectWithTag("player").transform;
@@ -47,9 +49,11 @@ public class AI : MonoBehaviour
 		return false;
 	}
 
+	Vector3 dest;
 
 	void Update ()
 	{
+		
 		Distance = Vector3.Distance (gameObject.transform.position, destination.position);
 		dist = AIDistanceCalculator.ClosestEnemyDistance;
 		//Debug.Log ("Distance to AI: " + dist);
@@ -75,7 +79,7 @@ public class AI : MonoBehaviour
 			} else if (dist > 5) {
 				if (RandomPoint (transform.position, range, out point)) {
 					float Idledist = Vector3.Distance (point, transform.position);
-					agent.SetDestination (point);
+					dest = point;
 				}
 				X = 0;
 			} else if (dist <= 5) {
@@ -93,17 +97,17 @@ public class AI : MonoBehaviour
 					X = 0;
 				} else if (dist > 5 && dist <= 20) {
 					Escape = true;
-					agent.SetDestination (destination.position);
+					dest = destination.position;
 					WhosYourDaddy = false;
 				} else if (dist <= 5) {
 					WhosYourDaddy = true;
 					if (dist > 3) {
-						agent.SetDestination (destination.position);
+						dest = destination.position;
 					} else {
 						if (Distance <= 3) {
-							agent.SetDestination (transform.position);
+							dest = transform.position;
 						} else {
-							agent.SetDestination (destination.position);
+							dest = destination.position;
 						}
 					}
 				}
@@ -111,5 +115,15 @@ public class AI : MonoBehaviour
 		} else {
 			Escape = false;
 		}
+		timeC -= Time.deltaTime;
+		if (timeC < 0) {
+			GetPath (dest);
+			timeC = timer;
+		}
+
+	}
+
+	void GetPath(Vector3 pos) {
+		agent.SetDestination (pos);
 	}
 }
