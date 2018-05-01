@@ -103,7 +103,7 @@ public class AIDAMAG : AISpawner {
         curGun = Player.AIDAMAGCURRENTGUNINFO;
 
 		if(curGun == "railgun"){
-            Samage = 12;
+            Samage = 25;
         }
         if (curGun == "raygun") {
 			Samage = 10;

@@ -265,10 +265,10 @@ Reload Speed: 2 seconds
 
                         break;
                     case railgun:
-                        fireRate = 1.25f;
+                        fireRate = 2.5f;
                         ammoClip = 8;
                         ammoMax = 32;
-                        damage = 12;
+                        damage = 25;
                         reloadRate = 4;
 
                         if (Input.GetMouseButton(0) && Time.time > nextFire && ammo != 0 && canShoot == true)
