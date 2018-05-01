@@ -11,6 +11,7 @@ public class LevelExit : MonoBehaviour {
 	GameManager go;
     hud hudObj;
     Player playerObj;
+    loadingScreen ldScrn;
     public bool LevelComplete;
     public bool GameComplete;
 	public bool LevelIncreased;
@@ -21,6 +22,8 @@ public class LevelExit : MonoBehaviour {
         hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
         LevelComplete = false;
         GameComplete = false;
+
+
 	}
     void Update()
     {
@@ -30,6 +33,9 @@ public class LevelExit : MonoBehaviour {
         if( hudObj==null){
             hudObj = GameObject.FindGameObjectWithTag("UI").GetComponent<hud>();
         }
+        if(ldScrn==null){
+            ldScrn = GameObject.FindGameObjectWithTag("LdScrn").GetComponent<loadingScreen>();
+        }
         
     }
 
@@ -38,7 +44,7 @@ public class LevelExit : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         if (hudObj.Completed == false)
         {
-            SceneManager.LoadScene("main", LoadSceneMode.Single);
+            ldScrn.LoadLevels();
         }
         else
         {
@@ -50,6 +56,7 @@ public class LevelExit : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("player")) {
+            
             LevelComplete = true;
 			if (LevelIncreased == false) {
 				go.Level++;
