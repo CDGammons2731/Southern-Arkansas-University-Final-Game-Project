@@ -369,7 +369,7 @@ namespace PLAYER
 
         void PlayDeathFX() {
             if (PlayerDied != null) PlayerSound.PlayOneShot(PlayerDied);
-            dying = false;
+            //dying = false;
 
         }
         void PlaceMark() {
