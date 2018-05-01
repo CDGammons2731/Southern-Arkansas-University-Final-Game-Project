@@ -116,7 +116,7 @@ public class hud : MonoBehaviour {
 
 
     void WeaponTab() {
-        if (playerScript.Inventory[0] != null)
+		if (playerScript.Inventory.Count > 0 && playerScript.Inventory[0] != null)
         {
             yourWeapon.text = playerScript.Inventory[0].tag;
 
@@ -126,7 +126,7 @@ public class hud : MonoBehaviour {
             yourWeapon.text = "";
         }
 
-        if (playerScript.Inventory[1] != null)
+		if (playerScript.Inventory.Count > 1 && playerScript.Inventory[1] != null)
         {
             yourWeapon2.text = playerScript.Inventory[1].tag;
 
@@ -136,7 +136,7 @@ public class hud : MonoBehaviour {
             yourWeapon2.text = "";
         }
 
-        if (playerScript.Inventory[2] != null)
+		if (playerScript.Inventory.Count > 2 && playerScript.Inventory[2] != null)
         {
             yourWeapon3.text = playerScript.Inventory[2].tag;
 
