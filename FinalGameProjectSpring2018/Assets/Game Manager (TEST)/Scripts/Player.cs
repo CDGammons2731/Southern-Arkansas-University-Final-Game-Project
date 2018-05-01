@@ -16,7 +16,7 @@ namespace PLAYER
         public Camera PlayerCam;
 
         [Header("Player Sounds")]
-        public AudioClip PlayerHurt;
+        public AudioClip PlayerHurt; //got it
         public AudioClip PlayerDied;
         public AudioClip Healed;
         public AudioClip HeartBeat;
@@ -24,7 +24,12 @@ namespace PLAYER
         public AudioClip PickupAmmo;
         public AudioClip GetFolder;
         public AudioClip SwapWeapon;
+        public AudioClip Chalk;
+        public AudioClip Item;
+        public AudioClip DropWeapon;
+
         public AudioSource PlayerSound;
+
 
         //Integrating player health for player object to work with game manager
         public int player_health;
@@ -183,6 +188,10 @@ namespace PLAYER
             {
                 player_health -= 2;
                 Destroy(other.gameObject);
+                if (PlayerHurt != null) {
+                    PlayerSound.PlayOneShot(PlayerHurt);
+                }
+
             }
 
             if (other.gameObject.CompareTag("fork"))
@@ -346,6 +355,10 @@ namespace PLAYER
                 gun.FireWeapon(weapon.tag);
             }
 
+            if (Item != null) {
+                PlayerSound.PlayOneShot(Item);
+            }
+
         }
         GameObject g;
         void PlayHeatBeat(bool isDying) {
@@ -360,6 +373,8 @@ namespace PLAYER
                 return; // nothing to do without a collider
             Vector3 closestPoint = col.ClosestPoint(surface_location);
             Instantiate(xmark, transform.position,transform.rotation);
+
+            if (Chalk != null) PlayerSound.PlayOneShot(Chalk);
             //use instantiate
         }
 
@@ -421,6 +436,9 @@ namespace PLAYER
                 Inventory.Remove(Inventory[currentPick]);
                 hasWeapon = false;
                 gun.equipped = false;
+                if (DropWeapon != null) {
+                    PlayerSound.PlayOneShot(DropWeapon);
+                }
 
             }
             if (player_health <= 30)
