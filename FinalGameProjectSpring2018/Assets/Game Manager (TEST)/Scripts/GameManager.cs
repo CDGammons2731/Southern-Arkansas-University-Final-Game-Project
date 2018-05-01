@@ -105,7 +105,7 @@ namespace GAMEMANAGER
 
         private void Start()
         {
-           // PlayBackground();
+            PlayBackground();
           
         }
 
