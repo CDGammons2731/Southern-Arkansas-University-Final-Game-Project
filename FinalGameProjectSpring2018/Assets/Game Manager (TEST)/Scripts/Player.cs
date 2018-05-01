@@ -367,6 +367,10 @@ namespace PLAYER
 
         }
 
+        void PlayDeathFX() {
+            if (PlayerDied != null) PlayerSound.PlayOneShot(PlayerDied);
+
+        }
         void PlaceMark() {
 
             if (!col)
@@ -448,7 +452,7 @@ namespace PLAYER
             }
 
             if (dying == true) {
-               
+                PlayDeathFX();
             }
             //Update players pos for placement purposes 
             player_location = gameObject.transform.TransformDirection(Vector3.forward);
@@ -467,10 +471,7 @@ namespace PLAYER
 
             if (player_health <= 0)
             {
-
-                //GM.DeathCam.enabled = true;
-               StartCoroutine(WaitForDeath());
-               Time.timeScale = 0;
+                Time.timeScale = 0;
             }
 
             CarryWeapons(currentPick);
