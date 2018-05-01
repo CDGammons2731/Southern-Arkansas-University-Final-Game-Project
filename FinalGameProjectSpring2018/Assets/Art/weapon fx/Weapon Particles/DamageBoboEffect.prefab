@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 199330564336837344}
   - component: {fileID: 136723916567163058}
   m_Layer: 0
-  m_Name: Taser Baton
+  m_Name: DamageBoboEffect
   m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5627,7 +5627,7 @@ ParticleSystem:
     separateAxes: 0
     range: {x: 0, y: 1}
   ColorBySpeedModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
